@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-
+import { FormsModule }   from '@angular/forms'; // <-- NgModel lives here
 import { AppComponent } from './app.component';
 
 // Import containers
@@ -59,7 +59,8 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     AppRoutingModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+    FormsModule
   ],
   declarations: [
     AppComponent,

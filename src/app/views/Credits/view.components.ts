@@ -3,19 +3,19 @@ import { SweetAlertService } from 'ng2-sweetalert2';
 
 
 @Component({
-  selector: 'solicitud-component',
+  selector: 'credit-component',
   templateUrl: 'view.component.html',
   providers: [SweetAlertService]
 })
 
 
 export class ViewAppComponent {
-
+  
   menu = 'show'; // 'show', 'create', 'view'
   tabs = [
     {
       title: 'Informacion Basica',
-      url: 'solicitud.tpl.html'
+      url: 'creditos.tpl.html'
     },
     {
       title: 'Archivos',
@@ -91,6 +91,7 @@ export class ViewAppComponent {
      amountrequest: '101010101010',
      applicationdate: '2017-01-01'
    };
+    
 
   ModalUpdateSolicitud = {
     application: {
@@ -404,6 +405,10 @@ export class ViewAppComponent {
   constructor(swal) {
     this.swalService = swal;
   }
+
+  ngOnInit() {
+  }
+
 
 
 /*

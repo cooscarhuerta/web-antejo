@@ -30,7 +30,7 @@ export const routes: Routes = [
       },
       {
         path: 'creditos',
-        loadChildren: './views/Creditos/creditos.module#IconsModule'
+        loadChildren: './views/Credits/creditos.module#AppModule'
       },
       {
         path: 'solicitudes',
