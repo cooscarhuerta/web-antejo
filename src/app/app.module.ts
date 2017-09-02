@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { FormsModule }   from '@angular/forms'; // <-- NgModel lives here
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { AppComponent } from './app.component';
-
+import {HttpClientModule} from '@angular/common/http';
+// import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {SweetAlertService} from 'ng2-sweetalert2';
 // Import containers
 import {
   FullLayout,
@@ -29,7 +31,8 @@ const APP_COMPONENTS = [
   AppBreadcrumbs,
   AppFooter,
   AppHeader,
-  AppSidebar
+  AppSidebar // ,
+  // BrowserAnimationsModule,
 ]
 
 // Import directives
@@ -56,11 +59,14 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 @NgModule({
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule, // ,
+    // SweetAlertService
   ],
   declarations: [
     AppComponent,
