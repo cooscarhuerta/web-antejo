@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
 
   public logIn(loginForm: NgForm): void {
     event.preventDefault();
+    var email, password;
     const body = {
       email : email,
       password : password
