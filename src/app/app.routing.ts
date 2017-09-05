@@ -1,3 +1,5 @@
+import { EditClientComponent } from './views/client/edit-client/edit-client.component';
+import { ClientComponent } from './views/client/client.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -25,8 +27,12 @@ export const routes: Routes = [
         loadChildren: './views/dashboard/dashboard.module#DashboardModule'
       },
       {
-        path: 'cliente',
-        loadChildren: './views/Cliente/cliente.module#ComponentsModule'
+        path: 'client',
+        component: ClientComponent
+      },
+      {
+        path: 'client/edit',
+        component: EditClientComponent
       },
       {
         path: 'creditos',

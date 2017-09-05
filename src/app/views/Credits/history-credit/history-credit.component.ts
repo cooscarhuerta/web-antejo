@@ -8,26 +8,11 @@ import { HttpHeaders } from '@angular/common/http';
   styleUrls: ['./history-credit.component.scss']
 })
 export class HistoryCreditComponent implements OnInit {
-  body = {
-    email : 'nan@dummy.com',
-    password : 'prueba123'
-  };
-  results = null;
-  constructor(private http: HttpClient) {}
+
 
   ngOnInit(): void {
     // Make the HTTP request:
   }
-  public logIn(): void{
-      this.http.post('http://localhost/bantejo/public/AdminAuth/LogIn',this.body,
-    {
-      headers: new HttpHeaders().set('Content-type', 'application/json')
-    }).subscribe(data => {
-      // Read the result field from the JSON response.
-      this.results = data['response'];
-      console.log(data);
-      console.log(this.results);
-    });
-  }
+
 
 }

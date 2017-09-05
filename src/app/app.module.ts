@@ -56,6 +56,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { ClientComponent } from './views/client/client.component';
+import { EditClientComponent } from './views/client/edit-client/edit-client.component';
 
 @NgModule({
   imports: [
@@ -74,7 +75,8 @@ import { ClientComponent } from './views/client/client.component';
     ...APP_CONTAINERS,
     ...APP_COMPONENTS,
     ...APP_DIRECTIVES,
-    ClientComponent
+    ClientComponent,
+    EditClientComponent
   ],
   providers: [{
     provide: LocationStrategy,

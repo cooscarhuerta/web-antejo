@@ -2,6 +2,9 @@ import { Component, Injectable,  OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {SweetAlertService} from 'ng2-sweetalert2';
 import {NgForm} from '@angular/forms';
+
+
+
 @Component({
   templateUrl: 'login.component.html',
   providers: [SweetAlertService, HttpClient, NgForm]
@@ -14,13 +17,9 @@ export class LoginComponent implements OnInit {
 
   }
 
-  public logIn(loginForm: NgForm): void {
+  public logIn(event, email, password): void {
     event.preventDefault();
-    var email, password;
-    const body = {
-      email : email,
-      password : password
-    }
+    let body = JSON.stringify({email, password});
     this.http.post('http://localhost/bantejo/public/AdminAuth/LogIn', body,
         {
           headers: new HttpHeaders().set('Content-type', 'application/json')
@@ -29,7 +28,6 @@ export class LoginComponent implements OnInit {
       if (data['error'] === true) {
         this.swalService.swal('Error', data['message'], 'error');
       }else{
-        console.log('yay');
         this.swalService.swal('Error', data['message'], 'error');
       }
       console.log(data);
