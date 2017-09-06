@@ -1,14 +1,19 @@
-<div class="container">
-    <h1>Historial de creditos</h1>
-    <div class="panel-group">
+<div class="main-page">
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-md-12">
+            <div class="panel-group">
 
-        <div class="panel panel-primary">
-            <div class="panel-heading">Creditos Panel</div>
-            <div class="panel-body">
+                <div class="panel panel-primary">
 
+
+                    <main>
+                        <h2>Historial de Creditos</h2>
+
+                        <app-section-credits *ngFor="let item of Creditos"></app-section-credits>
+
+                    </main>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">

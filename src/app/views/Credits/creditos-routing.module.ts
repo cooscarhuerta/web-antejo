@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ViewAppComponent } from './view.components';
-import { HistoryCreditComponent } from "app/views/Credits/history-credit/history-credit.component";
+import { HistoryCreditComponent } from 'app/views/Credits/history-credit/history-credit.component';
 
 const routes: Routes = [
   {
@@ -14,7 +14,7 @@ const routes: Routes = [
 
   },
    {
-      path : 'historial', 
+      path : 'historial',
       component : HistoryCreditComponent,
       data: {
         title: 'Historial'

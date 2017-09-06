@@ -6,6 +6,7 @@ import { ViewAppComponent } from './view.components';
 import { AppRoutingModule } from './creditos-routing.module';
 import { CommonModule } from '@angular/common';
 import { HistoryCreditComponent } from './history-credit/history-credit.component';
+import { SectionCreditsComponent } from './section-credits/section-credits.component';
 
 @NgModule({
   imports: [
@@ -14,6 +15,6 @@ import { HistoryCreditComponent } from './history-credit/history-credit.componen
     BsDropdownModule,
     CommonModule
   ],
-  declarations: [ ViewAppComponent, HistoryCreditComponent ]
+  declarations: [ ViewAppComponent, HistoryCreditComponent, SectionCreditsComponent ]
 })
 export class AppModule { }

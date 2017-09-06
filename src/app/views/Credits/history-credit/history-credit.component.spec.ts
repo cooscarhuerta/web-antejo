@@ -1,3 +1,4 @@
+import { SectionCreditsComponent } from './../section-credits/section-credits.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HistoryCreditComponent } from './history-credit.component';

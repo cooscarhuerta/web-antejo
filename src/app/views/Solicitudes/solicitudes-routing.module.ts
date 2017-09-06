@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ViewAppComponent } from './view.component';
-import { CrearSolicitudesComponent } from "app/views/Solicitudes/crear-solicitudes/crear-solicitudes.component";
+import { CrearSolicitudesComponent } from 'app/views/Solicitudes/crear-solicitudes/crear-solicitudes.component';
 
 const routes: Routes = [
   {
@@ -11,10 +11,10 @@ const routes: Routes = [
     data: {
       title: 'Solicitudes'
     }
-  },{
-    path:'create',
+  }, {
+    path: 'create',
     component: CrearSolicitudesComponent,
-    data:{
+    data: {
       title: 'CrearSolicitudess'
     }
   }
