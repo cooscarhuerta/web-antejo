@@ -1,0 +1,21 @@
+<div class="main-page">
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Nueva Solicitud</h2>
+                </div><br>
+                <div *ngIf='solicitud_moral == true'>
+                    <button (click)='evento_solicitud(false)'>Solicitud para persona Moral</button><br> Persona Moral:<br>
+                    <p></p>
+                    <app-moral-person></app-moral-person>
+                </div>
+                <div *ngIf='solicitud_moral == false'>
+                    <button (click)='evento_solicitud(true)'>Solicitud para persona Fisica</button><br> Persona Fisica:<br>
+                    <p></p>
+                    <app-physical-person></app-physical-person>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

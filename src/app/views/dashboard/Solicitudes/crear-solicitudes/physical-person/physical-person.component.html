@@ -1,0 +1,108 @@
+<div>
+    <tabset>
+        <tab title="Solicitud">
+
+            <span *tabHeading>Solicitud</span>
+
+            <div class="col-sm-4 form-group">
+                <label for="amountrequest">Monto de Solicitud:</label>
+                <input name="amountrequest" class="form-control" ng-model="ctrl.Application.amountrequest" format="number" required>
+            </div>
+            <div class="form-group col-sm-4">
+                <label for="dateapplication">Fecha de Solicitud:</label>
+                <input name="dateapplication" class="form-control" type="date">
+            </div>
+            <div class="col-sm-3 form-group">
+                <label for="place">Lugar de Solicitud:</label>
+                <input name="place" class="form-control" ng-model="ctrl.Application.place" required>
+            </div>
+            <div class="col-sm-3 form-group">
+                <label for="creditterm">Plazo en Meses:</label>
+                <input name="creditterm" class="form-control" ng-model="ctrl.Application.creditterm" type="number" required>
+            </div>
+            <div class="col-sm-6 form-group">
+                <label for="projectname">Nombre del Proyecto:</label>
+                <input name="projectname" class="form-control" ng-model="ctrl.Application.projectname" required>
+            </div>
+            <div class="center-block text-center">
+                <button class="btn btn-default" ng-if="ctrl.Application.id==null" ng-click="ctrl.createApplication()" ng-disabled="application.$invalid">
+                                        Guardar
+                                    </button>
+            </div>
+        </tab>
+
+        <tab title="Avales">
+
+            <span *tabHeading>Avales</span>
+            <div>
+                <p>
+                    <app-aval-p></app-aval-p>
+                </p>
+            </div>
+        </tab>
+
+        <tab title="Archivos">
+
+            <span *tabHeading>Archivos</span>
+            <tabset>
+                <tab title="Comprobante de Domicilio">
+                    <span *tabHeading>Comprobante de Domicilio</span>
+                    <div>
+                        <div class="form-group">
+                            <label for="input">Subir Comprobante de Domicilio:</label>
+                            <input name="input" class="form-control" type="file" ngf-select="ctrl.SubirDom($file)" />
+                        </div>
+                        <div>
+                            <button class="btn btn-default" ng-click="ctrl.DownloadFile(file.id)">
+                                                <i class="material-icons">file_download</i>
+                                            </button>
+                        </div>
+                    </div>
+                </tab>
+
+                <tab title="Estados de Cuenta">
+                    <span *tabHeading>Estados de Cuenta</span>
+                    <div class="form-group">
+                        <label for="input">Subir Estados de Cuenta:</label>
+                        <input name="input" class="form-control" type="file" ngf-select="ctrl.SubirCuentas($file)" />
+                    </div>
+                    <div>
+                        <button class="btn btn-default" ng-click="ctrl.DownloadFile(file.id)">
+                                                <i class="material-icons">file_download</i>
+                                            </button>
+                    </div>
+                </tab>
+
+                <tab title="RFC">
+                    <span *tabHeading>RFC</span>
+                    <div class="form-group">
+                        <label for="input">Subir RFC:</label>
+                        <input name="input" class="form-control" type="file" ngf-select="ctrl.SubirRFC($file)" />
+                    </div>
+                    <div>
+                        <button class="btn btn-default" ng-click="ctrl.DownloadFile(file.id)">
+                                                <i class="material-icons">file_download</i>
+                                            </button>
+                    </div>
+                </tab>
+
+                <tab title="Contrado">
+                    <span *tabHeading>Contrado</span>
+                    <div class="form-group">
+                        <label for="input">Subir Contrado:</label>
+                        <input name="input" class="form-control" type="file" ngf-select="ctrl.SubirContrato($file)" />
+                    </div>
+                    <div>
+                        <button class="btn btn-default" ng-click="ctrl.DownloadFile(file.id)">
+                                                <i class="material-icons">file_download</i>
+                        </button>
+                    </div>
+
+                </tab>
+            </tabset>
+
+
+
+        </tab>
+    </tabset>
+</div>

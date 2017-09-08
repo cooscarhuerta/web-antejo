@@ -1,5 +1,5 @@
-import { EditClientComponent } from './views/client/edit-client/edit-client.component';
-import { ClientComponent } from './views/client/client.component';
+import { EditClientComponent } from './views/dashboard/Client/edit-client/edit-client.component';
+import { ClientComponent } from './views/dashboard/Client/client.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -36,11 +36,11 @@ export const routes: Routes = [
       },
       {
         path: 'creditos',
-        loadChildren: './views/Credits/creditos.module#AppModule'
+        loadChildren: './views/dashboard/Credits/creditos.module#AppModule'
       },
       {
         path: 'solicitudes',
-        loadChildren: './views/Solicitudes/solicitudes.module#AppModule'
+        loadChildren: './views/dashboard/Solicitudes/solicitudes.module#AppModule'
       },
       {
         path: 'charts',

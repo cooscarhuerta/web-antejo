@@ -1,0 +1,15 @@
+<div class="main-page">
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-md-12">
+            <accordion>
+                <accordion-group *ngFor="let item of strArray" #group>
+                    <div accordion-heading>
+                        Solicitud: {{item}}
+                        <i class="pull-right float-xs-right glyphicon" [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
+                    </div>
+                    <app-section-solicitudes [creditType]="item"></app-section-solicitudes>
+                </accordion-group>
+            </accordion>
+        </div>
+    </div>
+</div>
