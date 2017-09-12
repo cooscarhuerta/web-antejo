@@ -1,3 +1,6 @@
+import { AuthService } from './shared/auth.service';
+import { ExtendHttpService } from './shared/extend-http.service';
+import { Http, HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -61,7 +64,7 @@ import { EditClientComponent } from './views/dashboard/Client/edit-client/edit-c
 @NgModule({
   imports: [
     BrowserModule,
-    HttpClientModule,
+    HttpModule,
     AppRoutingModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
@@ -81,7 +84,7 @@ import { EditClientComponent } from './views/dashboard/Client/edit-client/edit-c
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  }],
+  }, { provide: Http, useClass: ExtendHttpService }],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

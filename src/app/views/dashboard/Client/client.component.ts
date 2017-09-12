@@ -1,3 +1,4 @@
+import { Headers } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientComponent implements OnInit {
 
-  constructor() { }
+  ngOnInit(): void {
 
-  ngOnInit() {
   }
+
 
 }
