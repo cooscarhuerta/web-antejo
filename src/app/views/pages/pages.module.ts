@@ -1,4 +1,3 @@
-import { AuthService } from './../../shared/auth.service';
 import { NgModule } from '@angular/core';
 
 import { P404Component } from './404/404.component';
@@ -18,7 +17,7 @@ import {FormsModule} from '@angular/forms';
     RegisterComponent
   ],
 providers: [
-  AuthService
+
 ]
 })
 export class PagesModule { }

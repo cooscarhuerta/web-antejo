@@ -1,12 +1,13 @@
-import { AuthService } from './shared/auth.service';
-import { ExtendHttpService } from './shared/extend-http.service';
+import { LoginInterceptor } from './views/pages/login/login.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
 import { Http, HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { AppComponent } from './app.component';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
 // import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SweetAlertService} from 'ng2-sweetalert2';
 // Import containers
@@ -71,7 +72,7 @@ import { EditClientComponent } from './views/dashboard/Client/edit-client/edit-c
     ChartsModule,
     FormsModule,
     ReactiveFormsModule,
-
+    HttpClientModule
   ],
   declarations: [
     AppComponent,
@@ -84,7 +85,12 @@ import { EditClientComponent } from './views/dashboard/Client/edit-client/edit-c
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  }, { provide: Http, useClass: ExtendHttpService }],
+  },
+  {
+  provide: HTTP_INTERCEPTORS,
+  useClass: LoginInterceptor,
+  multi: true
+}],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

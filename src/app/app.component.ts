@@ -1,8 +1,13 @@
-import { Component } from '@angular/core';
+
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   // tslint:disable-next-line
   selector: 'body',
   template: '<router-outlet></router-outlet>'
 })
-export class AppComponent { }
+export class AppComponent {
+
+
+ }
