@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AvalMComponent implements OnInit {
 
+
+  avales = {
+    companyname: '',
+    aval: '',
+  }
   constructor() { }
 
   ngOnInit() {
   }
+
 
 }

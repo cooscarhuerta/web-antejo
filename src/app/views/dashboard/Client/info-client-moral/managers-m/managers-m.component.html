@@ -1,0 +1,31 @@
+<div class="row col-sm-12">
+
+    <div class="form-group col-sm-6">
+        <label>Nombre(s):</label>
+        <input class="form-control " ng-model="ctrl.Account.accounttype " required>
+    </div>
+    <div class="form-group col-sm-6">
+        <label>Apellidos(s):</label>
+        <input class="form-control " ng-model="ctrl.Account.accounttype " required>
+    </div>
+
+    <div class="form-group col-sm-6">
+        <label>RFC:</label>
+        <input class="form-control " ng-model="ctrl.Account.accounttype " required>
+    </div>
+
+    <div class="form-group col-sm-6">
+        <label>Telefono:</label>
+        <input class="form-control " ng-model="ctrl.Account.accountnumber " format="accountnumber " required>
+    </div>
+
+    <div class="form-group col-sm-6">
+        <label for="input">Identificacion:</label>
+        <input name="input" class="form-control" type="file" ngf-select="ctrl.SubirCuentas($file)" /></div>
+
+    <div>
+        <button class="btn btn-default" ng-click="ctrl.AddAccount() " ng-disabled="bancos.$invalid ">
+                                            <i class="material-icons ">Agregar Accionista</i>
+                                        </button>
+    </div>
+</div>

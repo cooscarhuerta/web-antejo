@@ -11,6 +11,6 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     ChartsModule,
     BsDropdownModule
   ],
-  declarations: [ DashboardComponent ]
+  declarations: [DashboardComponent]
 })
 export class DashboardModule { }

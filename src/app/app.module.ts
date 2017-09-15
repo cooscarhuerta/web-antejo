@@ -59,8 +59,6 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
-import { ClientComponent } from './views/dashboard/Client/client.component';
-import { EditClientComponent } from './views/dashboard/Client/edit-client/edit-client.component';
 
 @NgModule({
   imports: [
@@ -78,9 +76,7 @@ import { EditClientComponent } from './views/dashboard/Client/edit-client/edit-c
     AppComponent,
     ...APP_CONTAINERS,
     ...APP_COMPONENTS,
-    ...APP_DIRECTIVES,
-    ClientComponent,
-    EditClientComponent
+    ...APP_DIRECTIVES
   ],
   providers: [{
     provide: LocationStrategy,

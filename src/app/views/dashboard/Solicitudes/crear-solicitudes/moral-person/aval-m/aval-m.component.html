@@ -5,64 +5,13 @@
             <input name="input" class="form-control" ng-model="ctrl.Aval.name" required>
         </div>
         <div class="col-sm-3 form-group">
-            <label for="input">RFC:</label>
+            <label for="input">Aval:</label>
             <input name="input" class="form-control" ng-model="ctrl.Aval.rfc" format="RFC" required>
-        </div>
-        <div class="col-sm-3 form-group">
-            <label for="input">CURP:</label>
-            <input name="input" class="form-control" ng-model="ctrl.Aval.curp" format="CURP" required>
-        </div>
-        <div class="col-sm-3 form-group">
-            <label for="input">Fecha de Nacimiento:</label>
-            <input name="input" class="form-control" type="date" ng-model="ctrl.Aval.birthday" required>
-        </div>
-        <div class="col-sm-3 form-group">
-            <label for="input">País de Nacimiento:</label>
-            <input name="input" class="form-control" ng-model="ctrl.Aval.country" required>
-        </div>
-        <div class="col-sm-3 form-group">
-            <label for="input">Nacionalidad:</label>
-            <input name="input" class="form-control" ng-model="ctrl.Aval.nacionality" required>
-        </div>
-        <div class="col-sm-3 form-group">
-            <label for="input">Correo Electronico:</label>
-            <input name="input" class="form-control" ng-model="ctrl.Aval.email" type="email" required>
-        </div>
-        <div class="col-sm-3 form-group">
-            <label for="input">FIEL:</label>
-            <input name="input" class="form-control" ng-model="ctrl.Aval.fiel" format="clabe" required>
-        </div>
-        <div class="col-sm-6 form-group">
-            <label for="input">Dirección:</label>
-            <input name="input" class="form-control" ng-model="ctrl.Aval.address" required>
-        </div>
-        <div class="col-sm-3 form-group">
-            <label for="input">Teléfono:</label>
-            <input name="input" class="form-control" ng-model="ctrl.Aval.phone" format="phone" required>
-        </div>
-        <div class="col-sm-3 form-group">
-            <label for="input">Relación con Solicitante:</label>
-            <input name="input" class="form-control" ng-model="ctrl.Aval.relationship" required>
-        </div>
-        <div class="col-sm-3 form-group">
-            <label for="input">Lugar de Trabajo:</label>
-            <input name="input" class="form-control" ng-model="ctrl.Aval.companyjob" required>
-        </div>
-        <div class="col-sm-3 form-group">
-            <label for="input">Teléfono de Trabajo:</label>
-            <input name="input" class="form-control" ng-model="ctrl.Aval.phonejob" format="phone" required>
-        </div>
-        <div class="col-sm-3 form-group">
-            <label for="input">Fecha de Ingreso:</label>
-            <input name="input" type="date" class="form-control" ng-model="ctrl.Aval.oldwork" required>
-        </div>
-    </div>
-    <div class="col-sm-2 btn-group" style="margin-top: 1.5%">
-        <button class="btn btn-default" ng-show="ctrl.Aval.id==null" ng-click="ctrl.createAval()" ng-disabled="avales.$invalid">
+            <div class="col-sm-2 btn-group" style="margin-top: 1.5%">
+                <button class="btn btn-default" ng-show="ctrl.Aval.id==null" ng-click="ctrl.createAval()" ng-disabled="avales.$invalid">
                                         Guardar
                                     </button>
-
-
+            </div>
+        </div>
     </div>
-
 </div>

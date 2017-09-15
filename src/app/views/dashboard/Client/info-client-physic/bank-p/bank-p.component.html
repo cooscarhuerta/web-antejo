@@ -1,0 +1,30 @@
+<div class="row col-sm-12">
+
+    <div class="form-group col-sm-6">
+        <label> Banco:</label> <select class="form-control " ng-model="ctrl.Account.idbank " required>
+                                            <option ng-repeat="bank in ctrl.banks ">
+                                            </option>
+                                        </select>
+    </div>
+
+    <div class="form-group col-sm-6">
+        <label>Tipo de Cuenta:</label>
+        <input class="form-control " ng-model="ctrl.Account.accounttype " required>
+    </div>
+
+    <div class="form-group col-sm-6">
+        <label>Numero de Cuenta:</label>
+        <input class="form-control " ng-model="ctrl.Account.accountnumber " format="accountnumber " required>
+    </div>
+
+    <div class="form-group col-sm-6">
+        <label>Clave Bancaria:</label>
+        <input class="form-control" ng-model="ctrl.Account.clabe " format="clabe " required>
+    </div>
+
+    <div>
+        <button class="btn btn-default" ng-click="ctrl.AddAccount() " ng-disabled="bancos.$invalid ">
+                                            <i class="material-icons ">Agregar Banco</i>
+                                        </button>
+    </div>
+</div>

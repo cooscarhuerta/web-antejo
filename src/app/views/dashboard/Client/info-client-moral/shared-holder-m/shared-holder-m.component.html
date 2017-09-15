@@ -1,0 +1,30 @@
+<div class="row col-sm-12">
+
+    <div class="form-group col-sm-6">
+        <label> Tipo:</label> <select class="form-control " ng-model="ctrl.Account.idbank " required>
+                                            <option ng-repeat="bank in ctrl.banks ">
+                                            </option>
+                                        </select>
+    </div>
+
+    <div class="form-group col-sm-6">
+        <label>RFC:</label>
+        <input class="form-control " ng-model="ctrl.Account.accounttype " required>
+    </div>
+
+    <div class="form-group col-sm-6">
+        <label>Participacion:</label>
+        <input class="form-control " ng-model="ctrl.Account.accountnumber " format="accountnumber " required>
+    </div>
+
+    <div class="form-group col-sm-6">
+        <label for="dateapplication">Fecha de entrada:</label>
+        <input name="dateapplication" class="form-control" type="date">
+    </div>
+
+    <div>
+        <button class="btn btn-default" ng-click="ctrl.AddAccount() " ng-disabled="bancos.$invalid ">
+                                            <i class="material-icons ">Agregar Accionista</i>
+                                        </button>
+    </div>
+</div>

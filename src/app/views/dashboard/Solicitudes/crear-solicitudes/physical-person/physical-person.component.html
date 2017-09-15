@@ -1,8 +1,13 @@
 <div>
     <tabset>
         <tab title="Solicitud">
-
             <span *tabHeading>Solicitud</span>
+
+
+            <div class="col-sm-4 form-group">
+                <label for="amountrequest">Cliente:</label>
+                <input name="amountrequest" class="form-control" ng-model="ctrl.Application.amountrequest" format="number" required>
+            </div>
 
             <div class="col-sm-4 form-group">
                 <label for="amountrequest">Monto de Solicitud:</label>
@@ -29,6 +34,7 @@
                                         Guardar
                                     </button>
             </div>
+
         </tab>
 
         <tab title="Avales">
@@ -36,7 +42,7 @@
             <span *tabHeading>Avales</span>
             <div>
                 <p>
-                    <app-aval-p></app-aval-p>
+                    <app-aval-m></app-aval-m>
                 </p>
             </div>
         </tab>
@@ -44,6 +50,7 @@
         <tab title="Archivos">
 
             <span *tabHeading>Archivos</span>
+
             <tabset>
                 <tab title="Comprobante de Domicilio">
                     <span *tabHeading>Comprobante de Domicilio</span>
@@ -100,9 +107,7 @@
 
                 </tab>
             </tabset>
-
-
-
         </tab>
+
     </tabset>
 </div>

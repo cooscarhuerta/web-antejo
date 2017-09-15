@@ -10,11 +10,13 @@ import {NgForm} from '@angular/forms';
 })
 @Injectable()
 export class LoginComponent implements OnInit {
-  results = null;
-  constructor(private http: HttpClient, private swalService: SweetAlertService) { }
-  ngOnInit(): void {
+  public registro: boolean;
 
-  }
+    results = null;
+  constructor(private http: HttpClient, private swalService: SweetAlertService) {
+    this.registro = false;
+   }
+
 
   public logIn(event, email, password): void {
     event.preventDefault();
@@ -31,8 +33,13 @@ export class LoginComponent implements OnInit {
         this.swalService.swal('Error', data['message'], 'error');
       }
       console.log(data);
-
-
     });
+  }
+
+  public reg() {
+    this.registro = !this.registro;
+  }
+   ngOnInit(): void {
+
   }
 }

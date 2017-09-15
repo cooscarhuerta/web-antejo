@@ -10,46 +10,47 @@ import { Class, Component, OnInit, NgModule } from '@angular/core';
 
 export class CrearSolicitudesComponent implements OnInit {
 public solicitud_moral: boolean;
+
 public datos = {
   solicitud : {
     amount : 0,
     start_date : Date.now(),
-    location : "",
+    location : '',
     term : 0,
-    name : ""
+    name : ''
   },
   avales : {
-    name : "",
-    lastname : "",
-    RFC : "",
-    CURP : "",
+    name : '',
+    lastname : '',
+    RFC : '',
+    CURP : '',
     birthdate : Date.now(),
-    country : "",
-    nationality : "",
-    email : "",
-    fiel : "",
-    address : "",
-    phone_number : "",
-    marital_status : "",
-    marital_regimen : "",
-    relationship : "",
-    workplace : "",
-    work_phone : "",
-    position : "",
+    country : '',
+    nationality : '',
+    email : '',
+    fiel : '',
+    address : '',
+    phone_number : '',
+    marital_status : '',
+    marital_regimen : '',
+    relationship : '',
+    workplace : '',
+    work_phone : '',
+    position : '',
     join_date : Date.now()
 
 
   },
   archivos: {
-    comprobante : "",
-    estadoCuenta : "",
-    RFC : "",
-    contrato : ""
+    comprobante : '',
+    estadoCuenta : '',
+    RFC : '',
+    contrato : ''
   }
 }
 constructor() {
   this.solicitud_moral = false;
-  
+
 }
 
 evento_solicitud(valor) {
