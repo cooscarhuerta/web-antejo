@@ -1,3 +1,4 @@
+import { Route } from '@angular/router';
 import { Component, Injectable,  OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {SweetAlertService} from 'ng2-sweetalert2';
@@ -10,18 +11,17 @@ import {NgForm} from '@angular/forms';
 })
 @Injectable()
 export class LoginComponent implements OnInit {
-  public registro: boolean;
-
     results = null;
-  constructor(private http: HttpClient, private swalService: SweetAlertService) {
-    this.registro = false;
+
+    constructor(private http: HttpClient, private swalService: SweetAlertService) {
+
    }
 
 
   public logIn(event, email, password): void {
     event.preventDefault();
-    const body = JSON.stringify({email, password});
-    this.http.post('http://localhost/bantejo/public/AdminAuth/LogIn', body,
+    const body = JSON.stringify({email: email, password: password});
+    this.http.post('http://localhost/bantejo/public/ClientsAuth/LogIn', body,
         {
           headers: new HttpHeaders().set('Content-type', 'application/json')
         }).subscribe(data => {
@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
       if (data['error'] === true) {
         this.swalService.swal('Success', data['message'], 'error');
         localStorage.setItem('tokenK', data['token']);
+
       }else {
         this.swalService.swal('Error', data['message'], 'error');
       }
@@ -36,10 +37,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  public reg() {
-    this.registro = !this.registro;
-  }
-   ngOnInit(): void {
+  ngOnInit(): void {
 
   }
 }

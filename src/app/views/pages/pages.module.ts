@@ -7,7 +7,6 @@ import { RegisterComponent } from './register/register.component';
 
 import { PagesRoutingModule } from './pages-routing.module';
 import {FormsModule} from '@angular/forms';
-import { RegistryUserComponent } from './login/registry-user/registry-user.component';
 
 @NgModule({
   imports: [ PagesRoutingModule, FormsModule ],
@@ -15,8 +14,7 @@ import { RegistryUserComponent } from './login/registry-user/registry-user.compo
     P404Component,
     P500Component,
     LoginComponent,
-    RegisterComponent,
-    RegistryUserComponent
+    RegisterComponent
   ],
 providers: [
 
