@@ -1,3 +1,4 @@
+import { FilesM } from './m-files-m';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./files-m.component.scss']
 })
 export class FilesMComponent implements OnInit {
+submitted = false;
 
-  constructor() { }
+  model: FilesM = new FilesM();
+
 
   ngOnInit() {
   }
 
+  onSubmit() {
+    this.submitted = true;
+
+    console.log(this.model);
+  }
 }

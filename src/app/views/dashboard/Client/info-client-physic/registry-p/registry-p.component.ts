@@ -1,3 +1,5 @@
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { RegistryP } from './m-registry-p';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistryPComponent implements OnInit {
 
-  constructor() { }
+  submitted = false;
+
+  model: RegistryP = new RegistryP();
+
 
   ngOnInit() {
   }
 
+  onSubmit() {
+    this.submitted = true;
+
+    console.log(this.model);
+  }
 }

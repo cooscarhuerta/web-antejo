@@ -16,8 +16,6 @@ import {FormsModule} from '@angular/forms';
     LoginComponent,
     RegisterComponent
   ],
-providers: [
-
-]
+providers: [ ]
 })
 export class PagesModule { }

@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
@@ -29,7 +30,8 @@ import { SharedHolderMComponent } from './info-client-moral/shared-holder-m/shar
     BsDropdownModule.forRoot(),
     CommonModule,
     TabsModule.forRoot(),
-    AccordionModule.forRoot()
+    AccordionModule.forRoot(),
+    FormsModule
   ],
   declarations: [ClientComponent, InfoClientMoralComponent, InfoClientPhysicComponent, EditClientComponent, BankPComponent,
      BankMComponent, FilesMComponent, FilesPComponent, RegistryPComponent, RegistryMComponent, ManagersMComponent, SharedHolderMComponent]

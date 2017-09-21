@@ -1,3 +1,4 @@
+import { AuthGuard } from './views/pages/login/auth-guard.service';
 import { LoginInterceptor } from './views/pages/login/login.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -81,7 +82,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  },
+  }, AuthGuard,
   {
   provide: HTTP_INTERCEPTORS,
   useClass: LoginInterceptor,

@@ -1,73 +1,73 @@
-<div class="row col-sm-12">
-    <div class="form-group col-sm-6">
-        <label for="businessname">Nombre(s):</label>
-        <input name="businessname" class="form-control" required>
+<form (ngSubmit)="onSubmit()" #clientForm="ngForm">
+    <div class="row col-sm-12">
+        <div class="form-group col-sm-6">
+            <label for="name">Nombre(s):</label>
+            <input id="name" name="name" class="form-control" [(ngModel)]="model.name" type="text" required>
+        </div>
+        <div class="form-group col-sm-6">
+            <label for="lastname">Apellido(s):</label>
+            <input class="form-control" [(ngModel)]="model.lastname" name="lastname" type="text" required>
+        </div>
+        <div class="form-group col-sm-2">
+            <label for="rfc">RFC:</label>
+            <input class="form-control" [(ngModel)]="model.rfc" name="rfc" type="text" required>
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="constitutiondate">Fecha de Nacimiento:</label>
+            <input class="form-control" [(ngModel)]="model.constitutiondate" name="constitutiondate" date-format="yyyy-MM-dd" type="date" required>
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="numberemployes">No. Empleados:</label>
+            <input class="form-control" [(ngModel)]="model.employeenumber" name="employeenumber" type="number" required>
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="fiel">FIEL:</label>
+            <input class="form-control" [(ngModel)]="model.fiel" name="fiel" type="text" required>
+        </div>
     </div>
-    <div class="form-group col-sm-6">
-        <label for="businessname">Apellido(s):</label>
-        <input name="businessname" class="form-control" required>
-    </div>
-    <div class="form-group col-sm-2">
-        <label for="rfc">RFC:</label>
-        <input name="rfc" ng-model="ctrl.Client.rfc" class="form-control" format="RFC" required>
-    </div>
-    <div class="form-group col-sm-3">
-        <label for="constitutiondate">Fecha de Constitución/Nacimiento:</label>
-        <input name="constitutiondate" class="form-control" ng-model="ctrl.Client.constitutiondate" type="date" required>
-    </div>
-    <div class="form-group col-sm-3">
-        <label for="giro">Giro:</label>
-        <input name="giro" ng-model="ctrl.Client.businesscategory" class="form-control" required>
-    </div>
-    <div class="form-group col-sm-3">
-        <label for="numberemployes">No. Empleados:</label>
-        <input name="numberemployes" ng-model="ctrl.Client.employeenumber" class="form-control" type="number" required>
-    </div>
-    <div class="form-group col-sm-3">
-        <label for="fiel">FIEL:</label>
-        <input name="fiel" ng-model="ctrl.Client.fiel" class="form-control" format="clabe" required>
-    </div>
-</div>
 
+    <div class="card-header">
+        <h4>Informacion de Contacto</h4>
+    </div>
 
-<div class="card-header">
-    <h4>Informacion de Contacto</h4>
-</div>
+    <div class="row col-sm-12">
+        <div class="form-group col-sm-8">
+            <label for="address">Calle y número:</label>
+            <input class="form-control" [(ngModel)]="model.address" name="address" required>
+        </div>
+        <div class="form-group col-sm-4">
+            <label for="colony">Colonia:</label>
+            <input class="form-control" [(ngModel)]="model.colony" name="colony" required>
+        </div>
+        <div class="form-group col-sm-4">
+            <label for="postalcode">C.P.:</label>
+            <input class="form-control" [(ngModel)]="model.postalcode" name="postalcode" required>
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="city">Ciudad:</label>
+            <input class="form-control" [(ngModel)]="model.city" name="city" required>
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="state">Estado:</label>
+            <input class="form-control" [(ngModel)]="model.state" name="state" required>
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="email">E-Mail:</label>
+            <input class="form-control" [(ngModel)]="model.email" name="email" required>
+        </div>
+        <div class="form-group col-sm-2">
+            <label for="phone">Teléfono:</label>
+            <input class="form-control" [(ngModel)]="model.phone" name="phone" format="phone" required>
+        </div>
+    </div>
 
-<div class="row col-sm-12">
-    <div class="form-group col-sm-8">
-        <label for="address">Calle y número:</label>
-        <input name="address" class="form-control" type="text" required>
-    </div>
-    <div class="form-group col-sm-4">
-        <label for="colony">Colonia:</label>
-        <input name="colony" class="form-control" type="text" required>
-    </div>
-    <div class="form-group col-sm-4">
-        <label for="postalcode">C.P.:</label>
-        <input name="postalcode" class="form-control" type="number" required>
-    </div>
-    <div class="form-group col-sm-3">
-        <label for="city">Ciudad:</label>
-        <input name="city" ng-model="ctrl.Client.city" class="form-control" type="text" required>
-    </div>
-    <div class="form-group col-sm-3">
-        <label for="state">Estado:</label>
-        <input name="state" ng-model="ctrl.Client.state" class="form-control" type="text" required>
-    </div>
-    <div class="form-group col-sm-3">
-        <label for="email">E-Mail:</label>
-        <input name="email" ng-model="ctrl.Client.email" class="form-control" type="email" required>
-    </div>
-    <div class="form-group col-sm-2">
-        <label for="phone">Teléfono:</label>
-        <input name="phone" ng-model="ctrl.Client.phone" class="form-control" type="tel" format="phone" required>
-    </div>
     <div class="col-sm-4 btn-group">
-        <button class="btn btn-default">
+        <button class="btn btn-default" [disabled]="!clientForm.valid" type="submit">
                                         Guardar
                                     </button>
         <button class="btn btn-default">
                                         Actualizar
                                     </button>
     </div>
+
+</form>

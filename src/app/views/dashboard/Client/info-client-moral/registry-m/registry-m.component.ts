@@ -1,3 +1,4 @@
+import { RegistryM } from './m-registry-m';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistryMComponent implements OnInit {
 
-  constructor() { }
+  submitted = false;
+
+  model: RegistryM = new RegistryM();
+
 
   ngOnInit() {
   }
 
+  onSubmit() {
+    this.submitted = true;
+
+    console.log(this.model);
+  }
 }

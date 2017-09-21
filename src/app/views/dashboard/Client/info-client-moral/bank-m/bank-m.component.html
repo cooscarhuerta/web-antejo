@@ -1,30 +1,32 @@
-<div class="row col-sm-12">
+<form (ngSubmit)="onSubmit()" #bankForm="ngForm">
+    <div class="row col-sm-12">
+        <div class="form-group col-sm-6">
+            <label> Banco:</label> <select class="form-control " [(ngModel)]="model.banco" name="bank">
+                                            <option ng-repeat="bancos in model.banco">
 
-    <div class="form-group col-sm-6">
-        <label> Banco:</label> <select class="form-control " ng-model="ctrl.Account.idbank " required>
-                                            <option ng-repeat="bank in ctrl.banks ">
                                             </option>
                                         </select>
-    </div>
+        </div>
 
-    <div class="form-group col-sm-6">
-        <label>Tipo de Cuenta:</label>
-        <input class="form-control " ng-model="ctrl.Account.accounttype " required>
-    </div>
+        <div class="form-group col-sm-6">
+            <label>Tipo de Cuenta:</label>
+            <input id="accounttype" name="accounttype" class="form-control " [(ngModel)]="model.accounttype" type="text" required>
+        </div>
 
-    <div class="form-group col-sm-6">
-        <label>Numero de Cuenta:</label>
-        <input class="form-control " ng-model="ctrl.Account.accountnumber " format="accountnumber " required>
-    </div>
+        <div class="form-group col-sm-6">
+            <label>Numero de Cuenta:</label>
+            <input id="accountnumber" name="accountnumber" class="form-control " [(ngModel)]="model.accountnumber" type="number" required>
+        </div>
 
-    <div class="form-group col-sm-6">
-        <label>Clave Bancaria:</label>
-        <input class="form-control" ng-model="ctrl.Account.clabe " format="clabe " required>
-    </div>
+        <div class="form-group col-sm-6">
+            <label>Clave Bancaria:</label>
+            <input id="clabe" name="clabe" class="form-control " [(ngModel)]="model.clabe" type="number" required>
+        </div>
 
-    <div>
-        <button class="btn btn-default" ng-click="ctrl.AddAccount() " ng-disabled="bancos.$invalid ">
+        <div>
+            <button class="btn btn-default" [disabled]="!bankForm.valid" type="submit">
                                             <i class="material-icons ">Agregar Banco</i>
                                         </button>
+        </div>
     </div>
-</div>
+</form>

@@ -1,3 +1,4 @@
+import { BankM } from './m-bank-m';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bank-m.component.scss']
 })
 export class BankMComponent implements OnInit {
+submitted = false;
 
-  constructor() { }
+  model: BankM = new BankM();
+
 
   ngOnInit() {
   }
 
+  onSubmit() {
+    this.submitted = true;
+
+    console.log(this.model);
+  }
 }
