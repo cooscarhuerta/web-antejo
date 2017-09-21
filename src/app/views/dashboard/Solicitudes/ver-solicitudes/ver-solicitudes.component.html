@@ -1,15 +1,18 @@
 <div class="main-page">
     <div class="row">
-        <div class="col-lg-12 col-sm-12 col-md-12">
+        <div class="col-lg-12 col-sm-12 col-md-12" *ngIf="dataFinishedLoading;else loadingScreen">
             <accordion>
-                <accordion-group *ngFor="let item of strArray" #group>
+                <accordion-group *ngFor="let application of appsArray" #group>
                     <div accordion-heading>
-                        Solicitud: {{item}}
+                        Solicitud: {{application.projectname}}
                         <i class="pull-right float-xs-right glyphicon" [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
                     </div>
                     <app-section-solicitudes [creditType]="item"></app-section-solicitudes>
                 </accordion-group>
             </accordion>
         </div>
+        <ng-template #loadingScreen>
+          <img style="width:100%;" src="assets/img/dualLoading.svg">
+        </ng-template>
     </div>
 </div>

@@ -81,12 +81,13 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  },
+  }
+  /*
   {
   provide: HTTP_INTERCEPTORS,
   useClass: LoginInterceptor,
   multi: true
-}],
+}*/],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
