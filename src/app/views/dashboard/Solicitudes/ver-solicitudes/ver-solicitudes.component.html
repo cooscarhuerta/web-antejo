@@ -1,18 +1,50 @@
 <div class="main-page">
     <div class="row">
         <div class="col-lg-12 col-sm-12 col-md-12" *ngIf="dataFinishedLoading;else loadingScreen">
-            <accordion>
-                <accordion-group *ngFor="let application of appsArray" #group>
-                    <div accordion-heading>
-                        Solicitud: {{application.projectname}}
-                        <i class="pull-right float-xs-right glyphicon" [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
+            <div id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="card" *ngFor="let application of appsArray;index as i" #group>
+                    <div *ngIf="dataFound">
+
                     </div>
-                    <app-section-solicitudes [creditType]="item"></app-section-solicitudes>
-                </accordion-group>
-            </accordion>
+                    <div class="card-header" role="tab" id="heading{{i}}">
+                        <h5 class="mb-0">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{i}}" aria-expanded="true" aria-controls="collapse">
+                                Nombre del proyecto: {{application.projectname}}
+                            </a>
+                            <span class="tag tag-success" style="float:right;">
+                                Activo
+                            </span>
+                        </h5>
+                    </div>
+
+                    <div id="collapse{{i}}" class="collapse" role="tabpanel" aria-labelledby="heading">
+
+
+                        <div class="card-block col-sm-6 col-md-6 col-lg-6" style="float:left;">
+                            <div class="card-block">
+                                <div>
+                                    Cliente: {{application.clientname}}
+                                </div>
+                                <div>
+                                    Fecha de inicio: {{application.applicationdate}}
+                                </div>
+                                <div>
+                                    Ubicacion : {{application.place}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-block col-sm-3 col-md-3 col-lg-3" style="float:right;">
+                            <button class="btn btn-info btn-lg">
+                                Ver detalles
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <ng-template #loadingScreen>
-          <img style="width:100%;" src="assets/img/dualLoading.svg">
+            <img style="width:100%;" src="assets/img/dualLoading.svg">
         </ng-template>
     </div>
 </div>
