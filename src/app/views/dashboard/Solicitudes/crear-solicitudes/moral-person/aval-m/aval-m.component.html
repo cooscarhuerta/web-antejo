@@ -1,17 +1,19 @@
-<div>
+<form (ngSubmit)="onSubmit()" #avalForm="ngForm">
     <div>
-        <div class="col-sm-3 form-group">
-            <label for="input">Nombre de compañia:</label>
-            <input name="input" class="form-control" ng-model="ctrl.Aval.name" required>
-        </div>
-        <div class="col-sm-3 form-group">
-            <label for="input">Aval:</label>
-            <input name="input" class="form-control" ng-model="ctrl.Aval.rfc" format="RFC" required>
-            <div class="col-sm-2 btn-group" style="margin-top: 1.5%">
-                <button class="btn btn-default" ng-show="ctrl.Aval.id==null" ng-click="ctrl.createAval()" ng-disabled="avales.$invalid">
+        <div>
+            <div class="col-sm-3 form-group">
+                <label for="companyname">Nombre de compañia:</label>
+                <input class="form-control" [(ngModel)]="model.companyname" name="companyname" type="text" required>
+            </div>
+            <div class="col-sm-3 form-group">
+                <label for="avalid">Aval:</label>
+                <input class="form-control" [(ngModel)]="model.avalid" name="avalid" type="number" required>
+                <div class="col-sm-2 btn-group" style="margin-top: 1.5%">
+                    <button class="btn btn-default" [disabled]="!avalForm.valid" type="submit">
                                         Guardar
                                     </button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>

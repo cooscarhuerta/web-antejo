@@ -1,3 +1,4 @@
+import { AvalM } from './m-aval-m';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,14 +9,17 @@ import { Component, OnInit } from '@angular/core';
 export class AvalMComponent implements OnInit {
 
 
-  avales = {
-    companyname: '',
-    aval: '',
-  }
-  constructor() { }
+    submitted = false;
+
+  model: AvalM = new AvalM();
+
 
   ngOnInit() {
   }
 
+  onSubmit() {
+    this.submitted = true;
 
+    console.log(this.model);
+  }
 }

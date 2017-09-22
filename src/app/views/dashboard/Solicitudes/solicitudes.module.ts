@@ -1,3 +1,5 @@
+import { FormsModule } from '@angular/forms';
+import { RegistrySolPComponent } from './crear-solicitudes/physical-person/registry-sol-p/registry-sol-p.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
@@ -17,6 +19,9 @@ import { AccordionModule } from 'ngx-bootstrap/ng2-bootstrap';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { FilesPComponent } from './crear-solicitudes/physical-person/files-p/files-p.component';
+import { FilesMComponent } from './crear-solicitudes/moral-person/files-m/files-m.component';
+import { RegistrySolMComponent } from './crear-solicitudes/moral-person/registry-sol-m/registry-sol-m.component';
 
 
 @NgModule({
@@ -26,9 +31,12 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     BsDropdownModule,
     CommonModule,
     TabsModule,
-    AccordionModule.forRoot()
+    AccordionModule.forRoot(),
+    FormsModule
   ],
   declarations: [ ViewAppComponent, CrearSolicitudesComponent, PhysicalPersonComponent,
-                  MoralPersonComponent, AvalPComponent, AvalMComponent, VerSolicitudesComponent, SectionSolicitudesComponent]
+                  MoralPersonComponent, AvalPComponent, AvalMComponent, VerSolicitudesComponent,
+                   SectionSolicitudesComponent, FilesPComponent, FilesMComponent,
+                    RegistrySolPComponent, RegistrySolMComponent]
 })
 export class AppModule { }

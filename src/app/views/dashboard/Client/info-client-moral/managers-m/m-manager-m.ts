@@ -1,10 +1,11 @@
 export class ManagerM {
   constructor(
-    manager = {
-      name: '',
-      lastname: '',
-      rfc: '',
-      phone: ''
-    }
+
+    public name: string = '',
+    public lastname: string = '',
+    public rfc: string = '',
+    public phone: number = null,
+    public identification: File = null
+
   ) { }
 }

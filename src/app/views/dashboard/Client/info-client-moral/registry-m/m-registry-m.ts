@@ -6,7 +6,7 @@ import { BankM } from './../bank-m/m-bank-m';
 export class RegistryM {
  constructor(
 
-    public name: string = '',
+    public businessname: string = '',
     public employeenumber: number = null,
     public rfc: string = '',
     public fiel: number = null,
@@ -20,7 +20,6 @@ export class RegistryM {
     public state: string = '',
     public phone: number = null,
     public banks: [BankM] = [new BankM],
-    public selectBank: string = '',
     public files: [FilesM] = [new FilesM],
     public sharedholder: [SharedholderM] = [new SharedholderM],
     public manager: [ManagerM] = [new ManagerM]

@@ -1,30 +1,26 @@
-<div class="row col-sm-12">
-
-    <div class="form-group col-sm-6">
-        <label> Tipo:</label> <select class="form-control " ng-model="ctrl.Account.idbank " required>
-                                            <option ng-repeat="bank in ctrl.banks ">
-                                            </option>
-                                        </select>
+<form (ngSubmit)="onSubmit()" #sharedholderForm="ngForm">
+    <div class="row col-sm-12">
+        <div class="form-group col-sm-6">
+            <label for="name">Nombre(s):</label>
+            <input id="name" name="name" class="form-control" [(ngModel)]="model.name" type="text" required>
+        </div>
+        <div class="form-group col-sm-6">
+            <label for="lastname">Apellido(s):</label>
+            <input class="form-control" [(ngModel)]="model.lastname" name="lastname" type="text" required>
+        </div>
+        <div class="form-group col-sm-6">
+            <label for="rfc">RFC:</label>
+            <input class="form-control" [(ngModel)]="model.rfc" name="rfc" type="text" required>
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="oldwork">Fecha de Contratacion:</label>
+            <input class="form-control" [(ngModel)]="model.oldwork" name="oldwork" date-format="yyyy-MM-dd" type="date" required>
+        </div>
     </div>
-
-    <div class="form-group col-sm-6">
-        <label>RFC:</label>
-        <input class="form-control " ng-model="ctrl.Account.accounttype " required>
-    </div>
-
-    <div class="form-group col-sm-6">
-        <label>Participacion:</label>
-        <input class="form-control " ng-model="ctrl.Account.accountnumber " format="accountnumber " required>
-    </div>
-
-    <div class="form-group col-sm-6">
-        <label for="dateapplication">Fecha de entrada:</label>
-        <input name="dateapplication" class="form-control" type="date">
-    </div>
-
     <div>
         <button class="btn btn-default" ng-click="ctrl.AddAccount() " ng-disabled="bancos.$invalid ">
                                             <i class="material-icons ">Agregar Accionista</i>
                                         </button>
     </div>
-</div>
+
+</form>

@@ -4,7 +4,7 @@
             <label for="businessname">Razón Social:</label>
             <input id="businessname" name="businessname" class="form-control" [(ngModel)]="model.businessname" type="text" required>
         </div>
-        <div class="form-group col-sm-2">
+        <div class="form-group col-sm-4">
             <label for="rfc">RFC:</label>
             <input class="form-control" [(ngModel)]="model.rfc" name="rfc" type="text" required>
         </div>
@@ -14,7 +14,7 @@
         </div>
         <div class="form-group col-sm-3">
             <label for="giro">Giro:</label>
-            <input class="form-control" [(ngModel)]="model.giro" name="giro" type="number" required>
+            <input class="form-control" [(ngModel)]="model.businesscategory" name="giro" type="text" required>
         </div>
         <div class="form-group col-sm-3">
             <label for="numberemployes">No. Empleados:</label>
@@ -42,7 +42,7 @@
         </div>
         <div class="form-group col-sm-4">
             <label for="postalcode">C.P.:</label>
-            <input class="form-control" [(ngModel)]="model.postalcode" name="postalcode" required>
+            <input class="form-control" [(ngModel)]="model.postalcode" name="postalcode" type="number" required>
         </div>
         <div class="form-group col-sm-3">
             <label for="city">Ciudad:</label>
@@ -58,7 +58,7 @@
         </div>
         <div class="form-group col-sm-2">
             <label for="phone">Teléfono:</label>
-            <input class="form-control" [(ngModel)]="model.phone" name="phone" format="phone" required>
+            <input class="form-control" [(ngModel)]="model.phone" name="phone" format="phone" type="number" required>
         </div>
     </div>
     <div class="col-sm-4 btn-group">
