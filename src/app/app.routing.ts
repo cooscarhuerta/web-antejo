@@ -1,5 +1,6 @@
+import { AuthGuard } from './views/pages/login/auth-guard.service';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, CanActivate } from '@angular/router';
 
 // Import Containers
 import {
@@ -10,14 +11,10 @@ import {
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
-  },
-  {
-    path: '',
     component: FullLayout,
+    canActivate: [AuthGuard],
     data: {
-      title: 'Home'
+      title: 'Home',
     },
     children: [
       {
@@ -52,7 +49,7 @@ export const routes: Routes = [
       {
         path: '',
         loadChildren: './views/pages/pages.module#PagesModule',
-      }
+      },
     ]
   }
 ];

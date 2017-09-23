@@ -10,4 +10,9 @@ import { Component, OnInit } from '@angular/core';
 export class AppHeader {
 
   OnInit(): void {}
+
+  public logOut(): void {
+    localStorage.clear();
+    window.location.reload();
+  }
 }

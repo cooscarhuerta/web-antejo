@@ -4,7 +4,6 @@ import { BankPComponent } from './bank-p/bank-p.component';
 import { Component, OnInit } from '@angular/core';
 
 
-
 @Component({
   selector: 'app-info-client-physic',
   templateUrl: './info-client-physic.component.html',

@@ -1,3 +1,4 @@
+import { ManagerM } from './m-manager-m';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./managers-m.component.scss']
 })
 export class ManagersMComponent implements OnInit {
+submitted = false;
 
-  constructor() { }
+  model: ManagerM = new ManagerM();
+
 
   ngOnInit() {
   }
 
+  onSubmit() {
+    this.submitted = true;
+
+    console.log(this.model);
+  }
 }

@@ -1,3 +1,4 @@
+import { BankP } from './m-bank-p';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BankPComponent implements OnInit {
 
-  constructor() { }
+  submitted = false;
+
+  model: BankP = new BankP();
 
   ngOnInit() {
+
   }
+
+  onSubmit() {
+    this.submitted = true;
+    console.log(this.model);
+  }
+
 
 }

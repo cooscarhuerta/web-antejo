@@ -5,10 +5,15 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class LoginInterceptor implements HttpInterceptor {
   intercept (req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    
-    const authReq = req.clone({
-      headers: req.headers.set('token', '')
-    });
-    return next.handle(authReq);
+    try{
+        let token = localStorage.getItem('auth_token');
+        const authReq = req.clone({
+            headers: req.headers.set('Content-type', 'application/json')
+                .set('token', token != null ? token : "")
+        });
+        return next.handle(authReq);
+    }catch (ex){
+      console.log(ex)
+    }
   }
 }

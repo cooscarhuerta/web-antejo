@@ -18,7 +18,7 @@ export class HistoryCreditComponent implements OnInit {
       {
         headers: new HttpHeaders()
         .set('Content-type', 'application/json')
-        .set('token', 'hlhgxN1Y71yUAK9wq7T0T97FViS48Cp8xy12eIQYLIXW6B4FUwGcm8L3FDiu')
+        .set('token', localStorage.getItem('auth_token'))
       }).subscribe(data => {
     // Read the result field from the JSON response.
     if (data['error'] === true) {

@@ -9,15 +9,13 @@ import { PagesRoutingModule } from './pages-routing.module';
 import {FormsModule} from '@angular/forms';
 
 @NgModule({
-  imports: [ PagesRoutingModule, FormsModule, CommonModule ],
+  imports: [ PagesRoutingModule, FormsModule, CommonModule],
   declarations: [
     P404Component,
     P500Component,
     LoginComponent,
     RegisterComponent
   ],
-providers: [
-
-]
+providers: [ ]
 })
 export class PagesModule { }

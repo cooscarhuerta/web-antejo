@@ -1,3 +1,4 @@
+import { AuthGuard } from './views/pages/login/auth-guard.service';
 import { LoginInterceptor } from './views/pages/login/login.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -59,7 +60,6 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
-
 @NgModule({
   imports: [
     BrowserModule,
@@ -81,13 +81,12 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  }
-  /*
+  }, AuthGuard,
   {
   provide: HTTP_INTERCEPTORS,
   useClass: LoginInterceptor,
   multi: true
-}*/],
+}],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
