@@ -16,7 +16,7 @@ export class VerSolicitudesComponent implements OnInit {
 
   ngOnInit() {
     this.http.get(
-      'http://localhost:8081/Clients/Clientes/show/' + 1 + '/Wallet').subscribe(data => {
+      'http://localhost/bantejo/public/Clientes/show/' + 1 + '/Wallet').subscribe(data => {
     // Read the result field from the JSON response.
     if (data['error'] === true) {
       console.log('Applications query failed');

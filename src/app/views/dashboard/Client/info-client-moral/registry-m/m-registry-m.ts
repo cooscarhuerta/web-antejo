@@ -13,6 +13,7 @@ export class RegistryM {
     public email: string = '',
     public businesscategory: string = '',
     public constitutiondate: Date = null,
+    public type: string = 'Moral',
     public address: string = '',
     public colony: string = '',
     public postalcode: string = '',
