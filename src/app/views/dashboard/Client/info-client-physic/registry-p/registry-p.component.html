@@ -10,7 +10,7 @@
         </div>
         <div class="form-group col-sm-3">
             <label for="rfc">RFC:</label>
-            <input class="form-control" [(ngModel)]="model.rfc" name="rfc" type="text" required>
+            <input class="form-control" [(ngModel)]="model.rfc" name="rfc" pattern="RFCPattern" type="text" required>
         </div>
         <div class="form-group col-sm-3">
             <label for="constitutiondate">Fecha de Nacimiento:</label>
@@ -22,7 +22,7 @@
         </div>
         <div class="form-group col-sm-3">
             <label for="fiel">FIEL:</label>
-            <input class="form-control" [(ngModel)]="model.fiel" name="fiel" type="text" required>
+            <input class="form-control" [(ngModel)]="model.fiel" pattern="{{FIELPattern}}" name="fiel" type="text" required>
         </div>
     </div>
 
@@ -53,11 +53,11 @@
         </div>
         <div class="form-group col-sm-3">
             <label for="email">E-Mail:</label>
-            <input class="form-control" [(ngModel)]="model.email" name="email" required>
+            <input class="form-control" [(ngModel)]="model.email" pattern="{{emailPattern}}" name="email" required>
         </div>
         <div class="form-group col-sm-2">
             <label for="phone">Teléfono:</label>
-            <input class="form-control" [(ngModel)]="model.phone" name="phone" format="phone" required>
+            <input class="form-control" [(ngModel)]="model.phone" pattern="{{phonePattern}}" name="phone" format="phone" required>
         </div>
     </div>
 
