@@ -1,6 +1,6 @@
 export class BanksP {
   constructor(
-        public idbanco: number = 1,
-        public nombreBanco: string = 'Banco uno'
+        public id: number = null,
+        public name: string = ''
   ) { }
 }
