@@ -20,7 +20,7 @@ export class RegisterComponent {
       password: password,
       password_confirmation: passwordconfirmation
     });
-    this.http.post('http://localhost/bantejo/public/Register', body, {
+    this.http.post('http://localhost:8081/Register', body, {
       headers: new HttpHeaders().set('Content-type', 'application/json')
     }).subscribe(data => {
 
