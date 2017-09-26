@@ -14,7 +14,7 @@ export class HistoryCreditComponent implements OnInit {
   }
   ngOnInit(): void {
     this.http.get(
-      'http://localhost:8081/Clientes/Creditos/show/' + 1 ,
+      'http://192.168.1.191/Clientes/Creditos/show/' + 1 ,
       {
         headers: new HttpHeaders()
         .set('Content-type', 'application/json')

@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate {
   public logIn(event, email, password, coolBool, sweetAlert): void {
     event.preventDefault();
     const body = JSON.stringify({email: email, password: password});
-    this.http.post('http://localhost:8081/ClientsAuth/LogIn', body,
+    this.http.post('http://192.168.1.191/ClientsAuth/LogIn', body,
         {
           headers: new HttpHeaders().set('Content-type', 'application/json')
         }).subscribe(data => {
