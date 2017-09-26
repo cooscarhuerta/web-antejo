@@ -31,7 +31,7 @@ import { SharedHolderMComponent } from './info-client-moral/shared-holder-m/shar
     CommonModule,
     TabsModule.forRoot(),
     AccordionModule.forRoot(),
-    FormsModule
+    FormsModule,
   ],
   declarations: [ClientComponent, InfoClientMoralComponent, InfoClientPhysicComponent, EditClientComponent, BankPComponent,
      BankMComponent, FilesMComponent, FilesPComponent, RegistryPComponent, RegistryMComponent, ManagersMComponent, SharedHolderMComponent]

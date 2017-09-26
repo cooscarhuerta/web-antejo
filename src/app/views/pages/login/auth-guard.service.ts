@@ -10,22 +10,23 @@ export class AuthGuard implements CanActivate {
 
   public logIn(event, email, password, coolBool, sweetAlert): void {
     event.preventDefault();
-    const body = JSON.stringify({email: email, password: password});
-    this.http.post('http://192.168.1.191/ClientsAuth/LogIn', body,
-        {
-          headers: new HttpHeaders().set('Content-type', 'application/json')
-        }).subscribe(data => {
-      // Read the result field from the JSON response.
-      if (data['error'] === false) {
+    const body = JSON.stringify({ email: email, password: password });
+    this.http.post('http://192.168.1.191:81/ClientsAuth/LogIn', body,
+      {
+        headers: new HttpHeaders().set('Content-type', 'application/json')
+      }).subscribe(data => {
+        // Read the result field from the JSON response.
 
-        localStorage.setItem('auth_token', data['token']);
-        this.router.navigate(['dashboard']);
-      }else {
-        coolBool[0] = false;
-        sweetAlert.swal("Error","Login incorrecto","error");
-        console.log('Error al iniciar sesion');
-       }
-    });
+        if (data['error'] === false) {
+
+          localStorage.setItem('auth_token', data['token']);
+          this.router.navigate(['dashboard']);
+        } else {
+          coolBool[0] = false;
+          sweetAlert.swal('Error', 'Login incorrecto', 'error');
+          console.log('Error al iniciar sesion');
+        }
+      });
   }
 
 
@@ -35,8 +36,8 @@ export class AuthGuard implements CanActivate {
       return true;
 
     }
-      this.router.navigate(['pages/login'])
-      return false;
+    this.router.navigate(['pages/login'])
+    return false;
 
   }
 }
