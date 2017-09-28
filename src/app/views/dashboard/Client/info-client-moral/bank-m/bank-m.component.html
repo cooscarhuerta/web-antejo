@@ -1,9 +1,9 @@
 <form (ngSubmit)="onSubmit()" #bankForm="ngForm">
     <div class="row col-sm-12">
         <div class="form-group col-sm-6">
-            <label> Banco:</label> <select class="form-control " [(ngModel)]="model.banco" name="bank">
-                                            <option ng-repeat="bancos in model.banco">
-
+            <label> Banco:</label> <select #seletElem class="form-control " (change)="change(seletElem.value)" name="bank">
+                                            <option *ngFor='let b of modelBancos' [value]='b.id'>
+                                              {{b.name}}
                                             </option>
                                         </select>
         </div>

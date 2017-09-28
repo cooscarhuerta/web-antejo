@@ -5,7 +5,8 @@ export class SharedholderM {
     public lastname: string = '',
     public rfc: string = '',
     public participation: string = '',
-    public oldwork: Date = null
+    public oldwork: Date = null,
+    public idclient: string = ''
 
   ) { }
 }

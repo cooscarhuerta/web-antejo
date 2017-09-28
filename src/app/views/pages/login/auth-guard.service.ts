@@ -20,7 +20,12 @@ export class AuthGuard implements CanActivate {
         if (data['error'] === false) {
 
           localStorage.setItem('auth_token', data['token']);
-          this.router.navigate(['dashboard']);
+          if (data['user']['idclient'] === null) {
+            this.router.navigate(['cliente/view'])
+          } else {
+            this.router.navigate(['dashboard']);
+            console.log(data['user']['idclient'])
+          }
         } else {
           coolBool[0] = false;
           sweetAlert.swal('Error', 'Login incorrecto', 'error');

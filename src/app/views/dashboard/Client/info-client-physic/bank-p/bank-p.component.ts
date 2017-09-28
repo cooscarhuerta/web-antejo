@@ -1,3 +1,4 @@
+import { PostRegistryP } from '../../services.client/service.registryP';
 
 import { Router } from '@angular/router';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
@@ -16,7 +17,7 @@ export class BankPComponent implements OnInit {
   model: BankP = new BankP();
   modelBancos: BanksP[] = [];
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private postRegistry: PostRegistryP, private router: Router, private http: HttpClient) { }
 
 
   ngOnInit() {
@@ -24,18 +25,20 @@ export class BankPComponent implements OnInit {
   }
 
   showBancos() {
-    this.http.get('http://192.168.1.191:81/Clients/Clientes/show')
+    this.http.get('http://192.168.1.191:81/Clients/Clientes/all/Bancos')
       .subscribe(res => {
-        console.log(res);
+        this.modelBancos = res['banks']
+        this.model.idbanco = this.modelBancos[0].id;
       });
   }
 
-  registryBank(model): void {
-    this.http.post('http://192.168.1.191:81/Clients/Clientes/add/Bancos', model,
-      {
-        headers: new HttpHeaders().set('Content-type', 'application/json')
-      }).subscribe(data => {
-      });
+  registryBank(model) {
+    try {
+      this.postRegistry.registryBank(model);
+      this.model.idclient = this.postRegistry.idclient;
+    } catch (Exp) {
+      console.log(Exp)
+    }
   }
 
   change(b) {
@@ -44,10 +47,8 @@ export class BankPComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-      console.log(this.model.idbanco);
-
-   // this.registryBank(this.model);
-    console.log(this.model);
+    this.registryBank(this.model);
+    console.log(this.model)
   }
 
 

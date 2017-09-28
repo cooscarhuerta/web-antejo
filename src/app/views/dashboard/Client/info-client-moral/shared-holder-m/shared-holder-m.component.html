@@ -8,11 +8,16 @@
             <label for="lastname">Apellido(s):</label>
             <input class="form-control" [(ngModel)]="model.lastname" name="lastname" type="text" required>
         </div>
-        <div class="form-group col-sm-6">
+        <div class="form-group col-sm-4">
             <label for="rfc">RFC:</label>
             <input class="form-control" [(ngModel)]="model.rfc" name="rfc" type="text" required>
         </div>
-        <div class="form-group col-sm-3">
+        <div class="form-group col-sm-4">
+            <label for="rfc">Participacion(%):</label>
+            <input class="form-control" [(ngModel)]="model.participation" name="participation" type="number" required>
+        </div>
+
+        <div class="form-group col-sm-4">
             <label for="oldwork">Fecha de Contratacion:</label>
             <input class="form-control" [(ngModel)]="model.oldwork" name="oldwork" date-format="yyyy-MM-dd" type="date" required>
         </div>

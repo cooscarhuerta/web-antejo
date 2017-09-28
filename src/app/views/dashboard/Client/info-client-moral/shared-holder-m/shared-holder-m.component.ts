@@ -1,3 +1,4 @@
+import { PostRegistryM } from 'app/views/dashboard/Client/services.client/service.registryM';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { SharedholderM } from './m-shared-holder-m';
@@ -9,22 +10,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shared-holder-m.component.scss']
 })
 export class SharedHolderMComponent implements OnInit {
-submitted = false;
+  submitted = false;
 
   model: SharedholderM = new SharedholderM();
 
 
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private postRegistry: PostRegistryM, private router: Router, private http: HttpClient) { }
 
-RegistryInfo(model): void {
-    this.http.post('http://192.168.1.191:81/Clients/Clientes/add/AccionistasClientes', model,
-      {
-        headers: new HttpHeaders().set('Content-type', 'application/json')
-      }).subscribe(data => {
-        // Read the result field from the JSON response.
-
-      });
+  registryInfo(model) {
+    try {
+      this.postRegistry.registryInfoSH(model);
+    } catch (Exp) {
+      console.log(Exp);
+    }
   }
   ngOnInit() {
 
@@ -32,7 +31,7 @@ RegistryInfo(model): void {
 
   onSubmit() {
     this.submitted = true;
-    this.RegistryInfo(this.model);
+    this.registryInfo(this.model);
     console.log(this.model);
   }
 }
