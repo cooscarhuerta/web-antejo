@@ -14,7 +14,7 @@ export class BankPComponent implements OnInit {
   submitted = false;
 
   model: BankP = new BankP();
-  modelBancos: BanksP = new BanksP();
+  modelBancos: BanksP[] = [];
 
   constructor(private router: Router, private http: HttpClient) { }
 
@@ -24,12 +24,9 @@ export class BankPComponent implements OnInit {
   }
 
   showBancos() {
-    this.http.get('http://192.168.1.191:81/Clients/Clientes/all/Bancos')
+    this.http.get('http://192.168.1.191:81/Clients/Clientes/show')
       .subscribe(res => {
-        this.model.banco = res['banks']
-        this.model.idbanco = this.model.banco[0].id;
-
-        console.log(this.model.idbanco);
+        console.log(res);
       });
   }
 
@@ -38,8 +35,11 @@ export class BankPComponent implements OnInit {
       {
         headers: new HttpHeaders().set('Content-type', 'application/json')
       }).subscribe(data => {
-
       });
+  }
+
+  change(b) {
+    this.model.idbanco = b
   }
 
   onSubmit() {
@@ -52,3 +52,4 @@ export class BankPComponent implements OnInit {
 
 
 }
+

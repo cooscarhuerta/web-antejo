@@ -1,8 +1,8 @@
 <form (ngSubmit)="onSubmit()" #bankForm="ngForm">
     <div class="row col-sm-12">
         <div class="form-group col-sm-6">
-            <label> Banco:</label> <select class="form-control " [(ngModel)]="model.banco" ngControl='banco' name="bank">
-                                            <option *ngFor='let b of model.banco' [value]='b'>
+            <label> Banco:</label> <select #selectElem class="form-control" (change)="change(selectElem.value)" name="bank">
+                                            <option *ngFor='let b of modelBancos' [value]='b.id'>
                                               {{b.name}}
                                             </option>
                                         </select>

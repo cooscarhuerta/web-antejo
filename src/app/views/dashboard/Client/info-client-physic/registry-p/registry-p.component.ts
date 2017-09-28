@@ -1,3 +1,4 @@
+import { all } from 'codelyzer/util/function';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -13,6 +14,7 @@ import { PatternValidator} from '@angular/forms';
 })
 export class RegistryPComponent implements OnInit {
   submitted = false;
+  idclient = null;
   model: RegistryP = new RegistryP();
   public phonePattern = '[0-9]{1,10}';
 
@@ -24,11 +26,14 @@ export class RegistryPComponent implements OnInit {
         headers: new HttpHeaders().set('Content-type', 'application/json')
       }).subscribe(data => {
         // Read the result field from the JSON response.
+        // console.log(data['client']);
+        localStorage.setItem('iduser', (data['client']['id']))
 
-      });
+      })
   }
-  ngOnInit() {
 
+
+  ngOnInit() {
   }
 
   onSubmit() {
