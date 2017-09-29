@@ -20,15 +20,15 @@ export class RegisterComponent {
       password: password,
       password_confirmation: passwordconfirmation
     });
-    this.http.post('http://192.168.1.191:81/Register', body, {
+    this.http.post('/Register', body, {
       headers: new HttpHeaders().set('Content-type', 'application/json')
     }).subscribe(data => {
 
-console.log(body, data);
+      console.log(body, data);
       if (data['error'] === true) {
-        this.swalService.swal('Success', data['message'], 'error');
-      }else {
         this.swalService.swal('Error', data['message'], 'error');
+      }else {
+        this.swalService.swal('Aviso', data['message'], 'success');
       }
 
      });

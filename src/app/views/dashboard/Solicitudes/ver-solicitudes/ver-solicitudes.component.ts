@@ -1,25 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
+import { SweetAlertService } from 'ng2-sweetalert2';
 
 @Component({
   selector: 'app-ver-solicitudes',
   templateUrl: './ver-solicitudes.component.html',
+  providers: [SweetAlertService],
   styleUrls: ['./ver-solicitudes.component.scss']
 })
 export class VerSolicitudesComponent implements OnInit {
-  appsArray = ['1', '2', '3'];
+  appsArray = ['1'];
   dataFinishedLoading = false;
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private sweetAlert : SweetAlertService) {
 
   }
 
   ngOnInit() {
     this.http.get(
-      'http://192.168.1.191/Clientes/show/' + 1 + '/Wallet').subscribe(data => {
+      '/Clients/Clientes/show/' + localStorage.getItem('userId') + '/Wallet').subscribe(data => {
     // Read the result field from the JSON response.
-    if (data['error'] === true) {
+    if (data['applications'] === null) {
       console.log('Applications query failed');
+      this.sweetAlert.swal("Aviso","No tiene aplicaciones registradas.","warning");
+      this.dataFinishedLoading = true;
 
     }else {
       console.log(data['applications']);

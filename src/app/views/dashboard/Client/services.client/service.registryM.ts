@@ -12,17 +12,18 @@ export class PostRegistryM {
   constructor(private router: Router, private http: HttpClient) { }
 
   registryInfo(model): void {
-    this.http.post('http://192.168.1.191:81/Clients/Clientes/add', model,
+    this.http.post('/Clients/Clientes/add', model,
       {
         headers: new HttpHeaders().set('Content-type', 'application/json')
       }).subscribe(data => {
+        console.log(data);
         // Read the result field from the JSON response.
-        this.idclient = data['client']['id']
+        //this.idclient = data['client']['id']
       });
   }
 
   registryBank(model): void {
-    this.http.post('http://192.168.1.191:81/Clients/Clientes/add/Bancos', model,
+    this.http.post('/Clients/Clientes/add/Bancos', model,
       {
         headers: new HttpHeaders().set('Content-type', 'application/json')
       }).subscribe(data => {
@@ -30,7 +31,7 @@ export class PostRegistryM {
         });
   }
   registryInfoM(model): void {
-    this.http.post('http://192.168.1.191:81/Clients/Clientes/add/Managers', model,
+    this.http.post('/Clients/Clientes/add/Managers', model,
       {
         headers: new HttpHeaders().set('Content-type', 'application/json')
       }).subscribe(data => {
@@ -41,7 +42,7 @@ export class PostRegistryM {
 
 
   registryInfoSH(model): void {
-    this.http.post('http://192.168.1.191:81/Clients/Clientes/add/AccionistasClientes', model,
+    this.http.post('/Clients/Clientes/add/AccionistasClientes', model,
       {
         headers: new HttpHeaders().set('Content-type', 'application/json')
       }).subscribe(data => {

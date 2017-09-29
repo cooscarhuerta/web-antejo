@@ -23,7 +23,7 @@ submitted = false;
   }
 
   showBancos() {
-    this.http.get('http://192.168.1.191:81/Clients/Clientes/all/Bancos')
+    this.http.get('/Clients/Clientes/all/Bancos')
       .subscribe(res => {
         this.modelBancos = res['banks']
         this.model.idbanco = this.modelBancos[0].id;

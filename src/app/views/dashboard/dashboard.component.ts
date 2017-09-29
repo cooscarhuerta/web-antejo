@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { CanActivate, Router } from '@angular/router';
 @Component({
   templateUrl: 'dashboard.component.html'
 })
+
+@Injectable()
 export class DashboardComponent implements OnInit {
 
-  // constructor( ) { }
+   constructor(private http: HttpClient, private router: Router ) { }
 
   public brandPrimary = '#20a8d8';
   public brandSuccess = '#4dbd74';
