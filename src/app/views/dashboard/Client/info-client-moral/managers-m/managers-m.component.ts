@@ -1,3 +1,4 @@
+import { SweetAlertService } from 'ng2-sweetalert2';
 import { PostRegistryM } from 'app/views/dashboard/Client/services.client/service.registryM';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -15,11 +16,18 @@ export class ManagersMComponent implements OnInit {
   model: ManagerM = new ManagerM();
 
 
-  constructor(private postRegistry: PostRegistryM, private router: Router, private http: HttpClient) { }
+  constructor(private sweetAlert: SweetAlertService, private postRegistry: PostRegistryM, private router: Router,
+     private http: HttpClient) { }
 
   registryInfo(model) {
     try {
-      this.postRegistry.registryInfoM(model);
+      this.postRegistry.registryInfoM(model, callback => {
+           if (!callback) {
+          this.sweetAlert.swal('Aviso', 'Informacion de representante agregada exitosamente.', 'success');
+        } else {
+          this.sweetAlert.swal('Error', 'Error al validar campos', 'error');
+        }
+      });
     } catch (Exp) {
       console.log(Exp);
     }

@@ -1,3 +1,4 @@
+import { SweetAlertService } from 'ng2-sweetalert2';
 import { PostRegistryM } from 'app/views/dashboard/Client/services.client/service.registryM';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -16,7 +17,8 @@ submitted = false;
   model: BankM = new BankM();
   modelBancos: BanksM[] = [];
 
-  constructor(private postRegistry: PostRegistryM, private router: Router, private http: HttpClient) { }
+  constructor(private sweetAlert: SweetAlertService, private postRegistry: PostRegistryM,
+    private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
     this.showBancos();
@@ -26,13 +28,19 @@ submitted = false;
     this.http.get('/Clients/Clientes/all/Bancos')
       .subscribe(res => {
         this.modelBancos = res['banks']
-        this.model.idbanco = this.modelBancos[0].id;
+        this.model.idbank = this.modelBancos[0].id;
       });
   }
 
     registryBank(model) {
     try {
-      this.postRegistry.registryBank(model);
+      this.postRegistry.registryBank(model, callback => {
+         if (!callback) {
+          this.sweetAlert.swal('Aviso', 'Informacion de bancos agregada exitosamente.', 'success');
+        } else {
+          this.sweetAlert.swal('Error', 'Error al validar campos', 'error');
+        }
+      });
       this.model.idclient = this.postRegistry.idclient;
     } catch (Exp) {
       console.log(Exp)
@@ -40,7 +48,7 @@ submitted = false;
   }
 
     change(b) {
-    this.model.idbanco = b
+    this.model.idbank = b
   }
 
   onSubmit() {

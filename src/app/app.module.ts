@@ -1,3 +1,5 @@
+import { SweetAlertService } from 'ng2-sweetalert2';
+
 import { PostRegistryP } from './views/dashboard/Client/services.client/service.registryP';
 import { PostRegistryM } from './views/dashboard/Client/services.client/service.registryM';
 import { AuthGuard } from './views/pages/login/auth-guard.service';
@@ -12,7 +14,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // <-- NgMode
 import { AppComponent } from './app.component';
 import { HttpClientModule} from '@angular/common/http';
 // import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {SweetAlertService} from 'ng2-sweetalert2';
 // Import containers
 import {
   FullLayout,
@@ -83,7 +84,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  }, AuthGuard, PostRegistryP, PostRegistryM,
+  }, AuthGuard, PostRegistryP, PostRegistryM, SweetAlertService,
   {
   provide: HTTP_INTERCEPTORS,
   useClass: LoginInterceptor,

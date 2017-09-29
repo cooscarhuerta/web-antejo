@@ -1,3 +1,4 @@
+import { SweetAlertService } from 'ng2-sweetalert2';
 import { PostRegistryM } from 'app/views/dashboard/Client/services.client/service.registryM';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -16,11 +17,19 @@ export class SharedHolderMComponent implements OnInit {
 
 
 
-  constructor(private postRegistry: PostRegistryM, private router: Router, private http: HttpClient) { }
+  constructor(private sweetAlert: SweetAlertService, private postRegistry: PostRegistryM, private router: Router,
+    private http: HttpClient) { }
 
   registryInfo(model) {
     try {
-      this.postRegistry.registryInfoSH(model);
+      this.postRegistry.registryInfoSH(model, callback => {
+        if (!callback) {
+          this.sweetAlert.swal('Aviso', 'Informacion de accionista agregada exitosamente.', 'success');
+        } else {
+          this.sweetAlert.swal('Error', 'Error al validar campos', 'error');
+        }
+
+      });
     } catch (Exp) {
       console.log(Exp);
     }

@@ -1,6 +1,6 @@
 export class SharedholderM {
   constructor(
-
+    public type: string = 'Moral',
     public name: string = '',
     public lastname: string = '',
     public rfc: string = '',

@@ -1,3 +1,4 @@
+
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -21,6 +22,12 @@ import { RegistryPComponent } from './info-client-physic/registry-p/registry-p.c
 import { RegistryMComponent } from './info-client-moral/registry-m/registry-m.component';
 import { ManagersMComponent } from './info-client-moral/managers-m/managers-m.component';
 import { SharedHolderMComponent } from './info-client-moral/shared-holder-m/shared-holder-m.component';
+import { FileCDComponent } from './info-client-physic/files-p/file-cd/file-cd.component';
+import { FileECComponent } from './info-client-physic/files-p/file-ec/file-ec.component';
+import { FileRFCComponent } from './info-client-physic/files-p/file-rfc/file-rfc.component';
+import { FileACComponent } from './info-client-moral/files-m/file-ac/file-ac.component';
+import { FileAAComponent } from './info-client-moral/files-m/file-aa/file-aa.component';
+import { FileExtrasComponent } from './info-client-moral/files-m/file-extras/file-extras.component';
 
 
 @NgModule({
@@ -31,9 +38,9 @@ import { SharedHolderMComponent } from './info-client-moral/shared-holder-m/shar
     CommonModule,
     TabsModule.forRoot(),
     AccordionModule.forRoot(),
-    FormsModule,
+    FormsModule
   ],
   declarations: [ClientComponent, InfoClientMoralComponent, InfoClientPhysicComponent, EditClientComponent, BankPComponent,
-     BankMComponent, FilesMComponent, FilesPComponent, RegistryPComponent, RegistryMComponent, ManagersMComponent, SharedHolderMComponent]
+     BankMComponent, FilesMComponent, FilesPComponent, RegistryPComponent, RegistryMComponent, ManagersMComponent, SharedHolderMComponent, FileCDComponent, FileECComponent, FileRFCComponent, FileACComponent, FileAAComponent, FileExtrasComponent]
 })
 export class AppModule { }

@@ -2,7 +2,7 @@
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import "rxjs/add/operator/toPromise";
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
         // Read the result field from the JSON response.
 
         if (data['error'] === false) {
-          localStorage.setItem('userId',data['user']['id']);
+          localStorage.setItem('userId', data['user']['id']);
           localStorage.setItem('auth_token', data['token']);
           if (data['user']['idclient'] === null) {
             this.router.navigate(['cliente/view'])
@@ -37,8 +37,8 @@ export class AuthGuard implements CanActivate {
 
 
   canActivate() {
-    return this.http.get('/ClientsAuth/RefreshToken').toPromise().then(data =>{
-      localStorage.setItem('userId',data['user']['id']);
+    return this.http.get('/ClientsAuth/RefreshToken').toPromise().then(data => {
+      localStorage.setItem('userId', data['user']['id']);
       localStorage.setItem('auth_token', data['user']['api_token']);
       return true;
     }).catch(data => {

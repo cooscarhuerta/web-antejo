@@ -2,57 +2,22 @@
     <tab title="Comprobante de Domicilio">
         <span *tabHeading>Comprobante de Domicilio</span>
         <div>
-            <div class="form-group">
-                <label for="input">Subir Comprobante de Domicilio:</label>
-                <input name="input" class="form-control" type="file" ngf-select="ctrl.SubirDom($file)" />
-            </div>
-            <div>
-                <button class="btn btn-default" ng-click="ctrl.DownloadFile(file.id)">
-                                                <i class="material-icons">file_download</i>
-                                            </button>
-            </div>
+            <app-file-cd></app-file-cd>
         </div>
     </tab>
 
     <tab title="Estados de Cuenta">
         <span *tabHeading>Estados de Cuenta</span>
-        <div class="form-group">
-            <label for="input">Subir Estados de Cuenta:</label>
-            <input name="input" class="form-control" type="file" ngf-select="ctrl.SubirCuentas($file)" />
-        </div>
         <div>
-            <button class="btn btn-default" ng-click="ctrl.DownloadFile(file.id)">
-                                                <i class="material-icons">file_download</i>
-                                            </button>
+            <app-file-ec></app-file-ec>
         </div>
-
     </tab>
-
 
     <tab title="RFC">
         <span *tabHeading>RFC</span>
-        <div class="form-group">
-            <label for="input">Subir RFC:</label>
-            <input name="input" class="form-control" type="file" ngf-select="ctrl.SubirRFC($file)" />
-        </div>
         <div>
-            <button class="btn btn-default" ng-click="ctrl.DownloadFile(file.id)">
-                                                <i class="material-icons">file_download</i>
-                                            </button>
+            <app-file-rfc></app-file-rfc>
         </div>
     </tab>
 
-    <tab title="Contrado">
-        <span *tabHeading>Contrado</span>
-        <div class="form-group">
-            <label for="input">Subir Contrado:</label>
-            <input name="input" class="form-control" type="file" ngf-select="ctrl.SubirContrato($file)" />
-        </div>
-        <div>
-            <button class="btn btn-default" ng-click="ctrl.DownloadFile(file.id)">
-                                                <i class="material-icons">file_download</i>
-                        </button>
-        </div>
-
-    </tab>
 </tabset>

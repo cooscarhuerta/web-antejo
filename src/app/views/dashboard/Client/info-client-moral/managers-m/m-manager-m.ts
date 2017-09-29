@@ -6,7 +6,8 @@ export class ManagerM {
     public rfc: string = '',
     public phone: number = null,
     public identification: File = null,
-    public idclient: string = ''
+    public idclient: string = '',
+    public idfile: string = ''
 
   ) { }
 }

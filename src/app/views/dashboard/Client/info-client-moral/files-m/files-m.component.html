@@ -2,41 +2,22 @@
     <tab title="Acta Constitutiva">
         <span *tabHeading>Acta Constitutiva</span>
         <div>
-            <div class="form-group">
-                <label for="input">Subir Acta Constitutiva:</label>
-                <input name="input" class="form-control" type="file" ngf-select="ctrl.SubirDom($file)" />
-            </div>
-            <div>
-                <button class="btn btn-default" ng-click="ctrl.DownloadFile(file.id)">
-                                                <i class="material-icons">file_download</i>
-                                            </button>
-            </div>
+            <app-file-ac></app-file-ac>
         </div>
     </tab>
 
     <tab title="Acta Asamblea">
         <span *tabHeading>Acta Asamblea</span>
-        <div class="form-group">
-            <label for="input">Subir Acta Asamblea:</label>
-            <input name="input" class="form-control" type="file" ngf-select="ctrl.SubirCuentas($file)" />
-        </div>
         <div>
-            <button class="btn btn-default" ng-click="ctrl.DownloadFile(file.id)">
-                                                <i class="material-icons">file_download</i>
-                                            </button>
+            <app-file-aa></app-file-aa>
         </div>
     </tab>
 
     <tab title="Extras">
         <span *tabHeading>Extras</span>
-        <div class="form-group">
-            <label for="input">Subir Extras:</label>
-            <input name="input" class="form-control" type="file" ngf-select="ctrl.SubirRFC($file)" />
-        </div>
         <div>
-            <button class="btn btn-default" ng-click="ctrl.DownloadFile(file.id)">
-                                                <i class="material-icons">file_download</i>
-                                            </button>
+            <app-file-extras></app-file-extras>
         </div>
     </tab>
+
 </tabset>

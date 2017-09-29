@@ -1,7 +1,9 @@
+
 import { RegistryPComponent } from './registry-p/registry-p.component';
 import { FilesPComponent } from './files-p/files-p.component';
 import { BankPComponent } from './bank-p/bank-p.component';
 import { Component, OnInit } from '@angular/core';
+
 
 
 @Component({
