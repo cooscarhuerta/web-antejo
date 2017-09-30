@@ -5,7 +5,7 @@
                 <div class="card-header">
                     <h2>Informacion Cliente</h2>
                 </div><br>
-                <div>
+                <div *ngIf="clientId==null">
                     <div class="btn-group" dropdown>
                         <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
                                  Seleccione un tipo de Cliente <span class="caret"></span>
@@ -17,14 +17,15 @@
                     </div>
 
                 </div>
-
-                <div *ngIf='cliente_moral == true'>
-                    <p></p>
-                    <app-info-client-moral></app-info-client-moral>
-                </div>
-                <div *ngIf='cliente_moral == false'>
-                    <p></p>
-                    <app-info-client-physic></app-info-client-physic>
+                <div *ngIf="clientType !== null">
+                    <div *ngIf="clientType=='moral';else physicalForm">
+                        <p></p>
+                        <app-info-client-moral></app-info-client-moral>
+                    </div>
+                    <ng-template #physicalForm>
+                        <p></p>
+                        <app-info-client-physic></app-info-client-physic>
+                    </ng-template>
                 </div>
             </div>
         </div>

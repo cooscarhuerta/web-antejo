@@ -7,17 +7,24 @@ import { Injectable } from '@angular/core';
 export class PostRegistryM {
 
   model: BankM = new BankM();
-  idclient = '';
+  idclient = localStorage.getItem('idClient');
 
   constructor(private router: Router, private http: HttpClient) { }
 
-  registryInfo(model, callback) {
-    this.http.post('/Clients/Clientes/add', model,
+  registryInfo(model, method, callback) {
+    if(method == 'POST'){
+      this.http.post('/Clients/Clientes/add', model.client,
       {
         headers: new HttpHeaders().set('Content-type', 'application/json')
       }).subscribe(data => {
+        console.log("doing stuff");
         if (data['error'] === false) {
-          this.idclient = data['client']['id']
+          localStorage.setItem('idClient',data['client']['id']);
+          if(data['client']['businessname']){
+            localStorage.setItem('clientType',"moral");    
+          }else{
+            localStorage.setItem('clientType',"physical");
+          }
           callback(false);
         } else {
           callback(true);
@@ -25,6 +32,21 @@ export class PostRegistryM {
         // Read the result field from the JSON response.
 
       });
+    }else{
+      this.http.put('/Clients/Clientes/update/'+localStorage.getItem('userId'), model.client,
+      {
+        headers: new HttpHeaders().set('Content-type', 'application/json')
+      }).subscribe(data => {
+        if (data['error'] === false) {
+          callback(false);
+        } else {
+          callback(true);
+        }
+        // Read the result field from the JSON response.
+
+      });
+    }
+    
   }
 
   registryBank(model, callback) {

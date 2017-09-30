@@ -7,14 +7,15 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: 'client.component.html'
 })
 export class ClientComponent implements OnInit {
-  public cliente_moral: boolean;
-
+  public isMoral: boolean;
+  public clientId = localStorage.getItem('idClient');
+  public clientType = localStorage.getItem('clientType');
   constructor() {
-    this.cliente_moral = false;
+
   }
 
-  evento_cliente(valor) {
-    this.cliente_moral = valor
+  evento_cliente(isMoral) {
+    this.clientType = isMoral? "moral" : "physical";
   }
   ngOnInit() {
 
