@@ -1,13 +1,17 @@
-<form (ngSubmit)="onSubmit()" #fileForm="ngForm">
+<form #form = "ngForm" (ngSubmit)="onSubmit(form.value)" >
     <div>
         <div class="form-group">
             <label for="input">Subir Comprobante de Domicilio:</label>
-            <input name="input" class="form-control" type="file" ngf-select="ctrl.SubirDom($file)" />
+            <input name="fileInput" class="form-control" type="file" ngModel (change)="getFiles($event)"/>
         </div>
         <div>
-            <button class="btn btn-default" [disabled]="!fileForm.valid" type="submit">
-                                                <i class="material-icons">file_download</i>
-                                            </button>
+            <button class="btn btn-default" [disabled]="!form.valid" type="submit">
+                <i class="material-icons">Subir Archivo</i>
+            </button>
         </div>
     </div>
-</form>
+</form> 
+
+<!-- 
+    #fileForm="ngForm"    
+!-->

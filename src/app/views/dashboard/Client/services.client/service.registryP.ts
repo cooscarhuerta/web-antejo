@@ -32,7 +32,7 @@ export class PostRegistryP {
 
       });
     }else{
-      this.http.put('/Clients/Clientes/update/'+localStorage.getItem('userId'), model.client,
+      this.http.put('/Clients/Clientes/update/'+localStorage.getItem('idClient'), model.client,
       {
         headers: new HttpHeaders().set('Content-type', 'application/json')
       }).subscribe(data => {
@@ -62,12 +62,10 @@ export class PostRegistryP {
          });
   }
 
-  registryFileCD(model, callback) {
-    model.type = 'Compobante Domicilio'
-    model.idclient = this.idclient;
-    this.http.post('Clients/Cliente/add/FilesClient', model,
+  registryFile(model, callback) {
+    this.http.post('/Clients/Clientes/add/FilesClient', model,
      {
-        headers: new HttpHeaders().set('Content-type', 'application/json')
+        headers: new HttpHeaders().set('Content-type', 'multipart/form-data')
      }).subscribe(data => {
          if (data['error'] === false) {
           callback(false);

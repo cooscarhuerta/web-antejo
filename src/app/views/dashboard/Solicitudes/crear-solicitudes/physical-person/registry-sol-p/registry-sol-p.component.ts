@@ -19,7 +19,6 @@ export class RegistrySolPComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
     console.log(this.model);
   }
 }

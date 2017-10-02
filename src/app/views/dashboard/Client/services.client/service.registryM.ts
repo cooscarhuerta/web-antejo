@@ -29,7 +29,7 @@ export class PostRegistryM {
 
       });
     }else{
-      this.http.put('/Clients/Clientes/update/'+localStorage.getItem('userId'), model.client,
+      this.http.put('/Clients/Clientes/update/'+localStorage.getItem('idClient'), model.client,
       {
         headers: new HttpHeaders().set('Content-type', 'application/json')
       }).subscribe(data => {

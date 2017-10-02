@@ -13,7 +13,6 @@ import { Component, OnInit } from '@angular/core';
 export class FileCDComponent implements OnInit {
 
   submitted = false;
-
   model: FilesP = new FilesP();
 
   constructor(private sweetAlert: SweetAlertService, private postRegistry: PostRegistryP,
@@ -21,7 +20,7 @@ export class FileCDComponent implements OnInit {
 
   registryFile(model) {
     try {
-      this.postRegistry.registryFileCD(model, callback => {
+      this.postRegistry.registryFile(model,callback => {
         if (!callback) {
           this.sweetAlert.swal('Aviso', 'Archivo agregado exitosamente.', 'success');
         } else {
@@ -32,15 +31,32 @@ export class FileCDComponent implements OnInit {
       console.log(Exp);
     }
   }
+  files : FileList; 
+  getFiles(event){ 
+      this.files = event.target.files; 
+  } 
 
+  upload() {
+    const formData = new FormData();
+    formData.append("file", this.files[0]);
+    formData.append("type",this.model.type);
+    formData.append("idclient",this.model.idclient);
+    this.registryFile(formData);
+  }
 
   ngOnInit() {
   }
 
-  onSubmit() {
-    this.submitted = true;
-    this.registryFile(this.model);
-    console.log(this.model);
+  onSubmit(value) {
+    console.log(value);
+    console.log(this.files);
+    this.model.type = 'Comprobante';
+    this.model.idclient = localStorage.getItem('idClient');
+    if(this.model.idclient !== null){
+      this.upload();
+      this.submitted = true;
+    }
+   
   }
 
 }

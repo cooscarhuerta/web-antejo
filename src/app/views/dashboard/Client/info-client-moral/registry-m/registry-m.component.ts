@@ -50,6 +50,7 @@ export class RegistryMComponent implements OnInit {
     this.http.get('/Clients/Clientes/show/'+localStorage.getItem('idClient')).subscribe(res=>{
       if(res['error']===false){
         this.model.client = res['client'];
+        
       }
     });
   }
