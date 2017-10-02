@@ -14,20 +14,38 @@ export class PostRegistryP {
 
   constructor(private router: Router, private http: HttpClient) { }
 
-  registryInfo(model, callback) {
-    this.http.post('/Clients/Clientes/add', model,
+  registryInfo(model, method, callback) {
+    if(method == 'POST'){
+      this.http.post('/Clients/Clientes/add', model.client,
       {
         headers: new HttpHeaders().set('Content-type', 'application/json')
       }).subscribe(data => {
-        console.log(data);
+        console.log("doing stuff");
         if (data['error'] === false) {
-          this.idclient = data['client']['id'];
+          localStorage.setItem('idClient',data['client']['id']);
+          localStorage.setItem('clientType',"physical");    
           callback(false);
         } else {
-          callback(true)
+          callback(true);
         }
         // Read the result field from the JSON response.
+
       });
+    }else{
+      this.http.put('/Clients/Clientes/update/'+localStorage.getItem('userId'), model.client,
+      {
+        headers: new HttpHeaders().set('Content-type', 'application/json')
+      }).subscribe(data => {
+        if (data['error'] === false) {
+          callback(false);
+        } else {
+          callback(true);
+        }
+        // Read the result field from the JSON response.
+
+      });
+    }
+    
   }
 
   registryBank(model, callback) {

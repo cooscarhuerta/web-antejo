@@ -21,13 +21,16 @@ export class RegistryPComponent implements OnInit {
   public phonePattern = '[0-9]{1,10}';
   public RFCPattern = '[A-Z,Ñ,&]{4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\d]{3}';
   public FIELPattern = '[0-9]{18}([0-9]?){2}';
-  public emailPattern = '(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))';
+  public emailPattern = '(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))';  
+  public method :string = '';
+  public idClient;
+  
   constructor(private sweetAlert: SweetAlertService, private postRegistry: PostRegistryP,
     private router: Router, private http: HttpClient) { }
 
-  registryInfo(model) {
+  public registryInfo(model) {
     try {
-      this.postRegistry.registryInfo(model, callback => {
+      this.postRegistry.registryInfo(model,this.method, callback => {
         if (!callback) {
           this.sweetAlert.swal('Aviso', 'Informacion agregada exitosamente.', 'success');
         } else {
@@ -39,10 +42,26 @@ export class RegistryPComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
+  private getClientInfo(){
+    this.http.get('/Clients/Clientes/show/'+localStorage.getItem('idClient')).subscribe(res=>{
+      if(res['error']===false){
+        this.model.client = res['client'];
+      }
+    });
   }
 
-  onSubmit() {
+  public onSubmit() {
+    if(this.method!=='POST' && this.method!=='PUT') return;
+    this.submitted = true;
     this.registryInfo(this.model);
   }
+  
+  ngOnInit() {
+    this.idClient = localStorage.getItem('idClient');
+    if(this.idClient !== null){
+      this.getClientInfo();
+    }
+  }
+
+  
 }

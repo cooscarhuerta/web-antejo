@@ -20,11 +20,7 @@ export class PostRegistryM {
         console.log("doing stuff");
         if (data['error'] === false) {
           localStorage.setItem('idClient',data['client']['id']);
-          if(data['client']['businessname']){
-            localStorage.setItem('clientType',"moral");    
-          }else{
-            localStorage.setItem('clientType',"physical");
-          }
+          localStorage.setItem('clientType',"moral");    
           callback(false);
         } else {
           callback(true);

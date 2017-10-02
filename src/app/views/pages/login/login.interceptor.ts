@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
-const apiUrl = 'http://192.168.1.191:81';
+const apiUrl = 'http://localhost:8081';
 
 @Injectable()
 export class LoginInterceptor implements HttpInterceptor {

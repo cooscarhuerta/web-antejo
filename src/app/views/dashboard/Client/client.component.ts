@@ -20,6 +20,4 @@ export class ClientComponent implements OnInit {
   ngOnInit() {
 
   }
-
-
 }
