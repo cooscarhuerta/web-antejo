@@ -3,7 +3,7 @@ import { SharedHolderMComponent } from './shared-holder-m/shared-holder-m.compon
 import { RegistryMComponent } from './registry-m/registry-m.component';
 import { FilesMComponent } from './files-m/files-m.component';
 import { BankMComponent } from './bank-m/bank-m.component';
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 
 @Component({
@@ -12,11 +12,19 @@ import { Component, OnInit, Input, Output } from '@angular/core';
   styleUrls: ['./info-client-moral.component.scss']
 })
 export class InfoClientMoralComponent implements OnInit {
-  @Input() client : any
-  @Output() idClient = null;
+  public idClient = null;
   constructor() { }
+  @Input() client: any
+  @Output()
+  idRefresher: EventEmitter<string> = new EventEmitter<string>();
+  
+  public refreshId(event){
+    this.idClient = event;
+    this.idRefresher.emit(event);
+    
+  }
   ngOnInit() {
-    this.idClient = localStorage.getItem('clientId');
+    this.idClient = localStorage.getItem('idClient');
   }
 
 }

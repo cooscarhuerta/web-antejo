@@ -19,8 +19,6 @@ export class InfoClientPhysicComponent implements OnInit {
   idRefresher: EventEmitter<string> = new EventEmitter<string>();
   
   public refreshId(event){
-    console.log("Raising output in info client physical");
-    console.log(this.client);
     this.idClient = event;
     this.idRefresher.emit(event);
     

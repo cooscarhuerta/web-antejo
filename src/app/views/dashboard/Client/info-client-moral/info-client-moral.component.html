@@ -3,7 +3,7 @@
         <tab title="Informacion de Cliente">
             <span *tabHeading>Informacion de Cliente</span>
             <div>
-                <app-registry-m [client]="client"></app-registry-m>
+                <app-registry-m [client]="client" (idRefresher)="refreshId($event)"></app-registry-m>
             </div>
         </tab>
 

@@ -21,7 +21,6 @@ export class AuthGuard implements CanActivate {
         if (data['error'] === false) {
           localStorage.setItem('auth_token', data['token']);
           localStorage.setItem('userId', data['user']['id']);
-          console.log(data['user']['idclient']);
           if(data['user']['idclient']!==null){
             localStorage.setItem('idClient', data['user']['idclient']);
           }
@@ -29,12 +28,10 @@ export class AuthGuard implements CanActivate {
             this.router.navigate(['cliente/view'])
           } else {
             this.router.navigate(['dashboard']);
-            console.log("ID was null" ,data['user']['idclient'])
           }
         } else {
           coolBool[0] = false;
           sweetAlert.swal('Error', 'Login incorrecto', 'error');
-          console.log('Error al iniciar sesion');
         }
       });
   }
@@ -44,12 +41,10 @@ export class AuthGuard implements CanActivate {
     return this.http.get('/ClientsAuth/RefreshToken').toPromise().then(data => {
       localStorage.setItem('userId', data['user']['id']);
       localStorage.setItem('auth_token', data['user']['api_token']);
-      console.log("refresh succeeded");
       return true;
     }).catch(data => {
       localStorage.clear();
       this.router.navigate(['pages/login']);
-      console.log("refresh failed");
       return false;
     })
   }

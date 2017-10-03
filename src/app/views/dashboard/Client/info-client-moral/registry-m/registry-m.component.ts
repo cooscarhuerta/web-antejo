@@ -4,7 +4,7 @@ import { PostRegistryM } from 'app/views/dashboard/Client/services.client/servic
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { RegistryM } from './m-registry-m';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { PatternValidator } from '@angular/forms';
 
@@ -17,8 +17,9 @@ import { PatternValidator } from '@angular/forms';
 export class RegistryMComponent implements OnInit {
 
   submitted = false;
-  @Input() client : any
-
+  @Input() client : any;
+  @Output()
+  idRefresher: EventEmitter<string> = new EventEmitter<string>();
   model: RegistryM = new RegistryM();
 
   public RFCPattern = '[A-Z,Ñ,&]{3}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\d]{3}';
@@ -34,6 +35,8 @@ export class RegistryMComponent implements OnInit {
     try {
       this.postRegistry.registryInfo(model,this.method, callback => {
           if (!callback) {
+          const idClient = localStorage.getItem('idClient')
+          this.idRefresher.emit(idClient);
           this.sweetAlert.swal('Aviso', 'Informacion agregada exitosamente.', 'success');
         } else {
           this.sweetAlert.swal('Error', 'Error al validar campos', 'error');
