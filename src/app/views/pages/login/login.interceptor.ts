@@ -9,10 +9,21 @@ export class LoginInterceptor implements HttpInterceptor {
   intercept (req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     try {
         const token = localStorage.getItem('auth_token');
-        const authReq = req.clone({
-            headers: req.headers.set('Content-type', 'application/json')
-                .set('token', token != null ? token : ''),
-                url : apiUrl + req.url
+        let authReq = req.clone();
+        if(!req.headers.has('Content-type')){
+            authReq = authReq.clone({
+              headers: authReq.headers.set('Content-type', 'application/json'),
+            });
+        }else{
+          if(req.headers.get('Content-type') === 'multipart/form-data'){
+              authReq = authReq.clone({
+                headers: authReq.headers.delete('Content-type')
+              });
+          }
+        }
+        authReq = authReq.clone({
+            headers: authReq.headers.set('token', token != null ? token : ''),
+                url : apiUrl + authReq.url
         });
         return next.handle(authReq);
     }catch (ex) {

@@ -43,7 +43,6 @@ export class BankPComponent implements OnInit {
           this.sweetAlert.swal('Error', 'Error al validar campos', 'error');
         }
       });
-      this.model.idclient = this.postRegistry.idclient;
     } catch (Exp) {
       console.log(Exp)
     }

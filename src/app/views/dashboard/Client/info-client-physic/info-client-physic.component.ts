@@ -2,7 +2,7 @@
 import { RegistryPComponent } from './registry-p/registry-p.component';
 import { FilesPComponent } from './files-p/files-p.component';
 import { BankPComponent } from './bank-p/bank-p.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 
 
@@ -12,10 +12,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./info-client-physic.component.scss']
 })
 export class InfoClientPhysicComponent implements OnInit {
-
+  public idClient = null;
   constructor() { }
-
+  @Input() client: any
+  @Output()
+  idRefresher: EventEmitter<string> = new EventEmitter<string>();
+  
+  public refreshId(event){
+    console.log("Raising output in info client physical");
+    console.log(this.client);
+    this.idClient = event;
+    this.idRefresher.emit(event);
+    
+  }
   ngOnInit() {
+    console.log(this.client)
+
+    this.idClient = localStorage.getItem('idClient');
   }
 
 }

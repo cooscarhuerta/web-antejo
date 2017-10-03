@@ -12,7 +12,9 @@ export class PostRegistryM {
   constructor(private router: Router, private http: HttpClient) { }
 
   registryInfo(model, method, callback) {
+    
     if(method == 'POST'){
+      model.client.userId = localStorage.getItem('userId');
       this.http.post('/Clients/Clientes/add', model.client,
       {
         headers: new HttpHeaders().set('Content-type', 'application/json')
@@ -92,7 +94,19 @@ export class PostRegistryM {
       });
   }
 
-
+  registryFile(model, callback) {
+    
+    this.http.post('/Clients/Clientes/add/FilesClient', model,
+     {
+        headers: new HttpHeaders().set('Content-type', 'multipart/form-data')
+     }).subscribe(data => {
+         if (data['error'] === false) {
+          callback(data);
+        } else {
+          callback(null);
+        }
+     });
+  }
 
 
 }

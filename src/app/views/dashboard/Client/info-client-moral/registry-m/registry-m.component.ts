@@ -4,7 +4,7 @@ import { PostRegistryM } from 'app/views/dashboard/Client/services.client/servic
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { RegistryM } from './m-registry-m';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { PatternValidator } from '@angular/forms';
 
@@ -17,6 +17,8 @@ import { PatternValidator } from '@angular/forms';
 export class RegistryMComponent implements OnInit {
 
   submitted = false;
+  @Input() client : any
+
   model: RegistryM = new RegistryM();
 
   public RFCPattern = '[A-Z,Ñ,&]{3}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\d]{3}';
@@ -24,7 +26,7 @@ export class RegistryMComponent implements OnInit {
   public emailPattern = '(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))';
   public phonePattern = '[0-9]{1,10}';
   public method :string = '';
-  public idClient = localStorage.getItem('idClient');
+  public idClient;
   constructor(private sweetAlert: SweetAlertService, private postRegistry: PostRegistryM,
     private router: Router, private http: HttpClient) { }
 
@@ -42,17 +44,10 @@ export class RegistryMComponent implements OnInit {
     }
   }
   ngOnInit() {
-    this.getClientInfo();
-  }
-
-
-  getClientInfo(){
-    this.http.get('/Clients/Clientes/show/'+localStorage.getItem('idClient')).subscribe(res=>{
-      if(res['error']===false){
-        this.model.client = res['client'];
-        
-      }
-    });
+    this.idClient = localStorage.getItem('idClient');
+    if(this.client!==null){
+      this.model.client = this.client;
+    }
   }
   onSubmit() {
     if(this.method!=='POST' && this.method!=='PUT') return;

@@ -3,33 +3,33 @@
         <tab title="Informacion de Cliente">
             <span *tabHeading>Informacion de Cliente</span>
             <div>
-                <app-registry-m></app-registry-m>
+                <app-registry-m [client]="client"></app-registry-m>
             </div>
         </tab>
 
 
-        <tab title="Banco">
+        <tab [disabled]="idClient==null" title="Banco">
             <span *tabHeading>Banco</span>
             <div>
                 <app-bank-m></app-bank-m>
             </div>
         </tab>
 
-        <tab title="Archivos">
+        <tab [disabled]="idClient==null" title="Archivos">
             <span *tabHeading>Archivos</span>
             <div>
                 <app-files-m></app-files-m>
             </div>
         </tab>
 
-        <tab title="Accionistas">
+        <tab [disabled]="idClient==null" title="Accionistas">
             <span *tabHeading>Accionistas</span>
             <div>
                 <app-shared-holder-m></app-shared-holder-m>
             </div>
         </tab>
 
-        <tab title="Representantes">
+        <tab [disabled]="idClient==null" title="Representantes">
             <span *tabHeading>Representantes</span>
             <div>
                 <app-managers-m></app-managers-m>

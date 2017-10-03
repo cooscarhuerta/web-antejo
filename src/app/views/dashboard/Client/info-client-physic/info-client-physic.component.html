@@ -3,11 +3,11 @@
         <tab title="Informacion Cliente">
             <span *tabHeading>Informacion de Cliente</span>
             <div>
-                <app-registry-p></app-registry-p>
+                <app-registry-p [client]="client" (idRefresher)="refreshId($event)"></app-registry-p>
             </div>
         </tab>
 
-        <tab title="Banco">
+        <tab [disabled]="idClient==null" title="Banco">
             <span *tabHeading>Banco</span>
             <div>
 
@@ -15,7 +15,7 @@
             </div>
         </tab>
 
-        <tab title="Archivos">
+        <tab [disabled]="idClient==null" title="Archivos">
             <span *tabHeading>Archivos</span>
             <div>
                 <app-files-p></app-files-p>

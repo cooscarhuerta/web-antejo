@@ -1,6 +1,7 @@
 export class FilesM {
   constructor(
-    public idclient: number = null,
+    public idclient = null,
+    public userId = null,
     public name: string = '',
     public path: string = '',
     public externsion: string = '',

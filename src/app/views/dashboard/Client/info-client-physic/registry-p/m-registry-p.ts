@@ -19,7 +19,8 @@ export class RegistryP {
       postalcode: '',
       city: '',
       state: '',
-      phone: null
+      phone: null,
+      userId: null
     },
     public banks: [BankP] = [new BankP],
     public selectBank: string = '',

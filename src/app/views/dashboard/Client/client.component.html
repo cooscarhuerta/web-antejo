@@ -17,14 +17,14 @@
                     </div>
 
                 </div>
-                <div *ngIf="clientType !== null">
+                <div *ngIf="clientType">
                     <div *ngIf="clientType=='moral';else physicalForm">
                         <p></p>
-                        <app-info-client-moral></app-info-client-moral>
+                        <app-info-client-moral [client]="client" (idRefresher)="refreshId($event)"></app-info-client-moral>
                     </div>
                     <ng-template #physicalForm>
                         <p></p>
-                        <app-info-client-physic></app-info-client-physic>
+                        <app-info-client-physic [client]="client" (idRefresher)="refreshId($event)"></app-info-client-physic>
                     </ng-template>
                 </div>
             </div>

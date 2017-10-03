@@ -3,7 +3,7 @@ import { SharedHolderMComponent } from './shared-holder-m/shared-holder-m.compon
 import { RegistryMComponent } from './registry-m/registry-m.component';
 import { FilesMComponent } from './files-m/files-m.component';
 import { BankMComponent } from './bank-m/bank-m.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 
 
 @Component({
@@ -12,10 +12,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./info-client-moral.component.scss']
 })
 export class InfoClientMoralComponent implements OnInit {
-
+  @Input() client : any
+  @Output() idClient = null;
   constructor() { }
-
   ngOnInit() {
+    this.idClient = localStorage.getItem('clientId');
   }
 
 }

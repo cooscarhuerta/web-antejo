@@ -19,12 +19,13 @@
         </div>
 
         <div class="form-group col-sm-6">
-            <label for="input">Identificacion:</label>
-            <input name="input" class="form-control" type="file" [(ngModel)]="model.identification" name="identification" /></div>
-    </div>
-    <div>
-        <button class="btn btn-default" ng-click="ctrl.AddAccount() " ng-disabled="bancos.$invalid ">
-                                            <i class="material-icons ">Agregar Accionista</i>
-                                        </button>
+            <label for="input">Subir Identificacion:</label>
+            <input name="fileInput" class="form-control" type="file" ngModel (change)="getFiles($event)"/>
+        </div>
+        <div class="form-group col-sm-6">
+            <button class="btn btn-default" [disabled]="!managersForm.valid" type="submit">
+                <i class="material-icons">Agregar Representante</i>
+            </button>
+        </div>
     </div>
 </form>

@@ -8,14 +8,12 @@ import { SweetAlertService } from 'ng2-sweetalert2';
 @Injectable()
 export class PostRegistryP {
 
-  model: BankP = new BankP();
-
-  idclient = '';
-
   constructor(private router: Router, private http: HttpClient) { }
-
+  
   registryInfo(model, method, callback) {
+    
     if(method == 'POST'){
+      model.client.userId = localStorage.getItem('userId');
       this.http.post('/Clients/Clientes/add', model.client,
       {
         headers: new HttpHeaders().set('Content-type', 'application/json')
@@ -49,7 +47,7 @@ export class PostRegistryP {
   }
 
   registryBank(model, callback) {
-  model.idclient = this.idclient;
+    model.idclient = localStorage.getItem('idClient');
     this.http.post('/Clients/Clientes/add/BancosClientes', model,
       {
         headers: new HttpHeaders().set('Content-type', 'application/json')
@@ -63,6 +61,7 @@ export class PostRegistryP {
   }
 
   registryFile(model, callback) {
+    
     this.http.post('/Clients/Clientes/add/FilesClient', model,
      {
         headers: new HttpHeaders().set('Content-type', 'multipart/form-data')

@@ -1,12 +1,13 @@
-<form>
-    <div class="form-group">
-        <label for="input">Subir Acta Asamblea:</label>
-        <input name="input" class="form-control" type="file" ngf-select="ctrl.SubirCuentas($file)" />
-    </div>
+<form #form = "ngForm" (ngSubmit)="onSubmit(form.value)" >
     <div>
-        <button class="btn btn-default" ng-click="ctrl.DownloadFile(file.id)">
-                                                <i class="material-icons">file_download</i>
-                                            </button>
+        <div class="form-group">
+            <label for="input">Subir Acta Asamblea:</label>
+            <input name="fileInput" class="form-control" type="file" ngModel (change)="getFiles($event)"/>
+        </div>
+        <div>
+            <button class="btn btn-default" [disabled]="!form.valid" type="submit">
+                <i class="material-icons">Subir Archivo</i>
+            </button>
+        </div>
     </div>
-
-</form>
+</form> 
