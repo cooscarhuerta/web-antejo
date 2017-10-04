@@ -40,10 +40,10 @@
         </div>
     </tab>
 
-    <tab title="Contrado">
-        <span *tabHeading>Contrado</span>
+    <tab title="Proforma">
+        <span *tabHeading>Proforma</span>
         <div class="form-group">
-            <label for="input">Subir Contrado:</label>
+            <label for="input">Subir Proforma:</label>
             <input name="input" class="form-control" type="file" ngf-select="ctrl.SubirContrato($file)" />
         </div>
         <div>
@@ -51,6 +51,19 @@
                                                 <i class="material-icons">file_download</i>
                         </button>
         </div>
-
     </tab>
+    <tab title="Informacion Financiera">
+        <span *tabHeading>Informacion Financiera</span>
+        <div class="form-group">
+            <label for="input">Subir Informacion Financiera:</label>
+            <input name="input" class="form-control" type="file" ngf-select="ctrl.SubirContrato($file)" />
+        </div>
+        <div>
+            <button class="btn btn-default" ng-click="ctrl.DownloadFile(file.id)">
+                                                <i class="material-icons">file_download</i>
+                        </button>
+        </div>
+    </tab>
+
+
 </tabset>

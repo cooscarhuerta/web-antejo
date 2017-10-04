@@ -12,18 +12,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./file-ac.component.scss']
 })
 export class FileACComponent implements OnInit {
-  
+
 
   submitted = false;
   model: FilesM = new FilesM();
-
+  files: FileList;
+  getFiles(event) {
+    this.files = event.target.files;
+  }
   constructor(private sweetAlert: SweetAlertService, private postRegistry: PostRegistryM,
     private router: Router, private http: HttpClient) { }
 
 
   registryFile(model) {
     try {
-      this.postRegistry.registryFile(model,callback => {
+      this.postRegistry.registryFile(model, callback => {
         if (callback) {
           this.sweetAlert.swal('Aviso', 'Archivo agregado exitosamente.', 'success');
         } else {
@@ -34,16 +37,13 @@ export class FileACComponent implements OnInit {
       console.log(Exp);
     }
   }
-  files : FileList; 
-  getFiles(event){ 
-      this.files = event.target.files; 
-  } 
+
 
   upload() {
     const formData = new FormData();
-    formData.append("file", this.files[0]);
-    formData.append("type",this.model.type);
-    formData.append("idclient",this.model.idclient);
+    formData.append('file', this.files[0]);
+    formData.append('type', this.model.type);
+    formData.append('idclient', this.model.idclient);
     this.registryFile(formData);
   }
 
@@ -55,11 +55,11 @@ export class FileACComponent implements OnInit {
     console.log(this.files);
     this.model.type = 'Constitutiva';
     this.model.idclient = localStorage.getItem('idClient');
-    if(this.model.idclient !== null){
+    if (this.model.idclient !== null) {
       this.upload();
       this.submitted = true;
     }
-   
+
   }
 
 }

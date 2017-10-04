@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FileECComponent } from './file-ec.component';
+import { FileANComponent } from './file-an.component';
 
-describe('FileECComponent', () => {
-  let component: FileECComponent;
-  let fixture: ComponentFixture<FileECComponent>;
+describe('FileANComponent', () => {
+  let component: FileANComponent;
+  let fixture: ComponentFixture<FileANComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FileECComponent ]
+      declarations: [ FileANComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FileECComponent);
+    fixture = TestBed.createComponent(FileANComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -6,7 +6,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './client-routing.module';
 
 import { ClientComponent } from './client.component';
-import { EditClientComponent } from './edit-client/edit-client.component';
 import { InfoClientPhysicComponent } from './info-client-physic/info-client-physic.component';
 import { InfoClientMoralComponent } from './info-client-moral/info-client-moral.component';
 
@@ -22,12 +21,12 @@ import { RegistryPComponent } from './info-client-physic/registry-p/registry-p.c
 import { RegistryMComponent } from './info-client-moral/registry-m/registry-m.component';
 import { ManagersMComponent } from './info-client-moral/managers-m/managers-m.component';
 import { SharedHolderMComponent } from './info-client-moral/shared-holder-m/shared-holder-m.component';
-import { FileCDComponent } from './info-client-physic/files-p/file-cd/file-cd.component';
-import { FileECComponent } from './info-client-physic/files-p/file-ec/file-ec.component';
 import { FileRFCComponent } from './info-client-physic/files-p/file-rfc/file-rfc.component';
 import { FileACComponent } from './info-client-moral/files-m/file-ac/file-ac.component';
 import { FileAAComponent } from './info-client-moral/files-m/file-aa/file-aa.component';
 import { FileExtrasComponent } from './info-client-moral/files-m/file-extras/file-extras.component';
+import { FileANComponent } from './info-client-physic/files-p/file-an/file-an.component';
+import { FileDLComponent } from './info-client-physic/files-p/file-dl/file-dl.component';
 
 
 @NgModule({
@@ -40,7 +39,9 @@ import { FileExtrasComponent } from './info-client-moral/files-m/file-extras/fil
     AccordionModule.forRoot(),
     FormsModule
   ],
-  declarations: [ClientComponent, InfoClientMoralComponent, InfoClientPhysicComponent, EditClientComponent, BankPComponent,
-     BankMComponent, FilesMComponent, FilesPComponent, RegistryPComponent, RegistryMComponent, ManagersMComponent, SharedHolderMComponent, FileCDComponent, FileECComponent, FileRFCComponent, FileACComponent, FileAAComponent, FileExtrasComponent]
+  declarations: [ClientComponent, InfoClientMoralComponent, InfoClientPhysicComponent, BankPComponent,
+     BankMComponent, FilesMComponent, FilesPComponent, RegistryPComponent, RegistryMComponent, ManagersMComponent,
+     SharedHolderMComponent, FileRFCComponent, FileACComponent, FileAAComponent,
+     FileExtrasComponent, FileANComponent, FileDLComponent]
 })
 export class AppModule { }

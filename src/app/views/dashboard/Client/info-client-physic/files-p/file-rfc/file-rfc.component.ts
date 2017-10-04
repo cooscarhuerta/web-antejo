@@ -15,13 +15,17 @@ export class FileRFCComponent implements OnInit {
 
   submitted = false;
   model: FilesP = new FilesP();
+  files: FileList;
+  getFiles(event) {
+    this.files = event.target.files;
+  }
 
   constructor(private sweetAlert: SweetAlertService, private postRegistry: PostRegistryP,
     private router: Router, private http: HttpClient) { }
 
   registryFile(model) {
     try {
-      this.postRegistry.registryFile(model,callback => {
+      this.postRegistry.registryFile(model, callback => {
         if (!callback) {
           this.sweetAlert.swal('Aviso', 'Archivo agregado exitosamente.', 'success');
         } else {
@@ -32,16 +36,13 @@ export class FileRFCComponent implements OnInit {
       console.log(Exp);
     }
   }
-  files : FileList; 
-  getFiles(event){ 
-      this.files = event.target.files; 
-  } 
+
 
   upload() {
     const formData = new FormData();
-    formData.append("file", this.files[0]);
-    formData.append("type",this.model.type);
-    formData.append("idclient",this.model.idclient);
+    formData.append('file', this.files[0]);
+    formData.append('type', this.model.type);
+    formData.append('idclient', this.model.idclient);
     this.registryFile(formData);
   }
 
@@ -54,7 +55,7 @@ export class FileRFCComponent implements OnInit {
     console.log(this.files);
     this.model.type = 'RFC';
     this.model.idclient = localStorage.getItem('idClient');
-    if(this.model.idclient !== null){
+    if (this.model.idclient !== null) {
       this.upload();
       this.submitted = true;
     }

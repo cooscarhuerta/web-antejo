@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FileCDComponent } from './file-cd.component';
+import { FileDLComponent } from './file-dl.component';
 
-describe('FileCDComponent', () => {
-  let component: FileCDComponent;
-  let fixture: ComponentFixture<FileCDComponent>;
+describe('FileDLComponent', () => {
+  let component: FileDLComponent;
+  let fixture: ComponentFixture<FileDLComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FileCDComponent ]
+      declarations: [ FileDLComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FileCDComponent);
+    fixture = TestBed.createComponent(FileDLComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
