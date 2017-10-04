@@ -20,7 +20,7 @@ export class VerSolicitudesComponent implements OnInit {
     this.http.get(
       '/Clients/Clientes/show/' + localStorage.getItem('userId') + '/Wallet').subscribe(data => {
     // Read the result field from the JSON response.
-    if (data['applications'] === null) {
+    if (data['applications'].length == 0) {
       console.log('Applications query failed');
       this.sweetAlert.swal("Aviso","No tiene aplicaciones registradas.","warning");
       this.dataFinishedLoading = true;

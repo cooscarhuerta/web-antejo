@@ -22,12 +22,11 @@ export class AuthGuard implements CanActivate {
           localStorage.setItem('auth_token', data['token']);
           localStorage.setItem('userId', data['user']['id']);
           if(data['user']['idclient']!==null){
+            console.log("setting id");
             localStorage.setItem('idClient', data['user']['idclient']);
-          }
-          if (data['user']['idclient'] === null) {
-            this.router.navigate(['cliente/view'])
-          } else {
             this.router.navigate(['dashboard']);
+          }else{
+            this.router.navigate(['cliente/view']);
           }
         } else {
           coolBool[0] = false;

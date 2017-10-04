@@ -5,5 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './app-sidebar.component.html'
 })
 export class AppSidebar implements OnInit {
-  ngOnInit(): void {}
+  public idClient;
+  ngOnInit(): void {
+    this.idClient = localStorage.getItem('idClient');
+  }
 }

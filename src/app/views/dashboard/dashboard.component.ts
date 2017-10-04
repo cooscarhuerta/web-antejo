@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
+import { SweetAlertService } from 'ng2-sweetalert2';
 @Component({
   templateUrl: 'dashboard.component.html'
 })
 
 @Injectable()
 export class DashboardComponent implements OnInit {
-
-   constructor(private http: HttpClient, private router: Router ) { }
+  public dataFinishedLoading: boolean = false;
+  @Input()
+  public applications;
+  @Input()
+  public credits;
+  @Input()
+  public client;
+  constructor(private http: HttpClient, private router: Router, private sweetAlert : SweetAlertService ) { }
 
   public brandPrimary = '#20a8d8';
   public brandSuccess = '#4dbd74';
@@ -466,7 +473,27 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // generate random values for mainChart
+    var idClient = localStorage.getItem('idClient');
+    if(idClient!=null){
+      this.http.get(
+        '/Clients/Clientes/show/' + idClient + '/Wallet').subscribe(data => {
+      // Read the result field from the JSON response.
+      if (data === null) {
+        console.log('Wallet query failed');
+        this.dataFinishedLoading = true;
+  
+      }else {
+        this.credits = data['credits'];
+        this.applications = data['credits'];
+        this.client = data['client'];
+        console.log('Wallet get!');
+        console.log(data);
+        this.dataFinishedLoading = true;
+      }
+      console.log(data);
+      });
+    }
+    
     for (let i = 0; i <= this.mainChartElements; i++) {
       this.mainChartData1.push(this.random(50, 200));
       this.mainChartData2.push(this.random(80, 100));

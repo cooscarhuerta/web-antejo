@@ -26,5 +26,4 @@ export class InfoClientMoralComponent implements OnInit {
   ngOnInit() {
     this.idClient = localStorage.getItem('idClient');
   }
-
 }
