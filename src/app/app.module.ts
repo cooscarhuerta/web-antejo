@@ -73,7 +73,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     ChartsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   declarations: [
     AppComponent,

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
@@ -10,9 +11,9 @@ import { SweetAlertService } from 'ng2-sweetalert2';
   styleUrls: ['./ver-solicitudes.component.scss']
 })
 export class VerSolicitudesComponent implements OnInit {
-  appsArray = ['1'];
+  appsArray = [];
   dataFinishedLoading = false;
-  constructor(private http: HttpClient, private sweetAlert : SweetAlertService) {
+  constructor(private route: Router, private http: HttpClient, private sweetAlert: SweetAlertService) {
 
   }
 
@@ -25,14 +26,10 @@ export class VerSolicitudesComponent implements OnInit {
       this.sweetAlert.swal('Aviso', 'No tiene aplicaciones registradas.', 'warning');
       this.dataFinishedLoading = true;
 
-    }else {
-      console.log(data['applications']);
-      this.appsArray = data['applications'];
-      console.log('Applications get!');
-      this.dataFinishedLoading = true;
-    }
-    console.log(data);
-    });
+        } else {
+          this.appsArray = data['applications'];
+          this.dataFinishedLoading = true;
+        }
+      });
   }
-
 }

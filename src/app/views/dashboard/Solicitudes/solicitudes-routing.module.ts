@@ -1,3 +1,5 @@
+import { SectionSolicitudesComponent } from './section-solicitudes/section-solicitudes.component';
+import { VerSolicitudesComponent } from './ver-solicitudes/ver-solicitudes.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -14,18 +16,21 @@ const routes: Routes = [
     component: ViewAppComponent,
     data: {
       title: 'Solicitudes'
-    }
+    },
+  }, {
+    path: 'view/:id',
+    component: SectionSolicitudesComponent,
   }, {
     path: 'create',
     component: CrearSolicitudesComponent,
     data: {
       title: 'CrearSolicitudess'
-    }
-  }
+    },
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
