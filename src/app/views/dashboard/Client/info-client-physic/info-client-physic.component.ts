@@ -17,11 +17,11 @@ export class InfoClientPhysicComponent implements OnInit {
   @Input() client: any
   @Output()
   idRefresher: EventEmitter<string> = new EventEmitter<string>();
-  
+
   public refreshId(event){
     this.idClient = event;
     this.idRefresher.emit(event);
-    
+
   }
   ngOnInit() {
     console.log(this.client)

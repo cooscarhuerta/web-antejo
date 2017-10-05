@@ -29,4 +29,5 @@ export class AvalMComponent implements OnInit {
     console.log(this.model);
     this.avalDataRefresher.emit(this.model);
   }
+
 }
