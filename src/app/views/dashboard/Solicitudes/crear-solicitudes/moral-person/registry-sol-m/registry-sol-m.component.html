@@ -21,10 +21,16 @@
             <label for="projectname">Destino del Proyecto:</label>
             <input class="form-control" [(ngModel)]="model.projectname" name="projectname" type="text" required>
         </div>
-        <div class="col-sm-4 btn-group">
+        <div *ngIf="!appId;else updateButton"class="col-sm-4 btn-group">
             <button class="btn btn-default" [disabled]="!solicitudForm.valid" type="submit">
                 Guardar
             </button>
         </div>
+
+        <ng-template class="col-sm-4 btn-group" #updateButton>
+            <button class="btn btn-default" [disabled]="!solicitudForm.valid" type="submit">
+                Actualizar
+            </button>
+        </ng-template>
     </div>
 </form>

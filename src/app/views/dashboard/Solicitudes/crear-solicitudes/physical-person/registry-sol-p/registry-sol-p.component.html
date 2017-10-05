@@ -6,7 +6,8 @@
         </div>
         <div class="form-group col-sm-4">
             <label for="dateapplication">Fecha de Solicitud:</label>
-            <input class="form-control" [(ngModel)]="model.dateapplication" name="dateapplication" date-format="yyyy-MM-dd" type="date" required>
+            <input class="form-control" [(ngModel)]="model.dateapplication" name="dateapplication" date-format="yyyy-MM-dd" type="date"
+                required>
         </div>
         <div class="col-sm-3 form-group">
             <label for="place">Lugar de Solicitud:</label>
@@ -20,10 +21,16 @@
             <label for="projectname">Destino del Proyecto:</label>
             <input class="form-control" [(ngModel)]="model.projectname" name="projectname" type="text" required>
         </div>
-        <div class="col-sm-4 btn-group">
+        <div *ngIf="!appId;else updateButton"class="col-sm-4 btn-group">
             <button class="btn btn-default" [disabled]="!solicitudForm.valid" type="submit">
-                                        Guardar
-                                    </button>
+                Guardar
+            </button>
         </div>
+
+        <ng-template class="col-sm-4 btn-group" #updateButton>
+            <button class="btn btn-default" [disabled]="!solicitudForm.valid" type="submit">
+                Actualizar
+            </button>
+        </ng-template>
     </div>
 </form>

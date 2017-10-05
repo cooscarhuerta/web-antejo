@@ -18,11 +18,11 @@ export class VerSolicitudesComponent implements OnInit {
 
   ngOnInit() {
     this.http.get(
-      '/Clients/Clientes/show/' + localStorage.getItem('userId') + '/Wallet').subscribe(data => {
+      '/Clients/Clientes/show/' + localStorage.getItem('idClient') + '/Wallet').subscribe(data => {
     // Read the result field from the JSON response.
-    if (data['applications'].length == 0) {
+    if (data['applications'].length === 0) {
       console.log('Applications query failed');
-      this.sweetAlert.swal("Aviso","No tiene aplicaciones registradas.","warning");
+      this.sweetAlert.swal('Aviso', 'No tiene aplicaciones registradas.', 'warning');
       this.dataFinishedLoading = true;
 
     }else {

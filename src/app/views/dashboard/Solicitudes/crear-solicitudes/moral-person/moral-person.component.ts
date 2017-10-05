@@ -14,12 +14,11 @@ interface Data {
 export class MoralPersonComponent implements OnInit {
   @Input() inputData: ApplicationsModel;
   @Output()
-  public dataRefresher: EventEmitter<ApplicationsModel>;
+  public dataRefresher: EventEmitter<Object>;
   public data: ApplicationsModel;
   public appId;
-  constructor() { 
-    this.dataRefresher = new EventEmitter<ApplicationsModel>();
-    
+  constructor() {
+    this.dataRefresher = new EventEmitter<Object>();
   }
 
   ngOnInit() {
@@ -28,20 +27,19 @@ export class MoralPersonComponent implements OnInit {
     this.appId = null;
   }
   refreshAppData(appData) {
-    this.data.applications = appData;
+    console.log(appData);
+    this.data.applications = appData.app;
+    this.appId = appData.appId;
     this.dataRefresher.emit(appData);
     console.log('raising data 1');
-    this.appId = localStorage.getItem('appId');
   }
 
   refreshAvalData(avalData) {
     this.data.avals = avalData;
     this.dataRefresher.emit(avalData);
-    this.appId = localStorage.getItem('appId');
   }
   refreshFileData(fileData) {
     this.data.files = fileData;
     this.dataRefresher.emit(fileData);
-    this.appId = localStorage.getItem('appId');
   }
 }

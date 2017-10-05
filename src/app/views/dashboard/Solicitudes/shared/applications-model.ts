@@ -19,7 +19,7 @@ export class App {
     place = '';
     creditterm = 0;
     projectname = '';
-    status = 'Pendiente'
+    status = 'Pendiente';
 }
 
 export class Aval {

@@ -13,16 +13,17 @@ export class CrearSolicitudesComponent implements OnInit {
   private appId;
   public data: ApplicationsModel = new ApplicationsModel();
 
+  // update the value of the application id, once the application has been created
   public refreshAppData(appData) {
-    this.appId = localStorage.getItem('appId');
+    this.appId = appData.appId;
     console.log('raising data 2');
   }
   constructor() {
 
   }
-
+  // initialize the application id (can be null if it's a new application) and client type (moral/physical)
   ngOnInit() {
+    this.appId = null;
     this.clientType = localStorage.getItem('clientType');
-    console.log(this.data);
   }
 }
