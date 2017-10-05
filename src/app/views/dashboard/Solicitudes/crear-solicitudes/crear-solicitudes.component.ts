@@ -1,6 +1,6 @@
 import { Selector } from 'ngx-bootstrap/modal/modal-options.class';
-import { Class, Component, OnInit, NgModule } from '@angular/core';
-
+import { Class, Component, OnInit, NgModule, Input, Output } from '@angular/core';
+import { ApplicationsModel } from './../shared/applications-model';
 @Component({
   selector: 'app-crear-solicitudes',
   templateUrl: './crear-solicitudes.component.html',
@@ -9,55 +9,20 @@ import { Class, Component, OnInit, NgModule } from '@angular/core';
 
 
 export class CrearSolicitudesComponent implements OnInit {
-public solicitud_moral: boolean;
+  public clientType: string;
+  private appId;
+  public data: ApplicationsModel = new ApplicationsModel();
 
-public datos = {
-  solicitud : {
-    amount : 0,
-    start_date : Date.now(),
-    location : '',
-    term : 0,
-    name : ''
-  },
-  avales : {
-    name : '',
-    lastname : '',
-    RFC : '',
-    CURP : '',
-    birthdate : Date.now(),
-    country : '',
-    nationality : '',
-    email : '',
-    fiel : '',
-    address : '',
-    phone_number : '',
-    marital_status : '',
-    marital_regimen : '',
-    relationship : '',
-    workplace : '',
-    work_phone : '',
-    position : '',
-    join_date : Date.now()
-
-
-  },
-  archivos: {
-    comprobante : '',
-    estadoCuenta : '',
-    RFC : '',
-    contrato : ''
+  public refreshAppData(appData) {
+    this.appId = localStorage.getItem('appId');
+    console.log('raising data 2');
   }
-}
-constructor() {
-  this.solicitud_moral = false;
+  constructor() {
 
-}
+  }
 
-evento_solicitud(valor) {
-  this.solicitud_moral = valor;
-}
   ngOnInit() {
+    this.clientType = localStorage.getItem('clientType');
+    console.log(this.data);
   }
-
-
 }

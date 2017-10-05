@@ -1,31 +1,31 @@
 <div>
     <tabset>
+        
         <tab title="Solicitud">
             <span *tabHeading>Solicitud</span>
-            <app-registry-sol-m></app-registry-sol-m>
+            <app-registry-sol-m [inputAppData]="data.applications" (appDataRefresher)="refreshAppData($appData)"></app-registry-sol-m>
 
         </tab>
 
-        <tab title="Avales">
+        <tab [disabled]="appId==null" title="Avales">
 
             <span *tabHeading>Avales</span>
             <div>
                 <p>
-                    <app-aval-m></app-aval-m>
+                    <app-aval-m [inputAvalData]="data.avals" (avalDataRefresher)="refreshAvalData($avalData)"></app-aval-m>
                 </p>
             </div>
         </tab>
 
-        <tab title="Archivos">
+        <tab [disabled]="appId==null" title="Archivos">
 
             <span *tabHeading>Archivos</span>
             <div>
                 <p>
-                    <app-files-m></app-files-m>
+                    <app-files-m [inputFileData]="data.files" (fileDataRefresher)="refreshFileData($fileData)"></app-files-m>
                 </p>
             </div>
 
         </tab>
-
     </tabset>
 </div>

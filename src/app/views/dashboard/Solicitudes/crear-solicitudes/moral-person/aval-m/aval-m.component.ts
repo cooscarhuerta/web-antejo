@@ -1,5 +1,6 @@
+import { Aval } from './../../../shared/applications-model';
 import { AvalM } from './m-aval-m';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-aval-m',
@@ -9,17 +10,23 @@ import { Component, OnInit } from '@angular/core';
 export class AvalMComponent implements OnInit {
 
 
-    submitted = false;
+  submitted = false;
+  @Input()
+  inputAvalData: Aval[];
+  @Output()
+  avalDataRefresher: EventEmitter<Aval>;
+  model: Aval;
+  constructor() {
 
-  model: AvalM = new AvalM();
-
-
+    this.avalDataRefresher = new EventEmitter<Aval>();
+   }
   ngOnInit() {
+    this.model = this.inputAvalData[0];
   }
 
   onSubmit() {
     this.submitted = true;
-
     console.log(this.model);
+    this.avalDataRefresher.emit(this.model);
   }
 }

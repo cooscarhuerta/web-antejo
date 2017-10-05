@@ -5,16 +5,12 @@
                 <div class="card-header">
                     <h2>Nueva Solicitud</h2>
                 </div><br>
-                <div *ngIf='solicitud_moral == true'>
-                    <button (click)='evento_solicitud(false)'>Solicitud para persona Moral</button><br> Persona Moral:<br>
-                    <p></p>
-                    <app-moral-person></app-moral-person>
+                <div *ngIf="clientType == 'moral';else physicalForm">
+                    <app-moral-person [inputData]="data" (dataRefresher)="refreshAppData($event)" ></app-moral-person>
                 </div>
-                <div *ngIf='solicitud_moral == false'>
-                    <button (click)='evento_solicitud(true)'>Solicitud para persona Fisica</button><br> Persona Fisica:<br>
-                    <p></p>
-                    <app-physical-person></app-physical-person>
-                </div>
+                <ng-template #physicalForm>
+                    <!-- <app-physical-person [inputData]="data"></app-physical-person> !-->
+                </ng-template>
             </div>
         </div>
     </div>

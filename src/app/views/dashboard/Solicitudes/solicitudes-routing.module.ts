@@ -6,6 +6,10 @@ import { CrearSolicitudesComponent } from 'app/views/dashboard/Solicitudes/crear
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'view'
+  },
+  {
     path: 'view',
     component: ViewAppComponent,
     data: {

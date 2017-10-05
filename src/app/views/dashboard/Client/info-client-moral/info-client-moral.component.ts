@@ -13,6 +13,7 @@ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 })
 export class InfoClientMoralComponent implements OnInit {
   public idClient = null;
+  public clientType = null;
   constructor() { }
   @Input() client: any
   @Output()
@@ -25,5 +26,6 @@ export class InfoClientMoralComponent implements OnInit {
   }
   ngOnInit() {
     this.idClient = localStorage.getItem('idClient');
+    this.clientType = localStorage.getItem('clientType');
   }
 }

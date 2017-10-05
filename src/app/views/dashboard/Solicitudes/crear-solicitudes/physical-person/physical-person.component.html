@@ -2,7 +2,7 @@
     <tabset>
         <tab title="Solicitud">
             <span *tabHeading>Solicitud</span>
-            <app-registry-sol-p></app-registry-sol-p>
+            <app-registry-sol-p [inputAppData]="data.applications" (dataRefresher)="refreshAppData($event)"></app-registry-sol-p>
         </tab>
 
         <tab title="Avales">
@@ -10,7 +10,7 @@
             <span *tabHeading>Avales</span>
             <div>
                 <p>
-                    <app-aval-m></app-aval-m>
+                    <app-aval-p [inputAvalData]="data.avals" (dataRefresher)="refreshAvalData($event)"></app-aval-p>
                 </p>
             </div>
         </tab>
@@ -20,7 +20,7 @@
             <span *tabHeading>Archivos</span>
             <div>
                 <p>
-                    <app-files-p></app-files-p>
+                    <app-files-p [inputFileData]="data.files" (dataRefresher)="refreshFileData($event)"></app-files-p>
                 </p>
             </div>
         </tab>

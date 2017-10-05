@@ -24,6 +24,9 @@ export class AuthGuard implements CanActivate {
           if(data['user']['idclient']!==null){
             console.log("setting id");
             localStorage.setItem('idClient', data['user']['idclient']);
+            if(data['clientType']!==null){
+              localStorage.setItem('clientType',data['clientType']);
+            }
             this.router.navigate(['dashboard']);
           }else{
             this.router.navigate(['cliente/view']);

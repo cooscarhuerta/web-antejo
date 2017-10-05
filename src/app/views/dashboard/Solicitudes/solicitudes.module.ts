@@ -25,6 +25,10 @@ import { RegistrySolMComponent } from './crear-solicitudes/moral-person/registry
 
 
 @NgModule({
+  exports: [
+    VerSolicitudesComponent,
+    ViewAppComponent
+  ],
   imports: [
     AppRoutingModule,
     ChartsModule,
@@ -35,7 +39,7 @@ import { RegistrySolMComponent } from './crear-solicitudes/moral-person/registry
     FormsModule
   ],
   declarations: [ ViewAppComponent, CrearSolicitudesComponent, PhysicalPersonComponent,
-                  MoralPersonComponent, AvalPComponent, AvalMComponent, VerSolicitudesComponent,
+                  MoralPersonComponent, AvalPComponent, AvalMComponent, VerSolicitudesComponent, 
                    SectionSolicitudesComponent, FilesPComponent, FilesMComponent,
                     RegistrySolPComponent, RegistrySolMComponent]
 })
