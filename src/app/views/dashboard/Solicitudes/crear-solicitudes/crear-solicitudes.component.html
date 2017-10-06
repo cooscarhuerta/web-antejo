@@ -10,7 +10,7 @@
                 </ng-template>
                 <br>
                 <div *ngIf="clientType == 'moral';else physicalForm">
-                    <app-moral-person [inputData]="data" (dataRefresher)="refreshAppData($event)" ></app-moral-person>
+                    <app-moral-person [inputData]="data" [inputAppId]="appId" (dataRefresher)="refreshAppData($event)" ></app-moral-person>
                 </div>
                 <ng-template #physicalForm>
                     <!-- <app-physical-person [inputData]="data"></app-physical-person> !-->

@@ -3,7 +3,7 @@
         
         <tab title="Solicitud">
             <span *tabHeading>Solicitud</span>
-            <app-registry-sol-m [inputAppData]="data.applications" (appDataRefresher)="refreshAppData($event)"></app-registry-sol-m>
+            <app-registry-sol-m [inputAppData]="data.applications" [inputAppId]="appId" (appDataRefresher)="refreshAppData($event)"></app-registry-sol-m>
 
         </tab>
 

@@ -15,6 +15,8 @@ export class RegistrySolMComponent implements OnInit {
   submitted = false;
   @Input()
   inputAppData: App;
+  @Input()
+  inputAppId;
   @Output()
   appDataRefresher: EventEmitter<Object>;
   model: App = new App();
@@ -26,8 +28,11 @@ export class RegistrySolMComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.inputAppData);
     this.model = this.inputAppData;
-    this.appId = localStorage.getItem('appId');
+    console.log("Received model");
+    console.log(this.model);
+    this.appId = this.inputAppId;
 
   }
 

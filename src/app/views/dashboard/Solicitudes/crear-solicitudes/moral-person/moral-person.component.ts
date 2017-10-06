@@ -13,6 +13,7 @@ interface Data {
 })
 export class MoralPersonComponent implements OnInit {
   @Input() inputData: ApplicationsModel;
+  @Input() inputAppId;
   @Output()
   public dataRefresher: EventEmitter<Object>;
   public data: ApplicationsModel;
@@ -23,8 +24,9 @@ export class MoralPersonComponent implements OnInit {
 
   ngOnInit() {
     this.data = this.inputData;
+    console.log("midway");
     console.log(this.data);
-    this.appId = null;
+    this.appId = this.inputAppId;
   }
   refreshAppData(appData) {
     console.log(appData);

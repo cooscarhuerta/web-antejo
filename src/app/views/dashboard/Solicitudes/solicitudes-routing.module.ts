@@ -9,22 +9,20 @@ import { CrearSolicitudesComponent } from 'app/views/dashboard/Solicitudes/crear
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'view'
+    redirectTo: 'create'
   },
   {
     path: 'view',
-    component: ViewAppComponent,
-    data: {
-      title: 'Solicitudes'
-    },
-  }, {
-    path: 'view/:id',
-    component: SectionSolicitudesComponent,
+    component: VerSolicitudesComponent,
+  },
+  {
+    path: 'view/:appId',
+    component: CrearSolicitudesComponent,
   }, {
     path: 'create',
     component: CrearSolicitudesComponent,
     data: {
-      title: 'CrearSolicitudess'
+      title: 'Crear Solicitudess'
     },
   },
 ];
