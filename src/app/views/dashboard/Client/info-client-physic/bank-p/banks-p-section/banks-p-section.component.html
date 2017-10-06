@@ -1,0 +1,64 @@
+<div class="main-page">
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-md-12" *ngIf="dataFinishedLoading;else loadingScreen">
+            <div class="card">
+                <div id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="card" *ngFor="let bank of bankArray;index as i" #group>
+                        <div class="card-header" role="tab" id="heading{{i}}">
+                            <h5 class="mb-0">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{i}}" aria-expanded="true" aria-controls="collapse">
+                            Banco: {{bank.namebank}}
+                          </a>
+                            </h5>
+                        </div>
+
+                        <div id="collapse{{i}}" class="collapse" role="tabpanel" aria-labelledby="heading">
+
+                            <div class="card-block col-sm-6 col-md-6 col-lg-6" style="float:left;">
+                                <div class="card-block">
+
+                                    <form (ngSubmit)="onUpdate()" #bankForm="ngForm">
+                                        <div class="row col-sm-12">
+                                            <div class="form-group col-sm-6">
+                                                <label> Banco:</label> <select #selectElem class="form-control" (change)="change(selectElem.value)" [(ngModel)]='model.idbank' name="bank">
+                                                <option *ngFor='let b of modelBancos' [value]='b.id'>
+                                                  {{b.name}}
+                                                </option>
+                                            </select>
+                                            </div>
+
+                                            <div class="form-group col-sm-6">
+                                                <label>Tipo de Cuenta:</label>
+                                                <input id="accounttype" name="accounttype" class="form-control " [(ngModel)]="model.accounttype" type="text" required>
+                                            </div>
+
+                                            <div class="form-group col-sm-6 ">
+                                                <label>Numero de Cuenta:</label>
+                                                <input id="accountnumber " name="accountnumber " class="form-control " [(ngModel)]="model.accountnumber " type="number " required>
+                                            </div>
+
+                                            <div class="form-group col-sm-6 ">
+                                                <label>Clabe Bancaria:</label>
+                                                <input id="clabe " name="clabe " class="form-control " [(ngModel)]="model.clabe " type="number " required>
+                                            </div>
+
+                                            <div>
+                                                <button class="btn btn-default " [disabled]="!bankForm.valid " type="submit ">
+                                                <i class="material-icons ">Agregar Banco</i>
+                                            </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <ng-template #loadingScreen>
+            <img style="width:100%; " src="assets/img/dualLoading.svg ">
+        </ng-template>
+    </div>
+</div>
