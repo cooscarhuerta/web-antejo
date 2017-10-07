@@ -1,6 +1,6 @@
 <div class="main-page">
     <div class="row">
-        <div class="col-lg-12 col-sm-12 col-md-12">
+        <div class="col-lg-12 col-sm-12 col-md-12" *ngIf="finishedLoadingApp;else loadingScreen">
             <div class="card">
                 <div *ngIf="!appId; else editHeader"class="card-header">
                     <h2>Nueva Solicitud</h2>
@@ -9,6 +9,7 @@
                     <h2>Editar Solicitud</h2>
                 </ng-template>
                 <br>
+               
                 <div *ngIf="clientType == 'moral';else physicalForm">
                     <app-moral-person [inputData]="data" [inputAppId]="appId" (dataRefresher)="refreshAppData($event)" ></app-moral-person>
                 </div>
@@ -17,5 +18,8 @@
                 </ng-template>
             </div>
         </div>
+        <ng-template #loadingScreen>
+            <img style="width:100%;" src="assets/img/dualLoading.svg">
+        </ng-template>
     </div>
 </div>

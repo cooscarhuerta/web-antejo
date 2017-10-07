@@ -10,6 +10,8 @@ export class FilesMComponent implements OnInit {
   submitted = false;
   @Input()
   inputFileData: File[];
+  @Input()
+  inputAppId;
   @Output()
   fileDataRefresher: EventEmitter<File>;
   model: File;

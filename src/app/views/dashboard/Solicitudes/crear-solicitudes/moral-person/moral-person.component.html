@@ -12,7 +12,7 @@
             <span *tabHeading>Avales</span>
             <div>
                 <p>
-                    <app-aval-m [inputAvalData]="data.avals" (avalDataRefresher)="refreshAvalData($event)"></app-aval-m>
+                    <app-aval-m [inputAvalData]="data.avals" [inputAppId]="appId" (avalDataRefresher)="refreshAvalData($event)"></app-aval-m>
                 </p>
             </div>
         </tab>
@@ -21,7 +21,7 @@
             <span *tabHeading>Archivos</span>
             <div>
                 <p>
-                    <app-files-m [inputFileData]="data.files" (fileDataRefresher)="refreshFileData($event)"></app-files-m>
+                    <app-files-m [inputFileData]="data.files" [inputAppId]="appId" (fileDataRefresher)="refreshFileData($event)"></app-files-m>
                 </p>
             </div>
 

@@ -14,31 +14,36 @@ export class File {
 
 export class App {
     idclient = localStorage.getItem('idClient');
-    amountrequest = 0;
-    applicationdate = Date.now();
+    amountrequest = null;
+    applicationdate = null;
     place = '';
-    creditterm = 0;
+    creditterm = null;
     projectname = '';
     status = 'Pendiente';
 }
 
 export class Aval {
-    name = '';
-    lastname = '';
-    RFC = '';
-    CURP = '';
-    birthdate = Date.now();
-    country = '';
-    nationality = '';
-    email = '';
-    fiel = '';
-    address = '';
-    phone_number = '';
-    marital_status = '';
-    marital_regimen = '';
-    relationship = '';
-    workplace = '';
-    work_phone = '';
-    position = '';
-    join_date = Date.now()
+    idapplication = null;
+    name = null;
+    lastname = null;
+    businessname = null;
+    rfc = null;
+    curp = null;
+    birthday = null;
+    country = null;
+    nacionality = null;
+    email = null;
+    fiel = null;
+    address = null;
+    phone_number = null;
+    maritalstatus = null;
+    regimen = null;
+    relationship = null;
+    companyjob = null;
+    phonejob = null;
+    occupation = null;
+    oldwork = null;
+    join_date = null;
+    typeguarantee = null;
+    idfile = null;
 }

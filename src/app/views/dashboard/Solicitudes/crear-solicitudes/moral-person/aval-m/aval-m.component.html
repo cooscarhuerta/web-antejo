@@ -1,23 +1,133 @@
-<form (ngSubmit)="onSubmit()" #avalForm="ngForm">
-    <div>
-        <div>
-            <div class="col-sm-3 form-group">
-                <label for="companyname">Nombre de compañia:</label>
-                <input class="form-control" [(ngModel)]="model.companyname" name="companyname" type="text" required>
-            </div>
-            <div class="col-sm-3 form-group">
-                <label for="input">Subir Identificacion:</label>
-                <input name="fileInput" class="form-control" type="file" ngModel (change)="getFiles($event)" />
-            </div>
-            <div class="col-sm-3 form-group">
-                <label for="avalid">Aval:</label>
-                <input class="form-control" [(ngModel)]="model.avalid" name="avalid" type="number" required>
-                <div class="col-sm-2 btn-group" style="margin-top: 1.5%">
-                    <button class="btn btn-default" [disabled]="!avalForm.valid" type="submit">
-                                        Guardar
-                                    </button>
+<tabset>
+    <tab title='Lista de avales'>
+        <span *tabHeading>Avales</span>
+        <!-- <app-banks-p-section></app-banks-p-section> !-->
+    </tab>
+    <tab title='Registrar aval'>
+        <span *tabHeading>Registrar un aval</span>
+
+        <form (ngSubmit)="onSubmit()" #avalForm="ngForm">
+            <div class=" col-sm-12">
+                <div class="row">
+                    <div class="btn-group" dropdown>
+                        <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+                            Seleccione un tipo de Cliente <span class="caret"></span>
+                        </button>
+                        <ul *dropdownMenu class="dropdown-menu" role="menu">
+                            <li role="menuitem"><a (click)="model.typeguarantee='physical'" class="dropdown-item">Fisica</a></li>
+                            <li role="menuitem"><a (click)="model.typeguarantee='moral'" class="dropdown-item">Moral</a></li>
+                        </ul>
+                    </div>
                 </div>
+
+                <div class="row" *ngIf="model.typeguarantee">
+                    <div *ngIf="model.typeguarantee!='moral';else physicalType" class="row col-sm-12" style="margin:0px;padding:0px;">
+                        <div class="form-group col-sm-6">
+                            <label>Nombre:</label>
+                            <input id="name" name="name" class="form-control " [(ngModel)]="model.name" type="text" required>
+                        </div>
+        
+                        <div class="form-group col-sm-6">
+                            <label>Apellido:</label>
+                            <input id="lastname" name="lastname" class="form-control " [(ngModel)]="model.lastname" type="number" required>
+                        </div>
+                    </div>
+                    <ng-template #physicalType>
+                        <div class="form-group col-sm-12">
+                            <label>Nombre de Empresa:</label>
+                            <input id="name" name="name" class="form-control " [(ngModel)]="model.businessname" type="text" required>
+                        </div>
+                    </ng-template>
+                    <div class="form-group col-sm-6">
+                        <label>RFC:</label>
+                        <input id="rfc" name="rfc" class="form-control" [(ngModel)]="model.rfc" type="text" required>
+                    </div>
+                    
+                    <div class="form-group col-sm-6">
+                        <label>CURP:</label>
+                        <input id="curp" name="curp" class="form-control " [(ngModel)]="model.curp" type="text" required>
+                    </div>
+    
+                    <div class="form-group col-sm-6">
+                        <label>Fecha de nacimiento:</label>
+                        <input id="birthdate" name="birthdate" class="form-control " [(ngModel)]="model.birthday" type="date" required>
+                    </div>
+    
+                    <div class="form-group col-sm-6">
+                        <label>Pais:</label>
+                        <input id="country" name="country" class="form-control " [(ngModel)]="model.country" type="number" required>
+                    </div>
+    
+                    <div class="form-group col-sm-6">
+                        <label>Nacionalidad:</label>
+                        <input id="nationality" name="nationality" class="form-control " [(ngModel)]="model.nacionality" type="text" required>
+                    </div>
+    
+                    <div class="form-group col-sm-6">
+                        <label>Correo electronico:</label>
+                        <input id="email" name="email" class="form-control " [(ngModel)]="model.email" type="number" required>
+                    </div>
+    
+                    <div class="form-group col-sm-6">
+                        <label>FIEL:</label>
+                        <input id="fiel" name="fiel" class="form-control " [(ngModel)]="model.fiel" type="number" required>
+                    </div>
+    
+    
+                    <div class="form-group col-sm-6">
+                        <label>Direccion:</label>
+                        <input id="address" name="address" class="form-control " [(ngModel)]="model.address" type="text" required>
+                    </div>
+    
+                    <div class="form-group col-sm-6">
+                        <label>Numero de Telefono:</label>
+                        <input id="phone" name="phone" class="form-control " [(ngModel)]="model.phone" type="number" required>
+                    </div>
+    
+                    <div class="form-group col-sm-6">
+                        <label>Estado Civil:</label>
+                        <input id="maritalstatus" name="maritalstatus" class="form-control " [(ngModel)]="model.maritalstatus" type="text" required>
+                    </div>
+                    
+                    <div class="form-group col-sm-6">
+                        <label>Regimen Civil:</label>
+                        <input id="regimen" name="regimen" class="form-control " [(ngModel)]="model.regimen" type="text" required>
+                    </div>
+    
+                    <div class="form-group col-sm-6">
+                        <label>Relacion:</label>
+                        <input id="relationship" name="relationship" class="form-control " [(ngModel)]="model.relationship" type="text" required>
+                    </div>
+    
+                    <div class="form-group col-sm-6">
+                        <label>Lugar de trabajo:</label>
+                        <input id="companyjob" name="companyjob" class="form-control " [(ngModel)]="model.companyjob" type="text" required>
+                    </div>
+    
+                    <div class="form-group col-sm-6">
+                        <label>Telefono de trabajo:</label>
+                        <input id="phonejob" name="phonejob" class="form-control " [(ngModel)]="model.phonejob" type="number" required>
+                    </div>
+    
+                    <div class="form-group col-sm-6">
+                        <label>Posicion:</label>
+                        <input id="occupation" name="occupation" class="form-control " [(ngModel)]="model.occupation" type="text" required>
+                    </div>
+    <!--
+                    <div class="form-group col-sm-6">
+                        <label>Fecha de Ingreso:</label>
+                        <input id="join_date" name="join_date" class="form-control " [(ngModel)]="model.join_date" type="date" required>
+                    </div>
+                    !-->
+                    <div>
+                        <button class="btn btn-default" [disabled]="!avalForm.valid" type="submit">
+                            <i class="material-icons ">Agregar Aval</i>
+                        </button>
+                    </div>
+                </div>
+                
             </div>
-        </div>
-    </div>
-</form>
+        </form>
+
+    </tab>
+</tabset>

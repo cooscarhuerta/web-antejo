@@ -16,6 +16,7 @@ import { ApplicationsModel } from './../shared/applications-model';
 export class CrearSolicitudesComponent implements OnInit {
   public clientType: string;
   public appId;
+  public finishedLoadingApp: boolean = false;
   public data: ApplicationsModel = new ApplicationsModel();
 
   // update the value of the application id, once the application has been created
@@ -27,22 +28,25 @@ export class CrearSolicitudesComponent implements OnInit {
   // initialize the application id (can be null if it's a new application) and client type (moral/physical)
   ngOnInit() {
     this.appId = null;
+    
     this.route.params.subscribe(params => {
       this.appId = params.appId;
-      console.log(this.appId);
-      if (this.appId) {
-        this.http.get('/Clients/Solicitudes/show/' + this.appId).subscribe(response => {
+      console.log(params.appId);
+      if (params.appId) {
+        this.http.get('/Clients/Solicitudes/show/' + params.appId).subscribe(response => {
           if (response['error'] === true) {
             this.sweetAlert.swal('Error', 'No se pudieron cargar los datos de la solicitud', 'error')
           } else {
+
             console.log(response);
             this.data.applications = response['application'];
             this.data.files = response['files'];
             this.data.avals = response['creditaids'];
           }
+          this.finishedLoadingApp = true;
         })
-      }else{
-        console.log('derp?');
+      } else {
+        this.finishedLoadingApp = true;
       }
     });
     this.clientType = localStorage.getItem('clientType');
