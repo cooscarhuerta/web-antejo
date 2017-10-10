@@ -1,31 +1,41 @@
-<form (ngSubmit)="onSubmit()" #sharedholderForm="ngForm">
-    <div class="row col-sm-12">
-        <div class="form-group col-sm-6">
-            <label for="name">Nombre(s):</label>
-            <input id="name" name="name" class="form-control" [(ngModel)]="model.name" type="text" required>
-        </div>
-        <div class="form-group col-sm-6">
-            <label for="lastname">Apellido(s):</label>
-            <input class="form-control" [(ngModel)]="model.lastname" name="lastname" type="text" required>
-        </div>
-        <div class="form-group col-sm-4">
-            <label for="rfc">RFC:</label>
-            <input class="form-control" [(ngModel)]="model.rfc" name="rfc" type="text" required>
-        </div>
-        <div class="form-group col-sm-4">
-            <label for="rfc">Participacion(%):</label>
-            <input class="form-control" [(ngModel)]="model.participation" name="participation" type="number" required>
-        </div>
+<tabset>
+    <tab totle="Registrar un Accionista">
+        <span *tabHeading>Regsitrar un Accionista</span>
 
-        <div class="form-group col-sm-4">
-            <label for="oldwork">Fecha de Contratacion:</label>
-            <input class="form-control" [(ngModel)]="model.oldwork" name="oldwork" date-format="yyyy-MM-dd" type="date" required>
-        </div>
-    </div>
-    <div>
-        <button class="btn btn-default" ng-click="ctrl.AddAccount() " ng-disabled="bancos.$invalid ">
+        <form (ngSubmit)="onSubmit()" #sharedholderForm="ngForm">
+            <div class="row col-sm-12">
+                <div class="form-group col-sm-6">
+                    <label for="name">Nombre(s):</label>
+                    <input id="name" name="name" class="form-control" [(ngModel)]="model.name" type="text" required>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="lastname">Apellido(s):</label>
+                    <input class="form-control" [(ngModel)]="model.lastname" name="lastname" type="text" required>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label for="rfc">RFC:</label>
+                    <input class="form-control" [(ngModel)]="model.rfc" name="rfc" type="text" required>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label for="rfc">Participacion(%):</label>
+                    <input class="form-control" [(ngModel)]="model.participation" name="participation" type="number" required>
+                </div>
+
+                <div class="form-group col-sm-4">
+                    <label for="oldwork">Fecha de Contratacion:</label>
+                    <input class="form-control" [(ngModel)]="model.oldwork" name="oldwork" date-format="yyyy-MM-dd" type="date" required>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-default" ng-click="ctrl.AddAccount() " ng-disabled="bancos.$invalid ">
                                             <i class="material-icons ">Agregar Accionista</i>
                                         </button>
-    </div>
+            </div>
 
-</form>
+        </form>
+    </tab>
+    <tab title='Lista de Accionistas'>
+        <span *tabHeading>Accionistas</span>
+        <app-managers-section></app-managers-section>
+    </tab>
+</tabset>

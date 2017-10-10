@@ -64,6 +64,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { ServiceBankP } from 'app/views/dashboard/Client/services.client/service.bancosP';
+import { ServiceBankM } from 'app/views/dashboard/Client/services.client/service.bancosM';
 @NgModule({
   imports: [
     BrowserModule,
@@ -85,7 +86,7 @@ import { ServiceBankP } from 'app/views/dashboard/Client/services.client/service
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  }, AuthGuard, PostRegistryP, PostRegistryM, SweetAlertService, ServiceBankP ,
+  }, AuthGuard, PostRegistryM, SweetAlertService, ServiceBankM, ServiceBankP, PostRegistryP,
   {
   provide: HTTP_INTERCEPTORS,
   useClass: LoginInterceptor,

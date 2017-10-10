@@ -1,5 +1,5 @@
-import { BankP } from './../info-client-physic/bank-p/m-bank-p';
-import { BanksP } from './../info-client-physic/bank-p/BanksP';
+import { BankM } from './../info-client-moral/bank-m/m-bank-m';
+import { BanksM } from './../info-client-moral/bank-m/BanksM';
 import { SweetAlertService } from 'ng2-sweetalert2';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -7,12 +7,12 @@ import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class ServiceBankP {
+export class ServiceBankM {
   bankArray = [];
   name: string[] = [];
   dataFinishedLoading = false;
-  modelBancos: BanksP[] = [];
-  model: BankP = new BankP();
+  modelBancos: BanksM[] = [];
+  model: BankM = new BankM();
 
 
   constructor(private route: Router, private http: HttpClient, private sweetAlert: SweetAlertService) { }

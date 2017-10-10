@@ -28,6 +28,9 @@ import { FileExtrasComponent } from './info-client-moral/files-m/file-extras/fil
 import { FileANComponent } from './info-client-physic/files-p/file-an/file-an.component';
 import { FileDLComponent } from './info-client-physic/files-p/file-dl/file-dl.component';
 import { BanksPSectionComponent } from './info-client-physic/bank-p/banks-p-section/banks-p-section.component';
+import { BanksMSectionComponent } from './info-client-moral/bank-m/banks-m-section/banks-m-section.component';
+import { ManagersSectionComponent } from './info-client-moral/managers-m/managers-section/managers-section.component';
+import { SharedHolderSectionComponent } from './info-client-moral/shared-holder-m/shared-holder-section/shared-holder-section.component';
 
 
 @NgModule({
@@ -43,6 +46,6 @@ import { BanksPSectionComponent } from './info-client-physic/bank-p/banks-p-sect
   declarations: [ClientComponent, InfoClientMoralComponent, InfoClientPhysicComponent, BankPComponent,
      BankMComponent, FilesMComponent, FilesPComponent, RegistryPComponent, RegistryMComponent, ManagersMComponent,
      SharedHolderMComponent, FileRFCComponent, FileACComponent, FileAAComponent,
-     FileExtrasComponent, FileANComponent, FileDLComponent, BanksPSectionComponent]
+     FileExtrasComponent, FileANComponent, FileDLComponent, BanksPSectionComponent, BanksMSectionComponent, ManagersSectionComponent, SharedHolderSectionComponent]
 })
 export class AppModule { }

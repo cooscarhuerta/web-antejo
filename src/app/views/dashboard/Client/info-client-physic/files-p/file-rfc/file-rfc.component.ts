@@ -14,6 +14,7 @@ import { Component, OnInit } from '@angular/core';
 export class FileRFCComponent implements OnInit {
 
   submitted = false;
+  fileArray = [];
   model: FilesP = new FilesP();
   files: FileList;
   getFiles(event) {
@@ -60,4 +61,6 @@ export class FileRFCComponent implements OnInit {
       this.submitted = true;
     }
   }
+
+
 }
