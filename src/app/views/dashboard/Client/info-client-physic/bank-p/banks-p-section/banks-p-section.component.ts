@@ -5,6 +5,7 @@ import { SweetAlertService } from 'ng2-sweetalert2';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { ServiceBankP } from 'app/views/dashboard/Client/services.client/service.bancosP';
 
 @Component({
   selector: 'app-banks-p-section',
@@ -18,28 +19,56 @@ export class BanksPSectionComponent implements OnInit {
   dataFinishedLoading = false;
   model: BankP = new BankP();
   modelBancos: BanksP[] = [];
+  name: string[] = [];
 
-  constructor(private getbank: PostRegistryP, private route: Router, private http: HttpClient, private sweetAlert: SweetAlertService) { }
-
-  ngOnInit() {
-    this.showBancos();
-    for (let i = 0; i < this.bankArray.length; i++) {
-      this.bankArray.push()
-    }
-    this.showBancosList();
+  constructor(private serviceB: ServiceBankP, private route: Router, private http: HttpClient, private sweetAlert: SweetAlertService) {
   }
 
-  showBancos() {
-    this.http.get('/Clients/Clientes/show/Client/' + localStorage.getItem('idClient') + '/BancosClientes')
-      .subscribe(res => {
-        if (res['error'] === true) {
+  ngOnInit() {
+    try {
+      this.showBancosList();
+      this.serviceB.showBancos(callback => {
+        if (!callback) {
           this.sweetAlert.swal('Aviso', 'No tiene creditos registrados.', 'warning');
         } else {
-          this.bankArray = res['clientbanks'];
+          this.bankArray = this.serviceB.bankArray
+          this.name = this.serviceB.name;
+          this.dataFinishedLoading = this.serviceB.dataFinishedLoading;
         }
-        this.dataFinishedLoading = true;
-        console.log(this.bankArray)
-      });
+      })
+    } catch (Exp) {
+      console.log(Exp);
+    }
+  }
+
+  change(b) {
+    this.model.idbank = b
+  }
+
+
+  onDelete() {
+    this.submitted = true;
+    this.serviceB.deleteBank();
+  }
+
+
+  onUpdate(bank) {
+    this.submitted = true;
+
+    this.serviceB.updateBank(bank, callback => {
+      try {
+        if (!callback) {
+          callback(true);
+          this.sweetAlert.swal('Aviso', 'No se pudo actualizar.', 'warning');
+        } else {
+          callback(false);
+          this.sweetAlert.swal('Aviso', 'Informacion de bancos actualizada.', 'success');
+        }
+      } catch (Exp) {
+        console.log(Exp)
+      }
+    }
+    );
   }
 
   showBancosList() {
@@ -48,22 +77,5 @@ export class BanksPSectionComponent implements OnInit {
         this.modelBancos = res['banks']
         this.model.idbank = this.modelBancos[0].id;
       });
-  }
-
-  change(b) {
-    this.model.idbank = b
-  }
-
-
-  updateBank() {
-   // this.http.put('/Clients/Clientes/update/' + localStorage.getItem('idClient') + 'BancosClientes' )
-
-  }
-
-
-  onUpdate() {
-    this.submitted = true;
-    this.updateBank();
-    console.log(this.model)
   }
 }

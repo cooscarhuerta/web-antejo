@@ -7,7 +7,7 @@
                         <div class="card-header" role="tab" id="heading{{i}}">
                             <h5 class="mb-0">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{i}}" aria-expanded="true" aria-controls="collapse">
-                            Banco: {{bank.namebank}}
+                            Banco: {{name[i]}}
                           </a>
                             </h5>
                         </div>
@@ -20,31 +20,38 @@
                                     <form (ngSubmit)="onUpdate()" #bankForm="ngForm">
                                         <div class="row col-sm-12">
                                             <div class="form-group col-sm-6">
-                                                <label> Banco:</label> <select #selectElem class="form-control" (change)="change(selectElem.value)" [(ngModel)]='model.idbank' name="bank">
-                                                <option *ngFor='let b of modelBancos' [value]='b.id'>
-                                                  {{b.name}}
-                                                </option>
-                                            </select>
+                                                <label> Banco:</label> <select class="form-control" [(ngModel)]='bank.idbank' name="bank">
+                                                  <option value="" disabled>Seleccione un banco</option>
+                                                  <option *ngFor='let banks of modelBancos' [ngValue]='banks.id'>
+                                                        {{banks.name}}
+                                                      </option>
+                                                </select>
                                             </div>
 
                                             <div class="form-group col-sm-6">
                                                 <label>Tipo de Cuenta:</label>
-                                                <input id="accounttype" name="accounttype" class="form-control " [(ngModel)]="model.accounttype" type="text" required>
+                                                <input id="accounttype" #accounttype name="accounttype" class="form-control" [(ngModel)]="bank.accounttype" type="text" required>
                                             </div>
+
 
                                             <div class="form-group col-sm-6 ">
                                                 <label>Numero de Cuenta:</label>
-                                                <input id="accountnumber " name="accountnumber " class="form-control " [(ngModel)]="model.accountnumber " type="number " required>
+                                                <input id="accountnumber " name="accountnumber " class="form-control " [(ngModel)]="bank.accountnumber " type="number " required>
                                             </div>
 
                                             <div class="form-group col-sm-6 ">
                                                 <label>Clabe Bancaria:</label>
-                                                <input id="clabe " name="clabe " class="form-control " [(ngModel)]="model.clabe " type="number " required>
+                                                <input id="clabe " name="clabe " class="form-control " [(ngModel)]="bank.clabe " type="number " required>
                                             </div>
 
                                             <div>
-                                                <button class="btn btn-default " [disabled]="!bankForm.valid " type="submit ">
-                                                <i class="material-icons ">Agregar Banco</i>
+                                                <button class="btn btn-default " [disabled]="!bankForm.valid" (click)="onUpdate(bank)" type="button">
+                                                <i class="material-icons ">Actualizar Banco</i>
+                                            </button>
+                                            </div>
+                                            <div>
+                                                <button class="btn btn-default " [disabled]="!bankForm.valid" (click)="onDelete()" type="button">
+                                                <i class="material-icons ">Eliminar Banco</i>
                                             </button>
                                             </div>
                                         </div>
