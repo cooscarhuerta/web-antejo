@@ -1,6 +1,32 @@
 <tabset>
-    <app-addfile [fileDescriptor]="'Comprobante de Domicilio'" (fileEmitter)='getFile($event,'Comprobante')'></app-addfile>
-    <app-addfile [fileDescriptor]="'Estados de Cuenta'" (fileEmitter)='getFile($event,'Comprobante')'></app-addfile>
-    <app-addfile [fileDescriptor]="'RFC'" (fileEmitter)='getFile($event,'Comprobante')'</app-addfile>
-    <app-addfile [fileDescriptor]="'Informacion Financiera'" (fileEmitter)='getFile($event,'Comprobante')'></app-addfile>
+    <tab title="Archivos">
+        <span *tabHeading>Archivos</span>
+        <div class="card" *ngFor="let file of inputFileData;index as i" #group>
+            <div class="card-header" role="tab" id="heading{{i}}" (click)="openFile(file)"style="cursor:pointer">
+                <h5 class="mb-0">
+                    <a data-toggle="collapse" data-parent="#accordion"  aria-expanded="true" aria-controls="collapse">
+                        Archivo : {{file.type}}
+                    </a>
+                </h5>
+            </div>
+        </div>
+    </tab>
+    <tab title="Crear archivo">
+        <span *tabHeading>Agregar Archivo</span>
+        <tabset>
+            <tab title="Comprobante de Domicilio">
+                <app-addfile [fileDescriptor]="'Comprobante de Domicilio'" (fileEmitter)="getFile($event,'Domicilio')"></app-addfile>
+            </tab>
+            <tab title="Estado de Cuenta">
+                <app-addfile [fileDescriptor]="'Estados de Cuenta'" (fileEmitter)="getFile($event,'Cuentas')"></app-addfile> 
+            </tab>
+            <tab title="RFC">
+                <app-addfile [fileDescriptor]="'RFC'" (fileEmitter)="getFile($event,'RFC')"></app-addfile>
+            </tab>
+            <tab title="Informacion Financiera">
+                <app-addfile [fileDescriptor]="'Informacion Financiera'" (fileEmitter)="getFile($event,'Identificacion')"></app-addfile>
+            </tab>      
+        </tabset>
+    </tab>
+
 </tabset>

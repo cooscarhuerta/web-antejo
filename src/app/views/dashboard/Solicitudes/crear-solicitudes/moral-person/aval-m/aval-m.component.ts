@@ -85,6 +85,7 @@ export class AvalMComponent implements OnInit {
           this.typeGuarantee = null;
           this.model.id = response['id'];
           this.avalDataRefresher.emit(this.model);
+          this.model = new Aval();
         }
       })
     }
@@ -92,6 +93,7 @@ export class AvalMComponent implements OnInit {
       this.http.put('/Clients/Solicitudes/update/' + this.model.id + '/AvalCredito', this.model).subscribe(response => {
         if (response['error']) {
           this.sweetAlert.swal('Error', 'No se pudo establecer conexion al servidor', 'error');
+          this.submitted = false;
         } else {
           this.sweetAlert.swal('Aviso', 'Aval agregado correctamente', 'success');
           this.submitted = true;
