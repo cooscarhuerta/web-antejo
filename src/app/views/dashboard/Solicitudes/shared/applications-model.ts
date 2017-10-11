@@ -23,10 +23,12 @@ export class App {
 }
 
 export class Aval {
+    id = null;
     idapplication = null;
     name = null;
     lastname = null;
     businessname = null;
+    business_name = null;
     rfc = null;
     curp = null;
     birthday = null;

@@ -25,19 +25,19 @@ export class BanksPSectionComponent implements OnInit {
   }
 
   ngOnInit() {
-    try {
-      this.showBancosList();
+    this.showBancosList();
+    const idClient = localStorage.getItem('idClient');
+    console.log(idClient);
+    if(idClient){
       this.serviceB.showBancos(callback => {
         if (!callback) {
-          this.sweetAlert.swal('Aviso', 'No tiene creditos registrados.', 'warning');
+          this.sweetAlert.swal('Aviso', 'No tiene bancos registrados.', 'warning');
         } else {
           this.bankArray = this.serviceB.bankArray
           this.name = this.serviceB.name;
           this.dataFinishedLoading = this.serviceB.dataFinishedLoading;
         }
-      })
-    } catch (Exp) {
-      console.log(Exp);
+      });
     }
   }
 
@@ -74,8 +74,10 @@ export class BanksPSectionComponent implements OnInit {
   showBancosList() {
     this.http.get('/Clients/Clientes/all/Bancos')
       .subscribe(res => {
-        this.modelBancos = res['banks']
-        this.model.idbank = this.modelBancos[0].id;
+        if(!res['error']){
+          this.modelBancos = res['banks']
+          this.model.idbank = this.modelBancos[0].id;
+        }
       });
   }
 }

@@ -23,15 +23,6 @@ export class BankPComponent implements OnInit {
 
 
   ngOnInit() {
-    this.showBancos();
-  }
-
-  showBancos() {
-    this.http.get('/Clients/Clientes/all/Bancos')
-      .subscribe(res => {
-        this.modelBancos = res['banks']
-        this.model.idbank = this.modelBancos[0].id;
-      });
   }
 
   registryBank(model) {

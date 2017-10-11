@@ -20,22 +20,25 @@ export class ClientComponent implements OnInit {
     this.idClient = event;
   }
   evento_cliente(isMoral) {
-    this.clientType = isMoral? "moral" : "physical";
+    this.clientType = isMoral? "Moral" : "Fisica";
   }
   ngOnInit() {
     this.client = null;
     this.clientType = null;
     this.idClient = localStorage.getItem('idClient');
-    this.http.get('/Clients/Clientes/show/'+localStorage.getItem('idClient')).subscribe(res=>{
-      if(res['error']===false){
-        this.client = res['client'];
-        if(this.client.businessname === null){
-          this.clientType = "physical";
-        }else{
-          this.clientType = "moral";
+    if(this.idClient){
+      this.http.get('/Clients/Clientes/show/'+localStorage.getItem('idClient')).subscribe(res=>{
+        if(res['error']===false){
+          this.client = res['client'];
+          if(this.client.businessname === null){
+            this.clientType = "Fisica";
+          }else{
+            this.clientType = "Moral";
+          }
+          
         }
-        
-      }
-    });
+      });
+    }
+    
   }
 }

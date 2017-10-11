@@ -27,8 +27,11 @@ submitted = false;
   showBancos() {
     this.http.get('/Clients/Clientes/all/Bancos')
       .subscribe(res => {
-        this.modelBancos = res['banks']
-        this.model.idbank = this.modelBancos[0].id;
+        if(!res['error']){
+          this.modelBancos = res['banks']
+          this.model.idbank = this.modelBancos[0].id;
+        }
+        
       });
   }
 

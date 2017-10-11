@@ -22,9 +22,10 @@ export class FilesMComponent implements OnInit {
     this.model = this.inputFileData[0];
   }
 
-  onSubmit() {
+  getFile(file,type) {
     this.submitted = true;
-    console.log(this.model);
+    console.log(type);
+    console.log(file);
     this.fileDataRefresher.emit(this.model);
   }
 

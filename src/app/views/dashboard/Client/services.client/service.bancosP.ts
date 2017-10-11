@@ -19,7 +19,7 @@ export class ServiceBankP {
 
   showBancos(callback) {
     this.name = [];
-    this.http.get('/Clients/Clientes/show/Client/' + localStorage.getItem('idClient') + '/BancosClientes')
+    this.http.get('/Clients/Clientes/show/' + localStorage.getItem('idClient') + '/BancosClientes')
       .subscribe(res => {
         if (res['error'] === true) {
           callback(false);

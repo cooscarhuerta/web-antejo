@@ -1,0 +1,14 @@
+<tab title="{{fileDescriptor}}">
+  <span *tabHeading>{{fileDescriptor}}</span>
+  <div>
+      <div class="form-group">
+          <label for="input">Subir {{fileDescriptor}}:</label>
+          <input name="fileInput" class="form-control" type="file" ngModel (change)="getFiles($event)">
+      </div>
+      <div>
+        <button class="btn btn-default" [disabled]="file==null" (click)="emitFile()" type="submit">
+          <i class="material-icons">Subir Archivo</i>
+      </button>
+      </div>
+  </div>
+</tab>

@@ -1,3 +1,4 @@
+import { QueryService } from './shared/query.service';
 import { FormsModule } from '@angular/forms';
 import { RegistrySolPComponent } from './crear-solicitudes/physical-person/registry-sol-p/registry-sol-p.component';
 import { CommonModule } from '@angular/common';
@@ -22,13 +23,16 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FilesPComponent } from './crear-solicitudes/physical-person/files-p/files-p.component';
 import { FilesMComponent } from './crear-solicitudes/moral-person/files-m/files-m.component';
 import { RegistrySolMComponent } from './crear-solicitudes/moral-person/registry-sol-m/registry-sol-m.component';
+import { AddFileComponent } from './shared/addfile/addfile.component';
 
 
 @NgModule({
   exports: [
     VerSolicitudesComponent,
-    ViewAppComponent
+    ViewAppComponent,
+    AddFileComponent,
   ],
+  providers: [QueryService],
   imports: [
     AppRoutingModule,
     ChartsModule,
@@ -39,8 +43,8 @@ import { RegistrySolMComponent } from './crear-solicitudes/moral-person/registry
     FormsModule
   ],
   declarations: [ ViewAppComponent, CrearSolicitudesComponent, PhysicalPersonComponent,
-                  MoralPersonComponent, AvalPComponent, AvalMComponent, VerSolicitudesComponent, 
+                  MoralPersonComponent, AvalPComponent, AvalMComponent, VerSolicitudesComponent,
                    SectionSolicitudesComponent, FilesPComponent, FilesMComponent,
-                    RegistrySolPComponent, RegistrySolMComponent]
+                    RegistrySolPComponent, RegistrySolMComponent, AddFileComponent]
 })
 export class AppModule { }

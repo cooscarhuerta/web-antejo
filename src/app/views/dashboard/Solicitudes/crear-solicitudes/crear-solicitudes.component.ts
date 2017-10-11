@@ -30,9 +30,9 @@ export class CrearSolicitudesComponent implements OnInit {
     this.appId = null;
     
     this.route.params.subscribe(params => {
-      this.appId = params.appId;
       console.log(params.appId);
       if (params.appId) {
+        this.appId = params.appId;
         this.http.get('/Clients/Solicitudes/show/' + params.appId).subscribe(response => {
           if (response['error'] === true) {
             this.sweetAlert.swal('Error', 'No se pudieron cargar los datos de la solicitud', 'error')

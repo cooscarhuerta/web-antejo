@@ -25,7 +25,7 @@ export class MoralPersonComponent implements OnInit {
   ngOnInit() {
     this.data = this.inputData;
     console.log("midway");
-    console.log(this.data);
+    console.log(this.inputAppId);
     this.appId = this.inputAppId;
   }
   refreshAppData(appData) {
@@ -37,11 +37,25 @@ export class MoralPersonComponent implements OnInit {
   }
 
   refreshAvalData(avalData) {
-    this.data.avals = avalData;
-    this.dataRefresher.emit(avalData);
+    let found: Boolean = false;
+    let i = 0;
+    while (i < this.data.avals.length) {
+      if (avalData.id === this.data.avals[i].id) {
+        found = true;
+        break;
+      }
+      i++;
+    }
+    if (!found) {
+      this.data.avals.push(avalData);
+    } else {
+      this.data.avals[i] = avalData;
+    }
+
+    // this.dataRefresher.emit(avalData);
   }
   refreshFileData(fileData) {
-    this.data.files = fileData;
-    this.dataRefresher.emit(fileData);
+    this.data.files.push(fileData);
+    // this.dataRefresher.emit(fileData);
   }
 }
