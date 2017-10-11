@@ -7,8 +7,8 @@
                         <div class="card-header" role="tab" id="heading{{i}}">
                             <h5 class="mb-0">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{i}}" aria-expanded="true" aria-controls="collapse">
-                            Banco: {{name[i]}}
-                          </a>
+                          Banco: {{name[i]}}
+                        </a>
                             </h5>
                         </div>
 
@@ -21,11 +21,11 @@
                                         <div class="row col-sm-12">
                                             <div class="form-group col-sm-6">
                                                 <label> Banco:</label> <select class="form-control" [(ngModel)]='bank.idbank' name="bank">
-                                                  <option value="" disabled>Seleccione un banco</option>
-                                                  <option *ngFor='let banks of modelBancos' [ngValue]='banks.id'>
-                                                        {{banks.name}}
-                                                      </option>
-                                                </select>
+                                                <option value="" disabled>Seleccione un banco</option>
+                                                <option *ngFor='let banks of modelBancos' [ngValue]='banks.id'>
+                                                      {{banks.name}}
+                                                    </option>
+                                              </select>
                                             </div>
 
                                             <div class="form-group col-sm-6">
@@ -46,13 +46,13 @@
 
                                             <div>
                                                 <button class="btn btn-default " [disabled]="!bankForm.valid" (click)="onUpdate(bank)" type="button">
-                                                <i class="material-icons ">Actualizar Banco</i>
-                                            </button>
+                                              <i class="material-icons ">Actualizar Banco</i>
+                                          </button>
                                             </div>
                                             <div>
                                                 <button class="btn btn-default " [disabled]="!bankForm.valid" (click)="onDelete(bank)" type="button">
-                                                <i class="material-icons ">Eliminar Banco</i>
-                                            </button>
+                                              <i class="material-icons ">Eliminar Banco</i>
+                                          </button>
                                             </div>
                                         </div>
                                     </form>

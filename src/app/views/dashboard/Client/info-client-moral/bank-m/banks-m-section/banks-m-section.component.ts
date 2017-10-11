@@ -1,34 +1,33 @@
-import { BanksP } from './../BanksP';
-import { BankP } from './../m-bank-p';
-import { PostRegistryP } from '../../../services.client/service.registryP';
+import { PostRegistryM } from 'app/views/dashboard/Client/services.client/service.registryM';
+import { BanksM } from './../BanksM';
+import { BankM } from './../m-bank-m';
+
 import { SweetAlertService } from 'ng2-sweetalert2';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { ServiceBankP } from 'app/views/dashboard/Client/services.client/service.bancosP';
+import { ServiceBankM } from 'app/views/dashboard/Client/services.client/service.bancosM';
 
 @Component({
-  selector: 'app-banks-p-section',
-  templateUrl: './banks-p-section.component.html',
-  styleUrls: ['./banks-p-section.component.scss']
+  selector: 'app-banks-m-section',
+  templateUrl: './banks-m-section.component.html',
+  styleUrls: ['./banks-m-section.component.scss']
 })
-export class BanksPSectionComponent implements OnInit {
+export class BanksMSectionComponent implements OnInit {
 
   submitted = false
   bankArray = [];
   dataFinishedLoading = false;
-  model: BankP = new BankP();
-  modelBancos: BanksP[] = [];
+  model: BankM = new BankM();
+  modelBancos: BanksM[] = [];
   name: string[] = [];
 
-  constructor(private serviceB: ServiceBankP, private route: Router, private http: HttpClient, private sweetAlert: SweetAlertService) {
+  constructor(private serviceB: ServiceBankM, private route: Router, private http: HttpClient, private sweetAlert: SweetAlertService) {
   }
 
   ngOnInit() {
-    this.showBancosList();
-    const idClient = localStorage.getItem('idClient');
-    console.log(idClient);
-    if (idClient) {
+    try {
+      this.showBancosList();
       this.serviceB.showBancos(callback => {
         if (!callback) {
           this.bankArray = this.serviceB.bankArray
@@ -38,6 +37,8 @@ export class BanksPSectionComponent implements OnInit {
           this.sweetAlert.swal('Aviso', 'No tiene bancos registrados.', 'warning');
         }
       });
+    } catch (Exp) {
+      console.log(Exp);
     }
   }
 
@@ -76,10 +77,8 @@ export class BanksPSectionComponent implements OnInit {
   showBancosList() {
     this.http.get('/Clients/Clientes/all/Bancos')
       .subscribe(res => {
-        if (!res['error']) {
-          this.modelBancos = res['banks']
-          this.model.idbank = this.modelBancos[0].id;
-        }
+        this.modelBancos = res['banks']
+        this.model.idbank = this.modelBancos[0].id;
       });
   }
 }

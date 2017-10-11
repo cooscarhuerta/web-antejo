@@ -23,7 +23,7 @@ submitted = false;
   ngOnInit() {
     this.showBancos();
   }
-  
+
   showBancos() {
     this.http.get('/Clients/Clientes/all/Bancos')
       .subscribe(res => {
@@ -44,7 +44,6 @@ submitted = false;
           this.sweetAlert.swal('Error', 'Error al validar campos', 'error');
         }
       });
-      this.model.idclient = this.postRegistry.idclient;
     } catch (Exp) {
       console.log(Exp)
     }
