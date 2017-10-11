@@ -21,6 +21,7 @@ export class FilesMComponent implements OnInit {
   fileDataRefresher: EventEmitter<File>;
   model: File;
   nativeWindow: Window;
+  public dataFinishedLoading = true;
   constructor(private http: HttpClient, private windowRef: WindowRefService, private sweetAlert: SweetAlertService) {
     this.nativeWindow = windowRef.getNativeWindow();
     this.fileDataRefresher = new EventEmitter<File>();
@@ -29,11 +30,12 @@ export class FilesMComponent implements OnInit {
     console.log(this.inputAppId);
   }
 
-  openFile(file){
+  openFile(file) {
     console.log(file);
     const newWindow = this.nativeWindow.open(this.apiUrl + '/storage/' + file.path);
   }
   getFile(file, type) {
+    this.dataFinishedLoading = false;
     this.submitted = true;
     const formData = new FormData();
     console.log(type);
@@ -44,15 +46,16 @@ export class FilesMComponent implements OnInit {
     formData.append('idapplication', this.inputAppId);
     this.http.post('/Clients/Solicitudes/add/FilesApplication', formData, {
       headers: new HttpHeaders().set('Content-type', 'multipart/form-data')
-      }).subscribe(response => {
+    }).subscribe(response => {
+      this.dataFinishedLoading = true;
       if (response['error']) {
-        this.sweetAlert.swal('Error', 'Error al conectarse con el servidor.','error');
+        this.sweetAlert.swal('Error', 'Error al conectarse con el servidor.', 'error');
       } else {
-        this.sweetAlert.swal('Aviso', 'Archivo agregado exitosamente.','success');
+        this.sweetAlert.swal('Aviso', 'Archivo agregado exitosamente.', 'success');
         this.fileDataRefresher.emit(response['file']);
       }
     })
-    
+
   }
 
 }

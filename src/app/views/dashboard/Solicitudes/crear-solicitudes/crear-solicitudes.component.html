@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-12 col-sm-12 col-md-12" *ngIf="finishedLoadingApp;else loadingScreen">
             <div class="card">
-                <div *ngIf="!appId; else editHeader"class="card-header">
+                <div *ngIf="!appId; else editHeader"class="card-header" style="margin-left:10em;">
                     <h2>Nueva Solicitud</h2>
                 </div>
                 <ng-template class="card-header" #editHeader>

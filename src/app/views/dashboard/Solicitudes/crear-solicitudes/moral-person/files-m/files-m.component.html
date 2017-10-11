@@ -13,20 +13,26 @@
     </tab>
     <tab title="Crear archivo">
         <span *tabHeading>Agregar Archivo</span>
-        <tabset>
-            <tab title="Comprobante de Domicilio">
-                <app-addfile [fileDescriptor]="'Comprobante de Domicilio'" (fileEmitter)="getFile($event,'Domicilio')"></app-addfile>
-            </tab>
-            <tab title="Estado de Cuenta">
-                <app-addfile [fileDescriptor]="'Estados de Cuenta'" (fileEmitter)="getFile($event,'Cuentas')"></app-addfile> 
-            </tab>
-            <tab title="RFC">
-                <app-addfile [fileDescriptor]="'RFC'" (fileEmitter)="getFile($event,'RFC')"></app-addfile>
-            </tab>
-            <tab title="Informacion Financiera">
-                <app-addfile [fileDescriptor]="'Informacion Financiera'" (fileEmitter)="getFile($event,'Identificacion')"></app-addfile>
-            </tab>      
-        </tabset>
+
+        <div *ngIf="dataFinishedLoading;else loadingScreen">
+            <tabset>
+                <tab title="Comprobante de Domicilio">
+                    <app-addfile [fileDescriptor]="'Comprobante de Domicilio'" (fileEmitter)="getFile($event,'Domicilio')"></app-addfile>
+                </tab>
+                <tab title="Estado de Cuenta">
+                    <app-addfile [fileDescriptor]="'Estados de Cuenta'" (fileEmitter)="getFile($event,'Cuentas')"></app-addfile> 
+                </tab>
+                <tab title="RFC">
+                    <app-addfile [fileDescriptor]="'RFC'" (fileEmitter)="getFile($event,'RFC')"></app-addfile>
+                </tab>
+                <tab title="Informacion Financiera">
+                    <app-addfile [fileDescriptor]="'Informacion Financiera'" (fileEmitter)="getFile($event,'Identificacion')"></app-addfile>
+                </tab>      
+            </tabset>
+        </div>
+        <ng-template #loadingScreen>
+            <img  src="assets/img/dualLoading.svg">
+        </ng-template>
     </tab>
 
 </tabset>

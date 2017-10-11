@@ -27,7 +27,7 @@ export class AvalMComponent implements OnInit {
   public appId;
   public typeGuarantee: String;
   public method;
-
+  public dataFinishedLoading = true;
   @ViewChild('registerTabSpan')
   avalTab: ElementRef;
   constructor(private http: HttpClient, private sweetAlert: SweetAlertService, private regex: Regex) {
@@ -75,9 +75,12 @@ export class AvalMComponent implements OnInit {
     if (this.method !== 'POST' && this.method !== 'PUT') {
       return;
     }
+    this.dataFinishedLoading = false;
     if (this.method === 'POST') {
       this.http.post('/Clients/Solicitudes/add/AvalCredito', this.model).subscribe(response => {
+        this.dataFinishedLoading = true;
         if (response['error']) {
+          this.submitted = false;
           this.sweetAlert.swal('Error', 'No se pudo establecer conexion al servidor', 'error');
         } else {
           this.sweetAlert.swal('Aviso', 'Aval agregado correctamente', 'success');
@@ -91,12 +94,12 @@ export class AvalMComponent implements OnInit {
     }
     if (this.method === 'PUT') {
       this.http.put('/Clients/Solicitudes/update/' + this.model.id + '/AvalCredito', this.model).subscribe(response => {
+        this.dataFinishedLoading = true;
         if (response['error']) {
           this.sweetAlert.swal('Error', 'No se pudo establecer conexion al servidor', 'error');
           this.submitted = false;
         } else {
           this.sweetAlert.swal('Aviso', 'Aval agregado correctamente', 'success');
-          this.submitted = true;
           this.typeGuarantee = null;
           this.avalDataRefresher.emit(this.model);
         }
