@@ -1,71 +1,64 @@
-<div class="main-page">
-    <div class="row">
-        <div class="col-lg-12 col-sm-12 col-md-12" *ngIf="dataFinishedLoading;else loadingScreen">
-            <div class="card">
-                <div id="accordion" role="tablist" aria-multiselectable="true">
-                    <div class="card" *ngFor="let bank of bankArray;index as i" #group>
-                        <div class="card-header" role="tab" id="heading{{i}}">
-                            <h5 class="mb-0">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{i}}" aria-expanded="true" aria-controls="collapse">
+<div *ngIf="dataFinishedLoading;else loadingScreen">
+    <div class="card">
+        <div id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="card" *ngFor="let bank of bankArray;index as i" #group>
+                <div class="card-header" role="tab" id="heading{{i}}">
+                    <h5 class="mb-0">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{i}}" aria-expanded="true" aria-controls="collapse">
                           Banco: {{name[i]}}
                         </a>
-                            </h5>
-                        </div>
+                    </h5>
+                </div>
 
-                        <div id="collapse{{i}}" class="collapse" role="tabpanel" aria-labelledby="heading">
+                <div id="collapse{{i}}" class="collapse" role="tabpanel" aria-labelledby="heading">
 
-                            <div class="card-block col-sm-6 col-md-6 col-lg-6" style="float:left;">
-                                <div class="card-block">
+                    <div class="card-block">
+                        <form (ngSubmit)="onUpdate()" #bankForm="ngForm">
+                            <div class="row col-sm-12">
 
-                                    <form (ngSubmit)="onUpdate()" #bankForm="ngForm">
-                                        <div class="row col-sm-12">
-                                            <div class="form-group col-sm-6">
-                                                <label> Banco:</label> <select class="form-control" [(ngModel)]='bank.idbank' name="bank">
+                                <div class="form-group col-sm-6">
+                                    <label> Banco:</label> <select class="form-control" [(ngModel)]='bank.idbank' name="bank">
                                                 <option value="" disabled>Seleccione un banco</option>
                                                 <option *ngFor='let banks of modelBancos' [ngValue]='banks.id'>
                                                       {{banks.name}}
                                                     </option>
                                               </select>
-                                            </div>
+                                </div>
 
-                                            <div class="form-group col-sm-6">
-                                                <label>Tipo de Cuenta:</label>
-                                                <input id="accounttype" #accounttype name="accounttype" class="form-control" [(ngModel)]="bank.accounttype" type="text" required>
-                                            </div>
+                                <div class="form-group col-sm-6">
+                                    <label>Tipo de Cuenta:</label>
+                                    <input id="accounttype" #accounttype name="accounttype" class="form-control" [(ngModel)]="bank.accounttype" type="text" required>
+                                </div>
 
 
-                                            <div class="form-group col-sm-6 ">
-                                                <label>Numero de Cuenta:</label>
-                                                <input id="accountnumber " name="accountnumber " class="form-control " [(ngModel)]="bank.accountnumber " type="number " required>
-                                            </div>
+                                <div class="form-group col-sm-6 ">
+                                    <label>Numero de Cuenta:</label>
+                                    <input id="accountnumber " name="accountnumber " class="form-control " [(ngModel)]="bank.accountnumber " type="number " required>
+                                </div>
 
-                                            <div class="form-group col-sm-6 ">
-                                                <label>Clabe Bancaria:</label>
-                                                <input id="clabe " name="clabe " class="form-control " [(ngModel)]="bank.clabe " type="number " required>
-                                            </div>
+                                <div class="form-group col-sm-6 ">
+                                    <label>Clabe Bancaria:</label>
+                                    <input id="clabe " name="clabe " class="form-control " [(ngModel)]="bank.clabe " type="number " required>
+                                </div>
 
-                                            <div>
-                                                <button class="btn btn-default " [disabled]="!bankForm.valid" (click)="onUpdate(bank)" type="button">
+                                <button class="btn btn-default" style='margin-right:10px' [disabled]="!bankForm.valid" (click)="onUpdate(bank)" type="button">
                                               <i class="material-icons ">Actualizar Banco</i>
                                           </button>
-                                            </div>
-                                            <div>
-                                                <button class="btn btn-default " [disabled]="!bankForm.valid" (click)="onDelete(bank)" type="button">
+
+
+                                <button class="btn btn-default" [disabled]="!bankForm.valid" (click)="onDelete(bank)" type="button">
                                               <i class="material-icons ">Eliminar Banco</i>
                                           </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
-
         </div>
-        <ng-template #loadingScreen>
-            <img style="width:100%; " src="assets/img/dualLoading.svg ">
-        </ng-template>
     </div>
 </div>
+
+<ng-template #loadingScreen>
+    <img style="width:100%; " src="assets/img/dualLoading.svg ">
+</ng-template>

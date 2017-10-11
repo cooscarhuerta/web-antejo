@@ -1,3 +1,8 @@
+import { PostRegistryM } from './../../../services.client/service.registryM';
+import { SweetAlertService } from 'ng2-sweetalert2';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { ManagerM } from './../m-manager-m';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +12,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManagersSectionComponent implements OnInit {
 
-  constructor() { }
+    submitted = false
+    managersArray = [];
+    dataFinishedLoading = false;
+    model: ManagerM = new ManagerM();
+    name: string[] = [];
 
-  ngOnInit() {
+    constructor(private postRegistry: PostRegistryM, private route: Router, private http: HttpClient,
+       private sweetAlert: SweetAlertService) {
+    }
+
+    ngOnInit() {
+      try {
+        this.postRegistry.showManager(callback => {
+          if (!callback) {
+            this.managersArray = this.postRegistry.managersArray
+            this.name = this.postRegistry.name;
+            this.dataFinishedLoading = this.postRegistry.dataFinishedLoading;
+          } else {
+            this.sweetAlert.swal('Aviso', 'No tiene representantes registrados.', 'warning');
+          }
+        });
+      } catch (Exp) {
+        console.log(Exp);
+      }
+    }
+
+    onUpdate() {
+
+    }
+
+
+    onDelete() {
+
+    }
   }
-
-}
