@@ -8,6 +8,10 @@ export class PostRegistryM {
 
   model: BankM = new BankM();
   idclient = localStorage.getItem('idClient');
+  name = [];
+  managersArray = [];
+  sharedArray = [];
+  dataFinishedLoading = false;
 
   constructor(private router: Router, private http: HttpClient) { }
 
@@ -75,6 +79,79 @@ export class PostRegistryM {
         }
 
 
+      });
+  }
+
+  showManager(callback) {
+    this.name = [];
+    this.http.get('/Clients/Clientes/show/Client/' + localStorage.getItem('idClient') + '/Managers')
+      .subscribe(res => {
+        if (res['error'] === false) {
+          this.managersArray = res['manager'];
+          this.managersArray.forEach(item => {
+          this.name.push(item['name']);
+          this.dataFinishedLoading = true;
+          callback(false);
+          });
+         } else {
+          callback(true);
+        }
+      });
+  }
+/*
+
+  updateManager(managerArray, callback) {
+    this.http.put('/Clients/Clientes/update/' + managerArray.id + '/BancosClientes', managerArray)
+      .subscribe(res => {
+        if (res['error'] === false) {
+          callback(false);
+        } else {
+          callback(true);
+        }
+      });
+  }
+*/
+
+  showSharedHolder(callback) {
+    this.name = [];
+    this.http.get('/Clients/Clientes/show/Client/' + localStorage.getItem('idClient') + '/AccionistasClientes')
+      .subscribe(res => {
+        if (res['error'] === false) {
+          this.sharedArray = res['clientshareholder'];
+          this.sharedArray.forEach(item => {
+          this.name.push(item['name']);
+          this.dataFinishedLoading = true;
+          callback(false);
+         });
+         } else {
+          callback(true);
+        }
+      });
+  }
+
+
+  updateSharedHolder(sharedArray, callback) {
+    this.http.put('/Clients/Clientes/update/' + sharedArray.id + '/AccionistasClientes', sharedArray)
+      .subscribe(res => {
+        if (res['error'] === false) {
+          callback(false);
+        } else {
+          callback(true);
+        }
+      });
+  }
+
+
+  deleteSharedHolder(sharedArray, callback) {
+    this.http.delete('/Clients/Clientes/delete/' + sharedArray.id + '/AccionistasClientes', sharedArray)
+      .subscribe(res => {
+        console.log(res)
+        if (res['error'] === false) {
+          callback(false)
+        } else {
+          callback(true);
+        }
+        console.log(res)
       });
   }
 

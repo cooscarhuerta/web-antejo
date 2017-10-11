@@ -1,3 +1,63 @@
-<p>
-  shared-holder-section works!
-</p>
+<div *ngIf="dataFinishedLoading;else loadingScreen">
+    <div class="card">
+        <div id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="card" *ngFor="let shared of sharedArray;index as i" #group>
+                <div class="card-header" role="tab" id="headingM{{i}}">
+                    <h5 class="mb-0">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseS{{i}}" aria-expanded="true" aria-controls="collapse">
+                        Accionista: {{name[i]}}
+                      </a>
+                    </h5>
+                </div>
+
+                <div id="collapseS{{i}}" class="collapse" role="tabpanel" aria-labelledby="heading">
+
+                    <div class="card-block">
+                        <form (ngSubmit)='onUpdate()' #sharedForm='ngForm'>
+                            <div class="row col-sm-12">
+
+                                <div class="form-group col-sm-6">
+                                    <label>Nombre:</label>
+                                    <input id="name" name="name" class="form-control" [(ngModel)]="shared.name" type="text" required>
+                                </div>
+
+                                <div class="form-group col-sm-6">
+                                    <label>Apellido:</label>
+                                    <input id="lastname" name="lastname" class="form-control" [(ngModel)]="shared.lastname" type="text" required>
+                                </div>
+
+                                <div class="form-group col-sm-4">
+                                    <label>RFC:</label>
+                                    <input id="rfc" name="rfc" class="form-control" [(ngModel)]="shared.rfc" type="text" required>
+                                </div>
+
+                                <div class="form-group col-sm-4">
+                                    <label>Participacion(%):</label>
+                                    <input id="participation" name="participation" class="form-control" [(ngModel)]="shared.participation" type="number" required>
+                                </div>
+
+                                <div class="form-group col-sm-4">
+                                    <label>Fecha de Contratacion:</label>
+                                    <input id="oldwork" name="oldwork" class="form-control" [(ngModel)]="shared.oldwork" type="date" required>
+                                </div>
+
+
+                                <button class="btn btn-default " style='margin-right:10px' [disabled]="!sharedForm.valid" (click)="onUpdate(shared)" type="button">
+                                                  <i class="material-icons ">Actualizar Accionista</i>
+                                              </button>
+
+                                <button class="btn btn-default " [disabled]="!sharedForm.valid" (click)="onDelete(shared)" type="button">
+                                                  <i class="material-icons ">Eliminar Accionista</i>
+                                              </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #loadingScreen>
+    <img style="width:100%; " src="assets/img/dualLoading.svg ">
+</ng-template>
