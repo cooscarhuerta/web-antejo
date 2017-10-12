@@ -46,6 +46,7 @@ import { SharedHolderSectionComponent } from './info-client-moral/shared-holder-
   declarations: [ClientComponent, InfoClientMoralComponent, InfoClientPhysicComponent, BankPComponent,
      BankMComponent, FilesMComponent, FilesPComponent, RegistryPComponent, RegistryMComponent, ManagersMComponent,
      SharedHolderMComponent, FileRFCComponent, FileACComponent, FileAAComponent,
-     FileExtrasComponent, FileANComponent, FileDLComponent, BanksPSectionComponent, BanksMSectionComponent, ManagersSectionComponent, SharedHolderSectionComponent]
+     FileExtrasComponent, FileANComponent, FileDLComponent, BanksPSectionComponent, BanksMSectionComponent,
+     ManagersSectionComponent, SharedHolderSectionComponent]
 })
 export class AppModule { }

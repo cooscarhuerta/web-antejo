@@ -12,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bank-m.component.scss']
 })
 export class BankMComponent implements OnInit {
-submitted = false;
+  submitted = false;
 
   model: BankM = new BankM();
   modelBancos: BanksM[] = [];
@@ -27,18 +27,18 @@ submitted = false;
   showBancos() {
     this.http.get('/Clients/Clientes/all/Bancos')
       .subscribe(res => {
-        if(!res['error']){
+        if (!res['error']) {
           this.modelBancos = res['banks']
           this.model.idbank = this.modelBancos[0].id;
         }
-        
+
       });
   }
 
-    registryBank(model) {
+  registryBank(model) {
     try {
       this.postRegistry.registryBank(model, callback => {
-         if (!callback) {
+        if (!callback) {
           this.sweetAlert.swal('Aviso', 'Informacion de bancos agregada exitosamente.', 'success');
         } else {
           this.sweetAlert.swal('Error', 'Error al validar campos', 'error');
@@ -49,7 +49,7 @@ submitted = false;
     }
   }
 
-    change(b) {
+  change(b) {
     this.model.idbank = b
   }
 

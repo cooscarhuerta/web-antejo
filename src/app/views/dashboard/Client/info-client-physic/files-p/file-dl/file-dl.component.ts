@@ -12,9 +12,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FileDLComponent implements OnInit {
 
-
   submitted = false;
   model: FilesP = new FilesP();
+  name: string[] = [];
+  type: string[] = [];
+  created: string[] = [];
 
   files: FileList;
   getFiles(event) {
@@ -48,6 +50,7 @@ export class FileDLComponent implements OnInit {
   }
 
   ngOnInit() {
+   this.showFileDL();
   }
 
   onSubmit(value) {
@@ -61,5 +64,15 @@ export class FileDLComponent implements OnInit {
     }
 
   }
+
+  showFileDL() {
+    this.postRegistry.showFile(callback => {
+       this.type = this.postRegistry.docArray;
+       console.log(this.type);
+      });
+  }
+
+  deleteFile() {}
+
 
 }

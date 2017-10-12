@@ -13,6 +13,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FileRFCComponent implements OnInit {
 
+  type: string[] = [];
   submitted = false;
   fileArray = [];
   model: FilesP = new FilesP();
@@ -39,26 +40,6 @@ export class FileRFCComponent implements OnInit {
   }
 
 
-  showRFC(callback) {
-   // this.name = [];
-    this.http.get('/Clients/Clientes/show/' + localStorage.getItem('idClient') + '/FilesClient')
-      .subscribe(res => {
-        if (res['error'] === false) {
-         console.log(res)
-         // this.bankArray = res['clientbanks'];
-         // this.bankArray.forEach(item => {
-         // this.name.push(item['namebank']);
-        //  this.dataFinishedLoading = true;
-          callback(false);
-        //  });
-        } else {
-          callback(true);
-        }
-      });
-  }
-
-
-
   upload() {
     const formData = new FormData();
     formData.append('file', this.files[0]);
@@ -68,9 +49,8 @@ export class FileRFCComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.showRFC(callback => {
 
-    });
+    this.showFileRFC();
   }
 
   onSubmit(value) {
@@ -84,5 +64,10 @@ export class FileRFCComponent implements OnInit {
     }
   }
 
-
+  showFileRFC() {
+    this.postRegistry.showFile(callback => {
+       this.type = this.postRegistry.rfcArray;
+       console.log(this.type);
+      });
+  }
 }

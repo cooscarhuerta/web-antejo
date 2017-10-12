@@ -89,28 +89,27 @@ export class PostRegistryM {
         if (res['error'] === false) {
           this.managersArray = res['manager'];
           this.managersArray.forEach(item => {
-          this.name.push(item['name']);
-          this.dataFinishedLoading = true;
-          callback(false);
+            this.name.push(item['name']);
+            this.dataFinishedLoading = true;
+            callback(false);
           });
-         } else {
-          callback(true);
-        }
-      });
-  }
-/*
-
-  updateManager(managerArray, callback) {
-    this.http.put('/Clients/Clientes/update/' + managerArray.id + '/BancosClientes', managerArray)
-      .subscribe(res => {
-        if (res['error'] === false) {
-          callback(false);
         } else {
           callback(true);
         }
       });
   }
-*/
+
+
+    updateManager(managerArray, callback) {
+      this.http.put('/Clients/Clientes/update/' + managerArray.id + '/BancosClientes', managerArray)
+        .subscribe(res => {
+          if (res['error'] === false) {
+            callback(false);
+          } else {
+            callback(true);
+          }
+        });
+    }
 
   showSharedHolder(callback) {
     this.name = [];
@@ -119,11 +118,11 @@ export class PostRegistryM {
         if (res['error'] === false) {
           this.sharedArray = res['clientshareholder'];
           this.sharedArray.forEach(item => {
-          this.name.push(item['name']);
-          this.dataFinishedLoading = true;
-          callback(false);
-         });
-         } else {
+            this.name.push(item['name']);
+            this.dataFinishedLoading = true;
+            callback(false);
+          });
+        } else {
           callback(true);
         }
       });

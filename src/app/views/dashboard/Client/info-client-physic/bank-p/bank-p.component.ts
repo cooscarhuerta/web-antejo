@@ -23,6 +23,8 @@ export class BankPComponent implements OnInit {
 
 
   ngOnInit() {
+    this.showBancos();
+
   }
 
   registryBank(model) {
@@ -37,6 +39,17 @@ export class BankPComponent implements OnInit {
     } catch (Exp) {
       console.log(Exp)
     }
+  }
+
+  showBancos() {
+    this.http.get('/Clients/Clientes/all/Bancos')
+      .subscribe(res => {
+        if (!res['error']) {
+          this.modelBancos = res['banks']
+          this.model.idbank = this.modelBancos[0].id;
+        }
+
+      });
   }
 
   change(b) {

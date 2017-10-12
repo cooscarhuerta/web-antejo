@@ -12,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FileANComponent implements OnInit {
 
-
+  type: string[] = [];
   submitted = false;
   model: FilesP = new FilesP();
   files: FileList;
@@ -47,6 +47,7 @@ export class FileANComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.showFileAN()
   }
 
   onSubmit(value) {
@@ -60,5 +61,15 @@ export class FileANComponent implements OnInit {
     }
 
   }
+
+
+  showFileAN() {
+    this.postRegistry.showFile(callback => {
+
+       this.type = this.postRegistry.actaArray;
+       console.log(this.type);
+      });
+  }
+
 
 }

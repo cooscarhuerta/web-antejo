@@ -8,6 +8,12 @@ import { SweetAlertService } from 'ng2-sweetalert2';
 @Injectable()
 export class PostRegistryP {
 
+  docArray = [];
+  rfcArray = [];
+  actaArray = [];
+  type: string[] = [];
+  dataFinishedLoading = false;
+
   constructor(private router: Router, private http: HttpClient) { }
 
   registryInfo(model, method, callback) {
@@ -18,10 +24,10 @@ export class PostRegistryP {
         {
           headers: new HttpHeaders().set('Content-type', 'application/json')
         }).subscribe(data => {
-          console.log("doing stuff");
+          console.log('doing stuff');
           if (data['error'] === false) {
             localStorage.setItem('idClient', data['client']['id']);
-            localStorage.setItem('clientType', "physical");
+            localStorage.setItem('clientType', 'physical');
             callback(false);
           } else {
             callback(true);
@@ -73,6 +79,30 @@ export class PostRegistryP {
         }
       });
   }
+
+
+  showFile(callback) {
+    this.http.get('/Clients/Clientes/show/' + localStorage.getItem('idClient'))
+      .subscribe(res => {
+        if (res['error'] === false) {
+          this.docArray = res['files'].filter(item => {
+            return item.type === 'Documentacion Legal'
+          });
+          this.rfcArray = res['files'].filter(item => {
+            return item.type === 'RFC'
+          });
+          this.actaArray = res['files'].filter(item => {
+            return item.type === 'Acta Nacimiento'
+          });
+          callback(false);
+        } else {
+          callback(true);
+        }
+      });
+  }
+
+
+
 
 
 }
