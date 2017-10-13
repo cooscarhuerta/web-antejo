@@ -9,39 +9,31 @@
                 <i class="material-icons">Subir Archivo</i>
             </button>
         </div>
-    </div>
-
-    <div class="card">
-        <div id="accordion" role="tablist" aria-multiselectable="true">
-            <div class="card" *ngFor="let file of fileArray;index as i" #group>
+        <div class="form-group">
+            <div class="card" *ngFor="let file of type;index as i" #group>
                 <div class="card-header" role="tab" id="heading{{i}}">
                     <h5 class="mb-0">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{i}}" aria-expanded="true" aria-controls="collapse">
-                    File: {{file.name}}
-                  </a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseRFC{{i}}" aria-expanded="true" aria-controls="collapse">
+                         Nombre del archivo: {{type[i].name}}
+
+
+                        </a>
                     </h5>
                 </div>
 
-                <div id="collapse{{i}}" class="collapse" role="tabpanel" aria-labelledby="heading">
+                <div id="collapseRFC{{i}}" class="collapse" role="tabpanel" aria-labelledby="heading">
+                    <div>
+                        <a class="btn btn-default" href="{{this.urlDownload + file.path}}" target="_blank">
+                            <i class="material-icons ">Descargar archivo</i>
+                        </a>
+                        <button class="btn btn-default" (click)="deleFile(file)" type="submit">
+                        <i class="material-icons ">Eliminar archivo</i>
+                    </button>
 
-                    <div class="card-block col-sm-6 col-md-6 col-lg-6" style="float:left;">
-                        <div class="card-block">
-                            <div class="row col-sm-12">
-                                <div class="form-group col-sm-6">
-                                    <label>Tipo de Cuenta:</label>
-                                    <input id="accounttype" #accounttype name="accounttype" class="form-control" value="{{file.name}}" type="text" required>
-                                </div>
-                                <div>
-                                    <button class="btn btn-default " [disabled]="!bankForm.valid" type="button">
-                                        <i class="material-icons ">Eliminar file</i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
-
 </form>

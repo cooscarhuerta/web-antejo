@@ -1,4 +1,5 @@
 import { FilesM } from './../m-files-m';
+import { urlDownload } from './../../../../../pages/login/login.interceptor';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { PostRegistryM } from './../../../services.client/service.registryM';
@@ -12,9 +13,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./file-aa.component.scss']
 })
 export class FileAAComponent implements OnInit {
-
-
+  public urlDownload = urlDownload;
   submitted = false;
+  type: string[] = [];
   model: FilesM = new FilesM();
   files: FileList;
   getFiles(event) {
@@ -48,6 +49,7 @@ export class FileAAComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.showFile();
   }
 
   onSubmit(value) {
@@ -59,7 +61,27 @@ export class FileAAComponent implements OnInit {
       this.upload();
       this.submitted = true;
     }
-
   }
+
+
+  showFile() {
+    this.postRegistry.showFile(callback => {
+       this.type = this.postRegistry.asambleaArray;
+       console.log(this.type);
+      });
+  }
+
+  deleFile(item) {
+    this.postRegistry.deleteFile(item, callback => {
+      if (!callback) {
+        this.sweetAlert.swal('Aviso', 'Archivo eliminado exitosamente.', 'success');
+      } else {
+        this.sweetAlert.swal('Error', 'Error al eliminar archivo', 'error');
+      }
+    });
+  } catch(Exp) {
+    console.log(Exp);
+  }
+
 
 }

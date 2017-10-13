@@ -1,9 +1,11 @@
+import { urlDownload } from './../../../../../pages/login/login.interceptor';
 import { PostRegistryP } from './../../../services.client/service.registryP';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { SweetAlertService } from 'ng2-sweetalert2';
 import { FilesP } from './../m-files-p';
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-file-an',
@@ -12,7 +14,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FileANComponent implements OnInit {
 
-
+  public urlDownload = urlDownload;
+  type: string[] = [];
   submitted = false;
   model: FilesP = new FilesP();
   files: FileList;
@@ -47,6 +50,7 @@ export class FileANComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.showFileAN()
   }
 
   onSubmit(value) {
@@ -60,5 +64,27 @@ export class FileANComponent implements OnInit {
     }
 
   }
+
+
+  showFileAN() {
+    this.postRegistry.showFile(callback => {
+
+      this.type = this.postRegistry.actaArray;
+      console.log(this.type);
+    });
+  }
+
+  deleFile(item) {
+    this.postRegistry.deleteFile(item, callback => {
+      if (!callback) {
+        this.sweetAlert.swal('Aviso', 'Archivo eliminado exitosamente.', 'success');
+      } else {
+        this.sweetAlert.swal('Error', 'Error al eliminar archivo', 'error');
+      }
+    });
+  } catch(Exp) {
+    console.log(Exp);
+  }
+
 
 }

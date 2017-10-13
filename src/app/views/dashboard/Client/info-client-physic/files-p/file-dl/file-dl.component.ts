@@ -1,3 +1,4 @@
+import { urlDownload } from './../../../../../pages/login/login.interceptor';
 import { PostRegistryP } from './../../../services.client/service.registryP';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -11,10 +12,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./file-dl.component.scss']
 })
 export class FileDLComponent implements OnInit {
-
-
+  public urlDownload = urlDownload;
   submitted = false;
   model: FilesP = new FilesP();
+  name: string[] = [];
+  type: string[] = [];
+  created: string[] = [];
 
   files: FileList;
   getFiles(event) {
@@ -48,6 +51,7 @@ export class FileDLComponent implements OnInit {
   }
 
   ngOnInit() {
+   this.showFileDL();
   }
 
   onSubmit(value) {
@@ -60,6 +64,25 @@ export class FileDLComponent implements OnInit {
       this.submitted = true;
     }
 
+  }
+
+  showFileDL() {
+    this.postRegistry.showFile(callback => {
+       this.type = this.postRegistry.docArray;
+       console.log(this.type);
+      });
+  }
+
+  deleFile(item) {
+    this.postRegistry.deleteFile(item, callback => {
+      if (!callback) {
+        this.sweetAlert.swal('Aviso', 'Archivo eliminado exitosamente.', 'success');
+      } else {
+        this.sweetAlert.swal('Error', 'Error al eliminar archivo', 'error');
+      }
+    });
+  } catch(Exp) {
+    console.log(Exp);
   }
 
 }

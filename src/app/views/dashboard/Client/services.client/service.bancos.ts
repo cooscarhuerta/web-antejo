@@ -7,13 +7,10 @@ import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class ServiceBankM {
+export class ServiceBank {
   bankArray = [];
   name: string[] = [];
   dataFinishedLoading = false;
-  modelBancos: BanksM[] = [];
-  model: BankM = new BankM();
-
 
   constructor(private route: Router, private http: HttpClient, private sweetAlert: SweetAlertService) { }
 

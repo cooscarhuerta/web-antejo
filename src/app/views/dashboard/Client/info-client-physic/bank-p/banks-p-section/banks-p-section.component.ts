@@ -1,3 +1,4 @@
+import { ServiceBank } from '../../../services.client/service.bancos';
 import { BanksP } from './../BanksP';
 import { BankP } from './../m-bank-p';
 import { PostRegistryP } from '../../../services.client/service.registryP';
@@ -5,7 +6,6 @@ import { SweetAlertService } from 'ng2-sweetalert2';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { ServiceBankP } from 'app/views/dashboard/Client/services.client/service.bancosP';
 
 @Component({
   selector: 'app-banks-p-section',
@@ -21,7 +21,7 @@ export class BanksPSectionComponent implements OnInit {
   modelBancos: BanksP[] = [];
   name: string[] = [];
 
-  constructor(private serviceB: ServiceBankP, private route: Router, private http: HttpClient, private sweetAlert: SweetAlertService) {
+  constructor(private serviceB: ServiceBank, private route: Router, private http: HttpClient, private sweetAlert: SweetAlertService) {
   }
 
   ngOnInit() {

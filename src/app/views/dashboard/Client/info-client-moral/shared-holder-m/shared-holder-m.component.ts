@@ -15,8 +15,6 @@ export class SharedHolderMComponent implements OnInit {
 
   model: SharedholderM = new SharedholderM();
 
-
-
   constructor(private sweetAlert: SweetAlertService, private postRegistry: PostRegistryM, private router: Router,
     private http: HttpClient) { }
 

@@ -5,7 +5,9 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class PostRegistryM {
-
+  asambleaArray = [];
+  constArray = [];
+  extraArray = [];
   model: BankM = new BankM();
   idclient = localStorage.getItem('idClient');
   name = [];
@@ -89,28 +91,29 @@ export class PostRegistryM {
         if (res['error'] === false) {
           this.managersArray = res['manager'];
           this.managersArray.forEach(item => {
-          this.name.push(item['name']);
-          this.dataFinishedLoading = true;
-          callback(false);
+            this.name.push(item['name']);
+            this.dataFinishedLoading = true;
+            callback(false);
           });
-         } else {
-          callback(true);
-        }
-      });
-  }
-/*
-
-  updateManager(managerArray, callback) {
-    this.http.put('/Clients/Clientes/update/' + managerArray.id + '/BancosClientes', managerArray)
-      .subscribe(res => {
-        if (res['error'] === false) {
-          callback(false);
         } else {
           callback(true);
         }
       });
   }
-*/
+
+  deleteManager(managerArray, callback) {
+    this.http.delete('/Clients/Clientes/delete/' + managerArray.id + '/Managers', managerArray)
+      .subscribe(res => {
+        console.log(res)
+        if (res['error'] === false) {
+          callback(false)
+        } else {
+          callback(true);
+        }
+        console.log(res)
+      });
+  }
+
 
   showSharedHolder(callback) {
     this.name = [];
@@ -119,11 +122,11 @@ export class PostRegistryM {
         if (res['error'] === false) {
           this.sharedArray = res['clientshareholder'];
           this.sharedArray.forEach(item => {
-          this.name.push(item['name']);
-          this.dataFinishedLoading = true;
-          callback(false);
-         });
-         } else {
+            this.name.push(item['name']);
+            this.dataFinishedLoading = true;
+            callback(false);
+          });
+        } else {
           callback(true);
         }
       });
@@ -185,5 +188,37 @@ export class PostRegistryM {
       });
   }
 
+
+  showFile(callback) {
+    this.http.get('/Clients/Clientes/show/' + localStorage.getItem('idClient'))
+      .subscribe(res => {
+        if (res['error'] === false) {
+          this.constArray = res['files'].filter(item => {
+            return item.type === 'Constitutiva'
+          });
+          this.asambleaArray = res['files'].filter(item => {
+            return item.type === 'Asamblea'
+          });
+          this.extraArray = res['files'].filter(item => {
+            return item.type === 'Extra'
+          });
+          callback(false);
+        } else {
+          callback(true);
+        }
+      });
+  }
+
+
+  deleteFile(item, callback) {
+    this.http.delete('/Clients/Clientes/delete/' + item.id + '/FilesClient')
+    .subscribe(res => {
+      if (res['error'] === false) {
+        callback(false);
+      } else {
+        callback(true);
+      }
+    });
+  }
 
 }
