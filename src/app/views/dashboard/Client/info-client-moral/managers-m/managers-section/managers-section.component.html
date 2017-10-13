@@ -37,7 +37,8 @@
                                 </div>
 
                                 <div class="form-group col-sm-6">
-                                    <label>Identificacion: {{manager.file}}</label>
+                                    <label>Identificacion:</label>
+                                    <a class="btn btn-default" href="{{this.urlDownload + manager.filepath}}" target="_blank">{{manager.filename}}</a>
                                 </div>
 
 
@@ -48,7 +49,7 @@
 
 
                                 <button class="btn btn-default " [disabled]="!managerForm.valid" (click)="onDelete(manager)" type="button">
-                                                  <i class="material-icons ">Eliminar Banco</i>
+                                                  <i class="material-icons ">Eliminar Representante</i>
                                               </button>
 
                             </div>

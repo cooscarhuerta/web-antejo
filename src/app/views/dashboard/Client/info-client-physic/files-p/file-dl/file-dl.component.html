@@ -23,10 +23,10 @@
 
                 <div id="collapseDL{{i}}" class="collapse" role="tabpanel" aria-labelledby="heading">
                     <div>
-                        <button class="btn btn-default" type="submit">
-                        <i class="material-icons ">Descargar archivo</i>
-                    </button>
-                        <button class="btn btn-default" type="submit">
+                        <a class="btn btn-default" href="{{this.urlDownload + file.path}}" target="_blank">
+                            <i class="material-icons ">Descargar archivo</i>
+                        </a>
+                        <button class="btn btn-default" (click)="deleFile(file)" type="submit">
                         <i class="material-icons ">Eliminar archivo</i>
                     </button>
 

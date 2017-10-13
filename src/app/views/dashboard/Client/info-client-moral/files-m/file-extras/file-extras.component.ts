@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { PostRegistryM } from './../../../services.client/service.registryM';
 import { SweetAlertService } from 'ng2-sweetalert2';
 import { Component, OnInit } from '@angular/core';
+import { urlDownload } from './../../../../../pages/login/login.interceptor';
 
 
 @Component({
@@ -13,7 +14,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FileExtrasComponent implements OnInit {
 
-
+  type: string[] = [];
+  public urlDownload = urlDownload;
   submitted = false;
   model: FilesM = new FilesM();
   files: FileList;
@@ -49,6 +51,7 @@ export class FileExtrasComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.showFile();
   }
 
   onSubmit(value) {
@@ -60,7 +63,26 @@ export class FileExtrasComponent implements OnInit {
       this.upload();
       this.submitted = true;
     }
-
   }
+
+  showFile() {
+    this.postRegistry.showFile(callback => {
+       this.type = this.postRegistry.extraArray;
+       console.log(this.type);
+      });
+  }
+
+  deleFile(item) {
+    this.postRegistry.deleteFile(item, callback => {
+      if (!callback) {
+        this.sweetAlert.swal('Aviso', 'Archivo eliminado exitosamente.', 'success');
+      } else {
+        this.sweetAlert.swal('Error', 'Error al eliminar archivo', 'error');
+      }
+    });
+  } catch(Exp) {
+    console.log(Exp);
+  }
+
 
 }

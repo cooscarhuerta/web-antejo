@@ -101,6 +101,18 @@ export class PostRegistryP {
       });
   }
 
+  deleteFile(item, callback) {
+    this.http.delete('/Clients/Clientes/delete/' + item.id + '/FilesClient')
+    .subscribe(res => {
+      if (res['error'] === false) {
+        callback(false);
+      } else {
+        callback(true);
+      }
+    });
+
+  }
+
 
 
 

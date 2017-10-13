@@ -1,3 +1,4 @@
+import { urlDownload } from './../../../../../pages/login/login.interceptor';
 import { FilesP } from './../m-files-p';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -12,7 +13,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./file-rfc.component.scss']
 })
 export class FileRFCComponent implements OnInit {
-
+  public urlDownload = urlDownload;
   type: string[] = [];
   submitted = false;
   fileArray = [];
@@ -70,4 +71,17 @@ export class FileRFCComponent implements OnInit {
        console.log(this.type);
       });
   }
+
+  deleFile(item) {
+    this.postRegistry.deleteFile(item, callback => {
+      if (!callback) {
+        this.sweetAlert.swal('Aviso', 'Archivo eliminado exitosamente.', 'success');
+      } else {
+        this.sweetAlert.swal('Error', 'Error al eliminar archivo', 'error');
+      }
+    });
+  } catch(Exp) {
+    console.log(Exp);
+  }
+
 }

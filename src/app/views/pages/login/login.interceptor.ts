@@ -3,6 +3,7 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/c
 import { Observable } from 'rxjs/Observable';
 
 const apiUrl = 'http://localhost/bantejo/public';
+export const urlDownload = 'http://localhost/bantejo/public/storage/';
 
 @Injectable()
 export class LoginInterceptor implements HttpInterceptor {
