@@ -1,22 +1,13 @@
 <tabset>
     <tab title="Acta Constitutiva">
-        <span *tabHeading>Acta Constitutiva</span>
-        <div>
-            <app-file-ac></app-file-ac>
-        </div>
+        <app-addfile [fileDescriptor]="'Acta Constitutiva'" (fileEmitter)="getFile($event,'Constitutiva')"></app-addfile>
     </tab>
-
     <tab title="Acta Asamblea">
-        <span *tabHeading>Acta Asamblea</span>
-        <div>
-            <app-file-aa></app-file-aa>
-        </div>
+        <app-addfile [fileDescriptor]="'Acta Asamblea'" (fileEmitter)="getFile($event,'Asamblea')"></app-addfile> 
     </tab>
-
     <tab title="Extras">
-        <span *tabHeading>Extras</span>
-        <div>
-            <app-file-extras></app-file-extras>
-        </div>
+        <app-addfile [fileDescriptor]="'Extras'" (fileEmitter)="getFile($event,'Extras')"></app-addfile>
     </tab>
 </tabset>
+
+
