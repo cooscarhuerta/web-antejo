@@ -1,3 +1,4 @@
+import { ViewCreditComponent } from './view-credit/view-credit.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -12,6 +13,13 @@ const routes: Routes = [
       title: 'Creditos'
     }
 
+  },
+  {
+    path: 'historial/:creditId',
+    component: ViewCreditComponent,
+    data: {
+      title: 'Ver Credito'
+    }
   },
    {
       path : 'historial',

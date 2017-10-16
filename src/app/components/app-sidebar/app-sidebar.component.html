@@ -6,7 +6,7 @@
             </li>
             <li class="divider"></li>
             <li class="nav-title">
-                UI Elements
+                Acciones
             </li>
             <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
                 <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-people"></i> Cliente</a>
@@ -33,27 +33,6 @@
 
             <li class="nav-item" [hidden]="true">
                 <a class="nav-link" routerLinkActive="active" [routerLink]="['/charts']"><i class="icon-pie-chart"></i> Charts</a>
-            </li>
-            <li class="divider"></li>
-            <li class="nav-title">
-                Extras
-            </li>
-            <li class="nav-item nav-dropdown" appNavDropdown>
-                <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i> Pages</a>
-                <ul class="nav-dropdown-items">
-                    <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/pages/login']"><i class="icon-star"></i> Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/pages/register']"><i class="icon-star"></i> Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/pages/404']"><i class="icon-star"></i> Error 404</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" [routerLink]="['/pages/500']"><i class="icon-star"></i> Error 500</a>
-                    </li>
-                </ul>
             </li>
         </ul>
     </nav>

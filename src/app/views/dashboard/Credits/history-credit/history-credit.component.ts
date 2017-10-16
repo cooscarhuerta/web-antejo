@@ -8,7 +8,7 @@ import { SweetAlertService } from 'ng2-sweetalert2';
   templateUrl: './history-credit.component.html'
 })
 export class HistoryCreditComponent implements OnInit {
-  creditsArray = [];
+  creditsArray = [1,2,3];
   credits = {};
   dataFinishedLoading = false;
   constructor(private http: HttpClient, private sweetAlert: SweetAlertService) {
