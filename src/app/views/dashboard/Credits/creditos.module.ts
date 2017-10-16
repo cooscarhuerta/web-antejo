@@ -21,4 +21,4 @@ import { SectionCreditsComponent } from './section-credits/section-credits.compo
   ],
   declarations: [ ViewAppComponent, HistoryCreditComponent, SectionCreditsComponent ]
 })
-export class AppModule { }
+export class CreditsModule { }

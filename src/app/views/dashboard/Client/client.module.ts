@@ -43,4 +43,4 @@ import { SharedHolderSectionComponent } from './info-client-moral/shared-holder-
      SharedHolderMComponent, BanksPSectionComponent, BanksMSectionComponent,
      ManagersSectionComponent, SharedHolderSectionComponent]
 })
-export class AppModule { }
+export class ClientsModule { }

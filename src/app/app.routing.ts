@@ -23,15 +23,15 @@ export const routes: Routes = [
       },
       {
         path: 'cliente',
-        loadChildren: './views/dashboard/Client/client.module#AppModule'
+        loadChildren: './views/dashboard/Client/client.module#ClientsModule'
       },
       {
         path: 'creditos',
-        loadChildren: './views/dashboard/Credits/creditos.module#AppModule'
+        loadChildren: './views/dashboard/Credits/creditos.module#CreditsModule'
       },
       {
         path: 'solicitudes',
-        loadChildren: './views/dashboard/Solicitudes/solicitudes.module#AppModule'
+        loadChildren: './views/dashboard/Solicitudes/solicitudes.module#ApplicationModule'
       },
       {
         path: 'charts',
