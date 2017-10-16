@@ -11,3 +11,33 @@
 </tabset>
 
 
+<!-- 
+    <div class="form-group">
+            <div class="card" *ngFor="let file of type;index as i" #group>
+                <div class="card-header" role="tab" id="heading{{i}}">
+                    <h5 class="mb-0">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseE{{i}}" aria-expanded="true" aria-controls="collapse">
+                       Nombre del archivo: {{type[i].name}}
+
+
+                      </a>
+                    </h5>
+                </div>
+
+                <div id="collapseE{{i}}" class="collapse" role="tabpanel" aria-labelledby="heading">
+                    <div>
+                        <a class="btn btn-default" href="{{this.urlDownload + file.path}}" target="_blank">
+                            <i class="material-icons ">Descargar archivo</i>
+                        </a>
+                        <button class="btn btn-default" (click)="deleFile(file)" type="submit">
+                      <i class="material-icons ">Eliminar archivo</i>
+                  </button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+-->

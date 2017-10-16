@@ -5,14 +5,14 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 
-import { AppModule } from './Solicitudes/solicitudes.module';
+import { ApplicationModule } from './Solicitudes/solicitudes.module';
 
 @NgModule({
   imports: [
     DashboardRoutingModule,
     ChartsModule,
     BsDropdownModule,
-    AppModule,
+    ApplicationModule,
     CommonModule
   ],
   declarations: [DashboardComponent],

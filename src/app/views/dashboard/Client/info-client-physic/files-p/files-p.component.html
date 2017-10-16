@@ -1,24 +1,11 @@
 <tabset>
     <tab title="Documentacion Legal">
-        <span *tabHeading>Documentacion Legal</span>
-        <div>
-            <app-file-dl></app-file-dl>
-        </div>
+        <app-addfile [fileDescriptor]="'Documentacion Legal'" (fileEmitter)="getFile($event,'DocumentacionLegal')"></app-addfile>
     </tab>
-
-    <tab title="RFC">
-        <span *tabHeading>RFC</span>
-        <div>
-            <app-file-rfc></app-file-rfc>
-        </div>
+    <tab title="Acta Asamblea">
+        <app-addfile [fileDescriptor]="'Acta Asamblea'" (fileEmitter)="getFile($event,'Asamblea')"></app-addfile> 
     </tab>
-
-    <tab title="Acta de Nacimiento">
-        <span *tabHeading>Acta de Nacimiento</span>
-        <div>
-            <app-file-an></app-file-an>
-        </div>
+    <tab title="Extras">
+        <app-addfile [fileDescriptor]="'Extras'" (fileEmitter)="getFile($event,'Extras')"></app-addfile>
     </tab>
-
-
 </tabset>

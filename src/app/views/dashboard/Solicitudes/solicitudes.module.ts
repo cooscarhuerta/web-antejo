@@ -47,4 +47,4 @@ import { AddFileComponent } from './shared/addfile/addfile.component';
                    SectionSolicitudesComponent, FilesPComponent, FilesMComponent,
                     RegistrySolPComponent, RegistrySolMComponent, AddFileComponent]
 })
-export class AppModule { }
+export class ApplicationModule { }

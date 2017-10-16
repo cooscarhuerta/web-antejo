@@ -7,15 +7,15 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-files-m',
   templateUrl: './files-m.component.html',
+  providers: [WindowRefService,SweetAlertService],
   styleUrls: ['./files-m.component.scss']
 })
 export class FilesMComponent implements OnInit {
   apiUrl = 'http://localhost:8081';
   submitted = false;
+  idClient;
   @Input()
   inputFileData: File[];
-  @Input()
-  inputAppId;
   @Output()
   fileDataRefresher: EventEmitter<File>;
   model: File;
@@ -26,7 +26,7 @@ export class FilesMComponent implements OnInit {
     this.fileDataRefresher = new EventEmitter<File>();
   }
   ngOnInit() {
-    console.log(this.inputAppId);
+    this.idClient = localStorage.getItem('idClient');
   }
 
   openFile(file) {
@@ -39,11 +39,11 @@ export class FilesMComponent implements OnInit {
     const formData = new FormData();
     console.log(type);
     console.log(file);
-    console.log(this.inputAppId)
+    console.log(this.idClient);
     formData.append('file', file);
     formData.append('type', type);
-    formData.append('idClient', localStorage.getItem('idClient'));
-    this.http.post('/Clients/Solicitudes/add/FilesApplication', formData, {
+    formData.append('idclient', this.idClient);
+    this.http.post('/Clients/Clientes/add/FilesClient', formData, {
       headers: new HttpHeaders().set('Content-type', 'multipart/form-data')
     }).subscribe(response => {
       this.dataFinishedLoading = true;
