@@ -8,6 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 
 export class ClientComponent implements OnInit {
+  public dataFinishedLoading: boolean;
   public isMoral: boolean;
   @Output() public idClient;
   public clientType;
@@ -15,30 +16,31 @@ export class ClientComponent implements OnInit {
   constructor(private http: HttpClient) {
 
   }
-  refreshId(event){
-    console.log("Raising output in client component");
+  refreshId(event) {
+    console.log('Raising output in client component');
     this.idClient = event;
   }
   evento_cliente(isMoral) {
-    this.clientType = isMoral? "Moral" : "Fisica";
+    this.clientType = isMoral ? 'Moral' : 'Fisica';
   }
   ngOnInit() {
+    this.dataFinishedLoading = true;
     this.client = null;
     this.clientType = null;
     this.idClient = localStorage.getItem('idClient');
-    if(this.idClient){
-      this.http.get('/Clients/Clientes/show/'+localStorage.getItem('idClient')).subscribe(res=>{
-        if(res['error']===false){
+    if (this.idClient) {
+      this.dataFinishedLoading = false;
+      this.http.get('/Clients/Clientes/show/' + localStorage.getItem('idClient')).subscribe(res => {
+        if (res['error'] === false) {
           this.client = res['client'];
-          if(this.client.businessname === null){
-            this.clientType = "Fisica";
-          }else{
-            this.clientType = "Moral";
+          if (this.client.businessname === null) {
+            this.clientType = 'Fisica';
+          } else {
+            this.clientType = 'Moral';
           }
-          
+          this.dataFinishedLoading = true;
         }
       });
     }
-    
   }
 }
