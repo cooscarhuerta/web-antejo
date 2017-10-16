@@ -1,3 +1,4 @@
+import { PostRegistryP } from './../../services.client/service.registryP';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SweetAlertService } from 'ng2-sweetalert2';
 import { WindowRefService } from './../../../Solicitudes/shared/windowref/shared.service';
@@ -14,25 +15,31 @@ export class FilesPComponent implements OnInit {
   apiUrl = 'http://localhost:8081';
   submitted = false;
   idClient;
+  docArray = [];
+  rfcArray = [];
+  actaArray = [];
   @Input()
-  inputFileData: File[];
+  inputFileData: any[];
   @Output()
   fileDataRefresher: EventEmitter<File>;
   model: File;
   nativeWindow: Window;
   public dataFinishedLoading = true;
-  constructor(private http: HttpClient, private windowRef: WindowRefService, private sweetAlert: SweetAlertService) {
+  constructor(private showFiles: PostRegistryP, private http: HttpClient,
+    private windowRef: WindowRefService, private sweetAlert: SweetAlertService) {
     this.nativeWindow = windowRef.getNativeWindow();
     this.fileDataRefresher = new EventEmitter<File>();
   }
   ngOnInit() {
     this.idClient = localStorage.getItem('idClient');
+    this.listaArchivos();
   }
 
   openFile(file) {
     console.log(file);
     const newWindow = this.nativeWindow.open(this.apiUrl + '/storage/' + file.path);
   }
+
   getFile(file, type) {
     this.dataFinishedLoading = false;
     this.submitted = true;
@@ -54,6 +61,17 @@ export class FilesPComponent implements OnInit {
         this.fileDataRefresher.emit(response['file']);
       }
     })
+  }
 
+  listaArchivos() {
+    this.docArray = this.inputFileData.filter(item => {
+      return item.type === 'Documentacion Legal'
+    });
+    this.rfcArray = this.inputFileData.filter(item => {
+      return item.type === 'RFC'
+    });
+    this.actaArray = this.inputFileData.filter(item => {
+      return item.type === 'Acta Nacimiento'
+    });
   }
 }

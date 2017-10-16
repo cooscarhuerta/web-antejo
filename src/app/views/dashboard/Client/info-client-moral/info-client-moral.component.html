@@ -17,8 +17,8 @@
 
         <tab [disabled]="idClient==null" title="Archivos">
             <span *tabHeading>Archivos</span>
-            <div>
-                <app-files-m></app-files-m>
+            <div *ngIf="this.dataLoading">
+                <app-files-m [inputFileData]="this.fullClient.files"></app-files-m>
             </div>
         </tab>
 
