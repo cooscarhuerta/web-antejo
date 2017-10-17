@@ -13,10 +13,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManagersMComponent implements OnInit {
   submitted = false;
-
   model: ManagerM = new ManagerM();
   filesModel: FilesM = new FilesM();
   private fileId = null;
+  files: FileList;
+  getFiles(event) {
+      this.files = event.target.files;
+  }
 
   constructor(private sweetAlert: SweetAlertService, private postRegistry: PostRegistryM, private router: Router,
      private http: HttpClient) { }
@@ -42,16 +45,15 @@ export class ManagersMComponent implements OnInit {
   onSubmit() {
     this.filesModel.type = 'Identificacion';
     this.filesModel.idclient = localStorage.getItem('idClient');
-    if(this.model.idclient !== null){
+    if (this.model.idclient !== null) {
       this.upload();
       this.submitted = true;
     }
   }
 
-
   registryFile(formData) {
     try {
-      this.postRegistry.registryFile(formData,data => {
+      this.postRegistry.registryFile(formData, data => {
         if (data) {
           this.sweetAlert.swal('Aviso', 'Archivo agregado exitosamente.', 'success');
           this.fileId = data['file']['id'];
@@ -64,16 +66,12 @@ export class ManagersMComponent implements OnInit {
       console.log(Exp);
     }
   }
-  files : FileList; 
-  getFiles(event){ 
-      this.files = event.target.files; 
-  } 
 
   upload() {
     const formData = new FormData();
-    formData.append("file", this.files[0]);
-    formData.append("type",this.filesModel.type);
-    formData.append("idclient",this.filesModel.idclient);
+    formData.append('file', this.files[0]);
+    formData.append('type', this.filesModel.type);
+    formData.append('idclient', this.filesModel.idclient);
     return this.registryFile(formData);
   }
 }

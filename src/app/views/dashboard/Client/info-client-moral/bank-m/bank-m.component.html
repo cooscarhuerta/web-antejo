@@ -1,6 +1,15 @@
-<tabset>
-    <tab title='Registrar cuenta'>
-        <span *tabHeading>Registrar una cuenta</span>
+<hr>
+<div class="card-header" role="tab" id="headingR">
+    <h5 class="mb-0">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseR" aria-expanded="true" aria-controls="collapse">
+          Registrar una cuenta bancaria
+        </a>
+    </h5>
+</div>
+<hr>
+<div id="collapseR" class="collapse" role="tabpanel" aria-labelledby="heading">
+
+    <div class="card-block">
 
         <form (ngSubmit)="onSubmit()" #bankForm="ngForm">
             <div class="row col-sm-12">
@@ -34,10 +43,9 @@
                 </div>
             </div>
         </form>
+    </div>
+</div>
 
-    </tab>
-    <tab title='Lista de cuentas'>
-        <span *tabHeading>Cuentas</span>
-        <app-banks-m-section></app-banks-m-section>
-    </tab>
-</tabset>
+<h5 class="text-center">Listado de cuentas bancarias.</h5>
+<hr>
+<app-banks-m-section></app-banks-m-section>

@@ -5,11 +5,8 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class PostRegistryM {
-  asambleaArray = [];
-  constArray = [];
-  extraArray = [];
-  model: BankM = new BankM();
   idclient = localStorage.getItem('idClient');
+  fileArray = [];
   name = [];
   managersArray = [];
   sharedArray = [];
@@ -66,6 +63,7 @@ export class PostRegistryM {
         }
       });
   }
+
   registryInfoM(model, callback) {
     model.idclient = this.idclient;
     this.http.post('/Clients/Clientes/add/Managers', model,
@@ -81,6 +79,13 @@ export class PostRegistryM {
         }
 
 
+      });
+  }
+
+  showClient(callback) {
+    this.http.get('/Clients/Clientes/show/' + localStorage.getItem('idClient'))
+      .subscribe(res => {
+        callback(res);
       });
   }
 
@@ -100,8 +105,18 @@ export class PostRegistryM {
         }
       });
   }
+  updateManagers(managersArray, callback) {
+    this.http.put('/Clients/Clientes/update/' + managersArray.id + '/Managers', managersArray)
+      .subscribe(res => {
+        if (res['error'] === false) {
+          callback(false);
+        } else {
+          callback(true);
+        }
+      });
+  }
 
-  deleteManager(managerArray, callback) {
+  deleteManagers(managerArray, callback) {
     this.http.delete('/Clients/Clientes/delete/' + managerArray.id + '/Managers', managerArray)
       .subscribe(res => {
         console.log(res)
@@ -113,7 +128,6 @@ export class PostRegistryM {
         console.log(res)
       });
   }
-
 
   showSharedHolder(callback) {
     this.name = [];
@@ -132,7 +146,6 @@ export class PostRegistryM {
       });
   }
 
-
   updateSharedHolder(sharedArray, callback) {
     this.http.put('/Clients/Clientes/update/' + sharedArray.id + '/AccionistasClientes', sharedArray)
       .subscribe(res => {
@@ -143,7 +156,6 @@ export class PostRegistryM {
         }
       });
   }
-
 
   deleteSharedHolder(sharedArray, callback) {
     this.http.delete('/Clients/Clientes/delete/' + sharedArray.id + '/AccionistasClientes', sharedArray)
@@ -188,20 +200,17 @@ export class PostRegistryM {
       });
   }
 
-
   showFile(callback) {
     this.http.get('/Clients/Clientes/show/' + localStorage.getItem('idClient'))
       .subscribe(res => {
+        callback(res);
+      });
+  }
+
+  deleteFile(item, callback) {
+    this.http.delete('/Clients/Clientes/delete/' + item.id + '/FilesClient')
+      .subscribe(res => {
         if (res['error'] === false) {
-          this.constArray = res['files'].filter(item => {
-            return item.type === 'Constitutiva'
-          });
-          this.asambleaArray = res['files'].filter(item => {
-            return item.type === 'Asamblea'
-          });
-          this.extraArray = res['files'].filter(item => {
-            return item.type === 'Extra'
-          });
           callback(false);
         } else {
           callback(true);
@@ -209,16 +218,5 @@ export class PostRegistryM {
       });
   }
 
-
-  deleteFile(item, callback) {
-    this.http.delete('/Clients/Clientes/delete/' + item.id + '/FilesClient')
-    .subscribe(res => {
-      if (res['error'] === false) {
-        callback(false);
-      } else {
-        callback(true);
-      }
-    });
-  }
-
 }
+

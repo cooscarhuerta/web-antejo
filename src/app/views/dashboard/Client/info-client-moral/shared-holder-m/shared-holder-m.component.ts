@@ -12,7 +12,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SharedHolderMComponent implements OnInit {
   submitted = false;
-
   model: SharedholderM = new SharedholderM();
 
   constructor(private sweetAlert: SweetAlertService, private postRegistry: PostRegistryM, private router: Router,
@@ -39,7 +38,6 @@ export class SharedHolderMComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this.registryInfo(this.model);
-    console.log(this.model);
   }
 }
 

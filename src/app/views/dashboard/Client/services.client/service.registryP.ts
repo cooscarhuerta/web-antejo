@@ -8,10 +8,7 @@ import { SweetAlertService } from 'ng2-sweetalert2';
 @Injectable()
 export class PostRegistryP {
 
-  docArray = [];
-  rfcArray = [];
-  actaArray = [];
-  type: string[] = [];
+  fileArray = [];
   dataFinishedLoading = false;
 
   constructor(private router: Router, private http: HttpClient) { }
@@ -24,7 +21,6 @@ export class PostRegistryP {
         {
           headers: new HttpHeaders().set('Content-type', 'application/json')
         }).subscribe(data => {
-          console.log('doing stuff');
           if (data['error'] === false) {
             localStorage.setItem('idClient', data['client']['id']);
             localStorage.setItem('clientType', 'physical');
@@ -49,7 +45,13 @@ export class PostRegistryP {
 
         });
     }
+  }
 
+  showClient(callback) {
+    this.http.get('/Clients/Clientes/show/' + localStorage.getItem('idClient'))
+      .subscribe(res => {
+        callback(res);
+      });
   }
 
   registryBank(model, callback) {
@@ -67,7 +69,6 @@ export class PostRegistryP {
   }
 
   registryFile(model, callback) {
-
     this.http.post('/Clients/Clientes/add/FilesClient', model,
       {
         headers: new HttpHeaders().set('Content-type', 'multipart/form-data')
@@ -80,41 +81,21 @@ export class PostRegistryP {
       });
   }
 
-
   showFile(callback) {
     this.http.get('/Clients/Clientes/show/' + localStorage.getItem('idClient'))
       .subscribe(res => {
+        callback(res);
+      });
+  }
+
+  deleteFile(item, callback) {
+    this.http.delete('/Clients/Clientes/delete/' + item.id + '/FilesClient')
+      .subscribe(res => {
         if (res['error'] === false) {
-          this.docArray = res['files'].filter(item => {
-            return item.type === 'Documentacion Legal'
-          });
-          this.rfcArray = res['files'].filter(item => {
-            return item.type === 'RFC'
-          });
-          this.actaArray = res['files'].filter(item => {
-            return item.type === 'Acta Nacimiento'
-          });
           callback(false);
         } else {
           callback(true);
         }
       });
   }
-
-  deleteFile(item, callback) {
-    this.http.delete('/Clients/Clientes/delete/' + item.id + '/FilesClient')
-    .subscribe(res => {
-      if (res['error'] === false) {
-        callback(false);
-      } else {
-        callback(true);
-      }
-    });
-
-  }
-
-
-
-
-
 }

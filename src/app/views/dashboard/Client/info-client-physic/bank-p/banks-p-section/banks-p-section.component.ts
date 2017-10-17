@@ -19,7 +19,7 @@ export class BanksPSectionComponent implements OnInit {
   dataFinishedLoading = false;
   model: BankP = new BankP();
   modelBancos: BanksP[] = [];
-  name: string[] = [];
+  copyArray = [];
 
   constructor(private serviceB: ServiceBank, private route: Router, private http: HttpClient, private sweetAlert: SweetAlertService) {
   }
@@ -27,15 +27,16 @@ export class BanksPSectionComponent implements OnInit {
   ngOnInit() {
     this.showBancosList();
     const idClient = localStorage.getItem('idClient');
-    console.log(idClient);
     if (idClient) {
       this.serviceB.showBancos(callback => {
         if (!callback) {
           this.bankArray = this.serviceB.bankArray
-          this.name = this.serviceB.name;
-          this.dataFinishedLoading = this.serviceB.dataFinishedLoading;
+          this.serviceB.bankArray.forEach(item => {
+            this.copyArray.push({...item})
+          })
+            this.dataFinishedLoading = this.serviceB.dataFinishedLoading;
         } else {
-          this.sweetAlert.swal('Aviso', 'No tiene bancos registrados.', 'warning');
+          this.sweetAlert.swal('Aviso', 'No existen cuentas de bancos registrados.', 'warning');
         }
       });
     }
@@ -45,33 +46,29 @@ export class BanksPSectionComponent implements OnInit {
     this.model.idbank = b
   }
 
-
   onDelete(bankArray) {
-    console.log('controller', bankArray);
     this.serviceB.deleteBank(bankArray, callback => {
       if (!callback) {
-        this.sweetAlert.swal('Aviso', 'Informacion de banco eliminada.', 'success');
+        this.sweetAlert.swal('Aviso', 'Informacion de cuenta eliminada.', 'success');
       } else {
-        this.sweetAlert.swal('Aviso', 'No se elimino el banco.', 'warning');
+        this.sweetAlert.swal('Aviso', 'No se elimino cuenta de banco.', 'warning');
       }
     });
   }
-
 
   onUpdate(bankArray) {
     try {
       this.serviceB.updateBank(bankArray, callback => {
         if (!callback) {
-          this.sweetAlert.swal('Aviso', 'Informacion de bancos actualizada.', 'success');
+          this.sweetAlert.swal('Aviso', 'Informacion de cuenta actualizada.', 'success');
         } else {
-          this.sweetAlert.swal('Aviso', 'No se pudo actualizar.', 'warning');
+          this.sweetAlert.swal('Aviso', 'No se pudo actualizar cuenta de banco.', 'warning');
         }
       });
     } catch (Exp) {
       console.log(Exp)
     }
   }
-
 
   showBancosList() {
     this.http.get('/Clients/Clientes/all/Bancos')

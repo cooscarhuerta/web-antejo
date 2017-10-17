@@ -1,11 +1,14 @@
 <tabset>
     <tab title="Documentacion Legal">
-        <app-addfile [fileDescriptor]="'Documentacion Legal'" (fileEmitter)="getFile($event,'DocumentacionLegal')"></app-addfile>
+        <app-addfile [fileDescriptor]="'Documentacion Legal'" [fileArray]='this.docArray' (fileEmitter)="getFile($event,'Documentacion Legal')"></app-addfile>
+        <hr>
     </tab>
     <tab title="Acta Asamblea">
-        <app-addfile [fileDescriptor]="'Acta Asamblea'" (fileEmitter)="getFile($event,'Asamblea')"></app-addfile> 
+        <app-addfile [fileDescriptor]="'RFC'" [fileArray]='this.rfcArray' (fileEmitter)="getFile($event,'RFC')"></app-addfile>
+        <hr>
     </tab>
     <tab title="Extras">
-        <app-addfile [fileDescriptor]="'Extras'" (fileEmitter)="getFile($event,'Extras')"></app-addfile>
+        <app-addfile [fileDescriptor]="'Acta de Nacimiento'" [fileArray]='this.actaArray' (fileEmitter)="getFile($event,'Acta de Nacimiento')"></app-addfile>
+        <hr>
     </tab>
 </tabset>

@@ -18,7 +18,7 @@ export class ManagersSectionComponent implements OnInit {
   managersArray = [];
   dataFinishedLoading = false;
   model: ManagerM = new ManagerM();
-  name: string[] = [];
+  copyArray = [];
 
   constructor(private postRegistry: PostRegistryM, private route: Router, private http: HttpClient,
     private sweetAlert: SweetAlertService) {
@@ -28,18 +28,44 @@ export class ManagersSectionComponent implements OnInit {
     try {
       this.postRegistry.showManager(callback => {
         if (!callback) {
-          console.log(this.managersArray);
           this.managersArray = this.postRegistry.managersArray
-          this.name = this.postRegistry.name;
+          this.postRegistry.managersArray.forEach(item => {
+          this.copyArray.push({...item})
+          })
           this.dataFinishedLoading = this.postRegistry.dataFinishedLoading;
         } else {
-          this.sweetAlert.swal('Aviso', 'No tiene representantes registrados.', 'warning');
+          this.sweetAlert.swal('Aviso', 'No exiten accionistas registrados.', 'warning');
         }
       });
     } catch (Exp) {
       console.log(Exp);
     }
   }
+
+  onUpdate(managersArray) {
+    try {
+      this.postRegistry.updateManagers(managersArray, callback => {
+        if (!callback) {
+          this.sweetAlert.swal('Aviso', 'Informacion de representante actualizada.', 'success');
+        } else {
+          this.sweetAlert.swal('Aviso', 'No se pudo actualizar informacion de representante.', 'warning');
+        }
+      });
+    } catch (Exp) {
+      console.log(Exp)
+    }
+  }
+
+  onDelete(managersArray) {
+    this.postRegistry.deleteManagers(managersArray, callback => {
+      if (!callback) {
+        this.sweetAlert.swal('Aviso', 'Informacion de representante eliminada.', 'success');
+      } else {
+        this.sweetAlert.swal('Aviso', 'No se elimino representante.', 'warning');
+      }
+    });
+  }
+
 
 
   }

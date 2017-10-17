@@ -1,6 +1,15 @@
-<tabset>
-    <tab totle="Registrar un Representante">
-        <span *tabHeading>Regsitrar un Representante</span>
+<hr>
+<div class="card-header" role="tab" id="headingM">
+    <h5 class="mb-0">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseM" aria-expanded="true" aria-controls="collapse">
+          Registrar Representante
+        </a>
+    </h5>
+</div>
+<hr>
+<div id="collapseM" class="collapse" role="tabpanel" aria-labelledby="heading">
+
+    <div class="card-block">
 
         <form (ngSubmit)="onSubmit()" #managersForm="ngForm">
             <div class="row col-sm-12">
@@ -33,9 +42,8 @@
                 </div>
             </div>
         </form>
-    </tab>
-    <tab title='Lista de Representantes'>
-        <span *tabHeading>Representantes</span>
-        <app-managers-section></app-managers-section>
-    </tab>
-</tabset>
+    </div>
+</div>
+<h5 class="text-center">Listado de Representantes.</h5>
+<hr>
+<app-managers-section></app-managers-section>
