@@ -36,7 +36,6 @@ export class FilesMComponent implements OnInit {
   }
 
   openFile(file) {
-    console.log(file);
     const newWindow = this.nativeWindow.open(this.apiUrl + '/storage/' + file.path);
   }
 
@@ -44,9 +43,6 @@ export class FilesMComponent implements OnInit {
     this.dataFinishedLoading = false;
     this.submitted = true;
     const formData = new FormData();
-    console.log(type);
-    console.log(file);
-    console.log(this.idClient);
     formData.append('file', file);
     formData.append('type', type);
     formData.append('idclient', this.idClient);
@@ -61,7 +57,6 @@ export class FilesMComponent implements OnInit {
         this.fileDataRefresher.emit(response['file']);
       }
     })
-
   }
 
   listaArchivos() {

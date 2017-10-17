@@ -21,7 +21,6 @@ export class PostRegistryP {
         {
           headers: new HttpHeaders().set('Content-type', 'application/json')
         }).subscribe(data => {
-          console.log('doing stuff');
           if (data['error'] === false) {
             localStorage.setItem('idClient', data['client']['id']);
             localStorage.setItem('clientType', 'physical');

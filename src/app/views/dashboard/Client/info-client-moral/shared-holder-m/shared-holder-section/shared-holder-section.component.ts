@@ -11,12 +11,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shared-holder-section.component.scss']
 })
 export class SharedHolderSectionComponent implements OnInit {
-
   submitted = false
   sharedArray = [];
   dataFinishedLoading = false;
   model: SharedholderM = new SharedholderM();
-  name: string[] = [];
+  copyArray = [];
 
   constructor(private postRegistry: PostRegistryM, private route: Router, private http: HttpClient,
     private sweetAlert: SweetAlertService) {
@@ -24,13 +23,15 @@ export class SharedHolderSectionComponent implements OnInit {
 
   ngOnInit() {
     try {
-      this  .postRegistry.showSharedHolder(callback => {
+      this.postRegistry.showSharedHolder(callback => {
         if (!callback) {
           this.sharedArray = this.postRegistry.sharedArray
-          this.name = this.postRegistry.name;
+          this.postRegistry.sharedArray.forEach(item => {
+            this.copyArray.push({...item})
+          })
           this.dataFinishedLoading = this.postRegistry.dataFinishedLoading;
         } else {
-          this.sweetAlert.swal('Aviso', 'No tiene accionistas registrados.', 'warning');
+          this.sweetAlert.swal('Aviso', 'No existen accioniostas registrados.', 'warning');
         }
       });
     } catch (Exp) {
@@ -42,16 +43,15 @@ export class SharedHolderSectionComponent implements OnInit {
     try {
       this.postRegistry.updateSharedHolder(sharedArray, callback => {
         if (!callback) {
-          this.sweetAlert.swal('Aviso', 'Informacion de Accionistas Actualizada.', 'success');
+          this.sweetAlert.swal('Aviso', 'Informacion de accionistas actualizada.', 'success');
         } else {
-          this.sweetAlert.swal('Aviso', 'No se pudo actualizar.', 'warning');
+          this.sweetAlert.swal('Aviso', 'No se pudo actualizar la informacion de accionista.', 'warning');
         }
       });
     } catch (Exp) {
       console.log(Exp)
     }
   }
-
 
   onDelete(sharedArray) {
     this.postRegistry.deleteSharedHolder(sharedArray, callback => {

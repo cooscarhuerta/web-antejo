@@ -1,3 +1,8 @@
+<hr>
+<div>
+    <h4>Informacion Personal</h4>
+</div>
+<hr>
 <form (ngSubmit)="onSubmit()" #clientForm="ngForm">
     <div class="row col-sm-12">
         <div class="form-group col-sm-4">
@@ -29,11 +34,11 @@
             <input class="form-control" [(ngModel)]="model.client.businesscategory" name="businesscategory" type="text" required>
         </div>
     </div>
-
-    <div class="card-header">
+    <hr>
+    <div>
         <h4>Informacion de Contacto</h4>
     </div>
-
+    <hr>
     <div class="row col-sm-12">
         <div class="form-group col-sm-8">
             <label for="address">Calle y número:</label>

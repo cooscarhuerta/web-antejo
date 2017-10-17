@@ -1,3 +1,4 @@
+import { SweetAlertService } from 'ng2-sweetalert2';
 import { PostRegistryM } from './../services.client/service.registryM';
 import { ManagersMComponent } from './managers-m/managers-m.component';
 import { SharedHolderMComponent } from './shared-holder-m/shared-holder-m.component';
@@ -35,7 +36,7 @@ export class InfoClientMoralComponent implements OnInit {
     sharedholders: []
   }
   dataLoading = false;
-  constructor(private postRegistryM: PostRegistryM) {
+  constructor(private postRegistryM: PostRegistryM, private sweetAlert: SweetAlertService) {
     this.getFullClient();
   }
 
@@ -57,10 +58,10 @@ export class InfoClientMoralComponent implements OnInit {
           this.fullClient = callback;
           this.dataLoading = true;
         } else {
-          console.log('No entro');
+          this.sweetAlert.swal('Aviso', 'Error al cargar datos.', 'error');
         }
       } else {
-        console.log('No se hizo compa')
+        this.sweetAlert.swal('Aviso', 'Error al cargar datos.', 'error');
       }
     });
   }

@@ -9,7 +9,10 @@
         <i class="material-icons">Subir Archivo</i>
     </button>
     </div>
+    <hr>
 
+    <h5 class="text-center">Listado de Archivo.</h5>
+    <hr>
     <div class="form-group">
         <div class="card" *ngFor="let file of fileArray;index as i" #group>
             <div class="card-header" role="tab" id="heading{{i}}">
@@ -36,7 +39,4 @@
         </div>
 
     </div>
-
-
-
 </div>

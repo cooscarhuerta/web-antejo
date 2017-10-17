@@ -25,11 +25,9 @@ export class AddFileComponent implements OnInit {
 
   ngOnInit() {
     this.file = null;
-    console.log('aqui', this.fileArray);
   }
 
   emitFile() {
-    console.log('hi');
    this.fileEmitter.emit(this.file);
 
   }

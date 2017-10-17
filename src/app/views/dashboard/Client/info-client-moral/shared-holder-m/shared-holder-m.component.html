@@ -1,6 +1,15 @@
-<tabset>
-    <tab totle="Registrar un Accionista">
-        <span *tabHeading>Regsitrar un Accionista</span>
+<hr>
+<div class="card-header" role="tab" id="headingSH">
+    <h5 class="mb-0">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSH" aria-expanded="true" aria-controls="collapse">
+          Registrar Accionista
+        </a>
+    </h5>
+</div>
+<hr>
+<div id="collapseSH" class="collapse" role="tabpanel" aria-labelledby="heading">
+
+    <div class="card-block">
 
         <form (ngSubmit)="onSubmit()" #sharedholderForm="ngForm">
             <div class="row col-sm-12">
@@ -33,9 +42,8 @@
             </div>
 
         </form>
-    </tab>
-    <tab title='Lista de Accionistas'>
-        <span *tabHeading>Accionistas</span>
-        <app-shared-holder-section></app-shared-holder-section>
-    </tab>
-</tabset>
+    </div>
+</div>
+<h5 class="text-center">Listado de Accionistas.</h5>
+<hr>
+<app-shared-holder-section></app-shared-holder-section>

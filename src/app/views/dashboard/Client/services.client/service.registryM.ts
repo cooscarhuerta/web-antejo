@@ -105,8 +105,18 @@ export class PostRegistryM {
         }
       });
   }
+  updateManagers(managersArray, callback) {
+    this.http.put('/Clients/Clientes/update/' + managersArray.id + '/Managers', managersArray)
+      .subscribe(res => {
+        if (res['error'] === false) {
+          callback(false);
+        } else {
+          callback(true);
+        }
+      });
+  }
 
-  deleteManager(managerArray, callback) {
+  deleteManagers(managerArray, callback) {
     this.http.delete('/Clients/Clientes/delete/' + managerArray.id + '/Managers', managerArray)
       .subscribe(res => {
         console.log(res)

@@ -14,24 +14,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BankPComponent implements OnInit {
   submitted = false;
-
   model: BankP = new BankP();
   modelBancos: BanksP[] = [];
 
   constructor(private sweetAlert: SweetAlertService, private postRegistry: PostRegistryP,
     private router: Router, private http: HttpClient) { }
 
-
   ngOnInit() {
     this.showBancos();
-
   }
 
   registryBank(model) {
     try {
       this.postRegistry.registryBank(model, callback => {
         if (!callback) {
-          this.sweetAlert.swal('Aviso', 'Informacion de banco agregada exitosamente.', 'success');
+          this.sweetAlert.swal('Aviso', 'Informacion de la cuenta de banco agregada exitosamente.', 'success');
         } else {
           this.sweetAlert.swal('Error', 'Error al validar campos', 'error');
         }
@@ -59,9 +56,6 @@ export class BankPComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this.registryBank(this.model);
-    console.log(this.model)
   }
-
-
 }
 
