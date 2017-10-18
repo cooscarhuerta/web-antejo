@@ -1,42 +1,41 @@
-<form>
-    <tabset>
-        <tab title="Informacion de Cliente">
-            <span *tabHeading>Informacion de Cliente</span>
-            <div>
-                <app-registry-m [client]="client" (idRefresher)="refreshId($event)"></app-registry-m>
-            </div>
-        </tab>
+<div>
+    <div *ngIf="dataFinishedLoading">
+        <tabset>
+            <tab title="Informacion de Cliente">
+                <span *tabHeading>Informacion de Cliente</span>
+                <div>
+                    <app-registry-m [client]="client" (idRefresher)="refreshId($event)"></app-registry-m>
+                </div>
+            </tab>
 
 
-        <tab [disabled]="idClient==null" title="Banco">
-            <span *tabHeading>Banco</span>
-            <div>
-                <app-bank-m></app-bank-m>
-            </div>
-        </tab>
+            <tab [disabled]="idClient==null" title="Banco">
+                <span *tabHeading>Banco</span>
+                <div>
+                    <app-bank [inputBanksArray]="this.fullClient.banks"></app-bank>
+                </div>
+            </tab>
 
-        <tab [disabled]="idClient==null" title="Archivos">
-            <span *tabHeading>Archivos</span>
-            <div *ngIf="this.dataLoading">
-                <app-files-m [inputFileData]="this.fullClient.files"></app-files-m>
-            </div>
-        </tab>
+            <tab [disabled]="idClient==null" title="Archivos">
+                <span *tabHeading>Archivos</span>
+                <div>
+                    <app-files-m [inputFileData]="this.fullClient.files"></app-files-m>
+                </div>
+            </tab>
 
-        <tab [disabled]="idClient==null" title="Accionistas">
-            <span *tabHeading>Accionistas</span>
-            <div>
-                <app-shared-holder-m></app-shared-holder-m>
-            </div>
-        </tab>
+            <tab [disabled]="idClient==null" title="Accionistas">
+                <span *tabHeading>Accionistas</span>
+                <div>
+                    <app-shared-holder-m [inputSharedArray]="this.fullClient.shareholders"></app-shared-holder-m>
+                </div>
+            </tab>
 
-        <tab [disabled]="idClient==null" title="Representantes">
-            <span *tabHeading>Representantes</span>
-            <div>
-                <app-managers-m></app-managers-m>
-            </div>
-        </tab>
-
-
-
-    </tabset>
-</form>
+            <tab [disabled]="idClient==null" title="Representantes">
+                <span *tabHeading>Representantes</span>
+                <div>
+                    <app-managers-m [inputManagerArray]="this.fullClient.managers"></app-managers-m>
+                </div>
+            </tab>
+        </tabset>
+    </div>
+</div>

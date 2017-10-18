@@ -1,7 +1,7 @@
 import { ManagerM } from './../managers-m/m-manager-m';
 import { SharedholderM } from './../shared-holder-m/m-shared-holder-m';
 import { FilesM } from './../files-m/m-files-m';
-import { BankM } from './../bank-m/m-bank-m';
+import { Bank } from '../../bank/bank';
 
 export class RegistryM {
  constructor(
@@ -21,7 +21,7 @@ export class RegistryM {
       state: '',
       phone: null,
     },
-    public banks: [BankM] = [new BankM],
+    public banks: [Bank] = [new Bank],
     public files: [FilesM] = [new FilesM],
     public sharedholder: [SharedholderM] = [new SharedholderM],
     public manager: [ManagerM] = [new ManagerM]

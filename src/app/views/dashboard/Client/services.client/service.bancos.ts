@@ -1,7 +1,4 @@
-import { BankM } from './../info-client-moral/bank-m/m-bank-m';
-import { BanksM } from './../info-client-moral/bank-m/BanksM';
 import { SweetAlertService } from 'ng2-sweetalert2';
-
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
@@ -39,7 +36,6 @@ export class ServiceBank {
   }
 
   deleteBank(bank, callback) {
-    console.log('Servicio', bank);
     this.http.delete('/Clients/Clientes/delete/' + bank.id + '/BancosClientes', bank)
       .subscribe(res => {
         callback(res)
@@ -47,6 +43,7 @@ export class ServiceBank {
   }
 
   getBanks(callback) {
+
     this.http.get('/Clients/Clientes/all/Bancos')
       .subscribe(res => {
         callback(res['banks']);

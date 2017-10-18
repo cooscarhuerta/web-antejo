@@ -11,14 +11,13 @@
             <tab [disabled]="idClient==null" title="Banco">
                 <span *tabHeading>Banco</span>
                 <div>
-
-                    <app-bank-p [inputBanksArray]="this.fullClient.banks"></app-bank-p>
+                    <app-bank [inputBanksArray]="this.fullClient.banks"></app-bank>
                 </div>
             </tab>
 
             <tab [disabled]="idClient==null" title="Archivos">
                 <span *tabHeading>Archivos</span>
-                <div *ngIf="this.dataLoading">
+                <div>
                     <app-files-p [inputFileData]="this.fullClient.files"></app-files-p>
                 </div>
             </tab>

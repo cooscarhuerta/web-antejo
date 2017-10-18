@@ -14,8 +14,8 @@
         <form (ngSubmit)="onSubmit()" #bankForm="ngForm">
             <div class="row col-sm-12">
                 <div class="form-group col-sm-6">
-                    <label> Banco:</label> 
-                        <select #selectElem class="form-control" (change)="change(selectElem.value)" name="bank">
+                    <label> Banco:</label>
+                    <select #selectElem class="form-control" (change)="change(selectElem.value)" name="bank">
                             <option value="" [disabled]="true">Seleccione un banco</option>
                             <option *ngFor='let bank of availableBanks' [value]='bank.id'>
                                 {{bank.name}}
@@ -50,8 +50,6 @@
 
 <h5 class="text-center">Listado de cuentas bancarias.</h5>
 <hr>
-<div *ngIf = "dataFinishedLoading">
-
-    <app-banks-p-section [banksArray]="banksArray" [availableBanks]="availableBanks"></app-banks-p-section>
-
+<div *ngIf="dataFinishedLoading">
+    <app-bank-section [banksArray]="banksArray" [availableBanks]="availableBanks"></app-bank-section>
 </div>

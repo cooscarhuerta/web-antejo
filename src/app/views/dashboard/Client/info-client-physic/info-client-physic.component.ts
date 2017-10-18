@@ -1,8 +1,4 @@
 import { PostRegistryP } from './../services.client/service.registryP';
-
-import { RegistryPComponent } from './registry-p/registry-p.component';
-import { FilesPComponent } from './files-p/files-p.component';
-import { BankPComponent } from './bank-p/bank-p.component';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 interface FullClientModel {

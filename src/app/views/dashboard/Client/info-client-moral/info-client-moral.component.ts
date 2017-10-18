@@ -1,19 +1,13 @@
-import { SweetAlertService } from 'ng2-sweetalert2';
 import { PostRegistryM } from './../services.client/service.registryM';
-import { ManagersMComponent } from './managers-m/managers-m.component';
-import { SharedHolderMComponent } from './shared-holder-m/shared-holder-m.component';
-import { RegistryMComponent } from './registry-m/registry-m.component';
-import { FilesMComponent } from './files-m/files-m.component';
-import { BankMComponent } from './bank-m/bank-m.component';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 
-interface fullClientModel {
+interface FullClientModel {
   banks: any[],
   client: any,
   files: any[],
   managers: any[],
-  sharedholders: any[]
+  shareholders: any[]
 }
 
 @Component({
@@ -24,45 +18,44 @@ interface fullClientModel {
 
 export class InfoClientMoralComponent implements OnInit {
   public idClient = null;
-  public clientType = null;
   @Input() client: any
   @Output()
   idRefresher: EventEmitter<string> = new EventEmitter<string>();
-  fullClient: fullClientModel = {
+  fullClient: FullClientModel = {
     banks: [],
     client: this.client,
     files: [],
     managers: [],
-    sharedholders: []
+    shareholders: []
   }
-  dataLoading = false;
-  constructor(private postRegistryM: PostRegistryM, private sweetAlert: SweetAlertService) {
-    this.getFullClient();
-  }
-
-  public refreshId(event) {
-    this.idClient = event;
-    this.idRefresher.emit(event);
+  dataFinishedLoading;
+  constructor(private postRegistryM: PostRegistryM) {
   }
 
-  ngOnInit() {
-    this.getFullClient();
-    this.idClient = localStorage.getItem('idClient');
-    this.clientType = localStorage.getItem('clientType');
-  }
+ public refreshId(event) {
+   this.idClient = event;
+   this.idRefresher.emit(event);
 
-  getFullClient() {
-    this.postRegistryM.showClient(callback => {
-      if (callback) {
-        if (!callback['error']) {
-          this.fullClient = callback;
-          this.dataLoading = true;
-        } else {
-          this.sweetAlert.swal('Aviso', 'Error al cargar datos.', 'error');
-        }
-      } else {
-        this.sweetAlert.swal('Aviso', 'Error al cargar datos.', 'error');
-      }
-    });
-  }
+ }
+ ngOnInit() {
+   this.dataFinishedLoading = false;
+   this.getFullClient();
+   this.idClient = localStorage.getItem('idClient');
+ }
+
+ getFullClient() {
+   this.postRegistryM.showClient(callback => {
+     if (callback) {
+       if (!callback['error']) {
+         this.fullClient = callback;
+         console.log('Cliente', this.fullClient);
+       } else {
+         console.log('No entro');
+       }
+       this.dataFinishedLoading = true;
+     } else {
+       console.log('No se hizo compa')
+     }
+   });
+ }
 }

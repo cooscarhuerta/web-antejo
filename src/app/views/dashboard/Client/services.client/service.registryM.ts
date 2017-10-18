@@ -1,4 +1,3 @@
-import { BankM } from './../info-client-moral/bank-m/m-bank-m';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
@@ -50,20 +49,23 @@ export class PostRegistryM {
 
   }
 
+  showClient(callback) {
+    this.http.get('/Clients/Clientes/show/' + localStorage.getItem('idClient'))
+      .subscribe(res => {
+        callback(res);
+      });
+  }
+
   registryBank(model, callback) {
-    model.idclient = this.idclient;
+    model.idclient = localStorage.getItem('idClient');
     this.http.post('/Clients/Clientes/add/BancosClientes', model,
       {
         headers: new HttpHeaders().set('Content-type', 'application/json')
       }).subscribe(data => {
-        if (data['error'] === false) {
-          callback(false);
-        } else {
-          callback(true);
-        }
-      });
+        callback(data);
+      }
+      );
   }
-
   registryInfoM(model, callback) {
     model.idclient = this.idclient;
     this.http.post('/Clients/Clientes/add/Managers', model,
@@ -79,13 +81,6 @@ export class PostRegistryM {
         }
 
 
-      });
-  }
-
-  showClient(callback) {
-    this.http.get('/Clients/Clientes/show/' + localStorage.getItem('idClient'))
-      .subscribe(res => {
-        callback(res);
       });
   }
 
@@ -129,22 +124,14 @@ export class PostRegistryM {
       });
   }
 
-  showSharedHolder(callback) {
-    this.name = [];
+  getSharedHolder(callback) {
     this.http.get('/Clients/Clientes/show/Client/' + localStorage.getItem('idClient') + '/AccionistasClientes')
       .subscribe(res => {
-        if (res['error'] === false) {
-          this.sharedArray = res['clientshareholder'];
-          this.sharedArray.forEach(item => {
-            this.name.push(item['name']);
-            this.dataFinishedLoading = true;
-            callback(false);
-          });
-        } else {
-          callback(true);
-        }
+        console.log(res)
+        callback(res['clientshareholder']);
       });
   }
+
 
   updateSharedHolder(sharedArray, callback) {
     this.http.put('/Clients/Clientes/update/' + sharedArray.id + '/AccionistasClientes', sharedArray)
@@ -176,13 +163,7 @@ export class PostRegistryM {
       {
         headers: new HttpHeaders().set('Content-type', 'application/json')
       }).subscribe(data => {
-        // Read the result field from the JSON response.
-
-        if (data['error'] === false) {
-          callback(false);
-        } else {
-          callback(true);
-        }
+          callback(data);
       });
   }
 
@@ -192,6 +173,7 @@ export class PostRegistryM {
       {
         headers: new HttpHeaders().set('Content-type', 'multipart/form-data')
       }).subscribe(data => {
+        console.log(data)
         if (data['error'] === false) {
           callback(data);
         } else {

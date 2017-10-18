@@ -15,24 +15,24 @@
             <div class="row col-sm-12">
                 <div class="form-group col-sm-6">
                     <label for="name">Nombre(s):</label>
-                    <input id="name" name="name" class="form-control" [(ngModel)]="model.name" type="text" required>
+                    <input id="name" name="name" class="form-control" [(ngModel)]="sharedModel.name" type="text" required>
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="lastname">Apellido(s):</label>
-                    <input class="form-control" [(ngModel)]="model.lastname" name="lastname" type="text" required>
+                    <input class="form-control" [(ngModel)]="sharedModel.lastname" name="lastname" type="text" required>
                 </div>
                 <div class="form-group col-sm-4">
                     <label for="rfc">RFC:</label>
-                    <input class="form-control" [(ngModel)]="model.rfc" name="rfc" type="text" required>
+                    <input class="form-control" [(ngModel)]="sharedModel.rfc" name="rfc" type="text" required>
                 </div>
                 <div class="form-group col-sm-4">
                     <label for="rfc">Participacion(%):</label>
-                    <input class="form-control" [(ngModel)]="model.participation" name="participation" type="number" required>
+                    <input class="form-control" [(ngModel)]="sharedModel.participation" name="participation" type="number" required>
                 </div>
 
                 <div class="form-group col-sm-4">
                     <label for="oldwork">Fecha de Contratacion:</label>
-                    <input class="form-control" [(ngModel)]="model.oldwork" name="oldwork" date-format="yyyy-MM-dd" type="date" required>
+                    <input class="form-control" [(ngModel)]="sharedModel.oldwork" name="oldwork" date-format="yyyy-MM-dd" type="date" required>
                 </div>
             </div>
             <div>
@@ -46,4 +46,6 @@
 </div>
 <h5 class="text-center">Listado de Accionistas.</h5>
 <hr>
-<app-shared-holder-section></app-shared-holder-section>
+<div *ngIf="dataFinishedLoading">
+    <app-shared-holder-section [sharedArray]="sharedArray"></app-shared-holder-section>
+</div>

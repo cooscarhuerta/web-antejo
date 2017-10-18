@@ -4,7 +4,7 @@ import { SweetAlertService } from 'ng2-sweetalert2';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ManagerM } from './../m-manager-m';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 
 @Component({
@@ -18,37 +18,29 @@ export class ManagersSectionComponent implements OnInit {
   managersArray = [];
   dataFinishedLoading = false;
   model: ManagerM = new ManagerM();
-  copyArray = [];
+  @Input()
+  managerArray: ManagerM[];
 
   constructor(private postRegistry: PostRegistryM, private route: Router, private http: HttpClient,
     private sweetAlert: SweetAlertService) {
   }
 
   ngOnInit() {
-    try {
-      this.postRegistry.showManager(callback => {
-        if (!callback) {
-          this.managersArray = this.postRegistry.managersArray
-          this.postRegistry.managersArray.forEach(item => {
-          this.copyArray.push({...item})
-          })
-          this.dataFinishedLoading = this.postRegistry.dataFinishedLoading;
-        } else {
-          this.sweetAlert.swal('Aviso', 'No exiten accionistas registrados.', 'warning');
-        }
-      });
-    } catch (Exp) {
-      console.log(Exp);
-    }
   }
 
   onUpdate(managersArray) {
     try {
       this.postRegistry.updateManagers(managersArray, callback => {
-        if (!callback) {
-          this.sweetAlert.swal('Aviso', 'Informacion de representante actualizada.', 'success');
+        if (!callback['error']) {
+          this.sweetAlert.swal('Aviso', 'Informacion de accionistas actualizada.', 'success');
+          for (let i = 0; i < this.managersArray.length; i++) {
+            if (this.managersArray[i].id === managersArray.id) {
+              this.managersArray[i] = managersArray;
+              break;
+            }
+          }
         } else {
-          this.sweetAlert.swal('Aviso', 'No se pudo actualizar informacion de representante.', 'warning');
+          this.sweetAlert.swal('Aviso', 'No se pudo actualizar la informacion de accionista.', 'warning');
         }
       });
     } catch (Exp) {
@@ -58,15 +50,17 @@ export class ManagersSectionComponent implements OnInit {
 
   onDelete(managersArray) {
     this.postRegistry.deleteManagers(managersArray, callback => {
-      if (!callback) {
-        this.sweetAlert.swal('Aviso', 'Informacion de representante eliminada.', 'success');
+      if (!callback['error']) {
+        this.sweetAlert.swal('Aviso', 'Informacion de banco eliminada.', 'success');
+        for (let i = 0; i < this.managersArray.length; i++) {
+          if (this.managersArray[i].id === managersArray.id) {
+            this.managersArray.splice(i, 1);
+          }
+        }
       } else {
-        this.sweetAlert.swal('Aviso', 'No se elimino representante.', 'warning');
+        this.sweetAlert.swal('Aviso', 'No se elimino el banco.', 'warning');
       }
     });
   }
-
-
-
-  }
+}
 

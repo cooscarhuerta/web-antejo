@@ -1,47 +1,43 @@
-import { ServiceBank } from './../../services.client/service.bancos';
+import { ServiceBank } from './../services.client/service.bancos';
+import { Banks } from './banks';
+import { Bank } from './bank'
 import { SweetAlertService } from 'ng2-sweetalert2';
-import { PostRegistryP } from '../../services.client/service.registryP';
-
+import { PostRegistryM } from 'app/views/dashboard/Client/services.client/service.registryM';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { BanksP } from './BanksP';
-import { BankP } from './m-bank-p';
 import { Component, OnInit, Input, Output } from '@angular/core';
 
+
 @Component({
-  selector: 'app-bank-p',
-  templateUrl: './bank-p.component.html',
+  selector: 'app-bank',
+  templateUrl: './bank.component.html',
   providers: [ServiceBank],
-  styleUrls: ['./bank-p.component.scss']
+  styleUrls: ['./bank.component.scss']
 })
-export class BankPComponent implements OnInit {
+export class BankComponent implements OnInit {
   dataFinishedLoading;
   submitted = false;
-  bankModel: BankP = new BankP();
-  banksArray: BankP[];
-  availableBanks: BanksP[] = [];
+  bankModel: Bank = new Bank();
+  banksArray: Bank[];
+  availableBanks: Banks[] = [];
   @Input()
-  inputBanksArray: BankP[];
+  inputBanksArray: Bank[];
 
-  constructor(private sweetAlert: SweetAlertService, private postRegistry: PostRegistryP,
+  constructor(private sweetAlert: SweetAlertService, private postRegistry: PostRegistryM,
     private router: Router, private http: HttpClient, private bankService: ServiceBank) { }
 
   ngOnInit() {
     this.dataFinishedLoading = false;
     this.banksArray = this.inputBanksArray;
-    console.log(this.banksArray);
     this.getBanks();
   }
-
   registryBank(model) {
-    return new Promise<BankP>((resolve, reject) => {
+    return new Promise<Bank>((resolve, reject) => {
       this.postRegistry.registryBank(model, response => {
         if (!response['error']) {
           this.sweetAlert.swal('Aviso', 'Informacion de la cuenta de banco agregada exitosamente.', 'success');
           model['id'] = response['id']
           this.banksArray.push(model);
-          console.log(model);
-          console.log(this.banksArray);
           return resolve(response['bank']);
         } else {
           this.sweetAlert.swal('Error', 'Error al validar campos', 'error');
@@ -50,10 +46,11 @@ export class BankPComponent implements OnInit {
       });
     })
   }
+
   change(bankId) {
     this.bankModel.idbank = bankId;
     for (let  i = 0; i < this.availableBanks.length; i++) {
-      if (this.availableBanks[i].id == bankId) {
+      if (this.availableBanks[i].id === bankId) {
         this.bankModel.namebank = this.availableBanks[i].name;
         break;
       }
@@ -75,4 +72,8 @@ export class BankPComponent implements OnInit {
     this.registryBank(this.bankModel);
   }
 }
+
+
+
+
 

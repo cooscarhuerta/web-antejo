@@ -1,6 +1,6 @@
-import {BanksP} from './BanksP'
+import {Banks} from './banks'
 
-export class BankP {
+export class Bank {
   constructor(
         public id: number = null,
         public accountnumber: string = '',

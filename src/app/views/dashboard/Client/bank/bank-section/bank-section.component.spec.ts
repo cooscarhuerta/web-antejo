@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BanksMSectionComponent } from './banks-m-section.component';
+import { BankSectionComponent } from './bank-section.component';
 
-describe('BanksMSectionComponent', () => {
-  let component: BanksMSectionComponent;
-  let fixture: ComponentFixture<BanksMSectionComponent>;
+describe('BankSectionComponent', () => {
+  let component: BankSectionComponent;
+  let fixture: ComponentFixture<BankSectionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BanksMSectionComponent ]
+      declarations: [ BankSectionComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BanksMSectionComponent);
+    fixture = TestBed.createComponent(BankSectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

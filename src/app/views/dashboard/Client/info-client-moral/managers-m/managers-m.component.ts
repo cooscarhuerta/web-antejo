@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ManagerM } from './m-manager-m';
 import { FilesM } from './../files-m/m-files-m';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-managers-m',
@@ -13,7 +13,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManagersMComponent implements OnInit {
   submitted = false;
-  model: ManagerM = new ManagerM();
+  dataFinishedLoading = false;
+  managerModel: ManagerM = new ManagerM();
+  managerArray: ManagerM[];
+  @Input()
+  public inputManagerArray: ManagerM[];
+
   filesModel: FilesM = new FilesM();
   private fileId = null;
   files: FileList;
@@ -25,27 +30,34 @@ export class ManagersMComponent implements OnInit {
      private http: HttpClient) { }
 
   registryInfo(model) {
-    try {
-      model.idfile = this.fileId;
-      this.postRegistry.registryInfoM(model, callback => {
-           if (!callback) {
-          this.sweetAlert.swal('Aviso', 'Informacion de representante agregada exitosamente.', 'success');
+    return new Promise<ManagerM>((resolve, reject) => {
+      this.postRegistry.registryInfoSH(model, response => {
+        if (!response['error']) {
+          this.sweetAlert.swal('Aviso', 'Informacion de la cuenta de banco agregada exitosamente.', 'success');
+          model['id'] = response['id']
+          this.managerArray.push(model);
+          return resolve(response['manager']);
         } else {
           this.sweetAlert.swal('Error', 'Error al validar campos', 'error');
+          return reject();
         }
       });
-    } catch (Exp) {
-      console.log(Exp);
-    }
+    })
   }
-  ngOnInit() {
 
+  ngOnInit() {
+    this.managerArray = this.inputManagerArray;
+    if (this.managerArray.length > 0) {
+      this.dataFinishedLoading = true;
+    } else {
+      this.dataFinishedLoading = false;
+    }
   }
 
   onSubmit() {
     this.filesModel.type = 'Identificacion';
     this.filesModel.idclient = localStorage.getItem('idClient');
-    if (this.model.idclient !== null) {
+    if (this.managerModel.idclient !== null) {
       this.upload();
       this.submitted = true;
     }
@@ -57,7 +69,7 @@ export class ManagersMComponent implements OnInit {
         if (data) {
           this.sweetAlert.swal('Aviso', 'Archivo agregado exitosamente.', 'success');
           this.fileId = data['file']['id'];
-          this.registryInfo(this.model);
+          this.registryInfo(this.managerModel);
         } else {
           this.sweetAlert.swal('Error', 'Error al validar campos', 'error');
         }
