@@ -60,12 +60,9 @@ export class PostRegistryP {
       {
         headers: new HttpHeaders().set('Content-type', 'application/json')
       }).subscribe(data => {
-        if (data['error'] === false) {
-          callback(false);
-        } else {
-          callback(true);
+          callback(data);
         }
-      });
+      );
   }
 
   registryFile(model, callback) {

@@ -5,7 +5,7 @@ import { FilesPComponent } from './files-p/files-p.component';
 import { BankPComponent } from './bank-p/bank-p.component';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-interface fullClientModel {
+interface FullClientModel {
   banks: any[],
   client: any,
   files: any[],
@@ -24,16 +24,15 @@ export class InfoClientPhysicComponent implements OnInit {
   @Input() client: any;
   @Output()
   idRefresher: EventEmitter<string> = new EventEmitter<string>();
-  fullClient: fullClientModel = {
+  fullClient: FullClientModel = {
     banks: [],
     client: this.client,
     files: [],
     managers: [],
     sharedholders: []
   }
-  dataLoading = false;
+  dataFinishedLoading;
   constructor(private postRegistryP: PostRegistryP) {
-    this.getFullClient();
    }
 
   public refreshId(event) {
@@ -42,6 +41,7 @@ export class InfoClientPhysicComponent implements OnInit {
 
   }
   ngOnInit() {
+    this.dataFinishedLoading = false;
     this.getFullClient();
     this.idClient = localStorage.getItem('idClient');
   }
@@ -51,10 +51,11 @@ export class InfoClientPhysicComponent implements OnInit {
       if (callback) {
         if (!callback['error']) {
           this.fullClient = callback;
-          this.dataLoading = true;
+          console.log(this.fullClient);
         } else {
           console.log('No entro');
         }
+        this.dataFinishedLoading = true;
       } else {
         console.log('No se hizo compa')
       }

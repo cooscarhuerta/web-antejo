@@ -5,7 +5,7 @@ import { PostRegistryP } from '../../../services.client/service.registryP';
 import { SweetAlertService } from 'ng2-sweetalert2';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-banks-p-section',
@@ -14,69 +14,67 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BanksPSectionComponent implements OnInit {
 
-  submitted = false
-  bankArray = [];
+  submitted = false;
   dataFinishedLoading = false;
   model: BankP = new BankP();
-  modelBancos: BanksP[] = [];
-  copyArray = [];
+  @Input()
+  banksArray: BankP[];
+  @Input()
+  availableBanks: BanksP[];
 
   constructor(private serviceB: ServiceBank, private route: Router, private http: HttpClient, private sweetAlert: SweetAlertService) {
   }
 
   ngOnInit() {
-    this.showBancosList();
-    const idClient = localStorage.getItem('idClient');
-    if (idClient) {
-      this.serviceB.showBancos(callback => {
-        if (!callback) {
-          this.bankArray = this.serviceB.bankArray
-          this.serviceB.bankArray.forEach(item => {
-            this.copyArray.push({...item})
-          })
-            this.dataFinishedLoading = this.serviceB.dataFinishedLoading;
-        } else {
-          this.sweetAlert.swal('Aviso', 'No existen cuentas de bancos registrados.', 'warning');
-        }
-      });
+  }
+
+  change(idbank) {
+    console.log(idbank);
+    this.model.idbank = idbank;
+    for (let i = 0; i < this.availableBanks.length; i++) {
+      console.log("trying");
+      console.log(this.availableBanks[i].id);
+      if (this.availableBanks[i].id == idbank) {
+        this.model.namebank = this.availableBanks[i].name;
+        console.log("yeah");
+        break;
+      }
     }
+    console.log(this.model);
   }
 
-  change(b) {
-    this.model.idbank = b
-  }
-
-  onDelete(bankArray) {
-    this.serviceB.deleteBank(bankArray, callback => {
-      if (!callback) {
+  onDelete(bank) {
+    this.serviceB.deleteBank(bank, callback => {
+      console.log(bank);
+      if (!callback['error']) {
         this.sweetAlert.swal('Aviso', 'Informacion de cuenta eliminada.', 'success');
+        for (let i = 0; i < this.banksArray.length; i++) {
+          if (this.banksArray[i].id === bank.id) {
+            console.log("Deleting");
+            this.banksArray.splice(i, 1);
+          }
+        }
       } else {
-        this.sweetAlert.swal('Aviso', 'No se elimino cuenta de banco.', 'warning');
+        this.sweetAlert.swal('Error', 'No se elimino cuenta de banco.', 'warning');
       }
     });
   }
 
-  onUpdate(bankArray) {
-    try {
-      this.serviceB.updateBank(bankArray, callback => {
-        if (!callback) {
-          this.sweetAlert.swal('Aviso', 'Informacion de cuenta actualizada.', 'success');
-        } else {
-          this.sweetAlert.swal('Aviso', 'No se pudo actualizar cuenta de banco.', 'warning');
+  onUpdate(bank) {
+    console.log(bank);
+    this.serviceB.updateBank(bank, callback => {
+      if (!callback['error']) {
+        this.sweetAlert.swal('Aviso', 'Informacion de cuenta actualizada.', 'success');
+        for (let i = 0; i < this.banksArray.length; i++) {
+          if (this.banksArray[i].id === bank.id) {
+            console.log("Updating");
+            this.banksArray[i] = bank;
+            break;
+          }
         }
-      });
-    } catch (Exp) {
-      console.log(Exp)
-    }
-  }
-
-  showBancosList() {
-    this.http.get('/Clients/Clientes/all/Bancos')
-      .subscribe(res => {
-        if (!res['error']) {
-          this.modelBancos = res['banks']
-          this.model.idbank = this.modelBancos[0].id;
-        }
-      });
+      } else {
+        this.sweetAlert.swal('Error', 'No se pudo actualizar cuenta de banco.', 'warning');
+      }
+    });
   }
 }

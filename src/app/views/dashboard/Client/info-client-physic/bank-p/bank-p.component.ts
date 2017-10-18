@@ -1,3 +1,4 @@
+import { ServiceBank } from './../../services.client/service.bancos';
 import { SweetAlertService } from 'ng2-sweetalert2';
 import { PostRegistryP } from '../../services.client/service.registryP';
 
@@ -5,57 +6,73 @@ import { Router } from '@angular/router';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { BanksP } from './BanksP';
 import { BankP } from './m-bank-p';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-bank-p',
   templateUrl: './bank-p.component.html',
+  providers: [ServiceBank],
   styleUrls: ['./bank-p.component.scss']
 })
 export class BankPComponent implements OnInit {
+  dataFinishedLoading;
   submitted = false;
-  model: BankP = new BankP();
-  modelBancos: BanksP[] = [];
+  bankModel: BankP = new BankP();
+  banksArray: BankP[];
+  availableBanks: BanksP[] = [];
+  @Input()
+  inputBanksArray: BankP[];
 
   constructor(private sweetAlert: SweetAlertService, private postRegistry: PostRegistryP,
-    private router: Router, private http: HttpClient) { }
+    private router: Router, private http: HttpClient, private bankService: ServiceBank) { }
 
   ngOnInit() {
-    this.showBancos();
+    this.dataFinishedLoading = false;
+    this.banksArray = this.inputBanksArray;
+    console.log(this.banksArray);
+    this.getBanks();
   }
 
   registryBank(model) {
-    try {
-      this.postRegistry.registryBank(model, callback => {
-        if (!callback) {
+    return new Promise<BankP>((resolve, reject) => {
+      this.postRegistry.registryBank(model, response => {
+        if (!response['error']) {
           this.sweetAlert.swal('Aviso', 'Informacion de la cuenta de banco agregada exitosamente.', 'success');
+          model['id'] = response['id']
+          this.banksArray.push(model);
+          console.log(model);
+          console.log(this.banksArray);
+          return resolve(response['bank']);
         } else {
           this.sweetAlert.swal('Error', 'Error al validar campos', 'error');
+          return reject();
         }
       });
-    } catch (Exp) {
-      console.log(Exp)
+    })
+  }
+  change(bankId) {
+    this.bankModel.idbank = bankId;
+    for (let  i = 0; i < this.availableBanks.length; i++) {
+      if (this.availableBanks[i].id == bankId) {
+        this.bankModel.namebank = this.availableBanks[i].name;
+        break;
+      }
     }
+    console.log(this.bankModel);
   }
 
-  showBancos() {
-    this.http.get('/Clients/Clientes/all/Bancos')
-      .subscribe(res => {
-        if (!res['error']) {
-          this.modelBancos = res['banks']
-          this.model.idbank = this.modelBancos[0].id;
-        }
-
-      });
-  }
-
-  change(b) {
-    this.model.idbank = b
+  getBanks() {
+    this.bankService.getBanks(availableBanks => {
+      if (availableBanks) {
+        this.availableBanks = availableBanks;
+      }
+      this.dataFinishedLoading = true;
+    });
   }
 
   onSubmit() {
     this.submitted = true;
-    this.registryBank(this.model);
+    this.registryBank(this.bankModel);
   }
 }
 

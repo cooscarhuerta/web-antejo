@@ -31,28 +31,25 @@ export class ServiceBank {
       });
   }
 
-  updateBank(bankArray, callback) {
-    this.http.put('/Clients/Clientes/update/' + bankArray.id + '/BancosClientes', bankArray)
+  updateBank(bank, callback) {
+    this.http.put('/Clients/Clientes/update/' + bank.id + '/BancosClientes', bank)
       .subscribe(res => {
-        if (res['error'] === false) {
-          callback(false);
-        } else {
-          callback(true);
-        }
+        callback(res)
       });
   }
 
-  deleteBank(bankArray, callback) {
-    console.log('Servicio', bankArray);
-    this.http.delete('/Clients/Clientes/delete/' + bankArray.id + '/BancosClientes', bankArray)
+  deleteBank(bank, callback) {
+    console.log('Servicio', bank);
+    this.http.delete('/Clients/Clientes/delete/' + bank.id + '/BancosClientes', bank)
       .subscribe(res => {
-        console.log(res)
-        if (res['error'] === false) {
-          callback(false)
-        } else {
-          callback(true);
-        }
-        console.log(res)
+        callback(res)
+      });
+  }
+
+  getBanks(callback) {
+    this.http.get('/Clients/Clientes/all/Bancos')
+      .subscribe(res => {
+        callback(res['banks']);
       });
   }
 }
