@@ -28,7 +28,7 @@ export class AddFileComponent implements OnInit {
   }
 
   emitFile() {
-   this.fileEmitter.emit(this.file);
+    this.fileEmitter.emit(this.file);
 
   }
   getFiles(event) {
@@ -39,6 +39,11 @@ export class AddFileComponent implements OnInit {
     this.service.deleteFile(item, callback => {
       if (!callback) {
         this.sweetAlert.swal('Error', 'Archivo Eliminado', 'success');
+        for (let i = 0; i < this.fileArray.length; i++) {
+          if (this.fileArray[i].id == item.id) {
+            this.fileArray.splice(i, 1);
+          }
+        }
       } else {
         this.sweetAlert.swal('Aviso', 'Error al eliminar.', 'error');
       }

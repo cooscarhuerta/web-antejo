@@ -14,11 +14,13 @@ import { Router } from '@angular/router';
 export class BankSectionComponent implements OnInit {
   submitted = false;
   dataFinishedLoading = false;
-  model: Bank = new Bank();
   @Input()
   banksArray: Bank[];
   @Input()
   availableBanks: Banks[];
+
+  idbank;
+  namebank;
 
   constructor(private serviceB: ServiceBank, private route: Router, private http: HttpClient, private sweetAlert: SweetAlertService) {
   }
@@ -28,14 +30,15 @@ export class BankSectionComponent implements OnInit {
   }
 
   change(idbank) {
-    this.model.idbank = idbank;
+    this.idbank = idbank;
+    console.log(idbank);
     for (let i = 0; i < this.availableBanks.length; i++) {
-      if (this.availableBanks[i].id === idbank) {
-        this.model.namebank = this.availableBanks[i].name;
+      if (this.availableBanks[i].id == idbank) {
+        this.namebank = this.availableBanks[i].name;
         break;
       }
     }
-    }
+  }
 
 
   onDelete(bank) {
@@ -54,17 +57,23 @@ export class BankSectionComponent implements OnInit {
   }
 
   onUpdate(bank) {
+    console.log(bank);
+    bank.namebank = this.namebank;
+    bank.idbank = this.idbank;
     this.serviceB.updateBank(bank, callback => {
-      if (!callback['error']) {
-        this.sweetAlert.swal('Aviso', 'Informacion de cuenta actualizada.', 'success');
-        for (let i = 0; i < this.banksArray.length; i++) {
-          if (this.banksArray[i].id === bank.id) {
-            this.banksArray[i] = bank;
-            break;
+      if(!callback['error']){
+        if (!callback['error']) {
+          this.sweetAlert.swal('Aviso', 'Informacion de cuenta actualizada.', 'success');
+          for (let i = 0; i < this.banksArray.length; i++) {
+            if (this.banksArray[i].id === bank.id) {
+              this.banksArray[i] = bank;
+              console.log("updating");
+              break;
+            }
           }
+        } else {
+          this.sweetAlert.swal('Error', 'No se pudo actualizar cuenta de banco.', 'warning');
         }
-      } else {
-        this.sweetAlert.swal('Error', 'No se pudo actualizar cuenta de banco.', 'warning');
       }
     });
   }

@@ -37,7 +37,7 @@ export class BankComponent implements OnInit {
         if (!response['error']) {
           this.sweetAlert.swal('Aviso', 'Informacion de la cuenta de banco agregada exitosamente.', 'success');
           model['id'] = response['id']
-          this.banksArray.push(model);
+          this.banksArray.push({...model});
           return resolve(response['bank']);
         } else {
           this.sweetAlert.swal('Error', 'Error al validar campos', 'error');
@@ -48,9 +48,10 @@ export class BankComponent implements OnInit {
   }
 
   change(bankId) {
+    console.log(this.availableBanks);
     this.bankModel.idbank = bankId;
     for (let  i = 0; i < this.availableBanks.length; i++) {
-      if (this.availableBanks[i].id === bankId) {
+      if (this.availableBanks[i].id == bankId) {
         this.bankModel.namebank = this.availableBanks[i].name;
         break;
       }

@@ -19,7 +19,7 @@
                                 <div class="form-group col-sm-6">
                                     <label> Banco:</label> <select #selectElem (change)="change(selectElem.value)" class="form-control" name="bank">
                                                 <option value="" disabled>Seleccione un banco</option>
-                                                <option *ngFor='let bank of availableBanks' [ngValue]='bank.id'>
+                                                <option *ngFor='let bank of availableBanks' [value]='bank.id'>
                                                       {{bank.name}}
                                                     </option>
                                               </select>

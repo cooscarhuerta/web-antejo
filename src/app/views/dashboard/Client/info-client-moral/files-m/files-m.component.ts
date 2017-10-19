@@ -15,9 +15,13 @@ export class FilesMComponent implements OnInit {
   apiUrl = 'http://localhost:8081';
   submitted = false;
   idClient;
+  clientType: string;
   asambleaArray = [];
-  constArray = [];
-  extraArray = [];
+  constitutiveArray = [];
+  extrasArray = [];
+  RFCArray = [];
+  legalDocsArray = [];
+  birthCertificateArray = [];
   @Input()
   inputFileData: any[];
   @Output()
@@ -32,6 +36,7 @@ export class FilesMComponent implements OnInit {
   }
   ngOnInit() {
     this.idClient = localStorage.getItem('idClient');
+    this.clientType = localStorage.getItem('idClient');
     this.listaArchivos();
   }
 
@@ -46,6 +51,7 @@ export class FilesMComponent implements OnInit {
     formData.append('file', file);
     formData.append('type', type);
     formData.append('idclient', this.idClient);
+    console.log(type);
     this.http.post('/Clients/Clientes/add/FilesClient', formData, {
       headers: new HttpHeaders().set('Content-type', 'multipart/form-data')
     }).subscribe(response => {
@@ -53,6 +59,26 @@ export class FilesMComponent implements OnInit {
       if (response['error']) {
         this.sweetAlert.swal('Error', 'Error al conectarse con el servidor.', 'error');
       } else {
+        switch (type) {
+          case 'Asamblea':
+            this.asambleaArray.push(response['file']);
+            break;
+          case 'Constitutiva':
+            this.constitutiveArray.push(response['file']);
+            break;
+          case 'Extras':
+            this.extrasArray.push(response['file']);
+            break;
+          case 'RFC':
+            this.RFCArray.push(response['file']);
+            break;
+          case 'Documentacion Legal':
+            this.legalDocsArray.push(response['file']);
+            break;
+          case 'Acta de Nacimiento':
+            this.birthCertificateArray.push(response['file']);
+            break;
+        }
         this.sweetAlert.swal('Aviso', 'Archivo agregado exitosamente.', 'success');
         this.fileDataRefresher.emit(response['file']);
       }
@@ -60,15 +86,26 @@ export class FilesMComponent implements OnInit {
   }
 
   listaArchivos() {
+    console.log(this.legalDocsArray);
     this.asambleaArray = this.inputFileData.filter(item => {
       return item.type === 'Asamblea'
     });
-    this.constArray = this.inputFileData.filter(item => {
+    this.constitutiveArray = this.inputFileData.filter(item => {
       return item.type === 'Constitutiva'
     });
-    this.extraArray = this.inputFileData.filter(item => {
+    this.extrasArray = this.inputFileData.filter(item => {
       return item.type === 'Extras'
     });
+    this.RFCArray = this.inputFileData.filter(item => {
+      return item.type === 'RFC'
+    });
+    this.birthCertificateArray = this.inputFileData.filter(item => {
+      return item.type === 'Acta de Nacimiento'
+    });
+    this.legalDocsArray = this.inputFileData.filter(item => {
+      return item.type === 'Documentacion Legal'
+    });
+    console.log(this.legalDocsArray);
   }
 
 }
