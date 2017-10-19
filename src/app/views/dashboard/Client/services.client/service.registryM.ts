@@ -55,7 +55,6 @@ export class PostRegistryM {
         callback(res);
       });
   }
-
   registryBank(model, callback) {
     model.idclient = localStorage.getItem('idClient');
     this.http.post('/Clients/Clientes/add/BancosClientes', model,
@@ -83,7 +82,6 @@ export class PostRegistryM {
 
       });
   }
-
   showManager(callback) {
     this.name = [];
     this.http.get('/Clients/Clientes/show/Client/' + localStorage.getItem('idClient') + '/Managers')
@@ -92,27 +90,22 @@ export class PostRegistryM {
           this.managersArray = res['manager'];
           this.managersArray.forEach(item => {
             this.name.push(item['name']);
-            this.dataFinishedLoading = true;
-            callback(false);
           });
-        } else {
-          callback(true);
-        }
-      });
-  }
-  updateManagers(managersArray, callback) {
-    this.http.put('/Clients/Clientes/update/' + managersArray.id + '/Managers', managersArray)
-      .subscribe(res => {
-        if (res['error'] === false) {
+          this.dataFinishedLoading = true;
           callback(false);
         } else {
           callback(true);
         }
       });
   }
-
-  deleteManagers(managerArray, callback) {
-    this.http.delete('/Clients/Clientes/delete/' + managerArray.id + '/Managers', managerArray)
+  updateManagers(manager, callback) {
+    this.http.put('/Clients/Clientes/update/' + manager.id + '/Managers', manager)
+      .subscribe(res => {
+        callback(res);
+      });
+  }
+  deleteManagers(manager, callback) {
+    this.http.delete('/Clients/Clientes/delete/' + manager.id + '/Managers', manager)
       .subscribe(res => {
         console.log(res)
         if (res['error'] === false) {
@@ -123,29 +116,26 @@ export class PostRegistryM {
         console.log(res)
       });
   }
-
-  getSharedHolder(callback) {
+  showSharedHolder(callback) {
     this.http.get('/Clients/Clientes/show/Client/' + localStorage.getItem('idClient') + '/AccionistasClientes')
       .subscribe(res => {
-        console.log(res)
-        callback(res['clientshareholder']);
-      });
-  }
-
-
-  updateSharedHolder(sharedArray, callback) {
-    this.http.put('/Clients/Clientes/update/' + sharedArray.id + '/AccionistasClientes', sharedArray)
-      .subscribe(res => {
         if (res['error'] === false) {
+          this.sharedArray = res['clientshareholder'];
+          this.dataFinishedLoading = true;
           callback(false);
         } else {
           callback(true);
         }
       });
   }
-
-  deleteSharedHolder(sharedArray, callback) {
-    this.http.delete('/Clients/Clientes/delete/' + sharedArray.id + '/AccionistasClientes', sharedArray)
+  updateSharedHolder(shared, callback) {
+    this.http.put('/Clients/Clientes/update/' + shared.id + '/AccionistasClientes', shared)
+      .subscribe(res => {
+        callback(res);
+      });
+  }
+  deleteSharedHolder(shared, callback) {
+    this.http.delete('/Clients/Clientes/delete/' + shared.id + '/AccionistasClientes', shared)
       .subscribe(res => {
         console.log(res)
         if (res['error'] === false) {
@@ -156,17 +146,15 @@ export class PostRegistryM {
         console.log(res)
       });
   }
-
   registryInfoSH(model, callback) {
     model.idclient = this.idclient;
     this.http.post('/Clients/Clientes/add/AccionistasClientes', model,
       {
         headers: new HttpHeaders().set('Content-type', 'application/json')
       }).subscribe(data => {
-          callback(data);
+        callback(data);
       });
   }
-
   registryFile(model, callback) {
 
     this.http.post('/Clients/Clientes/add/FilesClient', model,
@@ -181,14 +169,12 @@ export class PostRegistryM {
         }
       });
   }
-
   showFile(callback) {
     this.http.get('/Clients/Clientes/show/' + localStorage.getItem('idClient'))
       .subscribe(res => {
         callback(res);
       });
   }
-
   deleteFile(item, callback) {
     this.http.delete('/Clients/Clientes/delete/' + item.id + '/FilesClient')
       .subscribe(res => {
@@ -199,6 +185,5 @@ export class PostRegistryM {
         }
       });
   }
-
 }
 

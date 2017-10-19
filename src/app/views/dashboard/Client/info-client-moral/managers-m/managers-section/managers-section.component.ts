@@ -20,22 +20,34 @@ export class ManagersSectionComponent implements OnInit {
   model: ManagerM = new ManagerM();
   @Input()
   managerArray: ManagerM[];
+  copyArray: any[] = [];
 
   constructor(private postRegistry: PostRegistryM, private route: Router, private http: HttpClient,
     private sweetAlert: SweetAlertService) {
   }
 
   ngOnInit() {
+    this.postRegistry.showManager(callback => {
+      if (!callback) {
+        this.managerArray = this.postRegistry.managersArray;
+        this.postRegistry.managersArray.forEach(item => {
+          this.copyArray.push({...item});
+        });
+        this.dataFinishedLoading = this.postRegistry.dataFinishedLoading;
+      }else {
+
+      }
+    })
   }
 
-  onUpdate(managersArray) {
+  onUpdate(managers) {
     try {
-      this.postRegistry.updateManagers(managersArray, callback => {
+      this.postRegistry.updateManagers(managers, callback => {
         if (!callback['error']) {
           this.sweetAlert.swal('Aviso', 'Informacion de accionistas actualizada.', 'success');
           for (let i = 0; i < this.managersArray.length; i++) {
-            if (this.managersArray[i].id === managersArray.id) {
-              this.managersArray[i] = managersArray;
+            if (this.managersArray[i].id === managers.id) {
+              this.copyArray[i] = {...managers};
               break;
             }
           }
