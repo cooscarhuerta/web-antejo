@@ -61,13 +61,12 @@ export class BankSectionComponent implements OnInit {
     bank.namebank = this.namebank;
     bank.idbank = this.idbank;
     this.serviceB.updateBank(bank, callback => {
-      if(!callback['error']){
+      if (!callback['error']) {
         if (!callback['error']) {
           this.sweetAlert.swal('Aviso', 'Informacion de cuenta actualizada.', 'success');
           for (let i = 0; i < this.banksArray.length; i++) {
             if (this.banksArray[i].id === bank.id) {
               this.banksArray[i] = bank;
-              console.log("updating");
               break;
             }
           }

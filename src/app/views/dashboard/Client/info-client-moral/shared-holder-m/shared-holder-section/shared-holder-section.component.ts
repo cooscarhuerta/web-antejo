@@ -16,40 +16,51 @@ export class SharedHolderSectionComponent implements OnInit {
   model: SharedholderM = new SharedholderM();
   @Input()
   sharedArray: SharedholderM[];
+  copyArray: any[] = [];
 
   constructor(private postRegistry: PostRegistryM, private route: Router, private http: HttpClient,
     private sweetAlert: SweetAlertService) {
   }
 
   ngOnInit() {
+    this.postRegistry.showSharedHolder(callback => {
+      if (!callback) {
+        this.sharedArray = this.postRegistry.sharedArray;
+        this.postRegistry.sharedArray.forEach(item => {
+          this.copyArray.push({...item});
+          });
+          this.dataFinishedLoading = this.postRegistry.dataFinishedLoading;
+      } else {
+
+      }
+    })
   }
 
-  onUpdate(sharedArray) {
-    try {
-      this.postRegistry.updateSharedHolder(sharedArray, callback => {
+  onUpdate(shared) {
+    this.postRegistry.updateSharedHolder(shared, callback => {
+      if (!callback['error']) {
         if (!callback['error']) {
           this.sweetAlert.swal('Aviso', 'Informacion de accionistas actualizada.', 'success');
           for (let i = 0; i < this.sharedArray.length; i++) {
-            if (this.sharedArray[i].id === sharedArray.id) {
-              this.sharedArray[i] = sharedArray;
+            if (this.sharedArray[i].id === shared.id) {
+              this.copyArray[i] = {...shared};
               break;
             }
           }
         } else {
           this.sweetAlert.swal('Aviso', 'No se pudo actualizar la informacion de accionista.', 'warning');
         }
-      });
-    } catch (Exp) {
-      console.log(Exp)
-    }
+      }
+    });
   }
 
-  onDelete(sharedArray) {
-    this.postRegistry.deleteSharedHolder(sharedArray, callback => {
+
+  onDelete(shared) {
+    this.postRegistry.deleteSharedHolder(shared, callback => {
       if (!callback['error']) {
         this.sweetAlert.swal('Aviso', 'Informacion de banco eliminada.', 'success');
         for (let i = 0; i < this.sharedArray.length; i++) {
-          if (this.sharedArray[i].id === sharedArray.id) {
+          if (this.sharedArray[i].id === shared.id) {
             this.sharedArray.splice(i, 1);
           }
         }

@@ -23,10 +23,10 @@ export class SharedHolderMComponent implements OnInit {
     private http: HttpClient) { }
 
   ngOnInit() {
-    this.sharedArray = this.inputSharedArray;
-    if (this.sharedArray.length > 0) {
+    if (this.inputSharedArray.length > 0) {
       this.dataFinishedLoading = true;
     } else {
+      this.sweetAlert.swal('Aviso', 'No cuena con accionistas registrados', 'warnind');
       this.dataFinishedLoading = false;
     }
   }
@@ -36,9 +36,9 @@ export class SharedHolderMComponent implements OnInit {
       this.postRegistry.registryInfoSH(model, response => {
         if (!response['error']) {
           this.sweetAlert.swal('Aviso', 'Informacion de la cuenta de banco agregada exitosamente.', 'success');
-          model['id'] = response['id']
-          this.sharedArray.push(model);
-          return resolve(response['clientshared']);
+          this.sharedArray.push({...response['shareholders']});
+          console.log('Modelo', response)
+          return resolve(response['shareholders']);
         } else {
           this.sweetAlert.swal('Error', 'Error al validar campos', 'error');
           return reject();

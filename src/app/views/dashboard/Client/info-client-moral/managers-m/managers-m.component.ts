@@ -31,7 +31,7 @@ export class ManagersMComponent implements OnInit {
 
   registryInfo(model) {
     return new Promise<ManagerM>((resolve, reject) => {
-      this.postRegistry.registryInfoSH(model, response => {
+      this.postRegistry.registryInfoM(model, response => {
         if (!response['error']) {
           this.sweetAlert.swal('Aviso', 'Informacion de la cuenta de banco agregada exitosamente.', 'success');
           model['id'] = response['id']

@@ -19,9 +19,9 @@ export class ServiceBank {
           this.bankArray = res['clientbanks'];
           this.bankArray.forEach(item => {
           this.name.push(item['namebank']);
+          });
           this.dataFinishedLoading = true;
           callback(false);
-          });
         } else {
           callback(true);
         }
