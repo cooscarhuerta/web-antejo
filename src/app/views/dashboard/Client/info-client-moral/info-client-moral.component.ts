@@ -20,6 +20,11 @@ export class InfoClientMoralComponent implements OnInit {
   public idClient = null;
   @Input() client: any
   @Output()
+  fileTypes = [
+    { 'fileDescriptor': 'Acta Asamblea', 'fileType': 'Asamblea' },
+    { 'fileDescriptor': 'Acta Constitutiva', 'fileType': 'Constitutiva' },
+    { 'fileDescriptor': 'Extras', 'fileType': 'Extras' }
+  ]
   idRefresher: EventEmitter<string> = new EventEmitter<string>();
   fullClient: FullClientModel = {
     banks: [],
@@ -32,30 +37,30 @@ export class InfoClientMoralComponent implements OnInit {
   constructor(private postRegistryM: PostRegistryM) {
   }
 
- public refreshId(event) {
-   this.idClient = event;
-   this.idRefresher.emit(event);
+  public refreshId(event) {
+    this.idClient = event;
+    this.idRefresher.emit(event);
 
- }
- ngOnInit() {
-   this.dataFinishedLoading = false;
-   this.getFullClient();
-   this.idClient = localStorage.getItem('idClient');
- }
+  }
+  ngOnInit() {
+    this.dataFinishedLoading = false;
+    this.getFullClient();
+    this.idClient = localStorage.getItem('idClient');
+  }
 
- getFullClient() {
-   this.postRegistryM.showClient(callback => {
-     if (callback) {
-       if (!callback['error']) {
-         this.fullClient = callback;
-         console.log('Cliente', this.fullClient);
-       } else {
-         console.log('No entro');
-       }
-       this.dataFinishedLoading = true;
-     } else {
-       console.log('No se hizo compa')
-     }
-   });
- }
+  getFullClient() {
+    this.postRegistryM.showClient(callback => {
+      if (callback) {
+        if (!callback['error']) {
+          this.fullClient = callback;
+          console.log('Cliente', this.fullClient);
+        } else {
+          console.log('No entro');
+        }
+        this.dataFinishedLoading = true;
+      } else {
+        console.log('No se hizo compa')
+      }
+    });
+  }
 }

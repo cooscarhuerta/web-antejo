@@ -23,6 +23,8 @@ export class FilesMComponent implements OnInit {
   legalDocsArray = [];
   birthCertificateArray = [];
   @Input()
+  fileTypes: object[];
+  @Input()
   inputFileData: any[];
   @Output()
   fileDataRefresher: EventEmitter<File>;
@@ -59,26 +61,6 @@ export class FilesMComponent implements OnInit {
       if (response['error']) {
         this.sweetAlert.swal('Error', 'Error al conectarse con el servidor.', 'error');
       } else {
-        switch (type) {
-          case 'Asamblea':
-            this.asambleaArray.push(response['file']);
-            break;
-          case 'Constitutiva':
-            this.constitutiveArray.push(response['file']);
-            break;
-          case 'Extras':
-            this.extrasArray.push(response['file']);
-            break;
-          case 'RFC':
-            this.RFCArray.push(response['file']);
-            break;
-          case 'Documentacion Legal':
-            this.legalDocsArray.push(response['file']);
-            break;
-          case 'Acta de Nacimiento':
-            this.birthCertificateArray.push(response['file']);
-            break;
-        }
         this.sweetAlert.swal('Aviso', 'Archivo agregado exitosamente.', 'success');
         this.fileDataRefresher.emit(response['file']);
       }
