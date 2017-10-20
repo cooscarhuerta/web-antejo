@@ -48,7 +48,6 @@ export class PostRegistryM {
     }
 
   }
-
   showClient(callback) {
     this.http.get('/Clients/Clientes/show/' + localStorage.getItem('idClient'))
       .subscribe(res => {
@@ -71,17 +70,11 @@ export class PostRegistryM {
       {
         headers: new HttpHeaders().set('Content-type', 'application/json')
       }).subscribe(data => {
-        // Read the result field from the JSON response.
-
-        if (data['error'] === false) {
-          callback(false);
-        } else {
-          callback(true);
-        }
-
-
+        callback(data)
       });
-  }
+    }
+
+
   showManager(callback) {
     this.name = [];
     this.http.get('/Clients/Clientes/show/Client/' + localStorage.getItem('idClient') + '/Managers')

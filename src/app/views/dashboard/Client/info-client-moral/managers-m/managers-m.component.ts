@@ -1,9 +1,9 @@
 import { SweetAlertService } from 'ng2-sweetalert2';
-import { PostRegistryM } from 'app/views/dashboard/Client/services.client/service.registryM';
+import { PostRegistryM } from 'app/views/dashboard/Client/shared/services.client/service.registryM';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ManagerM } from './m-manager-m';
-import { FilesM } from './../files-m/m-files-m';
+import { File } from './../../shared/files/file';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -17,9 +17,9 @@ export class ManagersMComponent implements OnInit {
   managerModel: ManagerM = new ManagerM();
   managerArray: ManagerM[];
   @Input()
-  public inputManagerArray: ManagerM[];
+  public inputManagerArray: Array<ManagerM>;
 
-  filesModel: FilesM = new FilesM();
+  filesModel: File = new File();
   private fileId = null;
   files: FileList;
   getFiles(event) {
@@ -30,26 +30,22 @@ export class ManagersMComponent implements OnInit {
      private http: HttpClient) { }
 
   registryInfo(model) {
-    return new Promise<ManagerM>((resolve, reject) => {
-      this.postRegistry.registryInfoM(model, response => {
-        if (!response['error']) {
-          this.sweetAlert.swal('Aviso', 'Informacion de la cuenta de banco agregada exitosamente.', 'success');
-          model['id'] = response['id']
-          this.managerArray.push(model);
-          return resolve(response['manager']);
-        } else {
+      this.postRegistry.registryInfoM(model, callback => {
+        if (callback['error']) {
           this.sweetAlert.swal('Error', 'Error al validar campos', 'error');
-          return reject();
+        } else {
+          console.log('Llamada', callback)
+          this.inputManagerArray = callback['manager']
+          this.sweetAlert.swal('Aviso', 'Informacion de la cuenta de banco agregada exitosamente.', 'success');
         }
       });
-    })
   }
 
   ngOnInit() {
-    this.managerArray = this.inputManagerArray;
     if (this.managerArray.length > 0) {
       this.dataFinishedLoading = true;
     } else {
+      this.sweetAlert.swal('Aviso', 'No cuenta con representantes registrados', 'warning');
       this.dataFinishedLoading = false;
     }
   }

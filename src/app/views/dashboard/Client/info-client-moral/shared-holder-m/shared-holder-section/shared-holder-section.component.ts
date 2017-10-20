@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { SweetAlertService } from 'ng2-sweetalert2';
-import { PostRegistryM } from 'app/views/dashboard/Client/services.client/service.registryM';
+import { PostRegistryM } from 'app/views/dashboard/Client/shared/services.client/service.registryM';
 import { SharedholderM } from '../m-shared-holder-m';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -16,44 +16,34 @@ export class SharedHolderSectionComponent implements OnInit {
   model: SharedholderM = new SharedholderM();
   @Input()
   sharedArray: SharedholderM[];
-  copyArray: any[] = [];
 
   constructor(private postRegistry: PostRegistryM, private route: Router, private http: HttpClient,
     private sweetAlert: SweetAlertService) {
   }
 
   ngOnInit() {
-    this.postRegistry.showSharedHolder(callback => {
-      if (!callback) {
-        this.sharedArray = this.postRegistry.sharedArray;
-        this.postRegistry.sharedArray.forEach(item => {
-          this.copyArray.push({...item});
+    try {
+    this.sharedArray.forEach(item => {
+      item.oldname = item.name;
+      item.oldlastname = item.lastname;
           });
           this.dataFinishedLoading = this.postRegistry.dataFinishedLoading;
-      } else {
-
-      }
-    })
-  }
+       } catch (Exp) {
+         console.log(Exp)
+       }}
 
   onUpdate(shared) {
     this.postRegistry.updateSharedHolder(shared, callback => {
       if (!callback['error']) {
-        if (!callback['error']) {
           this.sweetAlert.swal('Aviso', 'Informacion de accionistas actualizada.', 'success');
-          for (let i = 0; i < this.sharedArray.length; i++) {
-            if (this.sharedArray[i].id === shared.id) {
-              this.copyArray[i] = {...shared};
-              break;
-            }
-          }
+          shared.oldname = shared.name;
+          shared.oldlastname = shared.lastname;
+
         } else {
           this.sweetAlert.swal('Aviso', 'No se pudo actualizar la informacion de accionista.', 'warning');
         }
-      }
     });
   }
-
 
   onDelete(shared) {
     this.postRegistry.deleteSharedHolder(shared, callback => {

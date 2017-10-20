@@ -1,5 +1,5 @@
 import { SweetAlertService } from 'ng2-sweetalert2';
-import { PostRegistryP } from '../../../Client/services.client/service.registryP';
+import { PostRegistryP } from '../../../Client/shared/services.client/service.registryP';
 import { urlDownload } from './../../../../pages/login/login.interceptor';
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 

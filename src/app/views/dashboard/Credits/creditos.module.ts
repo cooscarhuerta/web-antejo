@@ -10,7 +10,6 @@ import { ViewAppComponent } from './view.components';
 import { AppRoutingModule } from './creditos-routing.module';
 import { CommonModule } from '@angular/common';
 import { HistoryCreditComponent } from './history-credit/history-credit.component';
-import { SectionCreditsComponent } from './section-credits/section-credits.component';
 import { ViewCreditComponent } from './view-credit/view-credit.component';
 
 @NgModule({
@@ -23,6 +22,6 @@ import { ViewCreditComponent } from './view-credit/view-credit.component';
     FormsModule,
     AccordionModule.forRoot()
   ],
-  declarations: [ ViewAppComponent, HistoryCreditComponent, SectionCreditsComponent, ViewCreditComponent ]
+  declarations: [ ViewAppComponent, HistoryCreditComponent, ViewCreditComponent ]
 })
 export class CreditsModule { }

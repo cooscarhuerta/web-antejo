@@ -1,5 +1,5 @@
-import { FilesP } from './../files-p/m-files-p';
-import { Bank } from '../../bank/bank';
+import { File } from './../../shared/files/file';
+import { Bank } from '../../shared/bank/bank';
 
 export class RegistryP {
 
@@ -24,7 +24,7 @@ export class RegistryP {
     },
     public banks: [Bank] = [new Bank],
     public selectBank: string = '',
-    public files: [FilesP] = [new FilesP]
+    public files: [File] = [new File]
 
   ) { }
 }

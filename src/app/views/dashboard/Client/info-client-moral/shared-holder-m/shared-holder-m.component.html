@@ -48,6 +48,6 @@
     <h5 class="text-center">Listado de Accionistas.</h5>
     <hr>
     <div *ngIf="dataFinishedLoading">
-        <app-shared-holder-section [sharedArray]="sharedArray"></app-shared-holder-section>
+        <app-shared-holder-section [sharedArray]="this.inputSharedArray"></app-shared-holder-section>
     </div>
 </div>

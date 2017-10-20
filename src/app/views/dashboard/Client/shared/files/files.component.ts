@@ -56,9 +56,11 @@ export class FilesComponent implements OnInit {
         this.sweetAlert.swal('Error', 'Error al conectarse con el servidor.', 'error');
       } else {
         this.sweetAlert.swal('Aviso', 'Archivo agregado exitosamente.', 'success');
+       console.log('Arrelo', this.fileTypes);
         for (let i = 0; i < this.fileTypes.length; i++) {
           if (this.fileTypes[i].fileType === type) {
             this.filesArray[i].push(response['file']);
+            console.log(this.filesArray)
             break;
           }
         }

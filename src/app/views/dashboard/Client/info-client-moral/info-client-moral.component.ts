@@ -1,4 +1,4 @@
-import { PostRegistryM } from './../services.client/service.registryM';
+import { PostRegistryM } from './../shared/services.client/service.registryM';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 

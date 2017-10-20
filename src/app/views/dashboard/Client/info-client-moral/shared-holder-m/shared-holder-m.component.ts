@@ -1,5 +1,5 @@
 import { SweetAlertService } from 'ng2-sweetalert2';
-import { PostRegistryM } from 'app/views/dashboard/Client/services.client/service.registryM';
+import { PostRegistryM } from 'app/views/dashboard/Client/shared/services.client/service.registryM';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { SharedholderM } from './m-shared-holder-m';
@@ -17,7 +17,7 @@ export class SharedHolderMComponent implements OnInit {
   sharedModel: SharedholderM = new SharedholderM();
   sharedArray: SharedholderM[];
   @Input()
-  public inputSharedArray: SharedholderM[];
+  public inputSharedArray: Array<SharedholderM>;
 
   constructor(private sweetAlert: SweetAlertService, private postRegistry: PostRegistryM, private router: Router,
     private http: HttpClient) { }
@@ -32,19 +32,15 @@ export class SharedHolderMComponent implements OnInit {
   }
 
   registryInfo(model) {
-    return new Promise<SharedholderM>((resolve, reject) => {
-      this.postRegistry.registryInfoSH(model, response => {
-        if (!response['error']) {
-          this.sweetAlert.swal('Aviso', 'Informacion de la cuenta de banco agregada exitosamente.', 'success');
-          this.sharedArray.push({...response['shareholders']});
-          console.log('Modelo', response)
-          return resolve(response['shareholders']);
-        } else {
-          this.sweetAlert.swal('Error', 'Error al validar campos', 'error');
-          return reject();
+    this.postRegistry.registryInfoSH(model, callback => {
+      if (callback['error']) {
+        this.sweetAlert.swal('Error', 'Error al validar campos', 'error');
+      } else {
+       this.inputSharedArray = callback['shareholders']
+        this.sweetAlert.swal('Aviso', 'Informacion de la cuenta de banco agregada exitosamente.', 'success');
+          console.log('Aqui', this.inputSharedArray)
         }
-      });
-    })
+    });
   }
 
   onSubmit() {

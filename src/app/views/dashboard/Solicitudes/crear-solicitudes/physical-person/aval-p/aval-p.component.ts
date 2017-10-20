@@ -1,8 +1,8 @@
-import { PostRegistryP } from './../../../../Client/services.client/service.registryP';
+import { PostRegistryP } from './../../../../Client/shared/services.client/service.registryP';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { SweetAlertService } from 'ng2-sweetalert2';
-import { FilesP } from './../../../../Client/info-client-physic/files-p/m-files-p';
+import { File } from './../../../../Client/shared/files/file';
 import { AvalP } from './m-aval-p';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
@@ -12,14 +12,14 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./aval-p.component.scss']
 })
 export class AvalPComponent implements OnInit {
-  @Input() 
+  @Input()
   inputAvalData:AvalP;
   @Output()
   appDataRefresher: EventEmitter<Object>;
   submitted = false;
 
   model: AvalP = new AvalP();
-  modelF: FilesP = new FilesP();
+  modelF: File = new File();
 
   files: FileList;
   getFiles(event) {

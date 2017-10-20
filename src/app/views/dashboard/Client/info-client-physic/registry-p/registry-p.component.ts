@@ -1,5 +1,5 @@
 import { SweetAlertService } from 'ng2-sweetalert2';
-import { PostRegistryP } from './../../services.client/service.registryP';
+import { PostRegistryP } from './../../shared/services.client/service.registryP';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';

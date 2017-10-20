@@ -2,7 +2,7 @@ import { ServiceBank } from './../services.client/service.bancos';
 import { Banks } from './banks';
 import { Bank } from './bank'
 import { SweetAlertService } from 'ng2-sweetalert2';
-import { PostRegistryM } from 'app/views/dashboard/Client/services.client/service.registryM';
+import { PostRegistryM } from 'app/views/dashboard/Client/shared/services.client/service.registryM';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Component, OnInit, Input, Output } from '@angular/core';

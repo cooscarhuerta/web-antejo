@@ -1,8 +1,8 @@
-import { ServiceBank } from './views/dashboard/Client/services.client/service.bancos';
+import { ServiceBank } from './views/dashboard/Client/shared/services.client/service.bancos';
 import { SweetAlertService } from 'ng2-sweetalert2';
 
-import { PostRegistryP } from './views/dashboard/Client/services.client/service.registryP';
-import { PostRegistryM } from './views/dashboard/Client/services.client/service.registryM';
+import { PostRegistryP } from './views/dashboard/Client/shared/services.client/service.registryP';
+import { PostRegistryM } from './views/dashboard/Client/shared/services.client/service.registryM';
 import { AuthGuard } from './views/pages/login/auth-guard.service';
 import { LoginInterceptor } from './views/pages/login/login.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';

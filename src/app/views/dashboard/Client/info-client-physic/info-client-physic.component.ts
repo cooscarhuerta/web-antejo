@@ -1,4 +1,4 @@
-import { PostRegistryP } from './../services.client/service.registryP';
+import { PostRegistryP } from './../shared/services.client/service.registryP';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 interface FullClientModel {
