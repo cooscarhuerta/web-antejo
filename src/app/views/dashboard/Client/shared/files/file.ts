@@ -1,4 +1,4 @@
-export class FilesM {
+export class File {
   constructor(
     public idclient = null,
     public userId = null,

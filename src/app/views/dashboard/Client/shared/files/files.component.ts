@@ -1,44 +1,39 @@
-import { PostRegistryM } from './../../services.client/service.registryM';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SweetAlertService } from 'ng2-sweetalert2';
 import { WindowRefService } from './../../../Solicitudes/shared/windowref/shared.service';
-import { FilesM } from './m-files-m';
+import { File } from './file';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
+interface FileType {
+  fileDescriptor: string,
+  fileType: string
+}
 @Component({
-  selector: 'app-files-m',
-  templateUrl: './files-m.component.html',
+  selector: 'app-files',
+  templateUrl: './files.component.html',
   providers: [WindowRefService, SweetAlertService],
-  styleUrls: ['./files-m.component.scss']
+  styleUrls: ['./files.component.scss']
 })
-export class FilesMComponent implements OnInit {
+export class FilesComponent implements OnInit {
   apiUrl = 'http://localhost:8081';
   submitted = false;
   idClient;
   clientType: string;
-  asambleaArray = [];
-  constitutiveArray = [];
-  extrasArray = [];
-  RFCArray = [];
-  legalDocsArray = [];
-  birthCertificateArray = [];
+  filesArray: Array<Array<Object>>;
   @Input()
-  fileTypes: object[];
+  fileTypes: Array<FileType>;
   @Input()
-  inputFileData: any[];
-  @Output()
-  fileDataRefresher: EventEmitter<File>;
+  inputFileData: Array<any>;
   model: File;
   nativeWindow: Window;
   public dataFinishedLoading = true;
-  constructor(private showFiles: PostRegistryM, private http: HttpClient,
+  constructor(private http: HttpClient,
     private windowRef: WindowRefService, private sweetAlert: SweetAlertService) {
     this.nativeWindow = windowRef.getNativeWindow();
-    this.fileDataRefresher = new EventEmitter<File>();
   }
   ngOnInit() {
+    this.filesArray = [];
     this.idClient = localStorage.getItem('idClient');
-    this.clientType = localStorage.getItem('idClient');
     this.listaArchivos();
   }
 
@@ -53,7 +48,6 @@ export class FilesMComponent implements OnInit {
     formData.append('file', file);
     formData.append('type', type);
     formData.append('idclient', this.idClient);
-    console.log(type);
     this.http.post('/Clients/Clientes/add/FilesClient', formData, {
       headers: new HttpHeaders().set('Content-type', 'multipart/form-data')
     }).subscribe(response => {
@@ -62,32 +56,22 @@ export class FilesMComponent implements OnInit {
         this.sweetAlert.swal('Error', 'Error al conectarse con el servidor.', 'error');
       } else {
         this.sweetAlert.swal('Aviso', 'Archivo agregado exitosamente.', 'success');
-        this.fileDataRefresher.emit(response['file']);
+        for (let i = 0; i < this.fileTypes.length; i++) {
+          if (this.fileTypes[i].fileType === type) {
+            this.filesArray[i].push(response['file']);
+            break;
+          }
+        }
       }
     })
   }
 
   listaArchivos() {
-    console.log(this.legalDocsArray);
-    this.asambleaArray = this.inputFileData.filter(item => {
-      return item.type === 'Asamblea'
-    });
-    this.constitutiveArray = this.inputFileData.filter(item => {
-      return item.type === 'Constitutiva'
-    });
-    this.extrasArray = this.inputFileData.filter(item => {
-      return item.type === 'Extras'
-    });
-    this.RFCArray = this.inputFileData.filter(item => {
-      return item.type === 'RFC'
-    });
-    this.birthCertificateArray = this.inputFileData.filter(item => {
-      return item.type === 'Acta de Nacimiento'
-    });
-    this.legalDocsArray = this.inputFileData.filter(item => {
-      return item.type === 'Documentacion Legal'
-    });
-    console.log(this.legalDocsArray);
+    for (let i = 0; i < this.fileTypes.length; i++) {
+      const file: FileType = this.fileTypes[i];
+      this.filesArray.push(this.inputFileData.filter(item => {
+        return item.type === file.fileType;
+      }));
+    }
   }
-
 }

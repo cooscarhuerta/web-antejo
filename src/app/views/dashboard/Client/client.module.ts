@@ -13,16 +13,15 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { AccordionModule } from 'ngx-bootstrap';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { FilesMComponent } from './info-client-moral/files-m/files-m.component';
-import { FilesPComponent } from './info-client-physic/files-p/files-p.component';
+import { FilesComponent } from './shared/files/files.component';
 import { RegistryPComponent } from './info-client-physic/registry-p/registry-p.component';
 import { RegistryMComponent } from './info-client-moral/registry-m/registry-m.component';
 import { ManagersMComponent } from './info-client-moral/managers-m/managers-m.component';
 import { SharedHolderMComponent } from './info-client-moral/shared-holder-m/shared-holder-m.component';
 import { ManagersSectionComponent } from './info-client-moral/managers-m/managers-section/managers-section.component';
 import { SharedHolderSectionComponent } from './info-client-moral/shared-holder-m/shared-holder-section/shared-holder-section.component';
-import { BankComponent } from './bank/bank.component';
-import { BankSectionComponent } from './bank/bank-section/bank-section.component';
+import { BankComponent } from './shared/bank/bank.component';
+import { BankSectionComponent } from './shared/bank/bank-section/bank-section.component';
 
 
 @NgModule({
@@ -37,7 +36,7 @@ import { BankSectionComponent } from './bank/bank-section/bank-section.component
     ApplicationModule
   ],
   declarations: [ClientComponent, InfoClientMoralComponent, InfoClientPhysicComponent,
-     FilesMComponent, FilesPComponent, RegistryPComponent, RegistryMComponent, ManagersMComponent,
+     FilesComponent, RegistryPComponent, RegistryMComponent, ManagersMComponent,
      SharedHolderMComponent, ManagersSectionComponent, SharedHolderSectionComponent,
       BankComponent, BankSectionComponent]
 })

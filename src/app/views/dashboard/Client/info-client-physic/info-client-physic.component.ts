@@ -8,7 +8,6 @@ interface FullClientModel {
   managers: any[],
   sharedholders: any[]
 }
-
 @Component({
   selector: 'app-info-client-physic',
   templateUrl: './info-client-physic.component.html',
@@ -17,6 +16,11 @@ interface FullClientModel {
 
 export class InfoClientPhysicComponent implements OnInit {
   public idClient = null;
+  fileTypes = [
+    { 'fileDescriptor': 'Documentacion Legal', 'fileType': 'Documentacion Legal' },
+    { 'fileDescriptor': 'RFC', 'fileType': 'RFC' },
+    { 'fileDescriptor': 'Acta de Nacimiento', 'fileType': 'Acta de Nacimiento' }
+  ]
   @Input() client: any;
   @Output()
   idRefresher: EventEmitter<string> = new EventEmitter<string>();

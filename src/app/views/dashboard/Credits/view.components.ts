@@ -1,4 +1,3 @@
-import { SectionCreditsComponent } from './section-credits/section-credits.component';
 import { Component } from '@angular/core';
 import { SweetAlertService } from 'ng2-sweetalert2';
 
@@ -11,6 +10,4 @@ import { SweetAlertService } from 'ng2-sweetalert2';
 })
 
 
-export class ViewAppComponent {
- strArray = ['Credito 1', 'Credito 2', 'Credito  3'];
-}
+export class ViewAppComponent {}

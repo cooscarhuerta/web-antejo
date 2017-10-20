@@ -19,7 +19,7 @@
             <tab [disabled]="idClient==null" title="Archivos">
                 <span *tabHeading>Archivos</span>
                 <div>
-                    <app-files-m [inputFileData]="this.fullClient.files" [fileTypes]="this.fileTypes"></app-files-m>
+                    <app-files [inputFileData]="this.fullClient.files" [fileTypes]="this.fileTypes"></app-files>
                 </div>
             </tab>
 

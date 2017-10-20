@@ -11,7 +11,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class FilesMComponent implements OnInit {
 
-  apiUrl = 'http://localhost:8081';
+  apiUrl = 'http://192.168.1.191:81';
   submitted = false;
   @Input()
   inputFileData: File[];

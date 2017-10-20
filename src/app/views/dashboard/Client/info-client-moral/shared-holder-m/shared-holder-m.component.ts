@@ -26,7 +26,7 @@ export class SharedHolderMComponent implements OnInit {
     if (this.inputSharedArray.length > 0) {
       this.dataFinishedLoading = true;
     } else {
-      this.sweetAlert.swal('Aviso', 'No cuena con accionistas registrados', 'warnind');
+      this.sweetAlert.swal('Aviso', 'No cuenta con accionistas registrados', 'warning');
       this.dataFinishedLoading = false;
     }
   }
