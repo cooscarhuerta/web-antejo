@@ -58,7 +58,7 @@
                       <td data-title="Fecha">{{credito.start_date|date:"dd/MM/yyyy"}}</td>
                       <td data-title="Meses">{{credito.term}} </td>
                       <td data-title="Editar">
-                        <button ng-click="SelectCondition(credito)" style="cursor:pointer;" data-toggle="modal" data-target="#modalCondicionDetalle" class="btn btn-default fontSmall">
+                        <button (click)="openModal(credito)" style="cursor:pointer;" data-toggle="modal" data-target="#modalCondicionDetalle" class="btn btn-default fontSmall">
                             <i class="fa fa-clipboard"></i>
                         </button>
                       </td>

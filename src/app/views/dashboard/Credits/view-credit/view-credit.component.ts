@@ -1,13 +1,26 @@
+import { PayDetailModalComponent } from './pay-detail.component';
 import { SweetAlertService } from 'ng2-sweetalert2';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Overlay, overlayConfigFactory } from 'ngx-modialog';
+import {
+  VEXBuiltInThemes,
+  Modal,
+  DialogPreset,
+  DialogFormModal,
+  DialogPresetBuilder,
+  VEXModalContext,
+  providers
+} from 'ngx-modialog/plugins/vex';
 
 @Component({
   selector: 'app-view-credit',
   templateUrl: './view-credit.component.html',
   providers: [SweetAlertService],
-  styleUrls: ['./view-credit.component.scss']
+  styleUrls: [
+    './view-credit.component.scss'
+  ]
 })
 
 export class ViewCreditComponent implements OnInit {
@@ -15,6 +28,7 @@ export class ViewCreditComponent implements OnInit {
     'Pago al Final': 1,
     'Revolvente': 2
   }
+  theme: VEXBuiltInThemes = <VEXBuiltInThemes>'flat-attack';
   DateNow = new Date().toDateString();
   DateMin = null;
   credit = [];
@@ -24,7 +38,7 @@ export class ViewCreditComponent implements OnInit {
   moves = '';
   creditId = null;
   creditType;
-  CreditPadre = {};
+  CreditPadre;
   modalpay = {
     pay: '',
     sel_moneda: '',
@@ -34,7 +48,8 @@ export class ViewCreditComponent implements OnInit {
   }
 
   client = 'Jorge Arturo Carvajal Siller';
-  constructor(private http: HttpClient, private route: ActivatedRoute, private sweetAlert: SweetAlertService) { }
+
+  constructor(private http: HttpClient, private route: ActivatedRoute, private sweetAlert: SweetAlertService, private modal: Modal) {}
 
   ngOnInit() {
     this.dataFinishedLoading = false;
@@ -63,5 +78,21 @@ export class ViewCreditComponent implements OnInit {
         })
       }
     });
+  }
+
+  addTerm() {
+    let aux = new Date(this.CreditPadre.start_date);
+    aux.setMonth(aux.getMonth() + this.CreditPadre.term);
+    return aux;
+  }
+  openModal(credit) {
+    console.log(this.moves['1'][0]);
+    localStorage.setItem('credit', JSON.stringify(this.moves['1'][0]));
+    new DialogPresetBuilder<DialogPreset>(this.modal)
+    .className(this.theme)
+    .content(PayDetailModalComponent)
+    .message('Informacion de Pago')
+    .showCloseButton(true)
+    .open();
   }
 }

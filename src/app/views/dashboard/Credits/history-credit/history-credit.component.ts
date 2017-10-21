@@ -24,7 +24,7 @@ export class HistoryCreditComponent implements OnInit {
       }).subscribe(data => {
     // Read the result field from the JSON response.
     if (data['error'] === true) {
-      this.sweetAlert.swal('Aviso','No tiene creditos registrados.','warning');
+      this.sweetAlert.swal('Aviso', 'No tiene creditos registrados.', 'warning');
       console.log('Credits query failed');
 
     }else {

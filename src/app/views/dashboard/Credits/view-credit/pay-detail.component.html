@@ -1,0 +1,62 @@
+<div class="vex-dialog-message" id="modalPagoDet">
+   < <div>
+        <div >
+            <div >
+                <button type="button" class="close"  aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 >Detalle de Pago</h4>
+            </div>
+            <div id="no-more-tables">
+                <table style="width:200px;height:200px;"class="table table-bordered table-bordered">
+                    <tbody>
+                    <tr>
+                        <th>Fecha</th><td>{{credit.period|date:'dd/MM/yyyy'}}</td>
+                        <th>Balance de Capital</th><td>{{credit.capital_balance|currency}}</td>
+                    </tr>
+                    <tr>
+                        <th>Balance de Interes</th><td>{{credit.interest_balance|currency}}</td>
+                        <th>Balance de Iva</th><td>{{credit.iva_balance|currency}}</td>
+                    </tr>
+                    <tr>
+                        <th>Balance de Interes Moratorio</th><td>{{credit.interest_arrear_balance|currency}}</td>
+                        <th>Balance de Interes Moratorio</th><td>{{credit.interest_arrear_iva_balance|currency}}</td>
+                    </tr>
+                    <tr>
+                        <th>Intereses del Periodo</th><td>{{credit.interest|currency}}</td>
+                        <th>Interes Moratorio del Periodo</th><td>{{credit.interest_arrear|currency}}</td>
+                    </tr>
+                    <tr>
+                        <th colspan="4" class="text-center">
+                            Pago:
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Diferido al Capital</th><td>{{credit.pay_capital|currency}}</td>
+                        <th>Diferido al Interes</th><td>{{credit.pay_interest|currency}}</td>
+                    </tr>
+                    <tr>
+                        <th>Diferido al Interes Moratorio</th><td>{{credit.pay_interest_arrear|currency}}</td>
+                        <th>Diferido al IVA</th><td>{{credit.pay_iva+credit.pay_iva_arrear|currency}}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-right" colspan="2">Pago Total</th><td colspan="2" class="text-center">{{credit.pay|currency}}</td>
+                    </tr>
+
+                    <tr ng-if="credit.idref">
+                        <th class="text-right" colspan="2">Comprobante</th>
+                        <td colspan="2" class="text-center">
+                            <button class="btn btn-default" ng-click="DownloadFile(credit.idref)">Descargar</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div >
+                <button type="button" class="btn btn-default" >Cerrar</button>
+                <button type="button" ng-click="eliminarMovimiento()" ng-if="lastMove.created_at == credit.created_at" class="btn btn-default" data-dismiss="modal" style="background-color: #d9534f;border-color: #d43f3a;">
+                    <i class="material-icons">delete</i>
+                    Eliminar
+                </button>
+            </div>
+        </div>
+    </div>>
+</div>
