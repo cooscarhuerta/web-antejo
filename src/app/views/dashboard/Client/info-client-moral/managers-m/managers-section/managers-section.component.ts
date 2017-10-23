@@ -39,11 +39,11 @@ export class ManagersSectionComponent implements OnInit {
   onUpdate(managers) {
       this.postRegistry.updateManagers(managers, callback => {
         if (!callback['error']) {
-          this.sweetAlert.swal('Aviso', 'Informacion de accionistas actualizada.', 'success');
+          this.sweetAlert.swal('Aviso', 'Informacion de representante actualizada.', 'success');
           managers.oldname = managers.name;
           managers.oldlastname = managers.lastname;
         } else {
-          this.sweetAlert.swal('Aviso', 'No se pudo actualizar la informacion de accionista.', 'warning');
+          this.sweetAlert.swal('Aviso', 'No se pudo actualizar la informacion de representante', 'warning');
         }
     });
   }
@@ -51,7 +51,7 @@ export class ManagersSectionComponent implements OnInit {
   onDelete(managersArray) {
     this.postRegistry.deleteManagers(managersArray, callback => {
       if (!callback['error']) {
-        this.sweetAlert.swal('Aviso', 'Informacion de banco eliminada.', 'success');
+        this.sweetAlert.swal('Aviso', 'Informacion de representante eliminada.', 'success');
         for (let i = 0; i < this.managerArray.length; i++) {
           if (this.managerArray[i].id === managersArray.id) {
             this.managerArray.splice(i, 1);

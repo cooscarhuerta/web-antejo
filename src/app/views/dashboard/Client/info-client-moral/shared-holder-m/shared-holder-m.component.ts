@@ -37,8 +37,11 @@ export class SharedHolderMComponent implements OnInit {
         this.sweetAlert.swal('Error', 'Error al validar campos', 'error');
       } else {
        this.inputSharedArray = callback['shareholders']
-        this.sweetAlert.swal('Aviso', 'Informacion de la cuenta de banco agregada exitosamente.', 'success');
-          console.log('Aqui', this.inputSharedArray)
+       this.inputSharedArray.forEach(item => {
+        item.oldname = item.name;
+        item.oldlastname = item.lastname;
+            });
+        this.sweetAlert.swal('Aviso', 'Informacion de accionista agregada exitosamente.', 'success');
         }
     });
   }

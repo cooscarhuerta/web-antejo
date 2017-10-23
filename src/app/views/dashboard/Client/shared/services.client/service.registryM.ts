@@ -65,6 +65,7 @@ export class PostRegistryM {
       );
   }
   registryInfoM(model, callback) {
+
     model.idclient = this.idclient;
     this.http.post('/Clients/Clientes/add/Managers', model,
       {
@@ -74,16 +75,12 @@ export class PostRegistryM {
       });
     }
 
-
   showManager(callback) {
     this.name = [];
     this.http.get('/Clients/Clientes/show/Client/' + localStorage.getItem('idClient') + '/Managers')
       .subscribe(res => {
         if (res['error'] === false) {
-          this.managersArray = res['manager'];
-          this.managersArray.forEach(item => {
-            this.name.push(item['name']);
-          });
+          this.managersArray = res['managers'];
           this.dataFinishedLoading = true;
           callback(false);
         } else {

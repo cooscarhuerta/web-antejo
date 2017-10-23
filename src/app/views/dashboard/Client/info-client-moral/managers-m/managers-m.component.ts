@@ -23,31 +23,34 @@ export class ManagersMComponent implements OnInit {
   private fileId = null;
   files: FileList;
   getFiles(event) {
-      this.files = event.target.files;
+    this.files = event.target.files;
   }
 
   constructor(private sweetAlert: SweetAlertService, private postRegistry: PostRegistryM, private router: Router,
-     private http: HttpClient) { }
-
-  registryInfo(model) {
-      this.postRegistry.registryInfoM(model, callback => {
-        if (callback['error']) {
-          this.sweetAlert.swal('Error', 'Error al validar campos', 'error');
-        } else {
-          console.log('Llamada', callback)
-          this.inputManagerArray = callback['manager']
-          this.sweetAlert.swal('Aviso', 'Informacion de la cuenta de banco agregada exitosamente.', 'success');
-        }
-      });
-  }
+    private http: HttpClient) { }
 
   ngOnInit() {
-    if (this.managerArray.length > 0) {
+    if (this.inputManagerArray.length > 0) {
       this.dataFinishedLoading = true;
     } else {
       this.sweetAlert.swal('Aviso', 'No cuenta con representantes registrados', 'warning');
       this.dataFinishedLoading = false;
     }
+  }
+
+  registryInfo(model) {
+    this.postRegistry.registryInfoM(model, callback => {
+      if (callback['error']) {
+        this.sweetAlert.swal('Error', 'Error al validar campos', 'error');
+      } else {
+        this.inputManagerArray = callback['managers'];
+        this.inputManagerArray.forEach(item => {
+          item.oldname = item.name;
+          item.oldlastname = item.lastname;
+              });
+        this.sweetAlert.swal('Aviso', 'Informacion de representante agregada exitosamente.', 'success');
+      }
+    });
   }
 
   onSubmit() {
@@ -63,8 +66,10 @@ export class ManagersMComponent implements OnInit {
     try {
       this.postRegistry.registryFile(formData, data => {
         if (data) {
-          this.sweetAlert.swal('Aviso', 'Archivo agregado exitosamente.', 'success');
+          this.sweetAlert.swal('Aviso', 'Identificacion agregada exitosamente.', 'success');
           this.fileId = data['file']['id'];
+          this.managerModel['idfile'] = this.fileId;
+          console.log('Modelo:', this.managerModel);
           this.registryInfo(this.managerModel);
         } else {
           this.sweetAlert.swal('Error', 'Error al validar campos', 'error');

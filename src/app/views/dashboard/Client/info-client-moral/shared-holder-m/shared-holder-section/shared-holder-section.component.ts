@@ -48,14 +48,14 @@ export class SharedHolderSectionComponent implements OnInit {
   onDelete(shared) {
     this.postRegistry.deleteSharedHolder(shared, callback => {
       if (!callback['error']) {
-        this.sweetAlert.swal('Aviso', 'Informacion de banco eliminada.', 'success');
+        this.sweetAlert.swal('Aviso', 'Informacion de accionista eliminada.', 'success');
         for (let i = 0; i < this.sharedArray.length; i++) {
           if (this.sharedArray[i].id === shared.id) {
             this.sharedArray.splice(i, 1);
           }
         }
       } else {
-        this.sweetAlert.swal('Aviso', 'No se elimino el banco.', 'warning');
+        this.sweetAlert.swal('Aviso', 'No se elimino el accionista.', 'warning');
       }
     });
   }
