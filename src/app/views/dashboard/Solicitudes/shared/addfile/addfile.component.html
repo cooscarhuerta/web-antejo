@@ -27,7 +27,7 @@
 
             <div id="collapse{{file.id}}{{i}}" class="collapse" role="tabpanel" aria-labelledby="heading">
                 <div>
-                    <a class="btn btn-default" href="{{this.urlDownload + file.path}}" target="_blank">
+                    <a class="btn btn-default" href="{{downloadUrl + file.path}}" target="_blank">
                         <i class="material-icons ">Descargar archivo</i>
                     </a>
                     <button class="btn btn-default" (click)="onDelete(file)" type="submit">

@@ -15,7 +15,6 @@ interface FileType {
   styleUrls: ['./files.component.scss']
 })
 export class FilesComponent implements OnInit {
-  apiUrl = 'http://localhost:8081';
   submitted = false;
   idClient;
   clientType: string;
@@ -38,10 +37,6 @@ export class FilesComponent implements OnInit {
     this.listaArchivos();
   }
 
-  openFile(file) {
-    const newWindow = this.nativeWindow.open(this.apiUrl + '/storage/' + file.path);
-  }
-
   getFile(file, type) {
     this.dataFinishedLoading = false;
     this.submitted = true;
@@ -57,11 +52,11 @@ export class FilesComponent implements OnInit {
         this.sweetAlert.swal('Error', 'Error al conectarse con el servidor.', 'error');
       } else {
         this.sweetAlert.swal('Aviso', 'Archivo agregado exitosamente.', 'success');
-       
+
         for (let i = 0; i < this.fileTypes.length; i++) {
           if (this.fileTypes[i].fileType === type) {
             this.filesArray[i].push(response['file']);
-            
+
             break;
           }
         }

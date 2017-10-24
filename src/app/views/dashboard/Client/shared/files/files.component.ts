@@ -1,3 +1,4 @@
+import { apiUrl } from './../../../../shared/api-routes/api-routes.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SweetAlertService } from 'ng2-sweetalert2';
 import { WindowRefService } from './../../../Solicitudes/shared/windowref/shared.service';
@@ -15,7 +16,6 @@ interface FileType {
   styleUrls: ['./files.component.scss']
 })
 export class FilesComponent implements OnInit {
-  apiUrl = 'http://localhost:8081';
   submitted = false;
   idClient;
   clientType: string;
@@ -38,7 +38,9 @@ export class FilesComponent implements OnInit {
   }
 
   openFile(file) {
-    const newWindow = this.nativeWindow.open(this.apiUrl + '/storage/' + file.path);
+    console.log(apiUrl);
+    console.log(file.path);
+    const newWindow = this.nativeWindow.open(apiUrl + '/storage/' + file.path);
   }
 
   getFile(file, type) {
@@ -56,11 +58,10 @@ export class FilesComponent implements OnInit {
         this.sweetAlert.swal('Error', 'Error al conectarse con el servidor.', 'error');
       } else {
         this.sweetAlert.swal('Aviso', 'Archivo agregado exitosamente.', 'success');
-       
+
         for (let i = 0; i < this.fileTypes.length; i++) {
           if (this.fileTypes[i].fileType === type) {
             this.filesArray[i].push(response['file']);
-            
             break;
           }
         }

@@ -1,8 +1,7 @@
+import { downloadUrl } from './../../../../shared/api-routes/api-routes.service';
 import { SweetAlertService } from 'ng2-sweetalert2';
 import { PostRegistryP } from '../../../Client/shared/services.client/service.registryP';
-import { urlDownload } from './../../../../pages/login/login.interceptor';
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
-
 @Component({
   selector: 'app-addfile',
   templateUrl: './addfile.component.html',
@@ -11,7 +10,7 @@ import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 
 
 export class AddFileComponent implements OnInit {
-  public urlDownload = urlDownload;
+  downloadUrl: string;
   @Input()
   public fileDescriptor: String;
   @Input()
@@ -25,6 +24,7 @@ export class AddFileComponent implements OnInit {
 
   ngOnInit() {
     this.file = null;
+    this.downloadUrl = downloadUrl;
   }
 
   emitFile() {

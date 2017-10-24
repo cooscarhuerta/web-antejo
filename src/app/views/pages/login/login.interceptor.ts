@@ -1,12 +1,12 @@
+import { apiUrl } from './../../shared/api-routes/api-routes.service';
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
-const apiUrl = 'http://localhost/bantejo/public';
-export const urlDownload = 'http://localhost/bantejo/public/storage/';
-
 @Injectable()
 export class LoginInterceptor implements HttpInterceptor {
+
+  constructor() { };
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     try {
       const token = localStorage.getItem('auth_token');
