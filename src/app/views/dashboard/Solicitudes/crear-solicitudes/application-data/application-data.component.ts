@@ -7,33 +7,40 @@ interface Data {
   files?: Object
 }
 @Component({
-  selector: 'app-moral-person',
-  templateUrl: './moral-person.component.html',
-  styleUrls: ['./moral-person.component.scss']
+  selector: 'app-application-data',
+  templateUrl: './application-data.component.html',
+  styleUrls: ['./application-data.component.scss']
 })
-export class MoralPersonComponent implements OnInit {
+export class ApplicationDataComponent implements OnInit {
   @Input() inputData: ApplicationsModel;
   @Input() inputAppId;
   @Output()
   public dataRefresher: EventEmitter<Object>;
   public data: ApplicationsModel;
   public appId;
+  fileTypes = [
+    { 'fileDescriptor': 'Comprobante de Domicilio', 'fileType': 'Domicilio' },
+    { 'fileDescriptor': 'Estados de Cuenta', 'fileType': 'Cuentas' },
+    { 'fileDescriptor': 'RFC', 'fileType': 'RFC' },
+    { 'fileDescriptor': 'Proforma', ' fileType': 'Proforma' },
+    { 'fileDescriptor': 'Informacion Financiera', 'fileType': 'Identificacion' }
+  ]
   constructor() {
     this.dataRefresher = new EventEmitter<Object>();
   }
 
   ngOnInit() {
     this.data = this.inputData;
-    console.log("midway");
-    console.log(this.inputAppId);
+
+
     this.appId = this.inputAppId;
   }
   refreshAppData(appData) {
-    console.log(appData);
+
     this.data.applications = appData.app;
     this.appId = appData.appId;
     this.dataRefresher.emit(appData);
-    console.log('raising data 1');
+
   }
 
   refreshAvalData(avalData) {
@@ -51,11 +58,8 @@ export class MoralPersonComponent implements OnInit {
     } else {
       this.data.avals[i] = avalData;
     }
-
-    // this.dataRefresher.emit(avalData);
   }
   refreshFileData(fileData) {
     this.data.files.push(fileData);
-    // this.dataRefresher.emit(fileData);
   }
 }

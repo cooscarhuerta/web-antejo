@@ -51,13 +51,13 @@ export class InfoClientPhysicComponent implements OnInit {
       if (callback) {
         if (!callback['error']) {
           this.fullClient = callback;
-          console.log(this.fullClient);
+          
         } else {
-          console.log('No entro');
+          
         }
         this.dataFinishedLoading = true;
       } else {
-        console.log('No se hizo compa')
+        
       }
     });
   }

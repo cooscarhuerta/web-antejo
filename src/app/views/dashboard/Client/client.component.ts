@@ -17,7 +17,7 @@ export class ClientComponent implements OnInit {
 
   }
   refreshId(event) {
-    console.log('Raising output in client component');
+    
     this.idClient = event;
   }
   evento_cliente(isMoral) {

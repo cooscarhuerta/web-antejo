@@ -38,7 +38,7 @@ export class SharedHolderMComponent implements OnInit {
       } else {
        this.inputSharedArray = callback['shareholders']
         this.sweetAlert.swal('Aviso', 'Informacion de la cuenta de banco agregada exitosamente.', 'success');
-          console.log('Aqui', this.inputSharedArray)
+          
         }
     });
   }

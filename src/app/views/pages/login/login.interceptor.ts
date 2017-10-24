@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
-const apiUrl = 'http://192.168.1.191:81';
-export const urlDownload = 'http://192.168.1.191:81/storage/';
+const apiUrl = 'http://localhost:8081';
+export const urlDownload = 'http://localhost:8081/storage/';
 
 @Injectable()
 export class LoginInterceptor implements HttpInterceptor {
@@ -28,7 +28,7 @@ export class LoginInterceptor implements HttpInterceptor {
       });
       return next.handle(authReq);
     } catch (ex) {
-      console.log(ex)
+      
     }
   }
 }

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AvalPComponent } from './aval-p.component';
+import { FilesComponent } from './files.component';
 
-describe('AvalPComponent', () => {
-  let component: AvalPComponent;
-  let fixture: ComponentFixture<AvalPComponent>;
+describe('FilesMComponent', () => {
+  let component: FilesComponent;
+  let fixture: ComponentFixture<FilesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AvalPComponent ]
+      declarations: [ FilesComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AvalPComponent);
+    fixture = TestBed.createComponent(FilesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

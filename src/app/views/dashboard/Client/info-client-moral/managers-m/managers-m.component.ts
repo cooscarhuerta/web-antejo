@@ -34,7 +34,7 @@ export class ManagersMComponent implements OnInit {
         if (callback['error']) {
           this.sweetAlert.swal('Error', 'Error al validar campos', 'error');
         } else {
-          console.log('Llamada', callback)
+          
           this.inputManagerArray = callback['manager']
           this.sweetAlert.swal('Aviso', 'Informacion de la cuenta de banco agregada exitosamente.', 'success');
         }
@@ -71,7 +71,7 @@ export class ManagersMComponent implements OnInit {
         }
       });
     } catch (Exp) {
-      console.log(Exp);
+      
     }
   }
 

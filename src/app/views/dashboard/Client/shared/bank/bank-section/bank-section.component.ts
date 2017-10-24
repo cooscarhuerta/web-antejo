@@ -31,7 +31,7 @@ export class BankSectionComponent implements OnInit {
 
   change(idbank) {
     this.idbank = idbank;
-    console.log(idbank);
+    
     for (let i = 0; i < this.availableBanks.length; i++) {
       if (this.availableBanks[i].id == idbank) {
         this.namebank = this.availableBanks[i].name;
@@ -57,7 +57,7 @@ export class BankSectionComponent implements OnInit {
   }
 
   onUpdate(bank) {
-    console.log(bank);
+    
     bank.namebank = this.namebank;
     bank.idbank = this.idbank;
     this.serviceB.updateBank(bank, callback => {

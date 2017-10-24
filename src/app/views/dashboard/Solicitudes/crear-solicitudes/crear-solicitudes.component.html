@@ -8,12 +8,7 @@
                 <ng-template class="card-header" #editHeader>
                     <h2>Editar Solicitud</h2>
                 </ng-template>
-                <div *ngIf="clientType == 'moral';else physicalForm">
-                    <app-moral-person [inputData]="data" [inputAppId]="appId" (dataRefresher)="refreshAppData($event)" ></app-moral-person>
-                </div>
-                <ng-template #physicalForm>
-                    <!-- <app-physical-person [inputData]="data"></app-physical-person> !-->
-                </ng-template>
+                <app-application-data [inputData]="data" [inputAppId]="appId" (dataRefresher)="refreshAppData($event)" ></app-application-data>
             </div>
         </div>
         <ng-template #loadingScreen>

@@ -22,15 +22,14 @@ export class CrearSolicitudesComponent implements OnInit {
   // update the value of the application id, once the application has been created
   public refreshAppData(appData) {
     this.appId = appData.appId;
-    console.log('raising data 2');
+
   }
   constructor(private route: ActivatedRoute, private http: HttpClient, private sweetAlert: SweetAlertService) { }
   // initialize the application id (can be null if it's a new application) and client type (moral/physical)
   ngOnInit() {
     this.appId = null;
-    
     this.route.params.subscribe(params => {
-      console.log(params.appId);
+
       if (params.appId) {
         this.appId = params.appId;
         this.http.get('/Clients/Solicitudes/show/' + params.appId).subscribe(response => {
@@ -38,7 +37,7 @@ export class CrearSolicitudesComponent implements OnInit {
             this.sweetAlert.swal('Error', 'No se pudieron cargar los datos de la solicitud', 'error')
           } else {
 
-            console.log(response);
+
             this.data.applications = response['application'];
             this.data.files = response['files'];
             this.data.avals = response['creditaids'];
@@ -49,6 +48,5 @@ export class CrearSolicitudesComponent implements OnInit {
         this.finishedLoadingApp = true;
       }
     });
-    this.clientType = localStorage.getItem('clientType');
   }
 }

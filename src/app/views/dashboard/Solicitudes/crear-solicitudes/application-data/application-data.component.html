@@ -3,7 +3,7 @@
         
         <tab title="Solicitud">
             <span *tabHeading>Solicitud</span>
-            <app-registry-sol-m [inputAppData]="data.applications" [inputAppId]="appId" (appDataRefresher)="refreshAppData($event)"></app-registry-sol-m>
+            <app-registry-app [inputAppData]="data.applications" [inputAppId]="appId" (appDataRefresher)="refreshAppData($event)"></app-registry-app>
 
         </tab>
 
@@ -12,7 +12,7 @@
             <span *tabHeading>Avales</span>
             <div>
                 <p>
-                    <app-aval-m [inputAvalData]="data.avals" [inputAppId]="appId" (avalDataRefresher)="refreshAvalData($event)"></app-aval-m>
+                    <app-aval [inputAvalData]="data.avals" [inputAppId]="appId" (avalDataRefresher)="refreshAvalData($event)"></app-aval>
                 </p>
             </div>
         </tab>
@@ -21,7 +21,7 @@
             <span *tabHeading>Archivos</span>
             <div>
                 <p>
-                    <app-files-m [inputFileData]="data.files" [inputAppId]="appId" (fileDataRefresher)="refreshFileData($event)"></app-files-m>
+                    <app-files [inputFileData]="data.files" [appId]="appId" [fileTypes]="fileTypes"></app-files>
                 </p>
             </div>
 

@@ -43,7 +43,7 @@ export class RegistryPComponent implements OnInit {
         }
       });
     } catch (Exp) {
-      console.log(Exp)
+      
     }
   }
   public onSubmit() {

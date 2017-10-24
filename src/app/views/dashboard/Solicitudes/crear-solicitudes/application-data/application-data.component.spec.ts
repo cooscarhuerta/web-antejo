@@ -1,20 +1,19 @@
+import { ApplicationDataComponent } from './application-data.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegistrySolPComponent } from './registry-sol-p.component';
-
-describe('RegistrySolPComponent', () => {
-  let component: RegistrySolPComponent;
-  let fixture: ComponentFixture<RegistrySolPComponent>;
+describe('ApplicationDataComponent', () => {
+  let component: ApplicationDataComponent;
+  let fixture: ComponentFixture<ApplicationDataComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegistrySolPComponent ]
+      declarations: [ ApplicationDataComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RegistrySolPComponent);
+    fixture = TestBed.createComponent(ApplicationDataComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -18,7 +18,7 @@ export class LoginComponent {
             this.loggingIn[0] = true;
             this.authguard.logIn(event, email, password, this.loggingIn, this.sweetAlert);
         }catch (Exp) {
-            console.log(Exp)
+            
         }
 
    }

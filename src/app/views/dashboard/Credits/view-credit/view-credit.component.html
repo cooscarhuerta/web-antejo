@@ -33,7 +33,7 @@
                   HISTORIAL DE MOVIMIENTOS
                 </h5>
               </table>
-              <div  id="no-more-tables" style="height: 42.2vh">
+              <div  id="no-more-tables">
                 <table class="table table-striped table-condensed cf">
 
                   <thead class="cf">
@@ -58,7 +58,7 @@
                       <td data-title="Fecha">{{credito.start_date|date:"dd/MM/yyyy"}}</td>
                       <td data-title="Meses">{{credito.term}} </td>
                       <td data-title="Editar">
-                        <button (click)="openModal(credito)" style="cursor:pointer;" data-toggle="modal" data-target="#modalCondicionDetalle" class="btn btn-default fontSmall">
+                        <button (click)="openModal(credito)" style="cursor:pointer;" class="btn btn-default fontSmall">
                             <i class="fa fa-clipboard"></i>
                         </button>
                       </td>
@@ -67,7 +67,31 @@
                 </table>
               </div>
             </div>
+            
           </div>
+          <div class="panel-footer">
+              <span>
+                  Balance actual: {{lastMove.capital_balance|currency:'USD':true:'1.2-2'}}
+              </span>
+              <br>
+              <span>
+                  Intereses a pagar: {{lastMove.interest_balance|currency:'USD':true:'1.2-2'}}
+              </span>
+              <br>
+              <span>
+                  IVA a pagar: {{lastMove.iva_balance|currency:'USD':true:'1.2-2'}}
+              </span>
+              <br>
+              <span *ngIf="lastMove.interest_arrear_balance==0; else redFlag" class="badge badge-warning" style="font-size:1em">
+                  Cantidad a pagar: {{lastMove.capital_balance+lastMove.iva_balance+lastMove.interest_balance|currency:'USD':true:'1.2-2'}}
+              </span>
+              <ng-template #redFlag>
+                  <span class="badge badge-danger" style="font-size:1em" #redFlag>
+                      Cantidad a pagar: {{lastMove.capital_balance+lastMove.iva_balance+lastMove.interest_balance|currency:'USD':true:'1.2-2'}}
+                  </span>
+              </ng-template>
+              
+            </div>
         </div>
       </div>
     </div>
@@ -76,9 +100,3 @@
     </ng-template>
   </div>
 </div>
-
-<div ng-include="'app/views/creditos/ModalPagos.html'"></div>
-<div ng-include="'app/views/creditos/disposicion.html'"></div>
-<div ng-include="'app/views/creditos/edit_revolvente.html'"></div>
-<div ng-include="'app/views/creditos/ModalDetallePago.html'"></div>
-<div ng-include="'app/views/creditos/ModalCondicionDetalle.html'"></div>

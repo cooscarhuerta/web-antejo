@@ -21,7 +21,7 @@ export class PostRegistryM {
         {
           headers: new HttpHeaders().set('Content-type', 'application/json')
         }).subscribe(data => {
-          console.log('doing stuff');
+          
           if (data['error'] === false) {
             localStorage.setItem('idClient', data['client']['id']);
             localStorage.setItem('clientType', 'moral');
@@ -100,13 +100,13 @@ export class PostRegistryM {
   deleteManagers(manager, callback) {
     this.http.delete('/Clients/Clientes/delete/' + manager.id + '/Managers', manager)
       .subscribe(res => {
-        console.log(res)
+        
         if (res['error'] === false) {
           callback(false)
         } else {
           callback(true);
         }
-        console.log(res)
+        
       });
   }
   showSharedHolder(callback) {
@@ -130,13 +130,13 @@ export class PostRegistryM {
   deleteSharedHolder(shared, callback) {
     this.http.delete('/Clients/Clientes/delete/' + shared.id + '/AccionistasClientes', shared)
       .subscribe(res => {
-        console.log(res)
+        
         if (res['error'] === false) {
           callback(false)
         } else {
           callback(true);
         }
-        console.log(res)
+        
       });
   }
   registryInfoSH(model, callback) {
@@ -154,7 +154,7 @@ export class PostRegistryM {
       {
         headers: new HttpHeaders().set('Content-type', 'multipart/form-data')
       }).subscribe(data => {
-        console.log(data)
+        
         if (data['error'] === false) {
           callback(data);
         } else {

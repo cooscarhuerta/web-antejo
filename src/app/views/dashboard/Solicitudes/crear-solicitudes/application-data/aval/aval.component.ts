@@ -3,16 +3,15 @@ import { PatternValidator } from '@angular/forms';
 import { SweetAlertService } from 'ng2-sweetalert2';
 import { HttpClient } from '@angular/common/http';
 import { Aval } from './../../../shared/applications-model';
-import { AvalM } from './m-aval-m';
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
-  selector: 'app-aval-m',
-  templateUrl: './aval-m.component.html',
+  selector: 'app-aval',
+  templateUrl: './aval.component.html',
   providers: [SweetAlertService, PatternValidator, Regex],
-  styleUrls: ['./aval-m.component.scss']
+  styleUrls: ['./aval.component.scss']
 })
-export class AvalMComponent implements OnInit {
+export class AvalComponent implements OnInit {
 
 
   submitted: boolean;
@@ -57,7 +56,7 @@ export class AvalMComponent implements OnInit {
     this.method = null;
   }
   getFile(event){
-    console.log(event);
+    
   }
   updateBank(bank, callback) {
     this.http.put('/Clients/Clientes/update/' + localStorage.getItem('idClient') + '/BancosClientes', bank)
@@ -71,7 +70,7 @@ export class AvalMComponent implements OnInit {
   }
   onSubmit() {
     this.submitted = true;
-    console.log(this.model);
+    
     if (this.method !== 'POST' && this.method !== 'PUT') {
       return;
     }

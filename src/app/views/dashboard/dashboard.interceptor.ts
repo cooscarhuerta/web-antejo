@@ -16,7 +16,7 @@ export class DashboardInterceptor implements HttpInterceptor {
         });
         return next.handle(authReq);
     }catch (ex) {
-      console.log(ex)
+      
     }
   }
 }

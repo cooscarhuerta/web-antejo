@@ -23,7 +23,7 @@ export class AuthGuard implements CanActivate {
           localStorage.setItem('userId', data['user']['id']);
           localStorage.setItem('email', data['user']['email']);
           if(data['user']['idclient']!==null){
-            console.log("setting id");
+            
             localStorage.setItem('idClient', data['user']['idclient']);
             if(data['clientType']!==null){
               localStorage.setItem('clientType',data['clientType']);

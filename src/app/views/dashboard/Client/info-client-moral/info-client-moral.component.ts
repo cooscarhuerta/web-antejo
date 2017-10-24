@@ -19,12 +19,12 @@ interface FullClientModel {
 export class InfoClientMoralComponent implements OnInit {
   public idClient = null;
   @Input() client: any
-  @Output()
   fileTypes = [
     { 'fileDescriptor': 'Acta Asamblea', 'fileType': 'Asamblea' },
     { 'fileDescriptor': 'Acta Constitutiva', 'fileType': 'Constitutiva' },
     { 'fileDescriptor': 'Extras', 'fileType': 'Extras' }
   ]
+  @Output()
   idRefresher: EventEmitter<string> = new EventEmitter<string>();
   fullClient: FullClientModel = {
     banks: [],
@@ -53,13 +53,13 @@ export class InfoClientMoralComponent implements OnInit {
       if (callback) {
         if (!callback['error']) {
           this.fullClient = callback;
-          console.log('Cliente', this.fullClient);
+          
         } else {
-          console.log('No entro');
+          
         }
         this.dataFinishedLoading = true;
       } else {
-        console.log('No se hizo compa')
+        
       }
     });
   }

@@ -1,4 +1,3 @@
-import { SectionSolicitudesComponent } from './section-solicitudes/section-solicitudes.component';
 import { VerSolicitudesComponent } from './ver-solicitudes/ver-solicitudes.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';

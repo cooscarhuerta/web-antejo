@@ -1,4 +1,4 @@
-import { PayDetailModalComponent } from './pay-detail.component';
+import { PayDetailModalComponent } from './pay-detail/pay-detail.component';
 import { SweetAlertService } from 'ng2-sweetalert2';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -54,12 +54,10 @@ export class ViewCreditComponent implements OnInit {
   ngOnInit() {
     this.dataFinishedLoading = false;
     this.route.params.subscribe(params => {
-      console.log(params.creditId);
       if (params.creditId) {
         this.creditId = params.creditId;
         this.http.get('/Clients/Creditos/show/' + this.creditId).subscribe(response => {
           if (!response['error']) {
-            console.log(response);
             this.lastMove = response['lastMove'];
             this.credit = response['credits'];
             this.moves = response['moves'];
@@ -86,7 +84,7 @@ export class ViewCreditComponent implements OnInit {
     return aux;
   }
   openModal(credit) {
-    console.log(this.moves['1'][0]);
+    
     localStorage.setItem('credit', JSON.stringify(this.moves['1'][0]));
     new DialogPresetBuilder<DialogPreset>(this.modal)
     .className(this.theme)

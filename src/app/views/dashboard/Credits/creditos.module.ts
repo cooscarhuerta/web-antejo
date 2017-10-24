@@ -1,4 +1,4 @@
-import { PayDetailModalComponent } from './view-credit/pay-detail.component';
+import { PayDetailModalComponent } from './view-credit/pay-detail/pay-detail.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule } from '@angular/forms';
 import { AccordionModule } from 'ngx-bootstrap/ng2-bootstrap';
@@ -34,7 +34,7 @@ const MODAL_PROVIDERS = [
   ], providers: [
     ...
     MODAL_PROVIDERS
-  ],declarations: [ ViewAppComponent, HistoryCreditComponent, ViewCreditComponent, SharedComponent, PayDetailModalComponent ],
+  ], declarations: [ ViewAppComponent, HistoryCreditComponent, ViewCreditComponent, SharedComponent, PayDetailModalComponent ],
   entryComponents: [PayDetailModalComponent],
 })
 export class CreditsModule { }

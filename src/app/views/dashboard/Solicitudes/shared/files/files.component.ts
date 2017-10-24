@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SweetAlertService } from 'ng2-sweetalert2';
-import { WindowRefService } from './../../../Solicitudes/shared/windowref/shared.service';
+import { WindowRefService } from './../windowref/shared.service';
 import { File } from './file';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
@@ -24,6 +24,8 @@ export class FilesComponent implements OnInit {
   fileTypes: Array<FileType>;
   @Input()
   inputFileData: Array<any>;
+  @Input()
+  appId;
   model: File;
   nativeWindow: Window;
   public dataFinishedLoading = true;
@@ -33,7 +35,6 @@ export class FilesComponent implements OnInit {
   }
   ngOnInit() {
     this.filesArray = [];
-    this.idClient = localStorage.getItem('idClient');
     this.listaArchivos();
   }
 
@@ -47,8 +48,8 @@ export class FilesComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('type', type);
-    formData.append('idclient', this.idClient);
-    this.http.post('/Clients/Clientes/add/FilesClient', formData, {
+    formData.append('idapplication', this.appId);
+    this.http.post('/Clients/Solicitudes/add/FilesApplication', formData, {
       headers: new HttpHeaders().set('Content-type', 'multipart/form-data')
     }).subscribe(response => {
       this.dataFinishedLoading = true;

@@ -1,12 +1,12 @@
-<div class="vex-dialog-message" id="modalPagoDet">
-   < <div>
-        <div >
-            <div >
-                <button type="button" class="close"  aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<div id="modalPagoDet">
+    <div>
+        <div>
+            <div>
+                <button type="button" class="close"  (click)="closeDialog()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 >Detalle de Pago</h4>
             </div>
             <div id="no-more-tables">
-                <table style="width:200px;height:200px;"class="table table-bordered table-bordered">
+                <table class="table-striped table-condensed cf">
                     <tbody>
                     <tr>
                         <th>Fecha</th><td>{{credit.period|date:'dd/MM/yyyy'}}</td>
@@ -41,7 +41,7 @@
                         <th class="text-right" colspan="2">Pago Total</th><td colspan="2" class="text-center">{{credit.pay|currency}}</td>
                     </tr>
 
-                    <tr ng-if="credit.idref">
+                    <tr *ngIf="credit.idref">
                         <th class="text-right" colspan="2">Comprobante</th>
                         <td colspan="2" class="text-center">
                             <button class="btn btn-default" ng-click="DownloadFile(credit.idref)">Descargar</button>
@@ -51,12 +51,12 @@
                 </table>
             </div>
             <div >
-                <button type="button" class="btn btn-default" >Cerrar</button>
+                <button type="button" class="btn btn-default" (click)="closeDialog()">Cerrar</button>
                 <button type="button" ng-click="eliminarMovimiento()" ng-if="lastMove.created_at == credit.created_at" class="btn btn-default" data-dismiss="modal" style="background-color: #d9534f;border-color: #d43f3a;">
-                    <i class="material-icons">delete</i>
+                    <i class="material-icons"></i>
                     Eliminar
                 </button>
             </div>
         </div>
-    </div>>
+    </div>
 </div>

@@ -32,7 +32,7 @@ export class ManagersSectionComponent implements OnInit {
       });
       this.dataFinishedLoading = this.postRegistry.dataFinishedLoading;
     } catch (Exp) {
-      console.log(Exp);
+      
     }
   }
 

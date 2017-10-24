@@ -29,7 +29,7 @@ export class SharedHolderSectionComponent implements OnInit {
           });
           this.dataFinishedLoading = this.postRegistry.dataFinishedLoading;
        } catch (Exp) {
-         console.log(Exp)
+         
        }}
 
   onUpdate(shared) {

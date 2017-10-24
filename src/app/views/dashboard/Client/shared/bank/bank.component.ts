@@ -48,7 +48,7 @@ export class BankComponent implements OnInit {
   }
 
   change(bankId) {
-    console.log(this.availableBanks);
+    
     this.bankModel.idbank = bankId;
     for (let  i = 0; i < this.availableBanks.length; i++) {
       if (this.availableBanks[i].id == bankId) {
@@ -56,7 +56,7 @@ export class BankComponent implements OnInit {
         break;
       }
     }
-    console.log(this.bankModel);
+    
   }
 
   getBanks() {
