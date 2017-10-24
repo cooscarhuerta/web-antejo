@@ -16,6 +16,7 @@ export class ManagersSectionComponent implements OnInit {
   public urlDownload = urlDownload;
   submitted = false
   dataFinishedLoading = false;
+  public RFCPattern = '[A-Z,Ñ,&]{4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\d]{3}';
   model: ManagerM = new ManagerM();
   @Input()
   managerArray: ManagerM[];
@@ -32,7 +33,7 @@ export class ManagersSectionComponent implements OnInit {
       });
       this.dataFinishedLoading = this.postRegistry.dataFinishedLoading;
     } catch (Exp) {
-      
+
     }
   }
 

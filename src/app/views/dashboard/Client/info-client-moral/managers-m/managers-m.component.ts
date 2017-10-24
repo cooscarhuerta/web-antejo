@@ -16,6 +16,7 @@ export class ManagersMComponent implements OnInit {
   dataFinishedLoading = false;
   managerModel: ManagerM = new ManagerM();
   managerArray: ManagerM[];
+  public RFCPattern = '[A-Z,Ñ,&]{4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\d]{3}';
   @Input()
   public inputManagerArray: Array<ManagerM>;
 
@@ -76,7 +77,7 @@ export class ManagersMComponent implements OnInit {
         }
       });
     } catch (Exp) {
-      
+
     }
   }
 

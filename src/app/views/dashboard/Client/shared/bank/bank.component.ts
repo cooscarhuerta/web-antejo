@@ -20,6 +20,8 @@ export class BankComponent implements OnInit {
   bankModel: Bank = new Bank();
   banksArray: Bank[];
   availableBanks: Banks[] = [];
+  public accountnumberPattern = '[0-9]{10,12}';
+  public clabePattern = '[0-9]{18}';
   @Input()
   inputBanksArray: Bank[];
 
@@ -48,7 +50,7 @@ export class BankComponent implements OnInit {
   }
 
   change(bankId) {
-    
+
     this.bankModel.idbank = bankId;
     for (let  i = 0; i < this.availableBanks.length; i++) {
       if (this.availableBanks[i].id == bankId) {
@@ -56,7 +58,7 @@ export class BankComponent implements OnInit {
         break;
       }
     }
-    
+
   }
 
   getBanks() {

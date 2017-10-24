@@ -14,6 +14,8 @@ import { Router } from '@angular/router';
 export class BankSectionComponent implements OnInit {
   submitted = false;
   dataFinishedLoading = false;
+  public accountnumberPattern = '[0-9]{10,12}';
+  public clabePattern = '[0-9]{18}';
   @Input()
   banksArray: Bank[];
   @Input()
@@ -31,7 +33,7 @@ export class BankSectionComponent implements OnInit {
 
   change(idbank) {
     this.idbank = idbank;
-    
+
     for (let i = 0; i < this.availableBanks.length; i++) {
       if (this.availableBanks[i].id == idbank) {
         this.namebank = this.availableBanks[i].name;
@@ -57,7 +59,7 @@ export class BankSectionComponent implements OnInit {
   }
 
   onUpdate(bank) {
-    
+
     bank.namebank = this.namebank;
     bank.idbank = this.idbank;
     this.serviceB.updateBank(bank, callback => {

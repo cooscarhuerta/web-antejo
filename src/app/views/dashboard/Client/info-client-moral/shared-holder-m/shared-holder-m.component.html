@@ -1,53 +1,66 @@
-<div>
-    <hr>
-    <div class="card-header" role="tab" id="headingSH">
-        <h5 class="mb-0">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseSH" aria-expanded="true" aria-controls="collapse">
+<hr>
+<div class="card-header" role="tab" id="headingSH">
+    <h5 class="mb-0">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSH" aria-expanded="true" aria-controls="collapse">
           Registrar Accionista
         </a>
-        </h5>
-    </div>
-    <hr>
-    <div id="collapseSH" class="collapse" role="tabpanel" aria-labelledby="heading">
+    </h5>
+</div>
+<hr>
+<div id="collapseSH" class="collapse" role="tabpanel" aria-labelledby="heading">
 
-        <div class="card-block">
+    <div class="card-block">
 
-            <form (ngSubmit)="onSubmit()" #sharedholderForm="ngForm">
-                <div class="row col-sm-12">
-                    <div class="form-group col-sm-6">
-                        <label for="name">Nombre(s):</label>
-                        <input id="name" name="name" class="form-control" [(ngModel)]="sharedModel.name" type="text" required>
-                    </div>
-                    <div class="form-group col-sm-6">
-                        <label for="lastname">Apellido(s):</label>
-                        <input class="form-control" [(ngModel)]="sharedModel.lastname" name="lastname" type="text" required>
-                    </div>
-                    <div class="form-group col-sm-4">
-                        <label for="rfc">RFC:</label>
-                        <input class="form-control" [(ngModel)]="sharedModel.rfc" name="rfc" type="text" required>
-                    </div>
-                    <div class="form-group col-sm-4">
-                        <label for="rfc">Participacion(%):</label>
-                        <input class="form-control" [(ngModel)]="sharedModel.participation" name="participation" type="number" required>
-                    </div>
-
-                    <div class="form-group col-sm-4">
-                        <label for="oldwork">Fecha de Contratacion:</label>
-                        <input class="form-control" [(ngModel)]="sharedModel.oldwork" name="oldwork" date-format="yyyy-MM-dd" type="date" required>
-                    </div>
+        <form (ngSubmit)="onSubmit()" #sharedholderForm="ngForm">
+            <div class="form-group col-sm-6">
+                <label for="name">Nombre(s):</label>
+                <input id="name" name="name" class="form-control" [(ngModel)]="sharedModel.name" type="text" #name="ngModel" required>
+                <div [hidden]="name.valid || name.pristine">
+                    <span class="text-danger">El nombre no es valido</span>
                 </div>
-                <div>
-                    <button class="btn btn-default" ng-click="ctrl.AddAccount() " ng-disabled="bancos.$invalid ">
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="lastname">Apellido(s):</label>
+                <input class="form-control" [(ngModel)]="sharedModel.lastname" name="lastname" type="text" #lastname="ngModel" required>
+                <div [hidden]="lastname.valid || lastname.pristine">
+                    <span class="text-danger">El apellido no es valido</span>
+                </div>
+            </div>
+            <div class="form-group col-sm-4">
+                <label for="rfc">RFC:</label>
+                <input class="form-control" [(ngModel)]="sharedModel.rfc" name="rfc" type="text" pattern="{{RFCPattern}}" #rfc="ngModel" required>
+                <div [hidden]="rfc.valid || rfc.pristine">
+                    <span class="text-danger">El RFC no es valido</span>
+                </div>
+            </div>
+            <div class="form-group col-sm-4">
+                <label for="rfc">Participacion(%):</label>
+                <input class="form-control" [(ngModel)]="sharedModel.participation" name="participation" type="number" #participation="ngModel" required>
+                <div [hidden]="participation.valid || participation.pristine">
+                    <span class="text-danger">La participacion no es valido</span>
+                </div>
+            </div>
+
+            <div class="form-group col-sm-4">
+                <label for="oldwork">Fecha de Contratacion:</label>
+                <input class="form-control" [(ngModel)]="sharedModel.oldwork" name="oldwork" date-format="yyyy-MM-dd" type="date" #oldwork="ngModel" required>
+                <div [hidden]="oldwork.valid || oldwork.pristine">
+                    <span class="text-danger">La fecha de contratacion no es valido</span>
+                </div>
+            </div>
+
+
+            <div>
+                <button class="btn btn-default" ng-click="ctrl.AddAccount() " ng-disabled="bancos.$invalid ">
                                             <i class="material-icons ">Agregar Accionista</i>
                                         </button>
-                </div>
+            </div>
 
-            </form>
-        </div>
+        </form>
     </div>
-    <h5 class="text-center">Listado de Accionistas.</h5>
-    <hr>
-    <div *ngIf="dataFinishedLoading">
-        <app-shared-holder-section [sharedArray]="this.inputSharedArray"></app-shared-holder-section>
-    </div>
+</div>
+<h5 class="text-center">Listado de Accionistas.</h5>
+<hr>
+<div *ngIf="dataFinishedLoading">
+    <app-shared-holder-section [sharedArray]="this.inputSharedArray"></app-shared-holder-section>
 </div>

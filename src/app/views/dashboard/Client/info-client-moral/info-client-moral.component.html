@@ -3,11 +3,8 @@
         <tabset>
             <tab title="Informacion de Cliente">
                 <span *tabHeading>Informacion de Cliente</span>
-                <div>
-                    <app-registry-m [client]="client" (idRefresher)="refreshId($event)"></app-registry-m>
-                </div>
+                <app-registry-m [client]="client" (idRefresher)="refreshId($event)" class="container"></app-registry-m>
             </tab>
-
 
             <tab [disabled]="idClient==null" title="Banco">
                 <span *tabHeading>Banco</span>
@@ -26,14 +23,14 @@
             <tab [disabled]="idClient==null" title="Accionistas">
                 <span *tabHeading>Accionistas</span>
                 <div>
-                    <app-shared-holder-m [inputSharedArray]="this.fullClient.shareholders"></app-shared-holder-m>
+                    <app-shared-holder-m [inputSharedArray]="this.fullClient.shareholders" class="container"></app-shared-holder-m>
                 </div>
             </tab>
 
             <tab [disabled]="idClient==null" title="Representantes">
                 <span *tabHeading>Representantes</span>
                 <div>
-                    <app-managers-m [inputManagerArray]="this.fullClient.managers"></app-managers-m>
+                    <app-managers-m [inputManagerArray]="this.fullClient.managers" class="container"></app-managers-m>
                 </div>
             </tab>
         </tabset>

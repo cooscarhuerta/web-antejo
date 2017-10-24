@@ -18,22 +18,34 @@
 
                                 <div class="form-group col-sm-6">
                                     <label>Nombre:</label>
-                                    <input id="name" name="name" class="form-control" [(ngModel)]="manager.name" type="text" required>
+                                    <input id="name" name="name" class="form-control" [(ngModel)]="manager.name" type="text" #name="ngModel" required>
+                                    <div [hidden]="name.valid || name.pristine">
+                                        <span class="text-danger">El nombre no es valido</span>
+                                    </div>
                                 </div>
 
                                 <div class="form-group col-sm-6">
                                     <label>Apellido:</label>
-                                    <input id="lastname" name="lastname" class="form-control" [(ngModel)]="manager.lastname" type="text" required>
+                                    <input id="lastname" name="lastname" class="form-control" [(ngModel)]="manager.lastname" type="text" #lastname="ngModel" required>
+                                    <div [hidden]="lastname.valid || lastname.pristine">
+                                        <span class="text-danger">El apellido no es valido</span>
+                                    </div>
                                 </div>
 
                                 <div class="form-group col-sm-6">
                                     <label>RFC:</label>
-                                    <input id="rfc" name="rfc" class="form-control" [(ngModel)]="manager.rfc" type="text" required>
+                                    <input id="rfc" name="rfc" class="form-control" [(ngModel)]="manager.rfc" pattern="{{RFCPattern}}" type="text" #rfc="ngModel" required>
+                                    <div [hidden]="rfc.valid || rfc.pristine">
+                                        <span class="text-danger">El RFC no es valido</span>
+                                    </div>
                                 </div>
 
                                 <div class="form-group col-sm-6">
                                     <label>Telefono:</label>
-                                    <input id="phone" name="phone" class="form-control" [(ngModel)]="manager.phone" type="number" required>
+                                    <input id="phone" name="phone" class="form-control" [(ngModel)]="manager.phone" type="number" #phone="ngModel" required>
+                                    <div [hidden]="phone.valid || phone.pristine">
+                                        <span class="text-danger">El apellido no es valido</span>
+                                    </div>
                                 </div>
 
                                 <div class="form-group col-sm-6">
@@ -41,17 +53,17 @@
                                     <a class="btn btn-default" href="{{this.urlDownload + manager.filepath}}" target="_blank">{{manager.filename}}</a>
                                 </div>
 
-
-                                <button class="btn btn-default" style='margin-right:10px' [disabled]="!managerForm.valid" (click)="onUpdate(manager)" type="button">
+                                <div>
+                                    <button class="btn btn-default" style='margin-right:10px' [disabled]="!managerForm.valid" (click)="onUpdate(manager)" type="button">
                                                   <i class="material-icons ">Actualizar Representante</i>
                                               </button>
 
 
 
-                                <button class="btn btn-default " [disabled]="!managerForm.valid" (click)="onDelete(manager)" type="button">
+                                    <button class="btn btn-default " [disabled]="!managerForm.valid" (click)="onDelete(manager)" type="button">
                                                   <i class="material-icons ">Eliminar Representante</i>
                                               </button>
-
+                                </div>
                             </div>
                         </form>
                     </div>

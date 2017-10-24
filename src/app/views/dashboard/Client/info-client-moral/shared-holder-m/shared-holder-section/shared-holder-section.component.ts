@@ -14,6 +14,7 @@ export class SharedHolderSectionComponent implements OnInit {
   submitted = false
   dataFinishedLoading = false;
   model: SharedholderM = new SharedholderM();
+  public RFCPattern = '[A-Z,Ñ,&]{4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\d]{3}';
   @Input()
   sharedArray: SharedholderM[];
 
@@ -29,7 +30,7 @@ export class SharedHolderSectionComponent implements OnInit {
           });
           this.dataFinishedLoading = this.postRegistry.dataFinishedLoading;
        } catch (Exp) {
-         
+
        }}
 
   onUpdate(shared) {
