@@ -12,7 +12,7 @@ import { ApplicationDataComponent } from './crear-solicitudes/application-data/a
 import { AvalComponent } from './crear-solicitudes/application-data/aval/aval.component';
 import { VerSolicitudesComponent } from './ver-solicitudes/ver-solicitudes.component';
 import { FilesComponent } from './shared/files/files.component';
-import { AccordionModule } from 'ngx-bootstrap/ng2-bootstrap';
+import { AccordionModule } from 'ngx-bootstrap';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';

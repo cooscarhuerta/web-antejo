@@ -14,14 +14,15 @@ import { Router } from '@angular/router';
 export class BankSectionComponent implements OnInit {
   submitted = false;
   dataFinishedLoading = false;
-  public accountnumberPattern = '[0-9]{10,12}';
+  public accountnumberPattern = '[0-9]{10,11}';
   public clabePattern = '[0-9]{18}';
+  public selected = '[1-9]{+}';
   @Input()
   banksArray: Bank[];
   @Input()
   availableBanks: Banks[];
 
-  idbank;
+  idbank = 0;
   namebank;
 
   constructor(private serviceB: ServiceBank, private route: Router, private http: HttpClient, private sweetAlert: SweetAlertService) {
@@ -35,7 +36,7 @@ export class BankSectionComponent implements OnInit {
     this.idbank = idbank;
 
     for (let i = 0; i < this.availableBanks.length; i++) {
-      if (this.availableBanks[i].id == idbank) {
+      if (this.availableBanks[i].id === idbank) {
         this.namebank = this.availableBanks[i].name;
         break;
       }
@@ -44,17 +45,31 @@ export class BankSectionComponent implements OnInit {
 
 
   onDelete(bank) {
-    this.serviceB.deleteBank(bank, callback => {
-      if (!callback['error']) {
-        this.sweetAlert.swal('Aviso', 'Informacion de cuenta eliminada.', 'success');
-        for (let i = 0; i < this.banksArray.length; i++) {
-          if (this.banksArray[i].id === bank.id) {
-            this.banksArray.splice(i, 1);
+    this.sweetAlert.swal({
+      title: '¿Seguro que deseas eliminar?',
+      text: 'No podras recuperar los datos',
+      type: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Eliminar!'
+    }).then((isConfirm) => {
+      if (isConfirm) {
+        this.serviceB.deleteBank(bank, callback => {
+          if (!callback['error']) {
+            this.sweetAlert.swal('Aviso', 'Informacion de cuenta bancaria eliminada.', 'success');
+            for (let i = 0; i < this.banksArray.length; i++) {
+              if (this.banksArray[i].id === bank.id) {
+                this.banksArray.splice(i, 1);
+              }
+            }
+          } else {
+            this.sweetAlert.swal('Error', 'No se elimino cuenta bancaria.', 'warning');
           }
-        }
-      } else {
-        this.sweetAlert.swal('Error', 'No se elimino cuenta de banco.', 'warning');
+        });
       }
+    }, (cancel) => {
+      this.sweetAlert.swal('Aviso', 'No se elimino la cuenta bancaria.', 'info');
     });
   }
 
@@ -65,7 +80,7 @@ export class BankSectionComponent implements OnInit {
     this.serviceB.updateBank(bank, callback => {
       if (!callback['error']) {
         if (!callback['error']) {
-          this.sweetAlert.swal('Aviso', 'Informacion de cuenta actualizada.', 'success');
+          this.sweetAlert.swal('Aviso', 'Informacion de cuenta bancaria actualizada.', 'success');
           for (let i = 0; i < this.banksArray.length; i++) {
             if (this.banksArray[i].id === bank.id) {
               this.banksArray[i] = bank;
@@ -73,7 +88,7 @@ export class BankSectionComponent implements OnInit {
             }
           }
         } else {
-          this.sweetAlert.swal('Error', 'No se pudo actualizar cuenta de banco.', 'warning');
+          this.sweetAlert.swal('Error', 'No se pudo actualizar cuenta bancaria.', 'warning');
         }
       }
     });

@@ -14,14 +14,13 @@ export class PostRegistryM {
   constructor(private router: Router, private http: HttpClient) { }
 
   registryInfo(model, method, callback) {
-
     if (method === 'POST') {
       model.client.userId = localStorage.getItem('userId');
       this.http.post('/Clients/Clientes/add', model.client,
         {
           headers: new HttpHeaders().set('Content-type', 'application/json')
         }).subscribe(data => {
-          
+
           if (data['error'] === false) {
             localStorage.setItem('idClient', data['client']['id']);
             localStorage.setItem('clientType', 'moral');
@@ -29,8 +28,6 @@ export class PostRegistryM {
           } else {
             callback(true);
           }
-          // Read the result field from the JSON response.
-
         });
     } else {
       this.http.put('/Clients/Clientes/update/' + localStorage.getItem('idClient'), model.client,
@@ -42,11 +39,8 @@ export class PostRegistryM {
           } else {
             callback(true);
           }
-          // Read the result field from the JSON response.
-
         });
     }
-
   }
   showClient(callback) {
     this.http.get('/Clients/Clientes/show/' + localStorage.getItem('idClient'))
@@ -97,13 +91,13 @@ export class PostRegistryM {
   deleteManagers(manager, callback) {
     this.http.delete('/Clients/Clientes/delete/' + manager.id + '/Managers', manager)
       .subscribe(res => {
-        
+
         if (res['error'] === false) {
           callback(false)
         } else {
           callback(true);
         }
-        
+
       });
   }
   showSharedHolder(callback) {
@@ -127,13 +121,13 @@ export class PostRegistryM {
   deleteSharedHolder(shared, callback) {
     this.http.delete('/Clients/Clientes/delete/' + shared.id + '/AccionistasClientes', shared)
       .subscribe(res => {
-        
+
         if (res['error'] === false) {
           callback(false)
         } else {
           callback(true);
         }
-        
+
       });
   }
   registryInfoSH(model, callback) {
@@ -151,7 +145,7 @@ export class PostRegistryM {
       {
         headers: new HttpHeaders().set('Content-type', 'multipart/form-data')
       }).subscribe(data => {
-        
+
         if (data['error'] === false) {
           callback(data);
         } else {

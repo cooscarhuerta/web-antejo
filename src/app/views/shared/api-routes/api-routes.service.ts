@@ -1,2 +1,2 @@
-export const apiUrl = 'http://localhost:8081';
-export const downloadUrl = 'http://localhost:8081/storage/';
+export const apiUrl = 'http://localhost/bantejo/public';
+export const downloadUrl = 'http://localhost/bantejo/public/storage/';

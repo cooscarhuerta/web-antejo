@@ -36,17 +36,31 @@ export class AddFileComponent implements OnInit {
   }
 
   onDelete(item) {
-    this.service.deleteFile(item, callback => {
-      if (!callback) {
-        this.sweetAlert.swal('Error', 'Archivo Eliminado', 'success');
-        for (let i = 0; i < this.fileArray.length; i++) {
-          if (this.fileArray[i].id == item.id) {
-            this.fileArray.splice(i, 1);
+    this.sweetAlert.swal({
+      title: '¿Seguro que deseas eliminar?',
+      text: 'No podras recuperar los datos',
+      type: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Eliminar!'
+    }).then((isConfirm) => {
+      if (isConfirm) {
+        this.service.deleteFile(item, callback => {
+          if (!callback) {
+            this.sweetAlert.swal('Aviso', 'Archivo Eliminado', 'success');
+            for (let i = 0; i < this.fileArray.length; i++) {
+              if (this.fileArray[i].id == item.id) {
+                this.fileArray.splice(i, 1);
+              }
+            }
+          } else {
+            this.sweetAlert.swal('Error', 'Error al eliminar archivo.', 'error');
           }
-        }
-      } else {
-        this.sweetAlert.swal('Aviso', 'Error al eliminar.', 'error');
+        });
       }
-    })
+    }, (cancel) => {
+      this.sweetAlert.swal('Aviso', 'No se elimino el archivo.', 'info');
+    });
   }
 }

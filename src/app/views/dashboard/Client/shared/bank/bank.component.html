@@ -27,7 +27,7 @@
                     <label>Tipo de Cuenta:</label>
                     <input id="accounttype" name="accounttype" class="form-control " [(ngModel)]="bankModel.accounttype" type="text" #accounttype="ngModel" required>
                     <div [hidden]="accounttype.valid || accounttype.pristine">
-                        <span class="text-danger">El tipo de cuenta bancaria no es valido</span>
+                        <span class="text-danger">El tipo de cuenta bancaria no es un campo valido</span>
                     </div>
                 </div>
 
@@ -35,7 +35,7 @@
                     <label>Numero de Cuenta:</label>
                     <input id="accountnumber" name="accountnumber" class="form-control " [(ngModel)]="bankModel.accountnumber" pattern="{{accountnumberPattern}}" type="number" #accountnumber="ngModel" required>
                     <div [hidden]="accountnumber.valid || accountnumber.pristine">
-                        <span class="text-danger">El numero de cuenta bancaria no es valido</span>
+                        <span class="text-danger">El numero de cuenta bancaria no es un campo valido</span>
                     </div>
                 </div>
 
@@ -43,7 +43,7 @@
                     <label>Clabe Bancaria:</label>
                     <input id="clabe" name="clabe" class="form-control " [(ngModel)]="bankModel.clabe" type="number" pattern="{{clabePattern}}" #clabe="ngModel" required>
                     <div [hidden]="clabe.valid || clabe.pristine">
-                        <span class="text-danger">La clabe bancaria no es valido</span>
+                        <span class="text-danger">La clabe bancaria no es un campo valido</span>
                     </div>
                 </div>
 

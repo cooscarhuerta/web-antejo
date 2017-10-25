@@ -36,30 +36,45 @@ export class ManagersSectionComponent implements OnInit {
   }
 
   onUpdate(managers) {
-      this.postRegistry.updateManagers(managers, callback => {
-        if (!callback['error']) {
-          this.sweetAlert.swal('Aviso', 'Informacion de representante actualizada.', 'success');
-          managers.oldname = managers.name;
-          managers.oldlastname = managers.lastname;
-        } else {
-          this.sweetAlert.swal('Aviso', 'No se pudo actualizar la informacion de representante', 'warning');
-        }
+    this.postRegistry.updateManagers(managers, callback => {
+      if (!callback['error']) {
+        this.sweetAlert.swal('Aviso', 'Informacion de representante actualizada.', 'success');
+        managers.oldname = managers.name;
+        managers.oldlastname = managers.lastname;
+      } else {
+        this.sweetAlert.swal('Aviso', 'No se pudo actualizar la informacion de representante', 'warning');
+      }
     });
   }
 
   onDelete(managersArray) {
-    this.postRegistry.deleteManagers(managersArray, callback => {
-      if (!callback['error']) {
-        this.sweetAlert.swal('Aviso', 'Informacion de representante eliminada.', 'success');
-        for (let i = 0; i < this.managerArray.length; i++) {
-          if (this.managerArray[i].id === managersArray.id) {
-            this.managerArray.splice(i, 1);
+    this.sweetAlert.swal({
+      title: '¿Seguro que deseas eliminar?',
+      text: 'No podras recuperar los datos',
+      type: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Eliminar!'
+    }).then((isConfirm) => {
+      if (isConfirm) {
+        this.postRegistry.deleteManagers(managersArray, callback => {
+          if (!callback['error']) {
+            this.sweetAlert.swal('Aviso', 'Informacion de representante eliminada.', 'success');
+            for (let i = 0; i < this.managerArray.length; i++) {
+              if (this.managerArray[i].id === managersArray.id) {
+                this.managerArray.splice(i, 1);
+              }
+            }
+          } else {
+            this.sweetAlert.swal('Aviso', 'No se elimino el banco.', 'warning');
           }
-        }
-      } else {
-        this.sweetAlert.swal('Aviso', 'No se elimino el banco.', 'warning');
+        });
       }
+    }, (cancel) => {
+      this.sweetAlert.swal('Aviso', 'No se elimino el representante.', 'info');
     });
   }
+
 }
 

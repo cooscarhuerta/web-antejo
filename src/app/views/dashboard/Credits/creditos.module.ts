@@ -1,7 +1,7 @@
 import { PayDetailModalComponent } from './view-credit/pay-detail/pay-detail.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule } from '@angular/forms';
-import { AccordionModule } from 'ngx-bootstrap/ng2-bootstrap';
+import { AccordionModule } from 'ngx-bootstrap';
 import { CollapseModule } from 'ngx-bootstrap';
 import { NgModule } from '@angular/core';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
