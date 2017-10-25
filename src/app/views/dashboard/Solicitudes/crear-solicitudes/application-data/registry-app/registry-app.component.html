@@ -7,8 +7,18 @@
         <div class="form-group col-sm-4">
             <label for="applicationdate">Fecha de Solicitud:</label>
             <input class="form-control" [(ngModel)]="model.applicationdate" name="applicationdate"
-                bsDatepicker>
+            data-provide="datepicker" data-date-language="es" date-date-orientation="bottom" data-date-autoclose="true" data-date-format="yyyy-mm-dd">
         </div>
+
+        <button
+                mdl-button
+                (click)="pickADate($event)"
+                mdl-button-type="icon"
+                mdl-ripple>
+        <mdl-icon>event</mdl-icon>
+        </button>
+        <span>{{ selectedDate?.format('LL') }}</span>
+  
         <div class="col-sm-3 form-group">
             <label for="place">Lugar de Solicitud:</label>
             <input class="form-control" [(ngModel)]="model.place" name="place" type="text" required>

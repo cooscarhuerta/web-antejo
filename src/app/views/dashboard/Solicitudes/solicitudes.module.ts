@@ -3,9 +3,10 @@ import { QueryService } from './shared/query.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import  { MaterialModule } from '@angular/material';
 import { AppRoutingModule } from './solicitudes-routing.module';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-
+import { MdlDatePickerModule } from '@angular-mdl/datepicker';
 import { ViewAppComponent } from './view.component';
 import { CrearSolicitudesComponent } from './crear-solicitudes/crear-solicitudes.component';
 import { ApplicationDataComponent } from './crear-solicitudes/application-data/application-data.component';
@@ -31,7 +32,9 @@ import { AddFileComponent } from './shared/addfile/addfile.component';
     ChartsModule,
     BsDropdownModule,
     CommonModule,
+    MdlDatePickerModule,
     TabsModule,
+    MaterialModule
     AccordionModule.forRoot(),
     FormsModule,
     BsDatepickerModule.forRoot()
