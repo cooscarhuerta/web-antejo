@@ -31,7 +31,7 @@ export class Aval {
     business_name = null;
     rfc = null;
     curp = null;
-    birthday = null;
+    birthday = new Date;
     country = null;
     nacionality = null;
     email = null;

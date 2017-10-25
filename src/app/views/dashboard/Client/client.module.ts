@@ -1,3 +1,4 @@
+import { DatepickerModule } from 'angular2-material-datepicker';
 import { ApplicationModule } from './../Solicitudes/solicitudes.module';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -33,7 +34,8 @@ import { BankSectionComponent } from './shared/bank/bank-section/bank-section.co
     TabsModule.forRoot(),
     AccordionModule.forRoot(),
     FormsModule,
-    ApplicationModule
+    ApplicationModule,
+    DatepickerModule,
   ],
   declarations: [ClientComponent, InfoClientMoralComponent, InfoClientPhysicComponent,
      FilesComponent, RegistryPComponent, RegistryMComponent, ManagersMComponent,

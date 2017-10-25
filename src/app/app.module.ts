@@ -1,6 +1,6 @@
 import { ServiceBank } from './views/dashboard/Client/shared/services.client/service.bancos';
 import { SweetAlertService } from 'ng2-sweetalert2';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PostRegistryP } from './views/dashboard/Client/shared/services.client/service.registryP';
 import { PostRegistryM } from './views/dashboard/Client/shared/services.client/service.registryM';
 import { AuthGuard } from './views/pages/login/auth-guard.service';
@@ -14,6 +14,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { AppComponent } from './app.component';
 import { HttpClientModule} from '@angular/common/http';
+
 // import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 // Import containers
 import {
@@ -68,6 +69,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpModule,
     AppRoutingModule,
     BsDropdownModule.forRoot(),

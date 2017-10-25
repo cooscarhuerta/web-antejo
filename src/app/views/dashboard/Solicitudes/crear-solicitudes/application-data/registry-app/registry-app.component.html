@@ -4,21 +4,10 @@
             <label for="amountrequest">Monto de Solicitud:</label>
             <input id="amountrequest" name="amountrequest" class="form-control" [(ngModel)]="model.amountrequest" type="number" required>
         </div>
-        <div class="form-group col-sm-4">
-            <label for="applicationdate">Fecha de Solicitud:</label>
-            <input class="form-control" [(ngModel)]="model.applicationdate" name="applicationdate"
-            data-provide="datepicker" data-date-language="es" date-date-orientation="bottom" data-date-autoclose="true" data-date-format="yyyy-mm-dd">
-        </div>
-
-        <button
-                mdl-button
-                (click)="pickADate($event)"
-                mdl-button-type="icon"
-                mdl-ripple>
-        <mdl-icon>event</mdl-icon>
-        </button>
-        <span>{{ selectedDate?.format('LL') }}</span>
-  
+         <div class="col-sm-3 form-group">
+             <label for="applicationdate">Fecha de Solicitud:</label>
+            <material-datepicker [disabled]="true" style="opacity:0.5;" sname="applicationdate" [(date)]="model.applicationdate"></material-datepicker>
+        </div>  
         <div class="col-sm-3 form-group">
             <label for="place">Lugar de Solicitud:</label>
             <input class="form-control" [(ngModel)]="model.place" name="place" type="text" required>
@@ -28,7 +17,7 @@
             <input class="form-control" [(ngModel)]="model.creditterm" name="creditterm" type="number" required>
         </div>
         <div class="col-sm-6 form-group">
-            <label for="projectname">Destino del Capital:</label>
+            <label for="projectname">Destino del Recurso:</label>
             <input class="form-control" [(ngModel)]="model.projectname" name="projectname" type="text" required>
         </div>
         <div *ngIf="!appId;else updateButton"class="col-sm-4 btn-group">

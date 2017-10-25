@@ -12,7 +12,7 @@ export class RegistryM {
       fiel: null,
       email: '',
       businesscategory: '',
-      constitutiondate: null,
+      constitutiondate: new Date(),
       type: 'Moral',
       address: '',
       colony: '',

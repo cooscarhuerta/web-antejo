@@ -4,6 +4,7 @@ import { SweetAlertService } from 'ng2-sweetalert2';
 import { HttpClient } from '@angular/common/http';
 import { Aval } from './../../../shared/applications-model';
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import * as Moment from 'moment';
 
 @Component({
   selector: 'app-aval',
@@ -36,6 +37,12 @@ export class AvalComponent implements OnInit {
     this.avalTab.nativeElement.click();
     this.submitted = false;
     this.model = aval;
+    // passing date through a moment object to avoid issues with time zones
+    this.model.birthday = Moment(this.model.birthday).toDate();
+    // Accounting for possibly invalid dates
+    if(isNaN(this.model.birthday.getTime()) || this.model.birthday.getTime() < 0) {
+      this.model.birthday = new Date();
+    }
     this.typeGuarantee = this.model.typeguarantee;
   }
   prepareModel() {

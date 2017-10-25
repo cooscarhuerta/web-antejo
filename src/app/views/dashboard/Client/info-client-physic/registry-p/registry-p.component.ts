@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { RegistryP } from './m-registry-p';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PatternValidator } from '@angular/forms';
-
+import * as Moment from 'moment';
 @Component({
   selector: 'app-registry-p',
   templateUrl: './registry-p.component.html',
@@ -43,7 +43,7 @@ export class RegistryPComponent implements OnInit {
         }
       });
     } catch (Exp) {
-      
+
     }
   }
   public onSubmit() {
@@ -56,6 +56,14 @@ export class RegistryPComponent implements OnInit {
     this.idClient = localStorage.getItem('idClient');
     if (this.client !== null) {
       this.model.client = this.client;
+      // passing date through a moment object, to avoid any potential time zone issues
+      const clientDate = Moment(this.model.client.constitutiondate);
+      this.model.client.constitutiondate = clientDate.toDate();
+      if (isNaN(this.model.client.constitutiondate.getTime()) ||
+        this.model.client.constitutiondate.getTime() < 0) {
+        this.model.client.constitutiondate = new Date();
+      }
+      console.log(this.model.client.constitutiondate);
     }
   }
 }

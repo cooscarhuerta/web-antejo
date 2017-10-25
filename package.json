@@ -18,6 +18,7 @@
   "dependencies": {
     "@angular-mdl/core": "^4.0.8",
     "@angular-mdl/datepicker": "0.0.3",
+    "@angular/animations": "^4.4.6",
     "@angular/common": "4.3.6",
     "@angular/compiler": "4.3.6",
     "@angular/core": "4.3.6",
@@ -28,6 +29,8 @@
     "@angular/router": "4.3.6",
     "@angular/upgrade": "4.3.6",
     "angular2-jwt": "^0.2.3",
+    "angular2-material-datepicker": "^0.5.0",
+    "angular2-moment": "^1.7.0",
     "bootstrap": "^3.3.7",
     "chart.js": "2.6.0",
     "core-js": "2.5.0",

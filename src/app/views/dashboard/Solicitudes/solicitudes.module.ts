@@ -1,12 +1,11 @@
-import { RegistryAppComponent } from './crear-solicitudes/application-data/registry-app/registry-app.component';
+import { DatepickerModule } from 'angular2-material-datepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+ import { RegistryAppComponent } from './crear-solicitudes/application-data/registry-app/registry-app.component';
 import { QueryService } from './shared/query.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import  { MaterialModule } from '@angular/material';
 import { AppRoutingModule } from './solicitudes-routing.module';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { MdlDatePickerModule } from '@angular-mdl/datepicker';
 import { ViewAppComponent } from './view.component';
 import { CrearSolicitudesComponent } from './crear-solicitudes/crear-solicitudes.component';
 import { ApplicationDataComponent } from './crear-solicitudes/application-data/application-data.component';
@@ -18,8 +17,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AddFileComponent } from './shared/addfile/addfile.component';
-
-
+import { MomentModule } from 'angular2-moment';
 @NgModule({
   exports: [
     VerSolicitudesComponent,
@@ -32,12 +30,11 @@ import { AddFileComponent } from './shared/addfile/addfile.component';
     ChartsModule,
     BsDropdownModule,
     CommonModule,
-    MdlDatePickerModule,
+    DatepickerModule,
+    MomentModule,
     TabsModule,
-    MaterialModule
     AccordionModule.forRoot(),
-    FormsModule,
-    BsDatepickerModule.forRoot()
+    FormsModule
   ],
   declarations: [ ViewAppComponent, CrearSolicitudesComponent, ApplicationDataComponent,
                     AvalComponent, VerSolicitudesComponent,
