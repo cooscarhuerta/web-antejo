@@ -46,8 +46,8 @@ export class BankSectionComponent implements OnInit {
 
   onDelete(bank) {
     this.sweetAlert.swal({
-      title: '¿Seguro que deseas eliminar?',
-      text: 'No podras recuperar los datos',
+      title: '¿Desea eliminar?',
+      text: 'No podrás recuperar los datos',
       type: 'question',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -58,7 +58,7 @@ export class BankSectionComponent implements OnInit {
       if (isConfirm) {
         this.serviceB.deleteBank(bank, callback => {
           if (!callback['error']) {
-            this.sweetAlert.swal('Aviso', 'Informacion de cuenta bancaria eliminada.', 'success');
+            this.sweetAlert.swal('Aviso', 'Información de cuenta bancaria eliminada.', 'success');
             for (let i = 0; i < this.banksArray.length; i++) {
               if (this.banksArray[i].id === bank.id) {
                 this.banksArray.splice(i, 1);
@@ -70,7 +70,7 @@ export class BankSectionComponent implements OnInit {
         });
       }
     }, (cancel) => {
-      this.sweetAlert.swal('Aviso', 'No se elimino la cuenta bancaria.', 'info');
+      this.sweetAlert.swal('Aviso', 'No se elimino cuenta bancaria.', 'info');
     });
   }
 
@@ -81,7 +81,7 @@ export class BankSectionComponent implements OnInit {
     this.serviceB.updateBank(bank, callback => {
       if (!callback['error']) {
         if (!callback['error']) {
-          this.sweetAlert.swal('Aviso', 'Informacion de cuenta bancaria actualizada.', 'success');
+          this.sweetAlert.swal('Aviso', 'Información de cuenta bancaria actualizada.', 'success');
           for (let i = 0; i < this.banksArray.length; i++) {
             if (this.banksArray[i].id === bank.id) {
               this.banksArray[i] = bank;

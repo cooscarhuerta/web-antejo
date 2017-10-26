@@ -12,47 +12,48 @@
     <div class="card-block">
 
         <form (ngSubmit)="onSubmit()" #managersForm="ngForm">
-            <div class="form-group col-sm-6">
-                <label for="name">Nombre(s):</label>
-                <input id="name" name="name" class="form-control" [(ngModel)]="managerModel.name" type="text" #name="ngModel" required>
-                <div [hidden]="name.valid || name.pristine">
-                    <span class="text-danger">El nombre no es un campo valido</span>
+            <div class="row col-sm-12">
+                <div class="form-group col-sm-6">
+                    <label for="name">Nombre(s):</label>
+                    <input id="name" name="name" class="form-control" [(ngModel)]="managerModel.name" type="text" #name="ngModel" required>
+                    <div [hidden]="name.valid || name.pristine">
+                        <span class="text-danger">El nombre no es un campo válido</span>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group col-sm-6">
-                <label for="lastname">Apellido(s):</label>
-                <input class="form-control" [(ngModel)]="managerModel.lastname" name="lastname" type="text" #lastname="ngModel" required>
-                <div [hidden]="lastname.valid || lastname.pristine">
-                    <span class="text-danger">El apellido no es un campo valido</span>
+                <div class="form-group col-sm-6">
+                    <label for="lastname">Apellido(s):</label>
+                    <input class="form-control" [(ngModel)]="managerModel.lastname" name="lastname" type="text" #lastname="ngModel" required>
+                    <div [hidden]="lastname.valid || lastname.pristine">
+                        <span class="text-danger">El apellido no es un campo válido</span>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group col-sm-6">
-                <label for="rfc">RFC:</label>
-                <input class="form-control" [(ngModel)]="managerModel.rfc" name="rfc" type="text" #rfc="ngModel" required>
-                <div [hidden]="rfc.valid || rfc.pristine">
-                    <span class="text-danger">El RFC no es un campo valido</span>
+                <div class="form-group col-sm-6">
+                    <label for="rfc">RFC:</label>
+                    <input class="form-control" [(ngModel)]="managerModel.rfc" name="rfc" type="text" #rfc="ngModel" required>
+                    <div [hidden]="rfc.valid || rfc.pristine">
+                        <span class="text-danger">El RFC no es un campo válido</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group col-sm-6">
-                <label>Telefono:</label>
-                <input class="form-control " [(ngModel)]="managerModel.phone" name="phone" type="number" #phone="ngModel" required>
-                <div [hidden]="phone.valid || phone.pristine">
-                    <span class="text-danger">El apellido no es un campo valido</span>
+                <div class="form-group col-sm-6">
+                    <label>Teléfono:</label>
+                    <input class="form-control " [(ngModel)]="managerModel.phone" name="phone" type="number" #phone="ngModel" required>
+                    <div [hidden]="phone.valid || phone.pristine">
+                        <span class="text-danger">El teléfono no es un campo válido</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group col-sm-12">
-                <label for="input">Subir Identificacion:</label>
-                <input name="fileInput" class="form-control" type="file" ngModel (change)="getFiles($event)" />
-            </div>
+                <div class="form-group col-sm-12">
+                    <label for="input">Subir Identificación:</label>
+                    <input name="fileInput" class="form-control" type="file" ngModel (change)="getFiles($event)" />
+                </div>
 
-            <div>
-                <button class="btn btn-default" [disabled]="!managersForm.valid" type="submit">
+                <div>
+                    <button class="btn btn-default" [disabled]="!managersForm.valid" type="submit">
               <i class="material-icons">Agregar Representante</i>
           </button>
+                </div>
             </div>
-
         </form>
     </div>
 </div>

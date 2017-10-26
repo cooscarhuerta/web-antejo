@@ -12,50 +12,45 @@
     <div class="card-block">
 
         <form (ngSubmit)="onSubmit()" #sharedholderForm="ngForm">
-            <div class="form-group col-sm-6">
-                <label for="name">Nombre(s):</label>
-                <input id="name" name="name" class="form-control" [(ngModel)]="sharedModel.name" type="text" #name="ngModel" required>
-                <div [hidden]="name.valid || name.pristine">
-                    <span class="text-danger">El nombre no es un campo valido</span>
+            <div class="row col-sm-12">
+                <div class="form-group col-sm-6">
+                    <label for="name">Nombre(s):</label>
+                    <input id="name" name="name" class="form-control" [(ngModel)]="sharedModel.name" type="text" #name="ngModel" required>
+                    <div [hidden]="name.valid || name.pristine">
+                        <span class="text-danger">El nombre no es un campo válido</span>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group col-sm-6">
-                <label for="lastname">Apellido(s):</label>
-                <input class="form-control" [(ngModel)]="sharedModel.lastname" name="lastname" type="text" #lastname="ngModel" required>
-                <div [hidden]="lastname.valid || lastname.pristine">
-                    <span class="text-danger">El apellido no es un campo valido</span>
+                <div class="form-group col-sm-6">
+                    <label for="lastname">Apellido(s):</label>
+                    <input class="form-control" [(ngModel)]="sharedModel.lastname" name="lastname" type="text" #lastname="ngModel" required>
+                    <div [hidden]="lastname.valid || lastname.pristine">
+                        <span class="text-danger">El apellido no es un campo válido</span>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group col-sm-4">
-                <label for="rfc">RFC:</label>
-                <input class="form-control" [(ngModel)]="sharedModel.rfc" name="rfc" type="text" pattern="{{RFCPattern}}" #rfc="ngModel" required>
-                <div [hidden]="rfc.valid || rfc.pristine">
-                    <span class="text-danger">El RFC no es un campo valido</span>
+                <div class="form-group col-sm-5">
+                    <label for="rfc">RFC:</label>
+                    <input class="form-control" [(ngModel)]="sharedModel.rfc" name="rfc" type="text" pattern="{{RFCPattern}}" #rfc="ngModel" required>
+                    <div [hidden]="rfc.valid || rfc.pristine">
+                        <span class="text-danger">El RFC no es un campo válido</span>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group col-sm-4">
-                <label for="rfc">Participacion(%):</label>
-                <input class="form-control" [(ngModel)]="sharedModel.participation" name="participation" type="number" #participation="ngModel" required>
-                <div [hidden]="participation.valid || participation.pristine">
-                    <span class="text-danger">La participacion no es un campo valido</span>
+                <div class="form-group col-sm-5">
+                    <label for="rfc">Participación(%):</label>
+                    <input class="form-control" [(ngModel)]="sharedModel.participation" name="participation" type="number" #participation="ngModel" required>
+                    <div [hidden]="participation.valid || participation.pristine">
+                        <span class="text-danger">La participación no es un campo válido</span>
+                    </div>
                 </div>
-            </div>
-
-            <div class="form-group col-sm-4">
-                <label for="oldwork">Fecha de Contratacion:</label>
-                <input class="form-control" [(ngModel)]="sharedModel.oldwork" name="oldwork" date-format="yyyy-MM-dd" type="date" #oldwork="ngModel" required>
-                <div [hidden]="oldwork.valid || oldwork.pristine">
-                    <span class="text-danger">La fecha de contratacion no es un campo valido</span>
+                <div class="form-group col-sm-2">
+                    <label for="oldwork">Fecha de Contratación:</label>
+                    <material-datepicker class="form-control" name="oldwork" [(date)]="sharedModel.oldwork" required></material-datepicker>
                 </div>
-            </div>
-
-
-            <div>
-                <button class="btn btn-default" ng-click="ctrl.AddAccount() " ng-disabled="bancos.$invalid ">
+                <div>
+                    <button class="btn btn-default" ng-click="ctrl.AddAccount()" [disabled]="!sharedholderForm.valid" ng-disabled="bancos.$invalid ">
                                             <i class="material-icons ">Agregar Accionista</i>
                                         </button>
+                </div>
             </div>
-
         </form>
     </div>
 </div>

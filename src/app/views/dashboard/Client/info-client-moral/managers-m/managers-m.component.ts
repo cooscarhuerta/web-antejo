@@ -42,14 +42,14 @@ export class ManagersMComponent implements OnInit {
   registryInfo(model) {
     this.postRegistry.registryInfoM(model, callback => {
       if (callback['error']) {
-        this.sweetAlert.swal('Error', 'Error al validar campos', 'error');
+        this.sweetAlert.swal('Error', 'Error al válidar campos', 'error');
       } else {
         this.inputManagerArray = callback['managers'];
         this.inputManagerArray.forEach(item => {
           item.oldname = item.name;
           item.oldlastname = item.lastname;
               });
-        this.sweetAlert.swal('Aviso', 'Informacion de representante agregada exitosamente.', 'success');
+        this.sweetAlert.swal('Aviso', 'Información de representante agregada exitosamente.', 'success');
       }
     });
   }
@@ -67,13 +67,13 @@ export class ManagersMComponent implements OnInit {
     try {
       this.postRegistry.registryFile(formData, data => {
         if (data) {
-          this.sweetAlert.swal('Aviso', 'Identificacion agregada exitosamente.', 'success');
+          this.sweetAlert.swal('Aviso', 'Identificación agregada exitosamente.', 'success');
           this.fileId = data['file']['id'];
           this.managerModel['idfile'] = this.fileId;
           console.log('Modelo:', this.managerModel);
           this.registryInfo(this.managerModel);
         } else {
-          this.sweetAlert.swal('Error', 'Error al validar campos', 'error');
+          this.sweetAlert.swal('Error', 'Error al válidar campos', 'error');
         }
       });
     } catch (Exp) {

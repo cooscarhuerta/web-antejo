@@ -41,8 +41,8 @@ export class AddFileComponent implements OnInit {
 
   onDelete(item) {
     this.sweetAlert.swal({
-      title: '¿Seguro que deseas eliminar?',
-      text: 'No podras recuperar los datos',
+      title: '¿Desea eliminar?',
+      text: 'No podrá recuperar los datos',
       type: 'question',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

@@ -37,12 +37,12 @@ export class BankComponent implements OnInit {
     return new Promise<Bank>((resolve, reject) => {
       this.postRegistry.registryBank(model, response => {
         if (!response['error']) {
-          this.sweetAlert.swal('Aviso', 'Informacion de la cuenta de banco agregada exitosamente.', 'success');
+          this.sweetAlert.swal('Aviso', 'Información de cuenta bancaria agregada exitosamente.', 'success');
           model['id'] = response['id']
           this.banksArray.push({...model});
           return resolve(response['bank']);
         } else {
-          this.sweetAlert.swal('Error', 'Error al validar campos', 'error');
+          this.sweetAlert.swal('Error', 'Error al válidar campos', 'error');
           return reject();
         }
       });

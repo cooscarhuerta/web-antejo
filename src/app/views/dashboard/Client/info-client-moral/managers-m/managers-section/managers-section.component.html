@@ -20,15 +20,15 @@
                                     <label>Nombre:</label>
                                     <input id="name" name="name" class="form-control" [(ngModel)]="manager.name" type="text" #name="ngModel" required>
                                     <div [hidden]="name.valid || name.pristine">
-                                        <span class="text-danger">El nombre no es un campo valido</span>
+                                        <span class="text-danger">El nombre no es un campo válido</span>
                                     </div>
                                 </div>
 
                                 <div class="form-group col-sm-6">
-                                    <label>Apellido:</label>
+                                    <label>Apellido(s):</label>
                                     <input id="lastname" name="lastname" class="form-control" [(ngModel)]="manager.lastname" type="text" #lastname="ngModel" required>
                                     <div [hidden]="lastname.valid || lastname.pristine">
-                                        <span class="text-danger">El apellido no es un campo valido</span>
+                                        <span class="text-danger">El apellido no es un campo válido</span>
                                     </div>
                                 </div>
 
@@ -36,20 +36,20 @@
                                     <label>RFC:</label>
                                     <input id="rfc" name="rfc" class="form-control" [(ngModel)]="manager.rfc" pattern="{{RFCPattern}}" type="text" #rfc="ngModel" required>
                                     <div [hidden]="rfc.valid || rfc.pristine">
-                                        <span class="text-danger">El RFC no es un campo valido</span>
+                                        <span class="text-danger">El RFC no es un campo válido</span>
                                     </div>
                                 </div>
 
                                 <div class="form-group col-sm-6">
-                                    <label>Telefono:</label>
+                                    <label>Teléfono:</label>
                                     <input id="phone" name="phone" class="form-control" [(ngModel)]="manager.phone" type="number" #phone="ngModel" required>
                                     <div [hidden]="phone.valid || phone.pristine">
-                                        <span class="text-danger">El apellido no es un campo valido</span>
+                                        <span class="text-danger">El teléfono no es un campo válido</span>
                                     </div>
                                 </div>
 
                                 <div class="form-group col-sm-12">
-                                    <label>Identificacion:</label>
+                                    <label>Identificación:</label>
                                     <a class="btn btn-default" href="{{this.urlDownload + manager.filepath}}" target="_blank">{{manager.filename}}</a>
                                 </div>
 

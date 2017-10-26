@@ -15,7 +15,7 @@
                     <div class="card-block">
 
                         <form #bankForm="ngForm">
-                            <div class="col-sm-12">
+                            <div class="row col-sm-12">
                                 <div class="form-group col-sm-6">
                                     <label> Banco:</label>
                                     <select #selectElem class="form-control" (change)="change(selectElem.value)" name="bank" required>
@@ -35,10 +35,10 @@
                                 </div>
 
                                 <div class="form-group col-sm-6">
-                                    <label>Numero de Cuenta:</label>
+                                    <label>Número de Cuenta:</label>
                                     <input id="accountnumber" name="accountnumber" class="form-control " [(ngModel)]="bank.accountnumber" pattern="{{accountnumberPattern}}" type="number" #accountnumber="ngModel" required>
                                     <div [hidden]="accountnumber.valid || accountnumber.pristine">
-                                        <span class="text-danger">El numero de cuenta bancaria no es un campo valido</span>
+                                        <span class="text-danger">El número de cuenta bancaria no es un campo valido</span>
                                     </div>
                                 </div>
 
@@ -46,7 +46,7 @@
                                     <label>Clabe Bancaria:</label>
                                     <input id="clabe" name="clabe" class="form-control " [(ngModel)]="bank.clabe" type="number" pattern="{{clabePattern}}" #clabe="ngModel" required>
                                     <div [hidden]="clabe.valid || clabe.pristine">
-                                        <span class="text-danger">La clabe bancaria no es un campo valido</span>
+                                        <span class="text-danger">La clabe bancaria no es un campo válido</span>
                                     </div>
                                 </div>
 

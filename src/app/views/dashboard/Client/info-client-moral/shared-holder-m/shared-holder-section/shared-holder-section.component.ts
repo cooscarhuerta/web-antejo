@@ -25,6 +25,8 @@ export class SharedHolderSectionComponent implements OnInit {
   ngOnInit() {
     try {
       this.sharedArray.forEach(item => {
+        let date: string[] = item.oldwork.toString().split('-');
+      item.oldwork = new Date( parseInt( date[0] ),parseInt( date[1] ),parseInt( date[2] ) );
         item.oldname = item.name;
         item.oldlastname = item.lastname;
       });
@@ -37,20 +39,20 @@ export class SharedHolderSectionComponent implements OnInit {
   onUpdate(shared) {
     this.postRegistry.updateSharedHolder(shared, callback => {
       if (!callback['error']) {
-        this.sweetAlert.swal('Aviso', 'Informacion de accionistas actualizada.', 'success');
+        this.sweetAlert.swal('Aviso', 'Información de accionistas actualizada.', 'success');
         shared.oldname = shared.name;
         shared.oldlastname = shared.lastname;
 
       } else {
-        this.sweetAlert.swal('Aviso', 'No se pudo actualizar la informacion de accionista.', 'warning');
+        this.sweetAlert.swal('Aviso', 'No se pudo actualizar la información de accionista.', 'warning');
       }
     });
   }
 
   onDelete(shared) {
     this.sweetAlert.swal({
-      title: '¿Seguro que deseas eliminar?',
-      text: 'No podras recuperar los datos',
+      title: '¿Desea eliminar?',
+      text: 'No podrás recuperar los datos',
       type: 'question',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -60,7 +62,7 @@ export class SharedHolderSectionComponent implements OnInit {
       if (isConfirm) {
         this.postRegistry.deleteSharedHolder(shared, callback => {
           if (!callback['error']) {
-            this.sweetAlert.swal('Aviso', 'Informacion de accionista eliminada.', 'success');
+            this.sweetAlert.swal('Aviso', 'Información de accionista eliminada.', 'success');
             for (let i = 0; i < this.sharedArray.length; i++) {
               if (this.sharedArray[i].id === shared.id) {
                 this.sharedArray.splice(i, 1);

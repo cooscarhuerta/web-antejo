@@ -6,7 +6,7 @@ export class SharedholderM {
     public lastname: string = '',
     public rfc: string = '',
     public participation: string = '',
-    public oldwork: Date = null,
+    public oldwork: Date = new Date,
     public idclient: string = '',
     public oldname: string = '',
     public oldlastname: string = ''

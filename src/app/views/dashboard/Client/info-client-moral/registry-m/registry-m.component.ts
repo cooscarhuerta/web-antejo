@@ -39,9 +39,9 @@ export class RegistryMComponent implements OnInit {
         if (!callback) {
           const idClient = localStorage.getItem('idClient');
           this.idRefresher.emit(idClient);
-          this.sweetAlert.swal('Aviso', 'Informacion agregada exitosamente.', 'success');
+          this.sweetAlert.swal('Aviso', 'Información agregada exitosamente.', 'success');
         } else {
-          this.sweetAlert.swal('Error', 'Error al validar campos', 'error');
+          this.sweetAlert.swal('Error', 'Error al válidar campos', 'error');
         }
       });
     } catch (Exp) {

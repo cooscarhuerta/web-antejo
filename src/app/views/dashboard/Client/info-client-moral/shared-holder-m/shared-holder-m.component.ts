@@ -35,14 +35,14 @@ export class SharedHolderMComponent implements OnInit {
   registryInfo(model) {
     this.postRegistry.registryInfoSH(model, callback => {
       if (callback['error']) {
-        this.sweetAlert.swal('Error', 'Error al validar campos', 'error');
+        this.sweetAlert.swal('Error', 'Error al válidar campos', 'error');
       } else {
        this.inputSharedArray = callback['shareholders']
        this.inputSharedArray.forEach(item => {
         item.oldname = item.name;
         item.oldlastname = item.lastname;
             });
-        this.sweetAlert.swal('Aviso', 'Informacion de accionista agregada exitosamente.', 'success');
+        this.sweetAlert.swal('Aviso', 'Información de accionista agregada exitosamente.', 'success');
         }
     });
   }
