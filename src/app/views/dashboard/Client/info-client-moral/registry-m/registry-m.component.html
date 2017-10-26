@@ -6,14 +6,14 @@
         <label for="businessname">Razón Social:</label>
         <input id="businessname" name="businessname" class="form-control" [(ngModel)]="model.client.businessname" type="text" #businessname="ngModel" required>
         <div [hidden]="businessname.valid || businessname.pristine">
-            <span class="text-danger">El nombre de la empresa no es valido</span>
+            <span class="text-danger">El nombre de la empresa no es un campo valido</span>
         </div>
     </div>
     <div class="form-group col-sm-4">
         <label for="rfc">RFC:</label>
         <input class="form-control" [(ngModel)]="model.client.rfc" pattern="{{RFCPattern}}" name="rfc" type="text" #rfc="ngModel" required>
         <div [hidden]="rfc.valid || rfc.pristine">
-            <span class="text-danger">El RFC no es valido</span>
+            <span class="text-danger">El RFC no es un campo valido</span>
         </div>
     </div>
     <div class="form-group col-sm-3">
@@ -25,21 +25,21 @@
         <label for="giro">Giro:</label>
         <input class="form-control" [(ngModel)]="model.client.businesscategory" name="giro" type="text" #businesscategory="ngModel" required>
         <div [hidden]="businesscategory.valid || businesscategory.pristine">
-            <span class="text-danger">El giro empresarial no es valido</span>
+            <span class="text-danger">El giro empresarial no es un campo valido</span>
         </div>
     </div>
     <div class="form-group col-sm-3">
         <label for="numberemployes">No. Empleados:</label>
         <input class="form-control" [(ngModel)]="model.client.employeenumber" name="employeenumber" type="number" #numberemployes="ngModel" required>
         <div [hidden]="numberemployes.valid || numberemployes.pristine">
-            <span class="text-danger">La cantidad de empleados no es valido</span>
+            <span class="text-danger">La cantidad de empleados no es un campo valido</span>
         </div>
     </div>
     <div class="form-group col-sm-3">
         <label for="fiel">FIEL:</label>
         <input class="form-control" [(ngModel)]="model.client.fiel" pattern="{{FIELPattern}}" name="fiel" type="text" #fiel="ngModel" required>
         <div [hidden]="fiel.valid || fiel.pristine">
-            <span class="text-danger">El fiel no es valido</span>
+            <span class="text-danger">El fiel no es un campo valido</span>
         </div>
     </div>
     <div class="col-sm-12">
@@ -51,49 +51,49 @@
         <label for="address">Calle y número:</label>
         <input class="form-control" [(ngModel)]="model.client.address" name="address" #address="ngModel" required>
         <div [hidden]="address.valid || address.pristine">
-            <span class="text-danger">La direccion no es valido</span>
+            <span class="text-danger">La direccion no es un campo valido</span>
         </div>
     </div>
     <div class="form-group col-sm-4">
         <label for="colony">Colonia:</label>
         <input class="form-control" [(ngModel)]="model.client.colony" name="colony" #colony="ngModel" required>
         <div [hidden]="colony.valid || colony.pristine">
-            <span class="text-danger">La colonia no es valido</span>
+            <span class="text-danger">La colonia no es un campo valido</span>
         </div>
     </div>
     <div class="form-group col-sm-4">
         <label for="postalcode">C.P.:</label>
         <input class="form-control" [(ngModel)]="model.client.postalcode" name="postalcode" #postalcode="ngModel" required>
         <div [hidden]="postalcode.valid || postalcode.pristine">
-            <span class="text-danger">El codigo postal no es valido</span>
+            <span class="text-danger">El codigo postal no es un campo valido</span>
         </div>
     </div>
     <div class="form-group col-sm-3">
         <label for="city">Ciudad:</label>
         <input class="form-control" [(ngModel)]="model.client.city" name="city" #city="ngModel" required>
         <div [hidden]="city.valid || city.pristine">
-            <span class="text-danger">La ciudad no es valido</span>
+            <span class="text-danger">La ciudad no es un campo valido</span>
         </div>
     </div>
     <div class="form-group col-sm-3">
         <label for="state">Estado:</label>
         <input class="form-control" [(ngModel)]="model.client.state" name="state" #state="ngModel" required>
         <div [hidden]="state.valid || state.pristine">
-            <span class="text-danger">El estado no es valido</span>
+            <span class="text-danger">El estado no es un campo valido</span>
         </div>
     </div>
     <div class="form-group col-sm-3">
         <label for="email">E-Mail:</label>
         <input class="form-control" [(ngModel)]="model.client.email" name="email" #email="ngModel" required>
         <div [hidden]="email.valid || email.pristine">
-            <span class="text-danger">El correo electronico no es valido</span>
+            <span class="text-danger">El correo electronico no es un campo valido</span>
         </div>
     </div>
     <div class="form-group col-sm-3">
         <label for="phone">Teléfono:</label>
         <input class="form-control" [(ngModel)]="model.client.phone" pattern="{{phonePattern}}" name="phone" #phone="ngModel" format="phone" required>
         <div [hidden]="phone.valid || phone.pristine">
-            <span class="text-danger">El apellido no es valido</span>
+            <span class="text-danger">El apellido no es un campo valido</span>
         </div>
     </div>
     <hr>

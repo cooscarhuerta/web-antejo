@@ -20,7 +20,7 @@
                                     <label>Nombre:</label>
                                     <input id="name" name="name" class="form-control" [(ngModel)]="shared.name" type="text" #name="ngModel" required>
                                     <div [hidden]="name.valid || name.pristine">
-                                        <span class="text-danger">El nombre no es valido</span>
+                                        <span class="text-danger">El nombre no es un campo valido</span>
                                     </div>
                                 </div>
 
@@ -28,7 +28,7 @@
                                     <label>Apellido:</label>
                                     <input id="lastname" name="lastname" class="form-control" [(ngModel)]="shared.lastname" type="text" #lastname="ngModel" required>
                                     <div [hidden]="lastname.valid || lastname.pristine">
-                                        <span class="text-danger">El apellido no es valido</span>
+                                        <span class="text-danger">El apellido no es un campo valido</span>
                                     </div>
                                 </div>
 
@@ -36,7 +36,7 @@
                                     <label>RFC:</label>
                                     <input id="rfc" name="rfc" class="form-control" [(ngModel)]="shared.rfc" pattern="{{RFCPattern}}" type="text" #rfc="ngModel" required>
                                     <div [hidden]="rfc.valid || rfc.pristine">
-                                        <span class="text-danger">El RFC no es valido</span>
+                                        <span class="text-danger">El RFC no es un campo valido</span>
                                     </div>
                                 </div>
 
@@ -44,7 +44,7 @@
                                     <label>Participacion(%):</label>
                                     <input id="participation" name="participation" class="form-control" [(ngModel)]="shared.participation" type="number" #participation="ngModel" required>
                                     <div [hidden]="participation.valid || participation.pristine">
-                                        <span class="text-danger">La participacion no es valido</span>
+                                        <span class="text-danger">La participacion no es un campo valido</span>
                                     </div>
                                 </div>
 
@@ -52,7 +52,7 @@
                                     <label>Fecha de Contratacion:</label>
                                     <input id="oldwork" name="oldwork" class="form-control" [(ngModel)]="shared.oldwork" type="date" #oldwork="ngModel" required>
                                     <div [hidden]="oldwork.valid || oldwork.pristine">
-                                        <span class="text-danger">La fecha de contratacion no es valido</span>
+                                        <span class="text-danger">La fecha de contratacion no es un campo valido</span>
                                     </div>
 
                                 </div>

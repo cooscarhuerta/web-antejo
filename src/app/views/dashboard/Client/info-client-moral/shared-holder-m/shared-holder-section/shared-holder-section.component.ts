@@ -24,40 +24,56 @@ export class SharedHolderSectionComponent implements OnInit {
 
   ngOnInit() {
     try {
-    this.sharedArray.forEach(item => {
-      item.oldname = item.name;
-      item.oldlastname = item.lastname;
-          });
-          this.dataFinishedLoading = this.postRegistry.dataFinishedLoading;
-       } catch (Exp) {
+      this.sharedArray.forEach(item => {
+        item.oldname = item.name;
+        item.oldlastname = item.lastname;
+      });
+      this.dataFinishedLoading = this.postRegistry.dataFinishedLoading;
+    } catch (Exp) {
 
-       }}
+    }
+  }
 
   onUpdate(shared) {
     this.postRegistry.updateSharedHolder(shared, callback => {
       if (!callback['error']) {
-          this.sweetAlert.swal('Aviso', 'Informacion de accionistas actualizada.', 'success');
-          shared.oldname = shared.name;
-          shared.oldlastname = shared.lastname;
+        this.sweetAlert.swal('Aviso', 'Informacion de accionistas actualizada.', 'success');
+        shared.oldname = shared.name;
+        shared.oldlastname = shared.lastname;
 
-        } else {
-          this.sweetAlert.swal('Aviso', 'No se pudo actualizar la informacion de accionista.', 'warning');
-        }
+      } else {
+        this.sweetAlert.swal('Aviso', 'No se pudo actualizar la informacion de accionista.', 'warning');
+      }
     });
   }
 
   onDelete(shared) {
-    this.postRegistry.deleteSharedHolder(shared, callback => {
-      if (!callback['error']) {
-        this.sweetAlert.swal('Aviso', 'Informacion de accionista eliminada.', 'success');
-        for (let i = 0; i < this.sharedArray.length; i++) {
-          if (this.sharedArray[i].id === shared.id) {
-            this.sharedArray.splice(i, 1);
+    this.sweetAlert.swal({
+      title: '¿Seguro que deseas eliminar?',
+      text: 'No podras recuperar los datos',
+      type: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Eliminar!'
+    }).then((isConfirm) => {
+      if (isConfirm) {
+        this.postRegistry.deleteSharedHolder(shared, callback => {
+          if (!callback['error']) {
+            this.sweetAlert.swal('Aviso', 'Informacion de accionista eliminada.', 'success');
+            for (let i = 0; i < this.sharedArray.length; i++) {
+              if (this.sharedArray[i].id === shared.id) {
+                this.sharedArray.splice(i, 1);
+              }
+            }
+          } else {
+            this.sweetAlert.swal('Aviso', 'No se elimino el accionista.', 'warning');
           }
-        }
-      } else {
-        this.sweetAlert.swal('Aviso', 'No se elimino el accionista.', 'warning');
+        });
       }
+    }, (cancel) => {
+      this.sweetAlert.swal('Aviso', 'No se elimino el accionista.', 'info');
     });
   }
+
 }
