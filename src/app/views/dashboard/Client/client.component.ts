@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-client',
+  styleUrls: ['./client.component.scss'],
   templateUrl: 'client.component.html'
 })
 
@@ -17,7 +18,7 @@ export class ClientComponent implements OnInit {
 
   }
   refreshId(event) {
-    
+
     this.idClient = event;
   }
   evento_cliente(isMoral) {

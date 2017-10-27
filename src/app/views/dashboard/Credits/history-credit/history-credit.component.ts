@@ -5,6 +5,7 @@ import { SweetAlertService } from 'ng2-sweetalert2';
 @Component({
   selector: 'app-history-credit',
   providers: [SweetAlertService],
+  styleUrls: ['./history-credit.component.scss'],
   templateUrl: './history-credit.component.html'
 })
 export class HistoryCreditComponent implements OnInit {

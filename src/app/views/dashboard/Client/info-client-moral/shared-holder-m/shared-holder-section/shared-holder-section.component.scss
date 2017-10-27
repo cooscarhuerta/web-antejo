@@ -23,3 +23,17 @@ material-datepicker.form-control {
     border-radius: 0 !important;
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s !important;
 }
+
+a {
+    color: #29363d;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+
+.card-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: #f1f1f1 !important;
+    border-bottom: 1px solid #ffffff !important;
+}
