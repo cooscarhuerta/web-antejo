@@ -4,10 +4,10 @@
             <label for="amountrequest">Monto de Solicitud:</label>
             <input id="amountrequest" name="amountrequest" class="form-control" [(ngModel)]="model.amountrequest" type="number" required>
         </div>
-         <div class="col-sm-3 form-group">
-             <label for="applicationdate">Fecha de Solicitud:</label>
+        <div class="col-sm-3 form-group">
+            <label for="applicationdate">Fecha de Solicitud:</label>
             <material-datepicker [disabled]="true" style="opacity:0.5;" sname="applicationdate" [(date)]="model.applicationdate"></material-datepicker>
-        </div>  
+        </div>
         <div class="col-sm-3 form-group">
             <label for="place">Lugar de Solicitud:</label>
             <input class="form-control" [(ngModel)]="model.place" name="place" type="text" required>
@@ -20,7 +20,7 @@
             <label for="projectname">Destino del Recurso:</label>
             <input class="form-control" [(ngModel)]="model.projectname" name="projectname" type="text" required>
         </div>
-        <div *ngIf="!appId;else updateButton"class="col-sm-4 btn-group">
+        <div *ngIf="!appId;else updateButton" class="col-sm-4 btn-group">
             <button class="btn btn-default" [disabled]="!solicitudForm.valid" type="submit">
                 Guardar
             </button>

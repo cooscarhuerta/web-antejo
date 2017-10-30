@@ -29,7 +29,7 @@
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="rfc">RFC:</label>
-                    <input class="form-control" [(ngModel)]="managerModel.rfc" name="rfc" type="text" #rfc="ngModel" required>
+                    <input class="form-control" [(ngModel)]="managerModel.rfc" pattern="{{RFCPattern}}" name="rfc" type="text" #rfc="ngModel" required>
                     <div [hidden]="rfc.valid || rfc.pristine">
                         <span class="text-danger">El RFC no es un campo válido</span>
                     </div>

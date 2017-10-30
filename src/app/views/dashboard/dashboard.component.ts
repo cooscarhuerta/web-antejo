@@ -4,12 +4,14 @@ import { Injectable, Input } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { SweetAlertService } from 'ng2-sweetalert2';
 @Component({
-  templateUrl: 'dashboard.component.html'
+  templateUrl: 'dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss']
 })
 
 @Injectable()
 export class DashboardComponent implements OnInit {
-  public dataFinishedLoading: boolean = false;
+  public dataFinishedLoading = false;
+  public creditArray;
   @Input()
   public applications;
   @Input()
@@ -18,5 +20,9 @@ export class DashboardComponent implements OnInit {
   public client;
   constructor(private http: HttpClient, private router: Router, private sweetAlert: SweetAlertService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.http.get('/Clients/Creditos/all').subscribe(response => {
+      this.creditArray = response['credits'];
+    });
+  }
 }
