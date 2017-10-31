@@ -29,7 +29,8 @@ export class AddFileComponent implements OnInit {
   ngOnInit() {
     this.file = null;
     this.downloadUrl = downloadUrl;
-  }
+   }
+
 
   emitFile() {
     this.fileEmitter.emit(this.file);
@@ -56,7 +57,7 @@ export class AddFileComponent implements OnInit {
             if (!callback) {
               this.sweetAlert.swal('Aviso', 'Archivo Eliminado', 'success');
               for (let i = 0; i < this.fileArray.length; i++) {
-                if (this.fileArray[i].id == item.id) {
+                if (this.fileArray[i].id === item.id) {
                   this.fileArray.splice(i, 1);
                 }
               }
@@ -69,7 +70,7 @@ export class AddFileComponent implements OnInit {
             if (!callback) {
               this.sweetAlert.swal('Aviso', 'Archivo Eliminado', 'success');
               for (let i = 0; i < this.fileArray.length; i++) {
-                if (this.fileArray[i].id == item.id) {
+                if (this.fileArray[i].id === item.id) {
                   this.fileArray.splice(i, 1);
                 }
               }

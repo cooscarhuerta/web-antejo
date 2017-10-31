@@ -24,6 +24,8 @@ export class FilesComponent implements OnInit {
   @Input()
   inputFileData: Array<any>;
   @Input()
+  public parentComponent: string;
+  @Input()
   appId;
   model: File;
   nativeWindow: Window;
@@ -44,7 +46,7 @@ export class FilesComponent implements OnInit {
     formData.append('file', file);
     formData.append('type', type);
     formData.append('idapplication', this.appId);
-    this.http.post('/Clients/Solicitudes/add/FilesApplication', formData, {
+    this.http.post('/Clients/Clientes/add/FilesClient', formData, {
       headers: new HttpHeaders().set('Content-type', 'multipart/form-data')
     }).subscribe(response => {
       this.dataFinishedLoading = true;

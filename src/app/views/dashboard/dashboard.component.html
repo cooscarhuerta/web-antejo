@@ -1,22 +1,28 @@
 <div class="animated fadeIn">
     <div *ngFor="let credit of creditArray;index as i" #group>
         <div class="card" id="headingD{{i}}" style="width: 20rem;">
-              <div class="card-header" role="tab" id="headingM{{i}}">
-                    <h5 class="mb-0">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseM{{i}}" aria-expanded="true" aria-controls="collapse">
-                      <h4> {{credit.projectname}} </h4>
-                </a>
-                    </h5>
-                </div>
+            <div class="card-header" role="tab" id="headingM{{i}}">
+                <h5 class="mb-0">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseM{{i}}" aria-expanded="true" aria-controls="collapse">
+                        <h4> {{credit.projectname}} </h4>
+                    </a>
+                </h5>
+            </div>
             <img class="card-img-top" src="../../../assets/img/credit.jpg" alt="Card image cap">
             <div class="card-body">
-               <h5> <p class="card-text">Descripcion: <br>{{credit.todo}}.</p> </h5>
-            
-            <ul class="list-group list-group-flush">
-               <h5> <li class="list-group-item">Nombre: <br> {{credit.businessname}}</li></h5>
-               <h5> <li class="list-group-item">Fecha de credito: <br> {{credit.created_at}}</li></h5>
-                <h5> <li class="list-group-item">Intereses: <br> {{credit.intereses}}</li></h5>  
-            </ul>
+                <h5>Descripcion: </h5><br>
+                <p class="card-text">{{credit.todo}}.</p>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <h5>Nombre: </h5><br> {{credit.businessname}}
+                    </li>
+                    <li class="list-group-item">
+                        <h5>Fecha de credito: </h5><br> {{credit.created_at}}
+                    </li>
+                    <li class="list-group-item">
+                        <h5>Intereses: </h5><br> {{credit.intereses}}
+                    </li>
+                </ul>
             </div>
             <div class="card-body">
                 <a href="#" class="card-link padding-right">Ver detalle de credito</a>

@@ -1,5 +1,5 @@
 <tabset>
     <tab *ngFor="let file of fileTypes; index as i" title="file.fileDescriptor">
-        <app-addfile [fileDescriptor]="file.fileDescriptor" [fileArray]='this.filesArray[i]' [parentComponent]="Client"(fileEmitter)="getFile($event,file.fileType)"></app-addfile>
+        <app-addfile [fileDescriptor]="file.fileDescriptor" [fileArray]='this.filesArray[i]' [parentComponent]="'Application'" (fileEmitter)="getFile($event,file.fileType)"></app-addfile>
     </tab>
 </tabset>

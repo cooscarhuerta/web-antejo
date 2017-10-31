@@ -5,7 +5,7 @@
                 <div class="card-header" role="tab" id="headingS{{i}}">
                     <h5 class="mb-0">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseS{{i}}" aria-expanded="true" aria-controls="collapse">
-                                {{shared.oldname}} {{shared.oldlastname}}
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> {{shared.oldname}} {{shared.oldlastname}}
                             <a [target]="shared.name" bind-target="shared.name"></a>
                         </a>
                     </h5>
@@ -58,7 +58,7 @@
                                                   <i class="material-icons ">Actualizar Accionista</i>
                                               </button>
 
-                                    <button class="btn btn-default " [disabled]="!sharedForm.valid" (click)="onDelete(shared)" type="button">
+                                    <button class="btn btn-default " [disabled]="!sharedForm.valid" (click)="onDelete(shared)" type="button" style="background-color: #d9534f;border-color: #d43f3a;">
                                                   <i class="material-icons ">Eliminar Accionista</i>
                                               </button>
                                 </div>

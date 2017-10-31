@@ -5,8 +5,8 @@
                 <div class="card-header" role="tab" id="headingM{{i}}">
                     <h5 class="mb-0">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseM{{i}}" aria-expanded="true" aria-controls="collapse">
-                         {{manager.oldname}} {{manager.oldlastname}}
-                      </a>
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> {{manager.oldname}} {{manager.oldlastname}}
+                        </a>
                     </h5>
                 </div>
 
@@ -60,8 +60,8 @@
 
 
 
-                                    <button class="btn btn-default " [disabled]="!managerForm.valid" (click)="onDelete(manager)" type="button">
-                                                  <i class="material-icons ">Eliminar Representante</i>
+                                    <button class="btn btn-default " [disabled]="!managerForm.valid" (click)="onDelete(manager)" type="button" style="background-color: #d9534f;border-color: #d43f3a;">
+                                                  <i class="material-icons">Eliminar Representante</i>
                                               </button>
                                 </div>
                             </div>
