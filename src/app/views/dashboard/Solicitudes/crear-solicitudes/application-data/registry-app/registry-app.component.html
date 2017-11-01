@@ -1,35 +1,43 @@
 <form (ngSubmit)="onSubmit()" #solicitudForm="ngForm">
+
+    <div class="col-sm-3 form-group">
+        <label for="applicationdate">Fecha de Solicitud:</label>
+        <material-datepicker [disabled]="true" style="opacity:0.5;" sname="applicationdate" [(date)]="model.applicationdate"></material-datepicker>
+    </div>
+    <hr>
     <div class="row col-sm-12">
         <div class="col-sm-4 form-group">
             <label for="amountrequest">Monto de Solicitud:</label>
             <input id="amountrequest" name="amountrequest" class="form-control" [(ngModel)]="model.amountrequest" type="number" required>
         </div>
-        <div class="col-sm-3 form-group">
-            <label for="applicationdate">Fecha de Solicitud:</label>
-            <material-datepicker [disabled]="true" style="opacity:0.5;" sname="applicationdate" [(date)]="model.applicationdate"></material-datepicker>
-        </div>
-        <div class="col-sm-3 form-group">
+        <div class="col-sm-4 form-group">
             <label for="place">Lugar de Solicitud:</label>
             <input class="form-control" [(ngModel)]="model.place" name="place" type="text" required>
         </div>
-        <div class="col-sm-3 form-group">
+        <div class="col-sm-4 form-group">
             <label for="creditterm">Plazo en Meses:</label>
             <input class="form-control" [(ngModel)]="model.creditterm" name="creditterm" type="number" required>
         </div>
-        <div class="col-sm-6 form-group">
+        <div class="col-sm-4 form-group">
             <label for="projectname">Destino del Recurso:</label>
             <input class="form-control" [(ngModel)]="model.projectname" name="projectname" type="text" required>
         </div>
-        <div *ngIf="!appId;else updateButton" class="col-sm-4 btn-group">
+
+        <div *ngIf="!appId;else updateButton" class="col-sm-2">
+            <br>
             <button class="btn btn-default" [disabled]="!solicitudForm.valid" type="submit">
-                Guardar
-            </button>
+            Guardar
+        </button>
         </div>
 
-        <ng-template class="col-sm-4 btn-group" #updateButton>
-            <button class="btn btn-default" [disabled]="!solicitudForm.valid" type="submit">
-                Actualizar
-            </button>
+        <ng-template #updateButton>
+            <div class="col-sm-2">
+                <br>
+                <button class="btn btn-default" [disabled]="!solicitudForm.valid" type="submit">
+            Actualizar
+        </button>
+            </div>
         </ng-template>
     </div>
+
 </form>

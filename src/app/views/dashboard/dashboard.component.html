@@ -1,33 +1,87 @@
-<div class="animated fadeIn">
-    <div *ngFor="let credit of creditArray;index as i" #group>
-        <div class="card" id="headingD{{i}}" style="width: 20rem;">
-            <div class="card-header" role="tab" id="headingM{{i}}">
-                <h5 class="mb-0">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseM{{i}}" aria-expanded="true" aria-controls="collapse">
-                        <h4> {{credit.projectname}} </h4>
-                    </a>
-                </h5>
+<div *ngIf="dataFinishedLoading;else loadingScreen">
+    <div class="row col-md-12">
+        <div *ngFor="let credit of creditArray;index as i" class="col-md-4" #group>
+            <div class="col-md-12">
+                <div class="card" id="headingD{{i}}" style="width: 20rem;">
+                    <div class="card-header" role="tab" id="headingM{{i}}">
+                        <h5 class="mb-0">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseM{{i}}" aria-expanded="true" aria-controls="collapse">
+                                <h4>Credito</h4>
+                            </a>
+                        </h5>
+                    </div>
+                    <img class="card-img-top" src="../../../assets/img/credit.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5>Descripcion: </h5><br>
+                        <p class="card-text">{{credit.todo}}.</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <h5>Nombre de Cliente: </h5><br> {{credit.businessname}}
+                            </li>
+                            <li class="list-group-item">
+                                <h5>Fecha de credito: </h5><br> {{credit.created_at}}
+                            </li>
+                            <li class="list-group-item">
+                                <h5>Intereses: </h5><br> {{credit.intereses}}
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <a href="#" class="card-link padding-right">Ver detalle de credito</a>
+                        <a href="#" class="card-link padding-left">Another link</a>
+                    </div>
+                </div>
             </div>
-            <img class="card-img-top" src="../../../assets/img/credit.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5>Descripcion: </h5><br>
-                <p class="card-text">{{credit.todo}}.</p>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <h5>Nombre: </h5><br> {{credit.businessname}}
-                    </li>
-                    <li class="list-group-item">
-                        <h5>Fecha de credito: </h5><br> {{credit.created_at}}
-                    </li>
-                    <li class="list-group-item">
-                        <h5>Intereses: </h5><br> {{credit.intereses}}
-                    </li>
-                </ul>
-            </div>
-            <div class="card-body">
-                <a href="#" class="card-link padding-right">Ver detalle de credito</a>
-                <a href="#" class="card-link padding-left">Another link</a>
+        </div>
+
+        <div *ngFor="let soli of soliArray;index as i" class="col-md-3" #group>
+            <div class="col-md-12">
+                <div class="card " id="headingD{{i}}">
+                    <div class="card-header" role="tab" id="headingM{{i}}">
+                        <h5 class="mb-0">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseM{{i}}" aria-expanded="true" aria-controls="collapse">
+                                <h4>Solicitud</h4>
+                            </a>
+                        </h5>
+                    </div>
+                    <img class="card-img-top" src="../../../assets/img/solicitud.jpeg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5>Nombre de Proyecto: </h5>
+                        <p class="card-text">{{soli.projectname}}.</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <h5>Nombre: </h5>
+                                {{soli.clientname}}
+                            </li>
+                            <li class="list-group-item">
+                                <h5>Fecha de Solicitud: </h5> {{soli.applicationdate}}
+                            </li>
+                            <li class="list-group-item">
+                                <h5>Estatus: </h5>{{soli.status}}
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <a href="#" class="card-link padding-right">Ver detalle de solicitud</a>
+                        <a href="#" class="card-link padding-left">Another link</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
 </div>
+<ng-template #loadingScreen>
+    <div class="row justify-content-md-center align-items-center" style="height: 70vh">
+        <div class="col-xs-12 col-md-6">
+            <div class="card">
+                <img class="card-img-top" src="../../../assets/img/dashboad_banner.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title">Card title</h4>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

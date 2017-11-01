@@ -12,6 +12,7 @@ import { SweetAlertService } from 'ng2-sweetalert2';
 export class DashboardComponent implements OnInit {
   public dataFinishedLoading = false;
   public creditArray;
+  public soliArray;
   @Input()
   public applications;
   @Input()
@@ -21,8 +22,15 @@ export class DashboardComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router, private sweetAlert: SweetAlertService) { }
 
   ngOnInit(): void {
-    this.http.get('/Clients/Creditos/all').subscribe(response => {
+    this.http.get('/Clients/Clientes/show/' + localStorage.getItem('idClient') + '/Wallet').subscribe(response => {
+     console.log('Clientes', response);
       this.creditArray = response['credits'];
+      this.soliArray = response['applications'];
+      if (response['credits'] || response['applications']) {
+        this.dataFinishedLoading = true;
+      } else {
+        this.dataFinishedLoading = false;
+      }
     });
   }
 }

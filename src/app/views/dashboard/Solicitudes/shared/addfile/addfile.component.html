@@ -27,11 +27,11 @@
 
             <div id="collapse{{file.id}}{{i}}" class="collapse" role="tabpanel" aria-labelledby="heading">
                 <div>
-                    <a class="btn btn-default" href="{{downloadUrl + file.path}}" target="_blank" style="background-color: #2D6BDC;border-color: #2D6BDC;">
-                        <i class="material-icons ">Descargar archivo</i>
+                    <a class="btn btn-default" href="{{downloadUrl + file.path}}" target="_blank">
+                        <i class="fa fa-download" style="color: #2D6BDC;" aria-hidden="true"></i> Descargar archivo
                     </a>
-                    <button class="btn btn-default" (click)="onDelete(file)" type="submit" style="background-color: #d9534f;border-color: #d43f3a;">
-                      <i class="material-icons ">Eliminar archivo</i>
+                    <button class="btn btn-default" (click)="onDelete(file)" type="submit">
+                        <i class="fa fa-trash"  style="color: #d43f3a;" aria-hidden="true"></i> Eliminar archivo
                   </button>
 
                 </div>

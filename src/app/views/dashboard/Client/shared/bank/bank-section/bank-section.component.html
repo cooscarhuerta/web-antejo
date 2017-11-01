@@ -52,10 +52,10 @@
 
                                 <div>
                                     <button class="btn btn-default" (click)="onUpdate(bank)" [disabled]="!bankForm.valid || this.idbank === 0" type="button">
-                                                                <i class="material-icons ">Actualizar Banco</i>
+                                                                <i class="material-icons "> Actualizar Banco</i>
                                                             </button>
-                                    <button class="btn btn-default" (click)="onDelete(bank)" [disabled]="!bankForm.valid" type="button" style="background-color: #d9534f;border-color: #d43f3a;">
-                                                              <i class="material-icons ">Eliminar Banco</i>
+                                    <button class="btn btn-default" (click)="onDelete(bank)" [disabled]="!bankForm.valid" type="button">
+                                                            <i class="fa fa-trash"  style="color: #d43f3a;" aria-hidden="true"></i> Eliminar Banco
                                                           </button>
 
                                 </div>

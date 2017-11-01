@@ -46,6 +46,7 @@ export class FilesComponent implements OnInit {
     formData.append('file', file);
     formData.append('type', type);
     formData.append('idapplication', this.appId);
+    if (this.parentComponent === 'Client') {
     this.http.post('/Clients/Clientes/add/FilesClient', formData, {
       headers: new HttpHeaders().set('Content-type', 'multipart/form-data')
     }).subscribe(response => {
@@ -63,7 +64,29 @@ export class FilesComponent implements OnInit {
           }
         }
       }
-    })
+    });
+  } else {
+
+    this.http.post('/Clients/Solicitudes/add/FilesApplication', formData, {
+      headers: new HttpHeaders().set('Content-type', 'multipart/form-data')
+    }).subscribe(response => {
+      this.dataFinishedLoading = true;
+      if (response['error']) {
+        this.sweetAlert.swal('Error', 'Error al conectarse con el servidor.', 'error');
+      } else {
+        this.sweetAlert.swal('Aviso', 'Archivo agregado exitosamente.', 'success');
+
+        for (let i = 0; i < this.fileTypes.length; i++) {
+          if (this.fileTypes[i].fileType === type) {
+            this.filesArray[i].push(response['file']);
+
+            break;
+          }
+        }
+      }
+    });
+
+  }
   }
 
   listaArchivos() {
