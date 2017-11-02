@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.get('/Clients/Clientes/show/' + localStorage.getItem('idClient') + '/Wallet').subscribe(response => {
-     console.log('Clientes', response);
+     
       this.creditArray = response['credits'];
       this.soliArray = response['applications'];
       if (response['credits'] || response['applications']) {

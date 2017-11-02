@@ -37,16 +37,16 @@ export class RegistryAppComponent implements OnInit {
       const appDate = Moment(this.model.applicationdate);
       this.model.applicationdate = appDate.toDate();
     }
-    console.log(this.model.applicationdate);
+    
 
     this.appId = this.inputAppId;
   }
   getData(event) {
-    console.log(event);
+    
   }
   onSubmit() {
   this.submitted = true;
-    console.log(this.model);
+    
     if (!this.appId) {
       this.http.post('/Clients/Solicitudes/add', this.model).subscribe((response) => {
 

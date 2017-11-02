@@ -63,7 +63,7 @@ export class RegistryPComponent implements OnInit {
         this.model.client.constitutiondate.getTime() < 0) {
         this.model.client.constitutiondate = new Date();
       }
-      console.log(this.model.client.constitutiondate);
+      
     }
   }
 }
