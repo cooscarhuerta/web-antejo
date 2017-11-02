@@ -38,8 +38,8 @@ export class FilesComponent implements OnInit {
   }
 
   openFile(file) {
-    console.log(apiUrl);
-    console.log(file.path);
+    
+    
     const newWindow = this.nativeWindow.open(apiUrl + '/storage/' + file.path);
   }
 

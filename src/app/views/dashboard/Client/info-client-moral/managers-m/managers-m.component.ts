@@ -70,7 +70,7 @@ export class ManagersMComponent implements OnInit {
           this.sweetAlert.swal('Aviso', 'Identificación agregada exitosamente.', 'success');
           this.fileId = data['file']['id'];
           this.managerModel['idfile'] = this.fileId;
-          console.log('Modelo:', this.managerModel);
+          
           this.registryInfo(this.managerModel);
         } else {
           this.sweetAlert.swal('Error', 'Error al válidar campos', 'error');
