@@ -4,8 +4,8 @@
             <div class="col-md-6">
                 <div class="card mx-4">
                     <div class="card-body p-4">
-                        <h1>Register</h1>
-                        <p class="text-muted">Create your account</p>
+                        <h1>Registro</h1>
+                        <p class="text-muted">Crea tu Cuenta</p>
                         <form role="form" (submit)="registry($event, name.value, email.value, password.value, passwordconfirmation.value)">
                             <div class="input-group mb-3">
                                 <span class="input-group-addon"><i class="icon-user"></i></span>
@@ -25,9 +25,10 @@
                                 <input type="password" #passwordconfirmation class="form-control" placeholder="Repeat password">
                             </div>
 
-                            <button type="" class="btn btn-block btn-success">Create Account</button>
-
+                            <button type="" class="btn btn-block btn-success">Crear Cuenta</button>
                         </form>
+
+                        <button [routerLink]="['/login']" class="btn btn-block">Volver a Iniciar Sesión </button>
                     </div>
                 </div>
             </div>

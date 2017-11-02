@@ -11,7 +11,6 @@ import { AppRoutingModule } from './creditos-routing.module';
 import { CommonModule } from '@angular/common';
 import { HistoryCreditComponent } from './history-credit/history-credit.component';
 import { ViewCreditComponent } from './view-credit/view-credit.component';
-import { SharedComponent } from './shared/shared.component';
 import { Modal, VexModalModule } from 'ngx-modialog/plugins/vex';
 
 import { OverlayRenderer, DOMOverlayRenderer, Overlay } from 'ngx-modialog';
@@ -34,7 +33,7 @@ const MODAL_PROVIDERS = [
   ], providers: [
     ...
     MODAL_PROVIDERS
-  ], declarations: [ ViewAppComponent, HistoryCreditComponent, ViewCreditComponent, SharedComponent, PayDetailModalComponent ],
+  ], declarations: [ ViewAppComponent, HistoryCreditComponent, ViewCreditComponent, PayDetailModalComponent ],
   entryComponents: [PayDetailModalComponent],
 })
 export class CreditsModule { }

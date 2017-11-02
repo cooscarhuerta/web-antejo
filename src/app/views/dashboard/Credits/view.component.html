@@ -6,7 +6,7 @@
                     <h2>Creditos</h2>
                 </div><br>
                 <accordion>
-                    <accordion-group *ngFor="let item of strArray" #group>
+                    <accordion-group *ngFor="let item" #group>
                         <div accordion-heading>
                             Nombre del proyecto: {{item}}
                             <i class="pull-right float-xs-right glyphicon" [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>

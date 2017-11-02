@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app-header.component.scss'],
   providers: [LoginComponent]
 })
-export class AppHeader implements OnInit{
+export class AppHeader implements OnInit {
   username: string;
   ngOnInit(): void {
     this.username = localStorage.getItem('email');

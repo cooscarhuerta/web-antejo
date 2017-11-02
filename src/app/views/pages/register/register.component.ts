@@ -1,18 +1,20 @@
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SweetAlertService } from 'ng2-sweetalert2';
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 
 @Component({
   templateUrl: 'register.component.html',
   providers: [SweetAlertService, HttpClient]
 })
 @Injectable()
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
 
   constructor(private http: HttpClient, private router: Router, private sweetAlert: SweetAlertService) { }
 
+  ngOnInit() {
+   }
   public registry(event, name, email, password, passwordconfirmation): void {
     event.preventDefault();
     const body = JSON.stringify({

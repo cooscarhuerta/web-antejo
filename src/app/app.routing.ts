@@ -1,3 +1,4 @@
+import { LoginComponent } from './views/pages/login/login.component';
 import { AuthGuard } from './views/pages/login/auth-guard.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, CanActivate } from '@angular/router';
@@ -51,7 +52,7 @@ export const routes: Routes = [
         loadChildren: './views/pages/pages.module#PagesModule',
       },
     ]
-  }
+  },
 ];
 
 @NgModule({

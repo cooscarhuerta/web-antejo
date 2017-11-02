@@ -1,3 +1,4 @@
+import { LoginComponent } from './views/pages/login/login.component';
 import { ServiceBank } from './views/dashboard/Client/shared/services.client/service.bancos';
 import { SweetAlertService } from 'ng2-sweetalert2';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
