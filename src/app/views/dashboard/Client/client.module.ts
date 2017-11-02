@@ -1,3 +1,4 @@
+import { RestPasswordComponent } from './rest-password/rest-password.component';
 import { DatepickerModule } from 'angular2-material-datepicker';
 import { ApplicationModule } from './../Solicitudes/solicitudes.module';
 import { FormsModule } from '@angular/forms';
@@ -35,11 +36,11 @@ import { BankSectionComponent } from './shared/bank/bank-section/bank-section.co
     AccordionModule.forRoot(),
     FormsModule,
     ApplicationModule,
-    DatepickerModule,
+    DatepickerModule
   ],
   declarations: [ClientComponent, InfoClientMoralComponent, InfoClientPhysicComponent,
      FilesComponent, RegistryPComponent, RegistryMComponent, ManagersMComponent,
      SharedHolderMComponent, ManagersSectionComponent, SharedHolderSectionComponent,
-      BankComponent, BankSectionComponent]
+      BankComponent, BankSectionComponent, RestPasswordComponent]
 })
 export class ClientsModule { }

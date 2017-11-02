@@ -1,3 +1,4 @@
+import { ClientComponent } from './Client/client.component';
 import { NgModule } from '@angular/core';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -13,7 +14,8 @@ import { ApplicationModule } from './Solicitudes/solicitudes.module';
     ChartsModule,
     BsDropdownModule,
     ApplicationModule,
-    CommonModule
+    CommonModule,
+
   ],
   declarations: [DashboardComponent],
   exports: []

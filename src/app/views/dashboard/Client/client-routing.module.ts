@@ -1,3 +1,4 @@
+import { RestPasswordComponent } from './rest-password/rest-password.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -9,6 +10,13 @@ const routes: Routes = [
     component: ClientComponent,
     data: {
       title: 'Cliente'
+    },
+  },
+  {
+    path: 'reset',
+    component: RestPasswordComponent,
+    data: {
+      title: 'Cambiar Contraseña'
     }
   }
 ];
@@ -17,4 +25,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
