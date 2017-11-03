@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Injectable, Component } from '@angular/core';
 import { SweetAlertService } from 'ng2-sweetalert2';
 
-
 @Injectable()
 export class PostRegistryP {
 
@@ -59,8 +58,8 @@ export class PostRegistryP {
       {
         headers: new HttpHeaders().set('Content-type', 'application/json')
       }).subscribe(data => {
-          callback(data);
-        }
+        callback(data);
+      }
       );
   }
 
@@ -94,4 +93,19 @@ export class PostRegistryP {
         }
       });
   }
+
+  changePassword(model, callback) {
+        if (model.password === model.passwordconfirmation) {
+      this.http.put('/Clients/Clientes/update/password/' + localStorage.getItem('idClient'), model,
+        {
+          headers: new HttpHeaders().set('Content-type', 'application/json')
+        }).subscribe(res => {
+          callback(res)
+          console.log(res)
+        });
+    } else {
+      callback(true);
+    }
+  }
+
 }
