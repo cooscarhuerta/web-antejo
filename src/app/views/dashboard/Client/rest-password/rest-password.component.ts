@@ -14,7 +14,7 @@ import { Component } from '@angular/core';
 
 export class RestPasswordComponent {
 
-model: Pass;
+model: Pass = new Pass('', '', '');
 
   constructor(private sweetAlert: SweetAlertService, private http: HttpClient, private service: PostRegistryP) { }
 

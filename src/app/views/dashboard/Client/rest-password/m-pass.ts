@@ -1,9 +1,8 @@
 export class Pass {
 constructor(
-   public oldpassword: '',
-   public password: '',
-   public passwordconfirmation: ''
-
+  public oldpassword: string,
+  public  password: string,
+  public  passwordconfirmation: string
 ) {}
 
 }
