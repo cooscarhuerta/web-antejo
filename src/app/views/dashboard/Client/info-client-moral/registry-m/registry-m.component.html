@@ -22,11 +22,7 @@
         <material-datepicker name="constitutiondate" [(date)]="model.client.constitutiondate"></material-datepicker>
     </div>
 
-    <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+   <ng-datepicker></ng-datepicker>
     <div class="form-group col-sm-3">
         <label for="giro">Giro:</label>
         <input class="form-control" [(ngModel)]="model.client.businesscategory" name="giro" type="text" #businesscategory="ngModel" required>

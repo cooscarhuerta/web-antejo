@@ -8,7 +8,6 @@ export class LoginInterceptor implements HttpInterceptor {
 
   constructor() { };
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log("hola");
     try {
       const token = localStorage.getItem('auth_token');
       let authReq = req.clone();
@@ -23,8 +22,6 @@ export class LoginInterceptor implements HttpInterceptor {
           });
         }
       }
-      console.log(apiUrl);
-      console.log(authReq.url);
       authReq = authReq.clone({
         headers: authReq.headers.set('token', token != null ? token : ''),
         url: apiUrl + authReq.url

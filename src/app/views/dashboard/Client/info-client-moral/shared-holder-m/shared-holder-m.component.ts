@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { SharedholderM } from './m-shared-holder-m';
 import { Component, Input, OnInit } from '@angular/core';
 
+import { DatepickerOptions } from 'ng2-datepicker';
 @Component({
   selector: 'app-shared-holder-m',
   templateUrl: './shared-holder-m.component.html',
@@ -12,6 +13,13 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./shared-holder-m.component.scss']
 })
 export class SharedHolderMComponent implements OnInit {
+    options: DatepickerOptions = {
+        minYear: 1900,
+        maxYear: 2020,
+        displayFormat: 'MMM D[,] YYYY',
+        barTitleFormat: 'MMMM YYYY',
+        firstCalendarDay: 0 // 0 - Sunday, 1 - Monday
+    };
   submitted = false;
   dataFinishedLoading = false;
   sharedModel: SharedholderM = new SharedholderM();

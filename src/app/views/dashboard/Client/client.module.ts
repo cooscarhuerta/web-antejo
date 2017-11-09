@@ -23,12 +23,13 @@ import { ManagersSectionComponent } from './info-client-moral/managers-m/manager
 import { SharedHolderSectionComponent } from './info-client-moral/shared-holder-m/shared-holder-section/shared-holder-section.component';
 import { BankComponent } from './shared/bank/bank.component';
 import { BankSectionComponent } from './shared/bank/bank-section/bank-section.component';
-
+import { NgDatepickerModule } from 'ng2-datepicker';
 
 @NgModule({
   imports: [
     AppRoutingModule,
     ChartsModule,
+    NgDatepickerModule,
     BsDropdownModule.forRoot(),
     CommonModule,
     TabsModule.forRoot(),

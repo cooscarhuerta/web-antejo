@@ -8,7 +8,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { PatternValidator } from '@angular/forms';
 import * as Moment from 'moment';
-
 @Component({
   selector: 'app-registry-m',
   templateUrl: './registry-m.component.html',
