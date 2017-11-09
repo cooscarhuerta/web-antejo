@@ -1,3 +1,4 @@
+import { NgDatepickerModule } from 'ng2-datepicker';
 import { LoginComponent } from './views/pages/login/login.component';
 import { ServiceBank } from './views/dashboard/Client/shared/services.client/service.bancos';
 import { SweetAlertService } from 'ng2-sweetalert2';
@@ -66,7 +67,8 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
-import { NgDatepickerModule } from 'ng2-datepicker';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -80,12 +82,14 @@ import { NgDatepickerModule } from 'ng2-datepicker';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BsDatepickerModule.forRoot(),
+
   ],
   declarations: [
     AppComponent,
     ...APP_CONTAINERS,
     ...APP_COMPONENTS,
-    ...APP_DIRECTIVES
+    ...APP_DIRECTIVES,
   ],
   providers: [{
     provide: LocationStrategy,

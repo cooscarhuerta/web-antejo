@@ -1,3 +1,5 @@
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { RestPasswordComponent } from './rest-password/rest-password.component';
 import { DatepickerModule } from 'angular2-material-datepicker';
 import { ApplicationModule } from './../Solicitudes/solicitudes.module';
 import { FormsModule } from '@angular/forms';
@@ -37,10 +39,11 @@ import { NgDatepickerModule } from 'ng2-datepicker';
     FormsModule,
     ApplicationModule,
     DatepickerModule,
+    BsDatepickerModule.forRoot()
   ],
   declarations: [ClientComponent, InfoClientMoralComponent, InfoClientPhysicComponent,
      FilesComponent, RegistryPComponent, RegistryMComponent, ManagersMComponent,
      SharedHolderMComponent, ManagersSectionComponent, SharedHolderSectionComponent,
-      BankComponent, BankSectionComponent]
+      BankComponent, BankSectionComponent, RestPasswordComponent]
 })
 export class ClientsModule { }

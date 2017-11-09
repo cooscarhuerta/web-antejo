@@ -1,3 +1,4 @@
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { SweetAlertService } from 'ng2-sweetalert2';
 import { PostRegistryP } from './../../shared/services.client/service.registryP';
 
@@ -63,7 +64,7 @@ export class RegistryPComponent implements OnInit {
         this.model.client.constitutiondate.getTime() < 0) {
         this.model.client.constitutiondate = new Date();
       }
-      
+
     }
   }
 }
