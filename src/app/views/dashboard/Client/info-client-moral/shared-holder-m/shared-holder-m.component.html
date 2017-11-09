@@ -13,21 +13,21 @@
 
         <form (ngSubmit)="onSubmit()" #sharedholderForm="ngForm">
             <div class="row col-sm-12">
-                <div class="form-group col-sm-6">
+                <div class="form-group col-sm-4">
                     <label for="name">Nombre(s):</label>
                     <input id="name" name="name" class="form-control" [(ngModel)]="sharedModel.name" type="text" #name="ngModel" required>
                     <div [hidden]="name.valid || name.pristine">
                         <span class="text-danger">El nombre no es un campo válido</span>
                     </div>
                 </div>
-                <div class="form-group col-sm-6">
+                <div class="form-group col-sm-4">
                     <label for="lastname">Apellido(s):</label>
                     <input class="form-control" [(ngModel)]="sharedModel.lastname" name="lastname" type="text" #lastname="ngModel" required>
                     <div [hidden]="lastname.valid || lastname.pristine">
                         <span class="text-danger">El apellido no es un campo válido</span>
                     </div>
                 </div>
-                <div class="form-group col-sm-5">
+                <div class="form-group col-sm-4">
                     <label for="rfc">RFC:</label>
                     <input class="form-control" [(ngModel)]="sharedModel.rfc" name="rfc" type="text" pattern="{{RFCPattern}}" #rfc="ngModel" required>
                     <div [hidden]="rfc.valid || rfc.pristine">
@@ -41,15 +41,22 @@
                         <span class="text-danger">La participación no es un campo válido</span>
                     </div>
                 </div>
-                <div class="form-group col-sm-2">
-                    <label for="oldwork">Fecha de Contratación:</label>
-                    <material-datepicker class="form-control" name="oldwork" [(date)]="sharedModel.oldwork" required></material-datepicker>
+                <div class="form-group col-sm-4">
+                    <label for="constitutiondate">Fecha de Contratación:</label>
+                    <div class="row">
+                        <div class="col-xs-12 col-12 col-md-6 form-group">
+                            <input type="text" class="form-control" name="constitution" #constitutiondate="ngModel" #dp="bsDatepicker" bsDatepicker [(ngModel)]="sharedModel.oldwork">
+                        </div>
+                        <div class="col-xs-12 col-12 col-md-3 form-group">
+                            <button type="button" class="btn btn-primary" (click)="dp.toggle()">Seleccionar Fecha</button>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <button class="btn btn-default" ng-click="ctrl.AddAccount()" [disabled]="!sharedholderForm.valid" ng-disabled="bancos.$invalid ">
-                                            <i class="material-icons ">Agregar Accionista</i>
-                                        </button>
-                </div>
+            </div>
+            <div>
+                <button class="btn btn-default" ng-click="ctrl.AddAccount()" [disabled]="!sharedholderForm.valid" ng-disabled="bancos.$invalid ">
+                                        <i class="material-icons ">Agregar Accionista</i>
+                                    </button>
             </div>
         </form>
     </div>
@@ -59,3 +66,6 @@
 <div *ngIf="dataFinishedLoading">
     <app-shared-holder-section [sharedArray]="this.inputSharedArray"></app-shared-holder-section>
 </div>
+
+
+<link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css">

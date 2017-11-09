@@ -49,10 +49,16 @@
                                 </div>
 
                                 <div class="form-group col-sm-4">
-                                    <label for="oldwork">Fecha de Contratación:</label>
-                                    <material-datepicker class="form-control" name="oldwork" [(date)]="shared.oldwork" required></material-datepicker>
+                                    <label for="constitutiondate">Fecha de Contratación:</label>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-12 col-md-6 form-group">
+                                            <input type="text" class="form-control" name="constitution" #constitutiondate="ngModel" #dp="bsDatepicker" bsDatepicker [(ngModel)]="shared.oldwork">
+                                        </div>
+                                        <div class="col-xs-12 col-12 col-md-3 form-group">
+                                            <button type="button" class="btn btn-primary" (click)="dp.toggle()">Seleccionar Fecha</button>
+                                        </div>
+                                    </div>
                                 </div>
-
                                 <div>
                                     <button class="btn btn-default " style='margin-right:10px' [disabled]="!sharedForm.valid" (click)="onUpdate(shared)" type="button">
                                                   <i class="material-icons ">Actualizar Accionista</i>

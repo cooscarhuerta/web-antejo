@@ -1,3 +1,4 @@
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { SweetAlertService } from 'ng2-sweetalert2';
 import { PostRegistryP } from './../../shared/services.client/service.registryP';
 

@@ -2,7 +2,7 @@
 <h4>Información Personal</h4>
 <hr>
 <form (ngSubmit)="onSubmit()" #clientForm="ngForm" class="row">
-    <div class="form-group col-sm-8">
+    <div class="form-group col-sm-5">
         <label for="businessname">Razón Social:</label>
         <input id="businessname" name="businessname" class="form-control" [(ngModel)]="model.client.businessname" type="text" #businessname="ngModel" required>
         <div [hidden]="businessname.valid || businessname.pristine">
@@ -17,25 +17,31 @@
         </div>
     </div>
     <div class="form-group col-sm-3">
-        <label for="constitutiondate">Fecha de Constitución:</label>
-        <br>
-        <material-datepicker name="constitutiondate" [(date)]="model.client.constitutiondate"></material-datepicker>
-    </div>
-    <div class="form-group col-sm-3">
-        <label for="giro">Giro:</label>
-        <input class="form-control" [(ngModel)]="model.client.businesscategory" name="giro" type="text" #businesscategory="ngModel" required>
-        <div [hidden]="businesscategory.valid || businesscategory.pristine">
-            <span class="text-danger">El giro empresarial no es un campo válido</span>
-        </div>
-    </div>
-    <div class="form-group col-sm-3">
         <label for="numberemployes">No. Empleados:</label>
         <input class="form-control" [(ngModel)]="model.client.employeenumber" name="employeenumber" type="number" #numberemployes="ngModel" required>
         <div [hidden]="numberemployes.valid || numberemployes.pristine">
             <span class="text-danger">La cantidad de empleados no es un campo válido</span>
         </div>
     </div>
-    <div class="form-group col-sm-3">
+    <div class="form-group col-sm-4">
+        <label for="rfc">Fecha de Constitución:</label>
+        <div class="row">
+            <div class="col-xs-12 col-12 col-md-5 form-group">
+                <input type="text" class="form-control" name="constitutiondate" #constitutiondate="ngModel" #dp="bsDatepicker" bsDatepicker [(ngModel)]="model.client.constitutiondate">
+            </div>
+            <div class="col-xs-12 col-12 col-md-3 form-group">
+                <button class="btn btn-primary" (click)="dp.toggle()">Seleccionar Fecha</button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group col-sm-4">
+        <label for="giro">Giro:</label>
+        <input class="form-control" [(ngModel)]="model.client.businesscategory" name="giro" type="text" #businesscategory="ngModel" required>
+        <div [hidden]="businesscategory.valid || businesscategory.pristine">
+            <span class="text-danger">El giro empresarial no es un campo válido</span>
+        </div>
+    </div>
+    <div class="form-group col-sm-4">
         <label for="fiel">FIEL:</label>
         <input class="form-control" [(ngModel)]="model.client.fiel" pattern="{{FIELPattern}}" name="fiel" type="text" #fiel="ngModel" required>
         <div [hidden]="fiel.valid || fiel.pristine">
@@ -110,3 +116,5 @@
         </ng-template>
     </div>
 </form>
+
+<link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css">

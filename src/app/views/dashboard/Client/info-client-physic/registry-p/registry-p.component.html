@@ -2,32 +2,26 @@
 <h4>Información Personal</h4>
 <hr>
 <form (ngSubmit)="onSubmit()" #clientForm="ngForm" class="row">
-    <div class="form-group col-sm-4">
+    <div class="form-group col-sm-3">
         <label for="name">Nombre(s):</label>
         <input id="name" name="name" class="form-control" [(ngModel)]="model.client.name" type="text" #name="ngModel" required>
         <div [hidden]="name.valid || name.pristine">
             <span class="text-danger">El nombre no es un campo válido</span>
         </div>
     </div>
-    <div class="form-group col-sm-4">
+    <div class="form-group col-sm-3">
         <label for="lastname">Apellido(s):</label>
         <input class="form-control" [(ngModel)]="model.client.lastname" name="lastname" type="text" #lastname="ngModel" required>
         <div [hidden]="lastname.valid || lastname.pristine">
             <span class="text-danger">El apellido no es un campo válido</span>
         </div>
     </div>
-    <div class="form-group col-sm-4">
+    <div class="form-group col-sm-3">
         <label for="rfc">RFC:</label>
         <input class="form-control" [(ngModel)]="model.client.rfc" pattern={{RFCPattern}} name="rfc" type="text" #rfc="ngModel" required>
         <div [hidden]="rfc.valid || rfc.pristine">
             <span class="text-danger">El RFC no es un campo válido</span>
         </div>
-    </div>
-    <div class="form-group col-sm-3">
-        <label for="constitutiondate">Fecha de Nacimiento:</label>
-        <br>
-        <material-datepicker name="constitutiondate" [(date)]="model.client.constitutiondate"></material-datepicker>
-
     </div>
     <div class="form-group col-sm-3">
         <label for="numberemployes">No. Empleados:</label>
@@ -36,14 +30,25 @@
             <span class="text-danger">La cantidad de empleados no es un campo válido</span>
         </div>
     </div>
-    <div class="form-group col-sm-3">
+    <div class="form-group col-sm-4">
+        <label for="rfc">Fecha de Nacimiento:</label>
+        <div class="row">
+            <div class="col-xs-12 col-12 col-md-5 form-group">
+                <input type="text" class="form-control" name="constitutiondate" #constitutiondate="ngModel" #dp="bsDatepicker" bsDatepicker [(ngModel)]="model.client.constitutiondate">
+            </div>
+            <div class="col-xs-12 col-12 col-md-3 form-group">
+                <button class="btn btn-primary" (click)="dp.toggle()">Seleccionar Fecha</button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group col-sm-4">
         <label for="fiel">FIEL:</label>
         <input class="form-control" [(ngModel)]="model.client.fiel" name="fiel" pattern={{FIELPattern}} type="text" #fiel="ngModel" required>
         <div [hidden]="fiel.valid || fiel.pristine">
             <span class="text-danger">El fiel no es un campo válido</span>
         </div>
     </div>
-    <div class="form-group col-sm-3">
+    <div class="form-group col-sm-4">
         <label for="businesscategory">Giro:</label>
         <input class="form-control" [(ngModel)]="model.client.businesscategory" name="businesscategory" type="text" #businesscategory="ngModel" required>
         <div [hidden]="businesscategory.valid || businesscategory.pristine">
@@ -119,3 +124,5 @@
     </div>
 
 </form>
+
+<link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css">
