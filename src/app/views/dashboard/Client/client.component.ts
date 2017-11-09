@@ -29,9 +29,10 @@ export class ClientComponent implements OnInit {
     this.client = null;
     this.clientType = null;
     this.idClient = localStorage.getItem('idClient');
-    if (this.idClient) {
+    console.log(this.idClient);
+    if (this.idClient !== null) {
       this.dataFinishedLoading = false;
-      this.http.get('/Clients/Clientes/show/' + localStorage.getItem('idClient')).subscribe(res => {
+      this.http.get('/Clients/Clientes/show/' + this.idClient).subscribe(res => {
         if (res['error'] === false) {
           this.client = res['client'];
           if (this.client.businessname === null) {

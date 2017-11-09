@@ -12,7 +12,7 @@ export class RegistryP {
       fiel: null,
       email: '',
       businesscategory: '',
-      constitutiondate: null,
+      constitutiondate: new Date(),
       type: 'Fisica',
       address: '',
       colony: '',

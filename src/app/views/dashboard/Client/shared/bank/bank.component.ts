@@ -31,7 +31,8 @@ export class BankComponent implements OnInit {
   ngOnInit() {
     this.dataFinishedLoading = false;
     this.banksArray = this.inputBanksArray;
-    this.getBanks();
+    // this.localStorage
+    // this.getBanks();
   }
   registryBank(model) {
     return new Promise<Bank>((resolve, reject) => {

@@ -31,12 +31,7 @@ export class ManagersMComponent implements OnInit {
     private http: HttpClient) { }
 
   ngOnInit() {
-    if (this.inputManagerArray.length > 0) {
-      this.dataFinishedLoading = true;
-    } else {
-      this.sweetAlert.swal('Aviso', 'No cuenta con representantes registrados', 'warning');
-      this.dataFinishedLoading = false;
-    }
+    this.dataFinishedLoading = true;
   }
 
   registryInfo(model) {

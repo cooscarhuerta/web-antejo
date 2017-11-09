@@ -42,8 +42,12 @@ export class InfoClientPhysicComponent implements OnInit {
   }
   ngOnInit() {
     this.dataFinishedLoading = false;
-    this.getFullClient();
     this.idClient = localStorage.getItem('idClient');
+    if(this.idClient != null) {
+        this.getFullClient();
+    }else{
+      this.dataFinishedLoading = true;
+    }
   }
 
   getFullClient() {

@@ -24,12 +24,7 @@ export class SharedHolderMComponent implements OnInit {
     private http: HttpClient) { }
 
   ngOnInit() {
-    if (this.inputSharedArray.length > 0) {
-      this.dataFinishedLoading = true;
-    } else {
-      this.sweetAlert.swal('Aviso', 'No cuenta con accionistas registrados', 'warning');
-      this.dataFinishedLoading = false;
-    }
+    this.dataFinishedLoading = true;
   }
 
   registryInfo(model) {
