@@ -11,8 +11,8 @@ import { SweetAlertService } from 'ng2-sweetalert2';
 @Injectable()
 export class DashboardComponent implements OnInit {
   public dataFinishedLoading = false;
-  public creditArray;
-  public soliArray;
+  public creditArray: Array<any>;
+  public soliArray: Array<any>;
   @Input()
   public applications;
   @Input()

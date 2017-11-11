@@ -30,7 +30,14 @@ const routes: Routes = [
         path: 'login',
         component: LoginComponent,
         data: {
-          title: 'Login Page'
+          title: 'Login'
+        }
+      },
+      {
+        path: 'register',
+        component: RegisterComponent,
+        data: {
+          title: 'Registro'
         }
       },
     ]

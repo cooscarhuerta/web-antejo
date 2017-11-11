@@ -1,2 +1,2 @@
-export const apiUrl = 'http://api2.antejo.com';
-export const downloadUrl = 'http://api2.antejo.com/storage/';
+export const apiUrl = 'http://localhost:8081';
+export const downloadUrl = 'http://localhost:8081/storage/';

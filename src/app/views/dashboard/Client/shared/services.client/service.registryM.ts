@@ -24,21 +24,15 @@ export class PostRegistryM {
           if (data['error'] === false) {
             localStorage.setItem('idClient', data['client']['id']);
             localStorage.setItem('clientType', 'moral');
-            callback(false);
-          } else {
-            callback(true);
           }
+          callback(data)
         });
     } else {
       this.http.put('/Clients/Clientes/update/' + localStorage.getItem('idClient'), model.client,
         {
           headers: new HttpHeaders().set('Content-type', 'application/json')
         }).subscribe(data => {
-          if (data['error'] === false) {
-            callback(false);
-          } else {
-            callback(true);
-          }
+          callback(data);
         });
     }
   }

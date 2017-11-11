@@ -35,12 +35,27 @@ export class RegistryMComponent implements OnInit {
   registryInfo(model) {
     try {
       this.postRegistry.registryInfo(model, this.method, callback => {
-        if (!callback) {
+        const error = callback['error'];
+        if (!error) {
           const idClient = localStorage.getItem('idClient');
           this.idRefresher.emit(idClient);
           this.sweetAlert.swal('Aviso', 'Información agregada exitosamente.', 'success');
         } else {
-          this.sweetAlert.swal('Error', 'Error al válidar campos', 'error');
+          const errors = callback['errors'];
+          let errorMessage = '';
+          for (let i = 0; i < errors.length; i++) {
+            errorMessage += errors[i] + '\n';
+          }
+          this.sweetAlert.swal({
+            title: 'Error',
+            type: 'error',
+            html: errorMessage,
+            showCloseButton: false,
+            showCancelButton: false,
+            focusConfirm: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonAriaLabel: 'Aceptar'
+          })
         }
       });
     } catch (Exp) {
@@ -58,7 +73,7 @@ export class RegistryMComponent implements OnInit {
         this.model.client.constitutiondate.getTime() < 0) {
         this.model.client.constitutiondate = new Date();
       }
-      
+
     }
   }
   onSubmit() {

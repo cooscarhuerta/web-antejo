@@ -16,8 +16,9 @@ export class HistoryCreditComponent implements OnInit {
 
   }
   ngOnInit(): void {
+    const idClient = localStorage.getItem('idClient');
     this.http.get(
-      '/Clients/Creditos/show/' + 1 + 'Cliente',
+      '/Clients/Creditos/show/' + idClient + '/Cliente',
       {
         headers: new HttpHeaders()
           .set('Content-type', 'application/json')

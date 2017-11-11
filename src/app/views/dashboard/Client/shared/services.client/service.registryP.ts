@@ -22,10 +22,8 @@ export class PostRegistryP {
           if (data['error'] === false) {
             localStorage.setItem('idClient', data['client']['id']);
             localStorage.setItem('clientType', 'physical');
-            callback(false);
-          } else {
-            callback(true);
           }
+          callback(data);
           // Read the result field from the JSON response.
 
         });
@@ -34,11 +32,7 @@ export class PostRegistryP {
         {
           headers: new HttpHeaders().set('Content-type', 'application/json')
         }).subscribe(data => {
-          if (data['error'] === false) {
-            callback(false);
-          } else {
-            callback(true);
-          }
+          callback(data);
           // Read the result field from the JSON response.
 
         });

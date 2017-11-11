@@ -68,6 +68,7 @@ export class ManagersMComponent implements OnInit {
           
           this.registryInfo(this.managerModel);
         } else {
+          
           this.sweetAlert.swal('Error', 'Error al válidar campos', 'error');
         }
       });
